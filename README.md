@@ -57,4 +57,4 @@ This may not be for you, but it is highly customizable (ie. In theory, it should
     * English
     * Japanese
 * Pages
-    * index.html
+    * index.jade
