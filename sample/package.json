@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "accepts": "^1.0.7",
     "app-root-path": "^0.1.0",
     "body-parser": "~1.0.0",
     "cookie-parser": "~1.0.1",

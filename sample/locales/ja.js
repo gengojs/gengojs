@@ -1,3 +1,6 @@
 module.exports = {
-    Hello: "ハロー"
+    index: {
+        "Welcome to express": "エクスプレスへようこそ",
+        Express: "エクスプレス"
+    }
 };

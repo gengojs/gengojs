@@ -21,7 +21,10 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 gengo.config({
-    debug: true
+    debug: true,
+    supported: ['ja', 'en', 'en_US'],
+    default: 'en_US',
+    viewAware: true
 });
 gengo.init(app);
 
