@@ -1,4 +1,6 @@
 module.exports = {
-    index: {"エクスプレスへようこそ": "Welcome to express",
-        "エクスプレス": "Express"}
+    index: {
+        "%s エクスプレスへようこそ": "Welcome to express %s",
+        "エクスプレス": "Express"
+    }
 };

@@ -1,5 +1,23 @@
 extends layout
 
 block content
-  h1= __(title)
-  p #{__("Welcome to express")}
+	h1= __(title)
+	p #{__("%s エクスプレスへようこそ", name)}
+	button(onclick="locale().set('ja');") Japanese
+	button(onclick="locale().set('en_US');") English
+	button(onclick="locale().reset();") Reset
+	script.
+		var locale = function(){
+			return{
+				set: function(locale){
+					document.cookie = "locale=" + locale.toString();
+					location.reload();
+				},
+				reset: function(){
+					document.cookie = "locale=";
+					location.reload();
+				}
+			};
+		};
+
+

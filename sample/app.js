@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 gengo.config({
     debug: true,
     supported: ['ja', 'en', 'en_US'],
-    default: 'en_US',
+    default: 'ja',
     viewAware: true
 });
 gengo.init(app);

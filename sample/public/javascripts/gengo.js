@@ -31,7 +31,7 @@
     var gengo,
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
-        VERSION = '0.0.2',
+        VERSION = '0.0.3',
         //configuration with defaults set
         CONFIG = {
             //path to locales
@@ -40,7 +40,7 @@
             debug: false,
             //supported locales
             supported: ['en_US', 'en'],
-            default: 'en',
+            default: 'en_US',
             viewAware: false,
             views: {
                 '/': 'index'
@@ -54,30 +54,50 @@
             en: 'en',
             en_US: 'en_US'
         },
-        ROUTE;
+        ROUTE,
+        COOKIELOCALE;
 
 
     /************************************
         Top Level Functions
     ************************************/
 
-    gengo = function(input) {
+    gengo = function(input, arg) {
+
         debug(input, 'fn: gengo, Input');
-        //compare the current locale to the default
-        if (isLang(BESTMATCH)) {
-            return input;
+        //check to see if COOKIELOCALE || BESTMATCH === default
+        if (isDefault()) {
+            debug('-----------------------------------');
+            if (arg !== undefined) {
+                return replace(input, arg);
+            } else {
+                return input;
+            }
+
         } else {
             loadLocale();
             if (CONFIG.viewAware) {
                 if (router() !== undefined) {
                     debug(router()[input], "fn: gengo, Output with viewAware");
-                    return router()[input];
+                    debug('-----------------------------------');
+
+                    if (arg !== undefined) {
+                        return replace(router()[input], arg);
+                    } else {
+                        return router()[input];
+                    }
                 }
+
 
             } else {
 
                 debug(LOCALE[input], 'fn: gengo, Output');
-                return LOCALE[input];
+                debug('-----------------------------------');
+                if (arg !== undefined) {
+                    return replace(LOCALE[input], arg);
+                } else {
+                    return LOCALE[input];
+                }
             }
 
         }
@@ -86,14 +106,18 @@
     gengo.version = VERSION;
 
     gengo.init = function(app) {
+
         var _locale = require('locale');
 
         app.use(_locale(CONFIG.supported));
         app.use(function(req, res, next) {
+            //get the route
             ROUTE = req.path;
+            //get the cookie local if it exists
+            COOKIELOCALE = req.cookies.locale;
             debug(ROUTE, "fn: init, Route");
             debug(req.headers['accept-language'], "fn: init, Accept-Language");
-
+            debug(COOKIELOCALE, "fn: init, Cookie locale");
             //for some reason best match can return 'en_US.UTF-8'
             //we only care for en_US
             if (req.locale.indexOf('.') !== -1) {
@@ -105,6 +129,7 @@
             next();
         });
     };
+
     gengo.config = function(config) {
         CONFIG = Object.extender(CONFIG, config);
     };
@@ -114,7 +139,13 @@
     ************************************/
 
     function loadLocale() {
-        LOCALE = require(CONFIG.localePath + LOCALES[BESTMATCH] + '.js');
+        //COOKIELOCALE has top priority if set
+        if (COOKIELOCALE) {
+            LOCALE = require(CONFIG.localePath + LOCALES[COOKIELOCALE] + '.js');
+        } else {
+            LOCALE = require(CONFIG.localePath + LOCALES[BESTMATCH] + '.js');
+        }
+
         if (LOCALE) {
             debug("fn: loadLocale, LOCALE loaded.");
         } else {
@@ -137,9 +168,23 @@
         }
     };
 
-    function isLang(language) {
-        if (language === CONFIG.default) {
-            return true
+    //check if COOKIELOCALe or best match is default
+    function isDefault() {
+        //COOKIELOCALe has top priority if set
+        if (COOKIELOCALE) {
+            //if COOKIELOCALE === default
+            if (COOKIELOCALE === CONFIG.default) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            //If BESTMATCH === default
+            if (BESTMATCH === CONFIG.default) {
+                return true;
+            } else {
+                return false;
+            }
         }
         return false;
     };
@@ -167,7 +212,18 @@
         } else {
             return undefined;
         }
-    }
+    };
+
+    function replace(input, arg) {
+        var sprintf = require("sprintf-js").sprintf,
+            vsprintf = require("sprintf-js").vsprintf;
+
+        if (typeof arg === Array) {
+            return vsprintf(input, arg);
+        } else {
+            return sprintf(input, arg);
+        }
+    };
     /************************************
         Exposing Gengo
     ************************************/
