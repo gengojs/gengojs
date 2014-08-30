@@ -191,7 +191,7 @@
             debug('fn: loadLocale, In BESTMATCH');
             LOCALE = require(CONFIG.localePath + LOCALES.gengo[BESTMATCH] + '.js');
             loadMoment(LOCALES.moment[BESTMATCH]);
-            loadNumeral(LOCALEs.numeral[BESTMATCH]);
+            loadNumeral(LOCALES.numeral[BESTMATCH]);
         }
 
         if (LOCALE) {
