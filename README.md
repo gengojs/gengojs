@@ -1,8 +1,3 @@
-#Welcome to the Gengo.js wiki!
-
-I hope this wiki will clarify what gengo can do and cannot do rather than bloating up the readme.
-
-Also, gengo will be used for short.
 ##QA
 
 ###What is Gengo.js?
