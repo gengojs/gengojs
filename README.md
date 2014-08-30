@@ -35,6 +35,7 @@ From there you have two options, you can have gengo to:
 * load the words/sentences from the translation file directly
 * load the words/sentences from the translation file by route (not fully tested)
 an example will look like this in your locale folder:
+
 ```js
 //ja.js
 
