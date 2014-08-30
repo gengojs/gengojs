@@ -4,7 +4,7 @@
 /*global module, $, console*/
 /*
  * gengojs
- * version : 0.0.3
+ * version : 0.1.7
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -49,7 +49,7 @@
         vsprintf = require("sprintf-js").vsprintf,
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
-        VERSION = '0.1.3',
+        VERSION = '0.1.7',
         //configuration with defaults set
         CONFIG = {
             //path to locales

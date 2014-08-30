@@ -58,7 +58,7 @@ extends layout
 
 block content
   h1= title
-  //pretty much the same as i18n '__', maybe if many requests then that can be changed.
+  //pretty much the same as i18n '__' (can be changed through config. see API)
   p Welcome to #{__("Welcome to express")}
 ```
 For more templating and translation file examples see [Translating](https://github.com/iwatakeshi/gengojs/wiki/Translating)
