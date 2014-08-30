@@ -1,5 +1,3 @@
-Gengo.js
-=========
 ##QA
 
 ###What is Gengo.js?
@@ -11,7 +9,7 @@ Also, before moving on, Moment.js and Numeral.js are part of gengo. What does th
 gengo is available on npm. To begin:
 ```bash
 sudo npm install gengojs
-##or
+#or
 sudo npm install gengojs --save
 ```
 then in your app.js
@@ -35,7 +33,6 @@ From there you have two options, you can have gengo to:
 * load the words/sentences from the translation file directly
 * load the words/sentences from the translation file by route (not fully tested)
 an example will look like this in your locale folder:
-
 ```js
 //ja.js
 
@@ -58,14 +55,39 @@ extends layout
 
 block content
   h1= title
-  //pretty much the same as i18n '__' (can be changed through config. see API)
-  p Welcome to #{__("Welcome to express")}
+   //pretty much the same as i18n '__' (can be changed through config. see API)
+  //this will output エクスプレスへようこそ or Welcome to express
+  p Welcome to #{__("Welcome to express")} 
 ```
 For more templating and translation file examples see [Translating](https://github.com/iwatakeshi/gengojs/wiki/Translating)
 
+###Can I use gengo within routes?
+You know what? Yes! Note that it is experimental since I just discovered it. I haven't fully tested it, but it would look like so:
+```js
+//index.jade, viewAware: false
+var express = require('express');
+var router = express.Router();
+var gengo = require('gengojs');
+/* GET home page. */
+router.get('/', function(req, res) {
+    console.log(gengo('Hello')); //outputs ハロー or Hello
+    res.render('index', {
+        title: 'Express'
+    });
+});
 
+module.exports = router;
+
+```
 ###Can users change the language?
 Yes! The only way the user can change language (at the moment) is by using cookies. see [Translating](https://github.com/iwatakeshi/gengojs/wiki/Translating) for an example.
 
 ###Can I contribute?
 Sure! See [Contribute](https://github.com/iwatakeshi/gengojs/wiki/Contribute) for more details.
+
+##Acknowledgements
+gengo was made possible by:
+* [locale](https://github.com/jed/locale)
+* [App Root Path](https://github.com/inxilpro/node-app-root-path)
+* [Moment.js](https://github.com/moment/moment)
+* [Numeral.js](https://github.com/adamwdraper/Numeral-js)
