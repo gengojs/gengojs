@@ -90,4 +90,8 @@ gengo was made possible by:
 * [locale](https://github.com/jed/locale)
 * [App Root Path](https://github.com/inxilpro/node-app-root-path)
 * [Moment.js](https://github.com/moment/moment)
+<<<<<<< HEAD
 * [Numeral.js](https://github.com/adamwdraper/Numeral-js)
+=======
+* [Numeral.js](https://github.com/adamwdraper/Numeral-js)
+>>>>>>> origin/master
