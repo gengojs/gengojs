@@ -113,6 +113,7 @@
             loadNumeral(LOCALES.numeral[CONFIG.default]);
 
             if (arg !== undefined) {
+                debug(replace(input, arg), 'fn: gengo, Output with arg');
                 return replace(input, arg);
             } else {
                 return input;
@@ -153,7 +154,10 @@
             //get the route
             ROUTE = req.path;
             //get the cookie local if it exists
-            COOKIELOCALE = req.cookies.locale;
+            if (req.cookies.locale !== '' || req.cookies.locale !== undefined) {
+
+                COOKIELOCALE = req.cookies.locale;
+            }
             debug(ROUTE, "fn: init, Route");
             debug(req.headers['accept-language'], "fn: init, Accept-Language");
             debug(COOKIELOCALE, "fn: init, Cookie locale");
@@ -251,7 +255,6 @@
                 return false;
             }
         }
-        return false;
     };
     //for viewAware
     function router() {
