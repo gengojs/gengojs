@@ -14,7 +14,9 @@
     "express": "~4.2.0",
     "jade": "~1.3.0",
     "locale": "0.0.17",
+    "moment": "^2.8.2",
     "morgan": "~1.0.0",
+    "numeral": "^1.5.3",
     "sprintf-js": "0.0.7",
     "static-favicon": "~1.0.0"
   }

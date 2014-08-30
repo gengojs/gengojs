@@ -1,3 +1,17 @@
+/*jslint forin: true*/
+/*jslint white: true*/
+/*jshint immed: true*/
+/*global module, $, console*/
+/*
+ * gengojs
+ * version : 0.0.3
+ * author : Takeshi Iwana
+ * https://github.com/iwatakeshi
+ * license : MIT
+ * Code heavily borrowed from Adam Draper
+ * https://github.com/adamwdraper
+ */
+
 (function() {
     'use strict';
 
@@ -29,12 +43,19 @@
     ************************************/
 
     var gengo,
+        moment = require('moment'),
+        numeral = require('numeral'),
+        sprintf = require("sprintf-js").sprintf,
+        vsprintf = require("sprintf-js").vsprintf,
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
-        VERSION = '0.0.3',
+        VERSION = '0.1.3',
         //configuration with defaults set
         CONFIG = {
             //path to locales
+            gengo: "__",
+            moment: "moment",
+            numeral: "numeral",
             localePath: require('app-root-path') + '/locales/',
             //debugging purposes
             debug: false,
@@ -49,31 +70,53 @@
         BESTMATCH,
         //stores the locale from locales folder
         LOCALE = {},
+        //maps the languages according to each library's file name
         LOCALES = {
-            ja: 'ja',
-            en: 'en',
-            en_US: 'en_US'
+            gengo: {
+                ja: 'ja',
+                en: 'en',
+                en_US: 'en_US'
+            },
+            numeral: {
+                ja: 'ja',
+                en: 'en',
+                en_US: 'en'
+            },
+            moment: {
+                ja: 'ja',
+                en: 'en',
+                en_US: 'en'
+            }
         },
         ROUTE,
-        COOKIELOCALE;
+        COOKIELOCALE,
+        NUMERALPATH = 'numeral/languages/';
 
 
     /************************************
         Top Level Functions
     ************************************/
-
+    /*
+     * @method main
+     * @param {String} input
+     * @param {Object, Array, String} arg
+     */
     gengo = function(input, arg) {
-
+        debug('-----------------------------------');
         debug(input, 'fn: gengo, Input');
+
         //check to see if COOKIELOCALE || BESTMATCH === default
         if (isDefault()) {
-            debug('-----------------------------------');
+            debug('fn: gengo, isDefault');
+
+            loadMoment(LOCALES.moment[CONFIG.default]);
+            loadNumeral(LOCALES.numeral[CONFIG.default]);
+
             if (arg !== undefined) {
                 return replace(input, arg);
             } else {
                 return input;
             }
-
         } else {
             loadLocale();
             if (CONFIG.viewAware) {
@@ -87,10 +130,7 @@
                         return router()[input];
                     }
                 }
-
-
             } else {
-
                 debug(LOCALE[input], 'fn: gengo, Output');
                 debug('-----------------------------------');
                 if (arg !== undefined) {
@@ -108,7 +148,6 @@
     gengo.init = function(app) {
 
         var _locale = require('locale');
-
         app.use(_locale(CONFIG.supported));
         app.use(function(req, res, next) {
             //get the route
@@ -125,7 +164,9 @@
             } else {
                 BESTMATCH = req.locale;
             }
-            res.locals.__ = gengo;
+            res.locals[CONFIG.gengo] = gengo;
+            res.locals[CONFIG.moment] = moment;
+            res.locals[CONFIG.numeral] = numeral;
             next();
         });
     };
@@ -141,17 +182,41 @@
     function loadLocale() {
         //COOKIELOCALE has top priority if set
         if (COOKIELOCALE) {
-            LOCALE = require(CONFIG.localePath + LOCALES[COOKIELOCALE] + '.js');
+            debug('fn: loadLocale, In COOKIELOCALE');
+            LOCALE = require(CONFIG.localePath + LOCALES.gengo[COOKIELOCALE] + '.js');
+            loadMoment(LOCALES.moment[COOKIELOCALE]);
+            loadNumeral(LOCALES.numeral[COOKIELOCALE]);
+
         } else {
-            LOCALE = require(CONFIG.localePath + LOCALES[BESTMATCH] + '.js');
+            debug('fn: loadLocale, In BESTMATCH');
+            LOCALE = require(CONFIG.localePath + LOCALES.gengo[BESTMATCH] + '.js');
+            loadMoment(LOCALES.moment[BESTMATCH]);
+            loadNumeral(LOCALEs.numeral[BESTMATCH]);
         }
 
         if (LOCALE) {
-            debug("fn: loadLocale, LOCALE loaded.");
+            debug("fn: loadLocale, LOCALE loaded");
         } else {
-            debug("fn: loadLocale, Could not load LOCALE.");
+            debug("fn: loadLocale, Could not load LOCALE");
         }
     };
+
+    function loadMoment(locale) {
+        moment.locale(locale);
+        debug(moment.locale(), 'fn: loadMoment, Current moment language');
+        debug(moment().format('dddd'), 'fn: loadMoment, Current moment: Today is');
+    }
+
+    function loadNumeral(locale) {
+        if (locale === 'en') {
+            numeral.language('en');
+        } else {
+            numeral.language(locale, require(NUMERALPATH + locale));
+            numeral.language(locale);
+        }
+        debug(numeral.language(), 'fn: loadNumeral, Current numeral language');
+        debug(numeral(10000).format('$0,0.00'), 'fn: loadNumeral, Current numeral: I don\'t have');
+    }
 
     /*
      *@method debug
@@ -188,7 +253,7 @@
         }
         return false;
     };
-
+    //for viewAware
     function router() {
         //check if the route matches the views from config
         if (CONFIG.views[ROUTE] !== undefined) {
@@ -214,9 +279,8 @@
         }
     };
 
+    //sprintf function
     function replace(input, arg) {
-        var sprintf = require("sprintf-js").sprintf,
-            vsprintf = require("sprintf-js").vsprintf;
 
         if (typeof arg === Array) {
             return vsprintf(input, arg);

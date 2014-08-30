@@ -1,6 +1,12 @@
 module.exports = {
     index: {
         "エクスプレスへようこそ": "Welcome to express",
-        "エクスプレス": "Express"
+        "エクスプレス": "Express",
+        "今日は%sです。": "Today is %s.",
+        "%sを持っていません。": "I don't have %s."
+    },
+    about: {
+        "エクスプレス": "Express",
+        "今日は%sです。": "Today is %s."
     }
 };
