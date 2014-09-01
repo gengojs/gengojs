@@ -1,10 +1,8 @@
-/*jslint forin: true*/
-/*jslint white: true*/
-/*jshint immed: true*/
-/*global module, $, console*/
+/*jslint node: true, forin: true, jslint white: true*/
+/*global console*/
 /*
  * gengojs
- * version : 0.1.8
+ * version : 0.1.10
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -38,6 +36,49 @@
         return destination;
     };
 
+    function isDefined(obj) {
+
+        function isNull(val) {
+            if (val === null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function isUndefined(val) {
+            if (val === undefined) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function isStringEmpty(val) {
+            if (val === '' || val === '') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        if (typeof obj === 'string') {
+            if (!isStringEmpty(obj)) {
+                if (obj !== 'null') {
+                    return true;
+                } else {
+                    return false;
+                }
+                return true;
+            }
+        }
+        if (typeof obj === "undefined") {
+            debug("In undefined!");
+            return !isUndefined(obj);
+        } else {
+            return !isNull(obj);
+        }
+    }
     /************************************
         Constants & Variables
     ************************************/
@@ -49,7 +90,7 @@
         vsprintf = require("sprintf-js").vsprintf,
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
-        VERSION = '0.1.8',
+        VERSION = '0.1.10',
         //configuration with defaults set
         CONFIG = {
             //path to locales
@@ -63,7 +104,9 @@
             supported: ['en_US', 'en'],
             default: 'en_US',
             viewAware: false,
+            universe: false,
             views: {
+                '*': 'gengo',
                 '/': 'index'
             }
         },
@@ -88,9 +131,18 @@
                 en_US: 'en'
             }
         },
+        LANG = {
+            //key:locale, value: lang
+            'ja': 'Japanese',
+            'en': 'English',
+            'en_US': 'English US'
+        },
         ROUTE,
-        COOKIELOCALE,
-        NUMERALPATH = 'numeral/languages/';
+        COOKIELOCALE = "",
+        NUMERALPATH = 'numeral/languages/',
+        CURRENTLOCALE = "",
+        CURRENTLANG = "",
+        UNIVERSE = {};
 
 
     /************************************
@@ -108,39 +160,39 @@
         //check to see if COOKIELOCALE || BESTMATCH === default
         if (isDefault()) {
             debug('fn: gengo, isDefault');
-
+            CURRENTLOCALE = CONFIG.default;
+            CURRENTLANG = LANG[CURRENTLOCALE];
             loadMoment(LOCALES.moment[CONFIG.default]);
             loadNumeral(LOCALES.numeral[CONFIG.default]);
-
-            if (arg !== undefined) {
-                debug(replace(input, arg), 'fn: gengo, Output with arg');
-                return replace(input, arg);
-            } else {
-                return input;
-            }
+            return hasArg(input, arg);
         } else {
-            loadLocale();
-            if (CONFIG.viewAware) {
-                if (router() !== undefined) {
-                    debug(router()[input], "fn: gengo, Output with viewAware");
-                    debug('-----------------------------------');
 
-                    if (arg !== undefined) {
-                        return replace(router()[input], arg);
+            switch (loadLocale()) {
+                case true:
+                    if (CONFIG.viewAware) {
+                        if (router()) {
+                            debug(router()[input], "fn: gengo, Output with viewAware");
+                            if (router()[input] !== undefined) {
+                                return hasArg(router()[input], arg);
+                            } else if (UNIVERSE[input] !== undefined) {
+                                debug("HAS arg");
+                                return hasArg(UNIVERSE[input], arg);
+                            }
+
+                        }
                     } else {
-                        return router()[input];
-                    }
-                }
-            } else {
-                debug(LOCALE[input], 'fn: gengo, Output');
-                debug('-----------------------------------');
-                if (arg !== undefined) {
-                    return replace(LOCALE[input], arg);
-                } else {
-                    return LOCALE[input];
-                }
-            }
+                        debug(LOCALE[input], 'fn: gengo, Output');
+                        if (LOCALE[input] !== undefined) {
+                            return hasArg(LOCALE[input], arg);
+                        } else if (UNIVERSE[input] !== undefined) {
+                            return hasArg(UNIVERSE[input], arg);
+                        }
 
+                    }
+                    break;
+                case false:
+                    return hasArg(input, arg);
+            }
         }
     };
 
@@ -153,11 +205,9 @@
         app.use(function(req, res, next) {
             //get the route
             ROUTE = req.path;
-            //get the cookie local if it exists
-            if (req.cookies.locale !== '' || req.cookies.locale !== undefined) {
+            debug(req.cookies.locale, "fn: init, req.cookies.locale");
+            COOKIELOCALE = req.cookies.locale;
 
-                COOKIELOCALE = req.cookies.locale;
-            }
             debug(ROUTE, "fn: init, Route");
             debug(req.headers['accept-language'], "fn: init, Accept-Language");
             debug(COOKIELOCALE, "fn: init, Cookie locale");
@@ -168,6 +218,14 @@
             } else {
                 BESTMATCH = req.locale;
             }
+
+            if (moment) {
+                debug("fn: init, moment is defined.");
+            }
+            if (numeral) {
+                debug("fn: init, numeral is defined.");
+            }
+            setLangLocale();
             res.locals[CONFIG.gengo] = gengo;
             res.locals[CONFIG.moment] = moment;
             res.locals[CONFIG.numeral] = numeral;
@@ -179,31 +237,58 @@
         CONFIG = Object.extender(CONFIG, config);
     };
 
+    gengo.getLocale = function() {
+
+        return CURRENTLOCALE;
+    };
+
+    gengo.getLanguage = function() {
+        debug(CURRENTLANG, "fn: getLanguage, current language is");
+        return CURRENTLANG;
+    };
+
     /************************************
         Private Functions
     ************************************/
 
     function loadLocale() {
         //COOKIELOCALE has top priority if set
-        if (COOKIELOCALE) {
-            debug('fn: loadLocale, In COOKIELOCALE');
+        if (isDefined(COOKIELOCALE)) {
+            debug(COOKIELOCALE, 'fn: loadLocale, In COOKIELOCALE');
             LOCALE = require(CONFIG.localePath + LOCALES.gengo[COOKIELOCALE] + '.js');
             loadMoment(LOCALES.moment[COOKIELOCALE]);
             loadNumeral(LOCALES.numeral[COOKIELOCALE]);
+            //set the current locale
+            setLangLocale();
 
+            return true;
         } else {
-            debug('fn: loadLocale, In BESTMATCH');
-            LOCALE = require(CONFIG.localePath + LOCALES.gengo[BESTMATCH] + '.js');
-            loadMoment(LOCALES.moment[BESTMATCH]);
-            loadNumeral(LOCALES.numeral[BESTMATCH]);
+
+            if ((BESTMATCH === CONFIG.default) === false) {
+                debug(BESTMATCH, 'fn: loadLocale, In BESTMATCH');
+                LOCALE = require(CONFIG.localePath + LOCALES.gengo[BESTMATCH] + '.js');
+                loadMoment(LOCALES.moment[BESTMATCH]);
+                loadNumeral(LOCALES.numeral[BESTMATCH]);
+                setLangLocale();
+                return true;
+            } else {
+                //fall back to default
+                debug('fn: loadLocale, Falling back to default.');
+                LOCALE = undefined;
+                setLangLocale();
+                loadMoment(LOCALES.moment[CONFIG.default]);
+                loadNumeral(LOCALES.numeral[CONFIG.default]);
+                debug("Here");
+                return false;
+            }
         }
 
         if (LOCALE) {
-            debug("fn: loadLocale, LOCALE loaded");
+            debug("fn: loadLocale, LOCALE loaded.");
         } else {
-            debug("fn: loadLocale, Could not load LOCALE");
+            debug("fn: loadLocale, Could not load LOCALE.");
         }
-    };
+    }
 
     function loadMoment(locale) {
         moment.locale(locale);
@@ -228,19 +313,19 @@
      *@param {String} msg
      */
     function debug(obj, msg) {
-        if (CONFIG.debug === true) {
+        if (CONFIG.debug) {
             if (msg) {
                 console.log(msg + ': ');
             }
             console.log(obj);
             console.log();
         }
-    };
+    }
 
     //check if COOKIELOCALe or best match is default
     function isDefault() {
         //COOKIELOCALe has top priority if set
-        if (COOKIELOCALE) {
+        if (isDefined(COOKIELOCALE)) {
             //if COOKIELOCALE === default
             if (COOKIELOCALE === CONFIG.default) {
                 return true;
@@ -255,11 +340,23 @@
                 return false;
             }
         }
-    };
+    }
+
+    function hasArg(input, arg) {
+        debug('-----------------------------------');
+        debug(arg, 'arg');
+        if (arg) {
+            debug(replace(input, arg), 'fn: gengo, Output with arg');
+            return replace(input, arg);
+        } else {
+            return input;
+        }
+    }
+
     //for viewAware
     function router() {
         //check if the route matches the views from config
-        if (CONFIG.views[ROUTE] !== undefined) {
+        if (CONFIG.views[ROUTE]) {
             /*
             {
                 //this will get 'index'
@@ -269,10 +366,10 @@
             }
           */
             var locale = LOCALE[CONFIG.views[ROUTE]];
-
+            loadUniverse();
             //check if locale is defined
-            if (locale !== undefined) {
-                debug(locale, "fn: router, Loaded locale with viewAware");
+            if (locale) {
+                debug("fn: router, Loaded locale with viewAware");
                 return locale;
             } else {
                 return undefined;
@@ -280,7 +377,18 @@
         } else {
             return undefined;
         }
-    };
+    }
+
+    function loadUniverse() {
+        if (CONFIG.universe) {
+            UNIVERSE = LOCALE[CONFIG.views["*"]];
+            if (UNIVERSE) {
+                debug(UNIVERSE, 'fn: loadUniverse, UNIVERSE loaded');
+            } else {
+                debug("Could not load UNIVERSE");
+            }
+        }
+    }
 
     //sprintf function
     function replace(input, arg) {
@@ -290,7 +398,31 @@
         } else {
             return sprintf(input, arg);
         }
-    };
+    }
+
+    function setLangLocale() {
+        if (isDefault()) {
+            CURRENTLOCALE = CONFIG.default;
+            CURRENTLANG = LANG[CURRENTLOCALE];
+        } else {
+            if (isDefined(COOKIELOCALE)) {
+                CURRENTLOCALE = LOCALES.gengo[COOKIELOCALE];
+                CURRENTLANG = LANG[CURRENTLOCALE];
+            } else {
+                if ((BESTMATCH === CONFIG.default) === false) {
+                    CURRENTLOCALE = LOCALES.gengo[BESTMATCH];
+                    CURRENTLANG = LANG[CURRENTLOCALE];
+                } else {
+                    CURRENTLOCALE = CONFIG.default;
+                    CURRENTLANG = LANG[CURRENTLOCALE];
+                }
+            }
+        }
+
+        debug(CURRENTLOCALE, "fn: loadLocale, current locale is");
+        debug(CURRENTLANG, "fn: loadLocale, current language is");
+    }
+
     /************************************
         Exposing Gengo
     ************************************/
