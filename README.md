@@ -200,3 +200,6 @@ done to prevent any confusion.
 * Changed the exposed current language and locale from function to a string variable.
 * Cleaned up code and added comments to help others how gengo works.
 * The npm repo is now combined with the master. Less work for me when updating the readme.
+
+**0.2.11**
+* Fixed an issue when `localePath` is undefined/has not been set
