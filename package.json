@@ -1,6 +1,6 @@
 {
     "name": "gengojs",
-    "version": "0.2.12",
+    "version": "0.2.13",
     "description": "An uber basic and simple i18n library for Express 4",
     "main": "gengo.js",
     "scripts": {
@@ -31,5 +31,5 @@
     "bugs": {
         "url": "https://github.com/iwatakeshi/gengojs/issues"
     },
-    "homepage": "https://github.com/iwatakeshi/gengojs"
+    "homepage": "http://gengojs.com"
 }

@@ -1,3 +1,4 @@
+/*jslint node: true*/
 module.exports = {
     index: {
         "エクスプレスへようこそ": "Welcome to express",
@@ -8,5 +9,8 @@ module.exports = {
     about: {
         "エクスプレス": "Express",
         "今日は%sです。": "Today is %s."
+    },
+    gengo: {
+
     }
 };

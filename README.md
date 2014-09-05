@@ -1,7 +1,7 @@
 Gengo.js
 ========
 ####Change Log at a Glance
-Current version: **0.2.12**
+Current version: **0.2.13**
 
 Note on version:
 
@@ -168,7 +168,9 @@ gengo was made possible by:
 * [App Root Path](https://github.com/inxilpro/node-app-root-path)
 * [Moment.js](https://github.com/moment/moment)
 * [Numeral.js](https://github.com/adamwdraper/Numeral-js)
-
+* [underscore.js](https://github.com/jashkenas/underscore)
+* [sprintf.js](https://github.com/alexei/sprintf.js)
+* [xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)
 
 #Change Log
 Quite sinful, but starting the log from 0.1.10
@@ -218,7 +220,11 @@ done to prevent any confusion.
 * Moved `LANG` and `LOCALES` to a folder called maps. This will allow to exand the locales and languages without bloating gengo.
 
 **0.2.11**
-* Fixed an issue when `localePath` is undefined/has not been set
+* Fixed an issue when `localePath` is undefined/has not been set.
 
 **0.2.12**
 * Fixed an issue where the exposed language and locale were not returning a value.
+
+**0.2.13**
+* Bug fixes with XML, routing, etc.
+* Added some enhancements to error handling when a variable is not defined.

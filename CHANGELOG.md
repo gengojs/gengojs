@@ -50,3 +50,7 @@ done to prevent any confusion.
 
 **0.2.12**
 * Fixed an issue where the exposed language and locale were not returning a value.
+
+**0.2.13**
+* Bug fixes with XML, routing.
+* Added some enhancements to error handling when a variable is not defined.

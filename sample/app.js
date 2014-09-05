@@ -1,3 +1,4 @@
+/*jslint node: true*/
 var express = require('express');
 var path = require('path');
 var favicon = require('static-favicon');
@@ -27,7 +28,7 @@ gengo.config({
     default: 'ja',
     localePath: __dirname + '/locales/',
     routeAware: true,
-    views: {
+    routes: {
         "/": "index",
         "/about": "about"
     },

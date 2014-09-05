@@ -1,21 +1,20 @@
 extends layout
 
 block content
-	//get from JSON
-	h1= gengo(title)
-	h2 #{gengo("エクスプレスへようこそ")}
-	//with sprintf and moment
-	h4 #{gengo('今日は%sです。', moment().format('dddd'))}
-	//with sprintf and numeral
-	h4 #{gengo('%sを持っていません。', numeral(10000).format('$0,0.00'))}
-	//from XML
-	h4 #{gengo('今日から働きます。')}
-	//get from XML with universe = true
-	h4 #{gengo('こんにちは')}
-	button(onclick="locale().set('ja');") Japanese
-	button(onclick="locale().set('en_US');") English
-	button(onclick="locale().reset();") Reset
-	script(src='/javascripts/locale.js')
-
-
-
+    //get from JSON
+    h1= gengo(title)
+    h2 #{gengo("エクスプレスへようこそ")}
+    //with sprintf and moment
+    h4 #{gengo('今日は%sです。', moment().format('dddd'))}
+    //with sprintf and numeral
+    h4 #{gengo('%sを持っていません。', numeral(10000).format('$0,0.00'))}
+    //from XML
+    h4 #{gengo('今日から働きます。')}
+    //get from XML with universe = true
+    h4 #{gengo('こんにちは')}
+    button(onclick="locale().set('ja');") Japanese
+    button(onclick="locale().set('en_US');") English
+    button(onclick="locale().reset();") Reset
+        form(action="/about")
+            button(type="submit") About page
+    script(src='/javascripts/locale.js')

@@ -1,8 +1,8 @@
-/*jslint node: true, forin: true, jslint white: true*/
+/*jslint node: true, forin: true, jslint white: true, newcap: true*/
 /*global console*/
 /*
  * gengojs
- * version : 0.2.12
+ * version : 0.2.13
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -36,26 +36,28 @@
         return destination;
     };
 
-    function isDefined(obj) {
-        switch (obj) {
-            case "":
-                return false;
-                break;
-            case "null":
-                return false;
-                break;
+    function isDefined(value) {
+        var valuetype = typeof value;
+        debug(valuetype, "fn: isDefined, Value type");
+        switch (valuetype) {
+            case "object":
+                debug(value, "fn: isDefined, Value value");
+                if (_.isNull(value) || _.isEmpty(value)) {
+                    debug("fn: isDefined, Value is emtpy or null");
+                    return false;
+                }
+                return true;
+            case "string":
+                if (value === "" || value === "null") {
+                    debug("fn: isDefined, Value has empty strings or a string with null");
+                    return false;
+                }
+                return true;
             case "undefined":
+                debug(" fn: isDefined, Value is undefined");
                 return false;
-                break;
-            case undefined:
-                return false;
-                break;
-            case null:
-                return false;
-                break;
             default:
                 return true;
-                break;
         }
     }
     /************************************
@@ -83,7 +85,7 @@
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
         //version
-        VERSION = '0.2.12',
+        VERSION = '0.2.13',
         //configuration with defaults set
         CONFIG = {
             //set gengo global variable
@@ -162,17 +164,15 @@
                 setNumeral(LOCALES.numeral[CONFIG.default]);
                 //just return what was given but check if there are any args.
                 return hasArg(input, arg);
-                break;
             case false:
                 switch (loadLocale()) {
                     case true:
                         //let routeAwareHandler take care of the route handling
                         return routeAwareHandler(input, arg);
-                        break;
                     case false:
                         //just return what was given but check if there are any args.
                         return hasArg(input, arg);
-                        break;
+
                 } //end switch(loadLocale())
         } //end switch(isDefault())
     };
@@ -256,42 +256,45 @@
     function routeAwareHandler(input, arg) {
         switch (CONFIG.routeAware) {
             case true:
-                try {
-                    //check if the JSON router returns a defined value
-                    if (isDefined(JSONRouter()[input])) {
-                        //then return that value
-                        return hasArg(JSONRouter()[input], arg);
-                        //check if the UNIVERSEJSON returns a defined value
-                    } else if (isDefined(UNIVERSEJSON[input])) {
-                        //then return that value
+                loadJSONUniverse();
+                loadXMLUniverse();
+
+                var json = JSONRouter();
+                var xml = XMLRouter();
+                if (isDefined(json)) {
+                    if (isDefined(json[input])) {
+                        return hasArg(json[input], arg);
+                    }
+                }
+                if (isDefined(xml)) {
+                    if (isDefined(xml[input])) {
+                        return hasArg(xml[input], arg);
+                    }
+                }
+                if (isDefined(UNIVERSEJSON)) {
+                    if (UNIVERSEJSON[input]) {
                         return hasArg(UNIVERSEJSON[input], arg);
-                        //check if the XML router returns a defined value
-                    } else if (isDefined(XMLRouter()[input])) {
-                        //then return that value
-                        return hasArg(XMLRouter()[input], arg);
-                        //check if UNIVERSEXML returns a defined value
-                    } else if (isDefined(UNIVERSEXML[input])) {
+                    }
+                }
+                if (isDefined(UNIVERSEXML)) {
+                    if (UNIVERSEXML[input]) {
                         return hasArg(UNIVERSEXML[input], arg);
                     }
-                } catch (error) {
-                    debug(error, "fn: routeAwareHandler, Uh oh something went wrong");
                 }
 
                 break;
             case false:
                 debug(LOCALEJSON[input], 'fn: gengo, Output');
-                try {
-                    //check if LOCALEJSON returns a defined value
+                if (isDefined(LOCALEJSON)) {
                     if (isDefined(LOCALEJSON[input])) {
-                        //then return that value
                         return hasArg(LOCALEJSON[input], arg);
-                        //check if XMLLOCALE() returns a defined value
-                    } else if (isDefined(XMLLocale()[input])) {
-                        //then return that value
-                        return hasArg(XMLLocale()[input])
                     }
-                } catch (error) {
-                    debug(error, "fn: routeAwareHandler, Uh oh something went wrong");
+                }
+
+                if (isDefined(XMLLocale())) {
+                    if (isDefined(XMLLocale()[input])) {
+                        return hasArg(XMLLocale()[input], arg);
+                    }
                 }
                 break;
         } //end switch(CONFIG.routeAware)
@@ -318,7 +321,6 @@
                     setLangLocale();
                     //load successful
                     return true;
-                    break;
                 case false:
                     //load the JSON locale
                     loadLocaleJSON(BESTMATCH);
@@ -332,7 +334,6 @@
                     setLangLocale();
                     //load successful
                     return true;
-                    break;
             }
         } catch (error) {
             debug(error, "fn: loadLocale, uh oh something went wrong");
@@ -349,8 +350,6 @@
             //set the json locale
             LOCALEJSON = require(CONFIG.localePath + LOCALES.gengo[locale] + '.js');
         } catch (error) {
-            //if failed set it to undefined
-            LOCALEJSON = undefined;
             debug(error, "fn: loadLocaleJSON, uh oh something went wrong");
         }
 
@@ -365,10 +364,10 @@
             parser.parseString(fs.readFileSync(CONFIG.localePath + locale + ".xml"), function(error, result) {
                 //set the xml locale
                 LOCALEXML = result;
+                debug(LOCALEXML);
+                debug(LOCALEXML);
             });
         } catch (error) {
-            //if failed then set it to undefined
-            LOCALEXML = undefined;
             debug(error, "fn: loadLocaleXML, uh oh something went wrong");
         }
     }
@@ -425,12 +424,10 @@
                 //if COOKIELOCALE === default
                 //return if COOKIELOCALE is equal to default
                 return COOKIELOCALE === CONFIG.default;
-                break;
                 //then fall back to BESTMATCH
             case false:
                 //if BESTMATCH === default
                 return BESTMATCH === CONFIG.default;
-                break;
         }
     }
 
@@ -451,21 +448,7 @@
      * @return Returns the root of the route from the definition
      */
     function JSONRouter() {
-        //load the JSON universe route
-        loadJSONUniverse();
-        //check if we are route aware
-        if (CONFIG.routeAware) {
-            //check if its defined at the requested route
-            switch (isDefined(LOCALEJSON[CONFIG.routes[ROUTE]])) {
-                case true:
-                    //then return the root
-                    return LOCALEJSON[CONFIG.routes[ROUTE]];
-                    break;
-                case false:
-                    return undefined;
-                    break;
-            }
-        }
+        return LOCALEJSON[CONFIG.routes[ROUTE]];
     }
 
     /*
@@ -473,37 +456,43 @@
      * @return Returns the root of the route from the definition
      */
     function XMLRouter() {
-        loadXMLUniverse();
-        if (CONFIG.routeAware) {
-            var localexml = LOCALEXML.begin[CONFIG.routes[ROUTE]][0];
-            var localexmljson = {};
-            switch (isDefined(localexml)) {
-                case true:
-                    _.each(localexml.data, function(value) {
-                        localexmljson[value.key.toString()] = value.value.toString();
+        switch (isDefined(LOCALEXML)) {
+            case true:
+                var localexml = LOCALEXML.begin[CONFIG.routes[ROUTE]],
+                    localexmljson = {};
+                if (isDefined(localexml)) {
+                    localexml = localexml[0];
+                    _.each(localexml, function(value) {
+                        _.each(value, function(_value) {
+                            localexmljson[_value.key.toString()] = _value.value.toString();
+                        });
                     });
-                    return localexmljson;
-                    break;
-                case false:
-                    return undefined;
-                    break;
-            }
+                }
 
+
+                return localexmljson;
+            case false:
+                return {};
         }
     }
     /*
-     * @description Constructs an JSON structure from the loaded XML
+     * @description Constructs an JSON structure from the loaded XML when view aware is disabled
      */
     function XMLLocale() {
-        var localexmljson = {};
-        try {
-            _.each(LOCALEXML.begin, function(value) {
-                localexmljson[value[0].key.toString()] = value[0].value.toString();
-            });
-        } catch (error) {
-            localexmljson = undefined;
+        switch (isDefined(LOCALEXML)) {
+            case true:
+                var localexmljson = {};
+                _.each(LOCALEXML.begin, function(value) {
+                    _.each(value, function(_value) {
+                        localexmljson[_value.key.toString()] = _value.value.toString();
+                    });
+                });
+                return localexmljson;
+                break;
+            case false:
+                return {};
+                break;
         }
-        return localexmljson;
     }
     /*
      * @description Loads the JSON universe route
@@ -525,12 +514,15 @@
         if (CONFIG.universe) {
             var universexml = {};
             try {
-                _.each(LOCALEXML.begin[CONFIG.routes["*"]][0].data, function(value) {
-                    universexml[value.key.toString()] = value.value.toString();
+                _.each(LOCALEXML.begin[CONFIG.routes["*"]][0], function(value) {
+                    _.each(value, function(_value) {
+                        universexml[_value.key.toString()] = _value.value.toString();
+                    });
+
                 });
                 UNIVERSEXML = universexml;
             } catch (error) {
-                UNIVERSEXML = undefined;
+                UNIVERSEXML = {};
             }
             if (isDefined(UNIVERSEXML)) {
                 debug(UNIVERSEXML, 'fn: loadXMLUniverse, UNIVERSEXML loaded');

@@ -1,3 +1,4 @@
+/*jslint node: true*/
 module.exports = {
 
     index: {
