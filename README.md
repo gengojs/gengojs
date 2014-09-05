@@ -171,6 +171,7 @@ Quite sinful, but starting the log from 0.1.10
 * Added XML support due to JSON's multi-line limitation. You can now write paragraphs and not have to worry about doing
 tedious stuff such as using `\n` in your sentences. Also, XML will be able to run side by side with JSON. Just name your file as
 `thelocale.xml` and then create the XML file like so:
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <begin> <!--begin tag-->
@@ -191,7 +192,6 @@ tedious stuff such as using `\n` in your sentences. Also, XML will be able to ru
     <gengo> <!--universal route for XML would look like this, can be changed through config -->
     </gengo>
 </begin>
-
 ``` 
 easy right? gengo will try to load the XML even if it doesn't exist but it will not crash your server or your template.
 
