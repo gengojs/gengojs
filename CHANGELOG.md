@@ -41,6 +41,6 @@ easy right? gengo will try to load the XML even if it doesn't exist but it will 
 * Renamed `viewAware` to `routeAware` in config. So just change in your option, viewAware to routeAware and views to routes. This was
 done to prevent any confusion.
 * Changed the exposed current language and locale from function to a string variable.
-* Cleaned up code and added comments to help others how gengo understands
+* Cleaned up code and added comments to help others how gengo works.
 * The npm repo is now combined with the master. Less work for me when updating the readme.
 * Moved `LANG` and `LOCALES` to a folder called maps. This will allow to exand the locales and languages without bloating gengo.
