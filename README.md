@@ -3,12 +3,19 @@ Gengo.js
 ####Change Log at a Glance
 Current version: **0.2.10**
 
+Note on version:
+
+How gengo version works is simply:
+* Major (When gengo becomes stable after rigid testings and user feedback)
+* Minor (Additions and stability improvements)
+* Patch (README updates, small fixes/patches)
+
 #####What's new:
 * Added XML support.
 * Changed `viewAware` to `routeAware`
 * Changed `view` to `routes`
 <br>
-For more info see below
+For more info Change Logs
 
 #####Coming soon:
 * Tests
