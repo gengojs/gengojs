@@ -1,7 +1,7 @@
 Gengo.js
 ========
 ####Change Log at a Glance
-Current version: **0.2.10**
+Current version: **0.2.12**
 
 Note on version:
 
@@ -203,3 +203,6 @@ done to prevent any confusion.
 
 **0.2.11**
 * Fixed an issue when `localePath` is undefined/has not been set
+
+**0.2.12**
+* 
