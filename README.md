@@ -144,6 +144,21 @@ module.exports = router;
 ###Can users change the language?
 Yes! The only way the user can change language (at the moment) is by using cookies. see [Translating](https://github.com/iwatakeshi/gengojs/wiki/Translating) for an example.
 
+###How can I find out which language or locale I'm using?
+It's simply:
+
+```js
+var gengo = require('gengojs');
+//in your views
+gengo.language();
+gengo.locale();
+```
+
+```jade
+//in jade
+h1 = __.language()
+h1 = __.locale()
+```
 ###Can I contribute?
 Sure! See [Contribute](https://github.com/iwatakeshi/gengojs/wiki/Contribute) for more details.
 
@@ -200,9 +215,10 @@ done to prevent any confusion.
 * Changed the exposed current language and locale from function to a string variable.
 * Cleaned up code and added comments to help others how gengo works.
 * The npm repo is now combined with the master. Less work for me when updating the readme.
+* Moved `LANG` and `LOCALES` to a folder called maps. This will allow to exand the locales and languages without bloating gengo.
 
 **0.2.11**
 * Fixed an issue when `localePath` is undefined/has not been set
 
 **0.2.12**
-* 
+* Fixed an issue where the exposed language and locale were not returning a value.

@@ -236,9 +236,13 @@
         CONFIG = Object.extender(CONFIG, config);
     };
     //expose the locale
-    gengo.locale = CURRENTLOCALE;
+    gengo.locale = function() {
+        return CURRENTLOCALE;
+    };
     //expose the language
-    gengo.language = CURRENTLANG;
+    gengo.language = function() {
+        return CURRENTLANG;
+    };
 
     /************************************
         Private Functions
