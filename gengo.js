@@ -225,11 +225,13 @@
     //set and extend CONFIG
     gengo.config = function(config) {
         //do additional stuff to the config
-        // select the last character and compares
-        if (config.localePath.substr(-1) !== '/') {
-            // If the last character is not a slash
-            debug("NOT A BACKSLASH");
-            config.localePath += "/";
+        if (isDefined(config.localePath)) {
+
+            // select the last character and compares
+            if (config.localePath.substr(-1) !== '/') {
+                // If the last character is not a slash
+                config.localePath += "/";
+            }
         }
         CONFIG = Object.extender(CONFIG, config);
     };
