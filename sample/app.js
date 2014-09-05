@@ -4,7 +4,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var gengo = require('./public/javascripts/gengo.js');
+var gengo = require('../gengo.js');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -25,11 +25,13 @@ gengo.config({
     debug: true,
     supported: ['ja', 'en', 'en_US'],
     default: 'ja',
-    viewAware: true,
+    localePath: __dirname + '/locales/',
+    routeAware: true,
     views: {
         "/": "index",
         "/about": "about"
-    }
+    },
+    universe: true
 });
 gengo.init(app);
 

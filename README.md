@@ -1,5 +1,22 @@
 Gengo.js
 ========
+####Change Log at a Glance
+Current version: **0.2.10**
+
+#####What's new:
+* Added XML support.
+* Changed `viewAware` to `routeAware`
+* Changed `view` to `routes`
+<br>
+For more info see below
+
+#####Coming soon:
+* Tests
+
+##Help needed!!
+First, I want to thank those who downloaded and tried gengo. gengo has a lot of room to grow but is really limited without your help. gengo now has a new site and is available at [gengojs.com](http://www.gengojs.com), but needs your help to improve it
+in means of translations and of course gengo itself. So, please visit the Github page and fork away gengo and the site!
+
 ##QA
 
 ###What is Gengo.js?
@@ -29,12 +46,14 @@ gengo.config({
 gengo.init(app);
 
 ```
-for more configurations options see [API](https://github.com/iwatakeshi/gengojs/wiki/API).
+for more configurations options see [Gengo](https://github.com/iwatakeshi/gengojs/wiki/Gengo).
 
 From there you have two options, you can have gengo to:
 * load the words/sentences from the translation file directly
 * load the words/sentences from the translation file by route (not fully tested)
 an example will look like this in your locale folder:
+
+JSON:
 ```js
 //ja.js
 
@@ -43,12 +62,46 @@ module.exports = {
     "Welcome to express": "エクスプレスへようこそ",    
 };
 
-//with viewAware: true
+//with viewAware: true and universe: true
 module.exports = {
     index:{
         "Welcome to express": "エクスプレスへようこそ",
     }
+    //gengo now supports 'universe'. Meaning that the definition will load at every route if routeAware is enabled.
+    gengo:{
+      "Welcome to express": "エクスプレスへようこそ"
+    }
 }
+```
+
+XML:
+```xml
+<!--again, really simple-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<begin>
+   <data>
+      <key>今日から働きます。</key>
+      <value>From today, I will work</value>
+   </data>
+</begin>
+
+<!--with viewAware: true and universe: true-->
+<?xml version="1.0" encoding="UTF-8" ?>
+<begin>
+    <index>
+        <data>
+            <key>今日から働きます。</key>
+            <value>From today, I will work</value>
+        </data>
+    </index>
+    <gengo>
+        <data>
+            <key>こんにちは</key>
+            <value>Hello</value>
+        </data>
+    </gengo>
+</begin>
+
 ```
 
 Now in your template file (Note: I've only used Jade, others should work)
@@ -57,7 +110,7 @@ extends layout
 
 block content
   h1= title
-   //pretty much the same as i18n '__' (can be changed through config. see API)
+   //pretty much the same as i18n '__' (can be changed through config. see Gengo)
   //this will output エクスプレスへようこそ or Welcome to express
   p Welcome to #{__("Welcome to express")} 
 ```
@@ -93,3 +146,50 @@ gengo was made possible by:
 * [App Root Path](https://github.com/inxilpro/node-app-root-path)
 * [Moment.js](https://github.com/moment/moment)
 * [Numeral.js](https://github.com/adamwdraper/Numeral-js)
+
+
+#Change Log
+Quite sinful, but starting the log from 0.1.10
+
+**0.1.10**
+
+* Fixed issues with boolean values. Using isDefined should help figuring out whether COOKIELOCALE is set.
+* Added new functions to expose the current language and current locale.  (not in the wiki yet)
+* Seperated redundant calls to a function when setting current locales and language.
+* Made gengo a bit more modular by creating more functions to clean up clutter.
+* Added new universe option which allows you to use definitions on all routes. (not in the wiki yet)
+
+**0.2.10**
+* Improved stability (Please send bug reports if you encounter an issue).
+* Added XML support due to JSON's multi-line limitation. You can now write paragraphs and not have to worry about doing
+tedious stuff such as using `\n` in your sentences. Also, XML will be able to run side by side with JSON. Just name your file as
+`thelocale.xml` and then create the XML file like so:
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<begin> <!--begin tag-->
+    <index><!--if routeAware is enabled then set the name of routes here-->
+        <data><!--data tag-->
+            <key>今日から働きます。</key> <!--key tag-->
+            <value>From today, I will work.</value><!--value tag-->
+        </data>
+        <data><!--additional -->
+            <key>今日から働きます。</key>
+            <value>From today, I will work.</value>
+        </data>
+    </index>
+    <data>
+      <!--if routeAware is disabled then it would start with the 
+      data tag and have just the key and value tags-->
+    </data>
+    <gengo> <!--universal route for XML would look like this, can be changed through config -->
+    </gengo>
+</begin>
+
+``` 
+easy right? gengo will try to load the XML even if it doesn't exist but it will not crash your server or your template.
+
+* Renamed `viewAware` to `routeAware` in config. So just change in your option, viewAware to routeAware and views to routes. This was
+done to prevent any confusion.
+* Changed the exposed current language and locale from function to a string variable.
+* Cleaned up code and added comments to help others how gengo understands
+* The npm repo is now combined with the master. Less work for me when updating the readme.

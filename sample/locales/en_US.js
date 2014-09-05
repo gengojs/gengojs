@@ -1,4 +1,5 @@
 module.exports = {
+
     index: {
         "エクスプレスへようこそ": "Welcome to express",
         "エクスプレス": "Express",
@@ -8,5 +9,6 @@ module.exports = {
     about: {
         "エクスプレス": "Express",
         "今日は%sです。": "Today is %s."
-    }
+    },
+    gengo: {}
 };
