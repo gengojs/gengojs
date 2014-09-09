@@ -54,3 +54,8 @@ done to prevent any confusion.
 **0.2.13**
 * Bug fixes with XML, routing.
 * Added some enhancements to error handling when a variable is not defined.
+
+**0.2.14**
+* Small fix for COOKIELOCALE.
+* Fixed issues with JSHint/JSLint.
+* Added basic tests.

@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.2.13
+ * version : 0.2.14
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -85,7 +85,7 @@
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
         //version
-        VERSION = '0.2.13',
+        VERSION = '0.2.14',
         //configuration with defaults set
         CONFIG = {
             //set gengo global variable
@@ -190,9 +190,16 @@
         app.use(function(req, res, next) {
             //get the route
             ROUTE = req.path;
-            debug(req.cookies.locale, "fn: init, req.cookies.locale");
-            //set req.cookies.locale
-            COOKIELOCALE = req.cookies.locale;
+            try {
+                debug(req.cookies.locale, "fn: init, req.cookies.locale");
+                //set req.cookies.locale
+                COOKIELOCALE = req.cookies.locale;
+
+            } catch (error) {
+                debug("fn: init, req.cookies.locale is not defined.");
+            }
+
+
             debug(ROUTE, "fn: init, Route");
             debug(req.headers['accept-language'], "fn: init, Accept-Language");
             debug(COOKIELOCALE, "fn: init, Cookie locale");
@@ -488,10 +495,7 @@
                     });
                 });
                 return localexmljson;
-                break;
             case false:
-                return {};
-                break;
         }
     }
     /*

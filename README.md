@@ -1,7 +1,8 @@
 Gengo.js
 ========
+[![NPM](https://nodei.co/npm/gengojs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs/)
 ####Change Log at a Glance
-Current version: **0.2.13**
+Current version: **0.2.14**
 
 Note on version:
 
@@ -11,14 +12,13 @@ How gengo version works is simply:
 * Patch (README updates, small fixes/patches)
 
 #####What's new:
-* Added XML support.
-* Changed `viewAware` to `routeAware`
-* Changed `view` to `routes`
+* Added a few tests. Start the tests with `npm test`.
 <br>
 For more info Change Logs
 
 #####Coming soon:
-* Tests
+* More tests
+* Updated gengojs.com (currently working on the Japanese version of the Docs and adding an about page)
 
 ##Help needed!!
 First, I want to thank those who downloaded and tried gengo. gengo has a lot of room to grow but is really limited without your help. gengo now has a new site and is available at [gengojs.com](http://www.gengojs.com), but needs your help to improve it
@@ -27,7 +27,7 @@ in means of translations and of course gengo itself. So, please visit the Github
 ##QA
 
 ###What is Gengo.js?
-gengo is a library that allows you to translate your pages automatically (hot swapping) without having to do tedious stuff...well that is my goal. gengo only requires you to provide the translation files and then your done :).
+gengo is a library that allows you to translate your pages automatically (hot swapping) without having to do tedious stuff (such as creating more routes for each language)...well that is my goal. gengo only requires you to provide the translation files and then your done :).
 Also, before moving on, Moment.js and Numeral.js are part of gengo. What does that mean? Well it simply means you get the best of the best in a small package. Technically it means that moment and numeral will change along with gengo (see [Translating](https://github.com/iwatakeshi/gengojs/wiki/Translating) for more details). 
 
 ###Where to begin?
@@ -228,3 +228,8 @@ done to prevent any confusion.
 **0.2.13**
 * Bug fixes with XML, routing, etc.
 * Added some enhancements to error handling when a variable is not defined.
+
+**0.2.14**
+* Small fix for COOKIELOCALE.
+* Fixed issues with JSHint/JSLint.
+* Added basic tests.
