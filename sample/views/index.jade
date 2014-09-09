@@ -12,6 +12,8 @@ block content
     h4 #{gengo('今日から働きます。')}
     //get from XML with universe = true
     h4 #{gengo('こんにちは')}
+    p!= gengo("<a href='https://google.com'>%s</a> にアクセスしてください。", "Google")
+    br
     button(onclick="locale().set('ja');") Japanese
     button(onclick="locale().set('en_US');") English
     button(onclick="locale().reset();") Reset

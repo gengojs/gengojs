@@ -3,3 +3,4 @@
 /bower_components
 /node_modules/
 /sample/npm-debug.log
+/sample/tests/npm-debug.log

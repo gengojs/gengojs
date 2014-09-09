@@ -2,7 +2,7 @@ Gengo.js
 ========
 [![NPM](https://nodei.co/npm/gengojs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs/)
 ####Change Log at a Glance
-Current version: **0.2.14**
+Current version: **0.2.15**
 
 Note on version:
 
@@ -12,9 +12,16 @@ How gengo version works is simply:
 * Patch (README updates, small fixes/patches)
 
 #####What's new:
-* Added a few tests. Start the tests with `npm test`.
-<br>
-For more info Change Logs
+* Confirmed that embedded html works in gengo with jade and added and example to sample project.
+Specifically it looks like so:
+```jade
+//index.jade
+//notice the !=
+p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。")
+//output:
+//'Visit Google.' with Google being a link.
+```
+For more info see Change Logs
 
 #####Coming soon:
 * More tests
@@ -233,3 +240,15 @@ done to prevent any confusion.
 * Small fix for COOKIELOCALE.
 * Fixed issues with JSHint/JSLint.
 * Added basic tests.
+
+**0.2.15**
+* Confirmed that embedded html works in gengo with jade and added and example to sample project.
+Specifically it looks like so:
+
+```jade
+//index.jade
+//notice the !=
+p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。")
+//output:
+//'Visit Google.' with Google being a link.
+```
