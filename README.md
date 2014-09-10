@@ -2,7 +2,7 @@ Gengo.js
 ========
 [![NPM](https://nodei.co/npm/gengojs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs/)
 ####Change Log at a Glance
-Current version: **0.2.16**
+Current version: **0.2.17**
 
 Note on version:
 
@@ -251,7 +251,7 @@ done to prevent any confusion.
 * Changed the exposed current language and locale from function to a string variable.
 * Cleaned up code and added comments to help others how see gengo works.
 * The npm repo is now combined with the master. Less work for me when updating the readme.
-* Moved `LANG` and `LOCALES` to a folder called maps. This will allow to exand the locales and languages without bloating gengo.
+* Moved `LANG` and `LOCALES` to a folder called maps. This will allow to expand the locales and languages without bloating gengo.
 
 **0.2.11**
 * Fixed an issue when `localePath` is undefined/has not been set.
@@ -283,3 +283,5 @@ p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。
 **0.2.16**
 * Updated Sample project's npm packages to their latest.
 * Fixed a small issue with checking if object is an array for sprintf.
+
+** 0.2.17**
