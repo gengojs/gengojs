@@ -41,7 +41,7 @@ easy right? gengo will try to load the XML even if it doesn't exist but it will 
 * Renamed `viewAware` to `routeAware` in config. So just change in your option, viewAware to routeAware and views to routes. This was
 done to prevent any confusion.
 * Changed the exposed current language and locale from function to a string variable.
-* Cleaned up code and added comments to help others how gengo works.
+* Cleaned up code and added comments to help others see how gengo works.
 * The npm repo is now combined with the master. Less work for me when updating the readme.
 * Moved `LANG` and `LOCALES` to a folder called maps. This will allow to exand the locales and languages without bloating gengo.
 
@@ -61,7 +61,7 @@ done to prevent any confusion.
 * Added basic tests.
 
 **0.2.15**
-* Confirmed that embedded html works in gengo with jade and added and example to sample project.
+* Confirmed that embedded html works in gengo with jade and added an example to sample project.
 Specifically it looks like so:
 
 ```jade
@@ -70,3 +70,7 @@ Specifically it looks like so:
 p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。")
 //output:
 //'Visit Google.' with Google being a link.
+
+**0.2.16**
+* Updated Sample project's npm packages to their latest.
+* Fixed a small issue with checking if object is an array for sprintf.

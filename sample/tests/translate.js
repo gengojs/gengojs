@@ -20,7 +20,8 @@ gengo.config({
 gengo.init(app);
 
 app.get('/', function(req, res) {
-    res.send(200, {
+
+    res.status(200).send({
         language: gengo.language()
     });
 });

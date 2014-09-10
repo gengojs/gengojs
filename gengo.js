@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.2.15
+ * version : 0.2.16
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -85,7 +85,7 @@
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
         //version
-        VERSION = '0.2.15',
+        VERSION = '0.2.16',
         //configuration with defaults set
         CONFIG = {
             //set gengo global variable
@@ -541,7 +541,7 @@
      */
     function replace(input, arg) {
 
-        if (typeof arg === Array) {
+        if (_.isArray(arg)) {
             return vsprintf(input, arg);
         } else {
             return sprintf(input, arg);

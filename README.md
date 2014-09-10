@@ -2,7 +2,7 @@ Gengo.js
 ========
 [![NPM](https://nodei.co/npm/gengojs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs/)
 ####Change Log at a Glance
-Current version: **0.2.15**
+Current version: **0.2.16**
 
 Note on version:
 
@@ -11,13 +11,36 @@ How gengo version works is simply:
 * Minor (Additions and stability improvements)
 * Patch (README updates, small fixes/patches)
 
+#####Features at a Glance
+* No need for international routes ie '/en' and '/ja'. gengo will translate the page according to the browser's settings, specifically the Accept-Language. Therefore you can use the same route for all languages.
+* Ability to change locales through the use of cookies.
+* Dictionary based. Meaning that you will provide the keys in your language and then the values into the desired translation.
+* JSON and XML support. Mix match is possible. Note that with XML, you can write longer sentences without newlines.
+* Ability to change the global varibles to prevent clashing with other libraries.
+* Built in Moment.js and Numeral.js (plus you can still use the browser version.)
+
+
+Supported locales:
+* en
+* en_US
+* ja
+
+Supported languages:
+* Japanese
+* English
+* English US
+
+To add more locales and languages please fork/pr and add your language and locale which are located in the maps folder. This will expand gengo's capability to support other languages. Don't forget to test it!
+
 #####What's new:
-* Confirmed that embedded html works in gengo with jade and added and example to sample project.
+* Updated sample project. Now includes updated npm modules.
+* Fixed a small issue with checking if object is an array for sprintf.
+* Confirmed that embedded html works in gengo with jade and added an example to sample project.
 Specifically it looks like so:
 ```jade
 //index.jade
 //notice the !=
-p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。")
+p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。", "Google")
 //output:
 //'Visit Google.' with Google being a link.
 ```
@@ -29,7 +52,11 @@ For more info see Change Logs
 
 ##Help needed!!
 First, I want to thank those who downloaded and tried gengo. gengo has a lot of room to grow but is really limited without your help. gengo now has a new site and is available at [gengojs.com](http://www.gengojs.com), but needs your help to improve it
-in means of translations and of course gengo itself. So, please visit the Github page and fork away gengo and the site!
+in means of translations and of course gengo itself. So, please visit the Github page and fork away gengo and the site! 
+
+**Also, I am looking for maintainers/collaborators. I don't know all the languages out there and surely, as mentioned earlier, gengo has a lot of room to grow. Please let me now if you are interested in improving gengo and its website.**
+You can contact me via twitter [@iwatakeshi](https://twitter.com/iwatakeshi) or [GitHub](https://github.com/iwatakeshi).
+
 
 ##QA
 
@@ -131,7 +158,7 @@ block content
 For more templating and translation file examples see [Translating](https://github.com/iwatakeshi/gengojs/wiki/Translating)
 
 ###Can I use gengo within routes?
-You know what? Yes! Note that it is experimental since I just discovered it. I haven't fully tested it, but it would look like so:
+You know what? Yes! Specifically, it would look like so:
 ```js
 //index.jade, viewAware: false
 var express = require('express');
@@ -222,7 +249,7 @@ easy right? gengo will try to load the XML even if it doesn't exist but it will 
 * Renamed `viewAware` to `routeAware` in config. So just change in your option, viewAware to routeAware and views to routes. This was
 done to prevent any confusion.
 * Changed the exposed current language and locale from function to a string variable.
-* Cleaned up code and added comments to help others how gengo works.
+* Cleaned up code and added comments to help others how see gengo works.
 * The npm repo is now combined with the master. Less work for me when updating the readme.
 * Moved `LANG` and `LOCALES` to a folder called maps. This will allow to exand the locales and languages without bloating gengo.
 
@@ -242,13 +269,17 @@ done to prevent any confusion.
 * Added basic tests.
 
 **0.2.15**
-* Confirmed that embedded html works in gengo with jade and added and example to sample project.
+* Confirmed that embedded html works in gengo with jade and added an example to sample project.
 Specifically it looks like so:
 
 ```jade
 //index.jade
 //notice the !=
-p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。")
+p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。", "Google")
 //output:
 //'Visit Google.' with Google being a link.
 ```
+
+**0.2.16**
+* Updated Sample project's npm packages to their latest.
+* Fixed a small issue with checking if object is an array for sprintf.
