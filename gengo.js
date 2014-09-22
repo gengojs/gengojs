@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.2.17
+ * version : 0.2.18
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -85,7 +85,7 @@
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
         //version
-        VERSION = '0.2.17',
+        VERSION = '0.2.18',
         //configuration with defaults set
         CONFIG = {
             //set gengo global variable

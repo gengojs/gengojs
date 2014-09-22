@@ -3,6 +3,7 @@ Gengo.js
 [![NPM](https://nodei.co/npm/gengojs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs/)
 
 ###gengo.js is getting better than ever!
+An alpha version is under development. The file is called `alpha.gengo.js` so it will not affect your current gengo.
 See Change Log.
 
 ####Change Log at a Glance
@@ -224,7 +225,7 @@ gengo was made possible by:
     * `default` - used when you are using bracket notation or dot notation (in you native dictionary)
     * `translated` - same `default` (in the translated dictionary)
     * `universe` - used for router
-    * `plurarl` - used for plurality
+    * `plural` - used for plurality
 * The global variables has been moved to `global`:
 
 ```js

@@ -124,7 +124,7 @@ p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。
     * `default` - used when you are using bracket notation or dot notation (in you native dictionary)
     * `translated` - same `default` (in the translated dictionary)
     * `universe` - used for router
-    * `plurarl` - used for plurality
+    * `plural` - used for plurality
 * The global variables has been moved to `global`:
 
 ```js
