@@ -70,9 +70,78 @@ Specifically it looks like so:
 p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。")
 //output:
 //'Visit Google.' with Google being a link.
+```
 
 **0.2.16**
 * Updated Sample project's npm packages to their latest.
 * Fixed a small issue with checking if object is an array for sprintf.
 
 **0.2.17**
+* Updated readme
+* gengojs.com has been updated for 0.2.16 but will be re-updated and tested with alpha.
+* Working on 0.3.x aka alpha.
+
+
+######Alpha
+
+**alpha 0.2.17**
+* This version will be complete overhaul but to be backward compatible (as much as possible)
+
+**Changes to gengo's design**
+* Really modular and easier to maintain.
+
+**Changes to functionality:**
+* Bracket notation and Dot notation support. Examples:
+    * `[navbar.home]` - means a key contains `navbar.home`.
+    * `[navbar.home].plural` - means a key contains `navbar.home` and a subkey contains `plural`.
+    * `[%s how are you?].informal` - means a key contains `%s how are you?` and a subkey contains `informal`.
+    * `navbar.home` - means a key contains `navbar` and a subkey contains `home`.
+* Object support:
+    * `__({phrase:'Your phrase here {{someObject}}', locale: 'ja', count: '2'}, {sprintf: ['hello'], someObject:'blah'})`
+* Mustache support. You my now include mustache notation, specifically:
+    * `__("Hi how are you {{name}}?", {name:"John Doe"})`
+* Specific Locale. Change the locale for a specific phrase
+    * `__("Your phrase here", "ja")` or `__("Your phrase here", {locale: 'ja'})`
+* Basic plural support. (I recommend you to use dot notation but here are the options):
+    * `__("Your phrase here %d", 2)` `__("Your phrase here %s", {count: "2"})` and visa-versa.
+* Changed Sprintf to [kawari.js](https://www.github.com/iwatakeshi/kawarijs). It's really basic and not as vibrant as Sprintf but passing arrays is easier. Of course you can improve it if you like so fork that project away!
+    * Not much change to how you use it. so you can pass:
+        * `__("Your phrase here %d", ['array'])`
+        * `__("Your phrase here", number)`
+        * `__("Your phrase here", string)`
+        * `__("Your phrase here", n number of strings and numbers)` but no arrays or objects (unless you are configuring the locale, count, and/or mustache).
+* Temporarily disabled XML support. (I'll figure a way to make it generic for gengo to parse through XML. May take some time.)
+* Initializing no longer requires `app`. In express just use `app.use(gengo.init)`. My goal is to support other "frameworks".
+* You can now use custom markdown syntax for links:
+    * `[Google](https://www.google.com)`
+    * `[Google](https://www.google.com)[blank]` will open in a new tab. `_blank|_self|_parent|_top|framename` are supported.
+
+**Changes to config:**
+* `routeAware` is now `router`.
+* `routes` has been removed. Routes and subroutes are automatically chosen if `router` is `true`.
+* `universe` has been moved to `keywords` and is enabled if `router` is `true`.
+* `keywords` has been added. The following keywords can be changed: 
+    * `default` - used when you are using bracket notation or dot notation (in you native dictionary)
+    * `translated` - same `default` (in the translated dictionary)
+    * `universe` - used for router
+    * `plurarl` - used for plurality
+* The global variables has been moved to `global`:
+
+```js
+global: {
+    //set gengo global variable
+    gengo: "__",
+    //set moment global variable
+    moment: "moment",
+    //set numeral global variable
+    numeral: "numeral",
+}
+```
+* Debugging is now even better. Debug will take two types: `boolean` or `array`. With `array` you can specify the debugging level:
+
+```js
+debug:{
+    level: ['info', 'data', 'warn', 'error','debug']
+}
+```
+* Few tests added. More tests to come. Just run `npm start`.

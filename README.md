@@ -1,6 +1,10 @@
 Gengo.js
 ========
 [![NPM](https://nodei.co/npm/gengojs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs/)
+
+###gengo.js is getting better than ever!
+See Change Log.
+
 ####Change Log at a Glance
 Current version: **0.2.17**
 
@@ -33,22 +37,20 @@ Supported languages:
 To add more locales and languages please fork/pr and add your language and locale which are located in the maps folder. This will expand gengo's capability to support other languages. Don't forget to test it!
 
 #####What's new:
-* Updated sample project. Now includes updated npm modules.
-* Fixed a small issue with checking if object is an array for sprintf.
-* Confirmed that embedded html works in gengo with jade and added an example to sample project.
-Specifically it looks like so:
-```jade
-//index.jade
-//notice the !=
-p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。", "Google")
-//output:
-//'Visit Google.' with Google being a link.
-```
+* Updated website with two languages:
+  * English US
+  * Japanese
+
 For more info see Change Logs
 
 #####Coming soon:
 * More tests
-* Updated gengojs.com (currently working on the Japanese version of the Docs and adding an about page)
+* Revamped gengo.js which is currently under alpha status. It's <em>way</em> better:
+  * Bracket notation support
+  * Dot notation support
+  * Object support
+  * Mustache support
+  * see Change Log for more details.
 
 ##Help needed!!
 First, I want to thank those who downloaded and tried gengo. gengo has a lot of room to grow but is really limited without your help. gengo now has a new site and is available at [gengojs.com](http://www.gengojs.com), but needs your help to improve it
@@ -58,13 +60,11 @@ in means of translations and of course gengo itself. So, please visit the Github
 You can contact me via twitter [@iwatakeshi](https://twitter.com/iwatakeshi) or [GitHub](https://github.com/iwatakeshi).
 
 
-##QA
-
 ###What is Gengo.js?
 gengo is a library that allows you to translate your pages automatically (hot swapping) without having to do tedious stuff (such as creating more routes for each language)...well that is my goal. gengo only requires you to provide the translation files and then your done :).
 Also, before moving on, Moment.js and Numeral.js are part of gengo. What does that mean? Well it simply means you get the best of the best in a small package. Technically it means that moment and numeral will change along with gengo (see [Translating](https://github.com/iwatakeshi/gengojs/wiki/Translating) for more details). 
 
-###Where to begin?
+###Install
 
 gengo is available on npm. To begin:
 ```bash
@@ -72,6 +72,8 @@ sudo npm install gengojs
 #or
 sudo npm install gengojs --save
 ```
+
+###Configure
 then in your app.js
 ```js
 //require
@@ -88,6 +90,9 @@ gengo.init(app);
 
 ```
 for more configurations options see [Gengo](https://github.com/iwatakeshi/gengojs/wiki/Gengo).
+
+
+###Dictionaries
 
 From there you have two options, you can have gengo to:
 * load the words/sentences from the translation file directly
@@ -157,44 +162,7 @@ block content
 ```
 For more templating and translation file examples see [Translating](https://github.com/iwatakeshi/gengojs/wiki/Translating)
 
-###Can I use gengo within routes?
-You know what? Yes! Specifically, it would look like so:
-```js
-//index.jade, viewAware: false
-var express = require('express');
-var router = express.Router();
-var gengo = require('gengojs');
-/* GET home page. */
-router.get('/', function(req, res) {
-    console.log(gengo('Hello')); //outputs ハロー or Hello
-    res.render('index', {
-        title: 'Express'
-    });
-});
 
-module.exports = router;
-
-```
-###Can users change the language?
-Yes! The only way the user can change language (at the moment) is by using cookies. see [Translating](https://github.com/iwatakeshi/gengojs/wiki/Translating) for an example.
-
-###How can I find out which language or locale I'm using?
-It's simply:
-
-```js
-var gengo = require('gengojs');
-//in your views
-gengo.language();
-gengo.locale();
-```
-
-```jade
-//in jade
-h1 = __.language()
-h1 = __.locale()
-```
-###Can I contribute?
-Sure! See [Contribute](https://github.com/iwatakeshi/gengojs/wiki/Contribute) for more details.
 
 ##Acknowledgements
 gengo was made possible by:
@@ -207,81 +175,73 @@ gengo was made possible by:
 * [xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)
 
 #Change Log
-Quite sinful, but starting the log from 0.1.10
 
-**0.1.10**
+**0.2.17**
+* Updated readme
+* gengojs.com has been updated for 0.2.16 but will be re-updated and tested with alpha.
+* Working on 0.3.x aka alpha.
 
-* Fixed issues with boolean values. Using isDefined should help figuring out whether COOKIELOCALE is set.
-* Added new functions to expose the current language and current locale.  (not in the wiki yet)
-* Seperated redundant calls to a function when setting current locales and language.
-* Made gengo a bit more modular by creating more functions to clean up clutter.
-* Added new universe option which allows you to use definitions on all routes. (not in the wiki yet)
 
-**0.2.10**
-* Improved stability (Please send bug reports if you encounter an issue).
-* Added XML support due to JSON's multi-line limitation. You can now write paragraphs and not have to worry about doing
-tedious stuff such as using `\n` in your sentences. Also, XML will be able to run side by side with JSON. Just name your file as
-`thelocale.xml` and then create the XML file like so:
+######Alpha
 
-```xml
-<?xml version="1.0" encoding="UTF-8" ?>
-<begin> <!--begin tag-->
-    <index><!--if routeAware is enabled then set the name of routes here-->
-        <data><!--data tag-->
-            <key>今日から働きます。</key> <!--key tag-->
-            <value>From today, I will work.</value><!--value tag-->
-        </data>
-        <data><!--additional -->
-            <key>今日から働きます。</key>
-            <value>From today, I will work.</value>
-        </data>
-    </index>
-    <data>
-      <!--if routeAware is disabled then it would start with the 
-      data tag and have just the key and value tags-->
-    </data>
-    <gengo> <!--universal route for XML would look like this, can be changed through config -->
-    </gengo>
-</begin>
-``` 
-easy right? gengo will try to load the XML even if it doesn't exist but it will not crash your server or your template.
+**alpha 0.2.17**
+* This version will be complete overhaul but to be backward compatible (as much as possible)
 
-* Renamed `viewAware` to `routeAware` in config. So just change in your option, viewAware to routeAware and views to routes. This was
-done to prevent any confusion.
-* Changed the exposed current language and locale from function to a string variable.
-* Cleaned up code and added comments to help others how see gengo works.
-* The npm repo is now combined with the master. Less work for me when updating the readme.
-* Moved `LANG` and `LOCALES` to a folder called maps. This will allow to expand the locales and languages without bloating gengo.
+**Changes to gengo's design**
+* Really modular and easier to maintain.
 
-**0.2.11**
-* Fixed an issue when `localePath` is undefined/has not been set.
+**Changes to functionality:**
+* Bracket notation and Dot notation support. Examples:
+    * `[navbar.home]` - means a key contains `navbar.home`.
+    * `[navbar.home].plural` - means a key contains `navbar.home` and a subkey contains `plural`.
+    * `[%s how are you?].informal` - means a key contains `%s how are you?` and a subkey contains `informal`.
+    * `navbar.home` - means a key contains `navbar` and a subkey contains `home`.
+* Object support:
+    * `__({phrase:'Your phrase here {{someObject}}', locale: 'ja', count: '2'}, {sprintf: ['hello'], someObject:'blah'})`
+* Mustache support. You my now include mustache notation, specifically:
+    * `__("Hi how are you {{name}}?", {name:"John Doe"})`
+* Specific Locale. Change the locale for a specific phrase
+    * `__("Your phrase here", "ja")` or `__("Your phrase here", {locale: 'ja'})`
+* Basic plural support. (I recommend you to use dot notation but here are the options):
+    * `__("Your phrase here %d", 2)` `__("Your phrase here %s", {count: "2"})` and visa-versa.
+* Changed Sprintf to [kawari.js](https://www.github.com/iwatakeshi/kawarijs). It's really basic and not as vibrant as Sprintf but passing arrays is easier. Of course you can improve it if you like so fork that project away!
+    * Not much change to how you use it. so you can pass:
+        * `__("Your phrase here %d", ['array'])`
+        * `__("Your phrase here", number)`
+        * `__("Your phrase here", string)`
+        * `__("Your phrase here", n number of strings and numbers)` but no arrays or objects (unless you are configuring the locale, count, and/or mustache).
+* Temporarily disabled XML support. (I'll figure a way to make it generic for gengo to parse through XML. May take some time.)
+* Initializing no longer requires `app`. In express just use `app.use(gengo.init)`. My goal is to support other "frameworks".
+* You can now use custom markdown syntax for links:
+    * `[Google](https://www.google.com)`
+    * `[Google](https://www.google.com)[blank]` will open in a new tab. `_blank|_self|_parent|_top|framename` are supported.
 
-**0.2.12**
-* Fixed an issue where the exposed language and locale were not returning a value.
+**Changes to config:**
+* `routeAware` is now `router`.
+* `routes` has been removed. Routes and subroutes are automatically chosen if `router` is `true`.
+* `universe` has been moved to `keywords` and is enabled if `router` is `true`.
+* `keywords` has been added. The following keywords can be changed: 
+    * `default` - used when you are using bracket notation or dot notation (in you native dictionary)
+    * `translated` - same `default` (in the translated dictionary)
+    * `universe` - used for router
+    * `plurarl` - used for plurality
+* The global variables has been moved to `global`:
 
-**0.2.13**
-* Bug fixes with XML, routing, etc.
-* Added some enhancements to error handling when a variable is not defined.
-
-**0.2.14**
-* Small fix for COOKIELOCALE.
-* Fixed issues with JSHint/JSLint.
-* Added basic tests.
-
-**0.2.15**
-* Confirmed that embedded html works in gengo with jade and added an example to sample project.
-Specifically it looks like so:
-
-```jade
-//index.jade
-//notice the !=
-p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。", "Google")
-//output:
-//'Visit Google.' with Google being a link.
+```js
+global: {
+    //set gengo global variable
+    gengo: "__",
+    //set moment global variable
+    moment: "moment",
+    //set numeral global variable
+    numeral: "numeral",
+}
 ```
+* Debugging is now even better. Debug will take two types: `boolean` or `array`. With `array` you can specify the debugging level:
 
-**0.2.16**
-* Updated Sample project's npm packages to their latest.
-* Fixed a small issue with checking if object is an array for sprintf.
-
-** 0.2.17**
+```js
+debug:{
+    level: ['info', 'data', 'warn', 'error','debug']
+}
+```
+* Few tests added. More tests to come. Just run `npm start`.

@@ -109,7 +109,7 @@
                 '*': 'gengo',
                 '/': 'index'
             },
-            //set universe, which enables you to use a set of dictionaries in any where in your site (with or without routeAware)
+            //set universe, which enables you to use a set of dictionaries in any where in your site (with routeAware)
             universe: false
         },
         //The locale that is the best match chosen by 'locale' (library)
