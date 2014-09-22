@@ -1,43 +1,44 @@
 {
-    "name": "gengojs",
-    "version": "0.2.18",
-    "description": "An uber basic and simple i18n library for Express 4",
-    "main": "gengo.js",
-    "scripts": {
-        "test": "mocha ./test/test.js"
-    },
-    "dependencies": {
-        "app-root-path": "^0.1.0",
-        "colors": "^0.6.2",
-        "kawari": "0.0.1",
-        "locale": "0.0.20",
-        "moment": "^2.8.3",
-        "numeral": "^1.5.3",
-        "underscore": "^1.7.0",
-        "xml2js": "^0.4.4"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/iwatakeshi/gengojs.git"
-    },
-    "keywords": [
-        "i18n",
-        "translate",
-        "gengo",
-        "international",
-        "express"
-    ],
-    "author": "iwatakeshi",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/iwatakeshi/gengojs/issues"
-    },
-    "homepage": "http://gengojs.com",
-    "devDependencies": {
-        "assert": "^1.1.2",
-        "cookie-parser": "^1.3.3",
-        "express": "^4.9.4",
-        "mocha": "^1.21.4",
-        "supertest": "^0.13.0"
-    }
+  "name": "gengojs",
+  "version": "0.2.19",
+  "description": "An uber basic and simple i18n library for Express 4",
+  "main": "gengo.js",
+  "scripts": {
+    "test": "mocha ./test/test.js"
+  },
+  "dependencies": {
+    "app-root-path": "^0.1.0",
+    "colors": "^0.6.2",
+    "kawari": "0.0.1",
+    "locale": "0.0.20",
+    "moment": "^2.8.3",
+    "numeral": "^1.5.3",
+    "sprintf-js": "0.0.7",
+    "underscore": "^1.7.0",
+    "xml2js": "^0.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iwatakeshi/gengojs.git"
+  },
+  "keywords": [
+    "i18n",
+    "translate",
+    "gengo",
+    "international",
+    "express"
+  ],
+  "author": "iwatakeshi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iwatakeshi/gengojs/issues"
+  },
+  "homepage": "http://gengojs.com",
+  "devDependencies": {
+    "assert": "^1.1.2",
+    "cookie-parser": "^1.3.3",
+    "express": "^4.9.4",
+    "mocha": "^1.21.4",
+    "supertest": "^0.13.0"
+  }
 }

@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.2.18
+ * version : 0.2.19
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -14,7 +14,7 @@
     'use strict';
 
     var gengo,
-        VERSION = '0.2.18',
+        VERSION = '0.2.19',
         utils = require('./modules/utils.js'),
         _ = require('underscore'),
         core = require('./modules/core.js'),

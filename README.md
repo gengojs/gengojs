@@ -246,3 +246,9 @@ debug:{
 }
 ```
 * Few tests added. More tests to come. Just run `npm start`.
+
+**alpha 0.2.18**
+*Updated readme
+
+**alpha 0.2.19**
+*Added Sprintf back as dependency for the original gengo.
