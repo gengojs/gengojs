@@ -131,5 +131,7 @@ __.numeral({locale: 'ja'}, 25).format('$0.00'); //will print in Japanese yen
 **omega 0.2.22**
 
 * Updated readme
+
+**omega 0.2.23**
 * Fixed typo for default directory
 * Small clean up with JSHint
