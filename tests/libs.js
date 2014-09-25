@@ -1,7 +1,7 @@
 /*jslint node: true*/
 /*global describe, before, it, after*/
 var express = require('express'),
-    gengo = new require('../alpha.gengo.js'),
+    gengo = new require('../omega.gengo.js'),
     request = require('supertest'),
     approot = require('app-root-path'),
     assert = require('assert'),

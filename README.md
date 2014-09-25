@@ -182,8 +182,9 @@ gengo was made possible by:
 * Working on 0.3.x aka alpha.
 
 
-######Alpha
+####Alpha
 *For previous notes on changes, see CHANGELOG.md*
+
 **alpha 0.2.20**
 * Added more tests (all 127 passing)
 * You can also run individual tests:
@@ -208,3 +209,9 @@ __.numeral({locale: 'ja'}, 25).format('$0.00'); //will print in Japanese yen
 * Better error handling for the most part.
 
 *alpha.gengo.js is now moving to omega phase after this release.*
+
+####Omega
+
+**omega 0.2.21**
+* Updated readme
+* Added mustache as dependency.

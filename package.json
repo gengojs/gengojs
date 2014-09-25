@@ -18,6 +18,7 @@
     "kawari": "0.0.1",
     "locale": "0.0.20",
     "moment": "^2.8.3",
+    "mustache": "^0.8.2",
     "numeral": "^1.5.3",
     "sprintf-js": "0.0.7",
     "underscore": "^1.7.0",

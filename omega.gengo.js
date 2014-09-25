@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.2.20
+ * version : 0.2.21
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -17,7 +17,7 @@
         core,
         locale,
         lib,
-        VERSION = '0.2.20',
+        VERSION = '0.2.21',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),
@@ -164,7 +164,7 @@
                         args.push(key);
                     }
                 } else if (_.isObject(key)) {
-                   if (localemap.numeral[key.locale]) {
+                    if (localemap.numeral[key.locale]) {
                         _locale = key.locale;
                     }
                 }

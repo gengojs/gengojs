@@ -82,7 +82,7 @@ p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。
 * Working on 0.3.x aka alpha.
 
 
-######Alpha
+###Alpha
 
 **alpha 0.2.17**
 * This version will be complete overhaul but to be backward compatible (as much as possible)
@@ -176,3 +176,10 @@ __.numeral({locale: 'ja'}, 25).format('$0.00'); //will print in Japanese yen
 * Better error handling for the most part.
 
 *alpha.gengo.js is now moving to omega phase after this release.*
+
+####Omega
+
+**omega 0.2.21**
+* Renamed `alpha.gengo.js` to `omega.gengo.js`
+* Updated readme
+* Added mustache as dependency.
