@@ -20,6 +20,7 @@
         fs = require('fs'),
         //get an instance of xml2js for xml parsing
         xml2js = require('xml2js'),
+        localemap = require('../maps/locales.js'),
         hasModule = (typeof module !== 'undefined' && module.exports);
 
     loader = function(locale) {
@@ -34,7 +35,7 @@
         var parser = new xml2js.Parser();
         try {
             //parse the xml
-            parser.parseString(fs.readFileSync(config().directory() + locale + ".xml"), function(error, result) {
+            parser.parseString(fs.readFileSync(config().directory() + localemap.gengo[locale] + ".xml"), function(error, result) {
                 debug("module: loader fn: getXML, XML loaded successfully.").info();
                 //set the xml locale
                 debug(result).data();
@@ -47,9 +48,9 @@
 
     function getJSON(locale) {
         try {
-            var json = require(config().directory() + locale + ".js");
+            var json = require(config().directory() + localemap.gengo[locale] + ".js");
             if (utils.isDefined(json)) {
-                debug("module: loader fn: getJSON, " + locale + ".js" + " loaded successfully.").info();
+                debug("module: loader fn: getJSON, " + localemap.gengo[locale] + ".js" + " loaded successfully.").info();
                 debug(JSON.stringify(json, null, 2)).data();
                 return json;
             }

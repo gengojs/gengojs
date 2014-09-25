@@ -1,6 +1,8 @@
+/*jslint node: true*/
 module.exports = {
     //key:locale, value: lang
-    'ja': 'Japanese',
-    'en': 'English',
-    'en_US': 'English US'
+    "ja": 'Japanese',
+    "en": 'English',
+    "en-US": 'English US',
+    "fr": "fr"
 };

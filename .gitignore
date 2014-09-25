@@ -1,6 +1,4 @@
-/sample/node_modules/
+/example/node_modules/
 /npm-debug.log
-/bower_components
 /node_modules/
-/sample/npm-debug.log
-/sample/tests/npm-debug.log
+/scripts/dir.txt

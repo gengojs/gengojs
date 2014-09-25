@@ -71,7 +71,7 @@
     function constructDot(array) {
         var dotpathstr = "";
         if (array.length > 1) {
-            dotpathstr = array.join().replace(",", ".");
+            dotpathstr = array.join().replace(/,/g, ".");
             return dotpathstr;
         } else {
             return array[0];

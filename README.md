@@ -7,7 +7,6 @@ An alpha version is under development. The file is called `alpha.gengo.js` so it
 See Change Log.
 
 ####Change Log at a Glance
-Current version: **0.2.17**
 
 Note on version:
 
@@ -184,71 +183,28 @@ gengo was made possible by:
 
 
 ######Alpha
-
-**alpha 0.2.17**
-* This version will be complete overhaul but to be backward compatible (as much as possible)
-
-**Changes to gengo's design**
-* Really modular and easier to maintain.
-
-**Changes to functionality:**
-* Bracket notation and Dot notation support. Examples:
-    * `[navbar.home]` - means a key contains `navbar.home`.
-    * `[navbar.home].plural` - means a key contains `navbar.home` and a subkey contains `plural`.
-    * `[%s how are you?].informal` - means a key contains `%s how are you?` and a subkey contains `informal`.
-    * `navbar.home` - means a key contains `navbar` and a subkey contains `home`.
-* Object support:
-    * `__({phrase:'Your phrase here {{someObject}}', locale: 'ja', count: '2'}, {sprintf: ['hello'], someObject:'blah'})`
-* Mustache support. You my now include mustache notation, specifically:
-    * `__("Hi how are you {{name}}?", {name:"John Doe"})`
-* Specific Locale. Change the locale for a specific phrase
-    * `__("Your phrase here", "ja")` or `__("Your phrase here", {locale: 'ja'})`
-* Basic plural support. (I recommend you to use dot notation but here are the options):
-    * `__("Your phrase here %d", 2)` `__("Your phrase here %s", {count: "2"})` and visa-versa.
-* Changed Sprintf to [kawari.js](https://www.github.com/iwatakeshi/kawarijs). It's really basic and not as vibrant as Sprintf but passing arrays is easier. Of course you can improve it if you like so fork that project away!
-    * Not much change to how you use it. so you can pass:
-        * `__("Your phrase here %d", ['array'])`
-        * `__("Your phrase here", number)`
-        * `__("Your phrase here", string)`
-        * `__("Your phrase here", n number of strings and numbers)` but no arrays or objects (unless you are configuring the locale, count, and/or mustache).
-* Temporarily disabled XML support. (I'll figure a way to make it generic for gengo to parse through XML. May take some time.)
-* Initializing no longer requires `app`. In express just use `app.use(gengo.init)`. My goal is to support other "frameworks".
-* You can now use custom markdown syntax for links:
-    * `[Google](https://www.google.com)`
-    * `[Google](https://www.google.com)[blank]` will open in a new tab. `_blank|_self|_parent|_top|framename` are supported.
-
-**Changes to config:**
-* `routeAware` is now `router`.
-* `routes` has been removed. Routes and subroutes are automatically chosen if `router` is `true`.
-* `universe` has been moved to `keywords` and is enabled if `router` is `true`.
-* `keywords` has been added. The following keywords can be changed: 
-    * `default` - used when you are using bracket notation or dot notation (in you native dictionary)
-    * `translated` - same `default` (in the translated dictionary)
-    * `universe` - used for router
-    * `plural` - used for plurality
-* The global variables has been moved to `global`:
+*For previous notes on changes, see CHANGELOG.md*
+**alpha 0.2.20**
+* Added more tests (all 127 passing)
+* You can also run individual tests:
+    * `npm run functions` - checks the functionality
+    * `npm run cookies` - checks if cookies work
+    * `npm run libs` - checks if moment and numeral (in progess) works
+    * `npm run routes` - checks if routing works
+* You can now use a basic locale automator/creator. Just run `npm run factory`.
+* Changed locale naming convention from `'en_US'` to `'en-US'` (you may use `'en-US'`, `'en_us'`, or `'en-us'` and gengo will sanitize and return it in the form of `[a-z]-[A-Z]`) Note that you will need to rename your definitions to `'en-US'` etc.
+* Bug fix with locale not really doing anything. Changed the locale parsing engine to the same one used in i18n library so credits to [@mashpie](https://github.com/mashpie). But no worries it wasn't as bad as yesterday's 'bash bug' and not as bad as 'heartbleed'.
+* Moment.js and Numeral.js are now public.
+    * You can also have a global and local version of moment and numeral by simply passing an object like so:
 
 ```js
-global: {
-    //set gengo global variable
-    gengo: "__",
-    //set moment global variable
-    moment: "moment",
-    //set numeral global variable
-    numeral: "numeral",
-}
+//use the gengo version of moment and numeral
+__.moment({locale:'ja'}).format('dddd'); //Will print today in Japanese
+__.numeral({locale: 'ja'}, 25).format('$0.00'); //will print in Japanese yen
 ```
-* Debugging is now even better. Debug will take two types: `boolean` or `array`. With `array` you can specify the debugging level:
+* You can now change the cookie locale name in config. Use `cookiename`. Default is `'locale'`.
+* Reduced the number of gengo modules. `core`, `locale`, and `lib` have been moved to `gengo`.
+* Fixed bug issue with universe not working properly.
+* Better error handling for the most part.
 
-```js
-debug:{
-    level: ['info', 'data', 'warn', 'error','debug']
-}
-```
-* Few tests added. More tests to come. Just run `npm start`.
-
-**alpha 0.2.18**
-*Updated readme
-
-**alpha 0.2.19**
-*Added Sprintf back as dependency for the original gengo.
+*alpha.gengo.js is now moving to omega phase after this release.*

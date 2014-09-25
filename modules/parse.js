@@ -20,15 +20,18 @@
         utils = require('./utils.js'),
         isDefined = utils.isDefined,
         router = require('./router.js'),
+        localemap = require('../maps/locales.js'),
         regex = utils.regex,
-        debug = utils.debug,
-        keywords = config().keywords();
+        debug = utils.debug;
 
     //normal parser for phrases
     parse = function(phrase, locale, plural) {
-        var result, routeResult;
+        var result, routeResult, universeResult;
         try {
+            //check if we have to override
             if (isOverride(locale)) {
+                //the load a new instance of loader with the json loaded
+                //to the overrided locale
                 result = new loader(locale.locale).json();
             } else {
                 result = loader(locale).json();
@@ -36,17 +39,19 @@
             if (config().router()) {
                 if (router().route().length() === 0) {
                     routeResult = resultParser(result[router().route().dot()][phrase], locale, plural);
+                    universeResult = resultParser(result[config().keywords().universe][phrase], locale, plural);
                 } else {
                     routeResult = resultParser(dotParser(router().route().dot(), result)[phrase], locale, plural);
+                    universeResult = resultParser(result[config().keywords().universe][phrase], locale, plural);
                 }
                 //if result still has trouble
                 if (!routeResult) {
                     //try universe
-                    routeResult = resultParser(result[config().keywords().universe][phrase], locale, plural);
+                    routeResult = universeResult;
                 }
-                return routeResult;
+                return routeResult || phrase;
             } else {
-                return resultParser(result[phrase], locale, plural);
+                return resultParser(result[phrase], locale, plural) || phrase;
             }
         } catch (error) {
             debug("module: parse fn: parse, " + error.toString().replace("Error: ", " ")).error();
@@ -60,7 +65,7 @@
     */
     //bracket handler
     parse.bracket = function(input, locale, plural) {
-        var search, dot;
+        var search, dot, result, routeResult, universeResult, results;
         try {
             if (input[1]) {
                 search = input[1];
@@ -74,7 +79,6 @@
                     plural = false;
                 }
             }
-            var result, routeResult;
             if (isOverride(locale)) {
                 result = new loader(locale.locale).json();
             } else {
@@ -84,19 +88,10 @@
             if (config().router()) {
                 if (router().route().length() === 0) {
                     routeResult = result[router().route().dot()];
+                    universeResult = result[config().keywords().universe];
                 } else {
                     routeResult = dotParser(router().route().dot(), result);
-
-                }
-                //if result still has trouble
-                if (!routeResult) {
-                    //try universe
-                    routeResult = result[config().keywords().universe];
-                    if (routeResult) {
-                        result = routeResult[search];
-                    }
-                } else {
-                    result = routeResult[search];
+                    universeResult = result[config().keywords().universe];
                 }
             } else {
                 result = result[search];
@@ -104,22 +99,162 @@
             if (dot) {
                 if (regex(dot).Dot().match()) {
                     //then the dot is 'dot.dot.dot'
-                    return resultParser(dotParser(dot, result), locale, plural);
+                    results = {
+                        first: function() {
+                            if (!config.router()) {
+                                var _result = resultParser(dotParser(dot, result), locale, plural);
+                                if (!_result) {
+                                    if (result[search]) {
+                                        return result[search];
+                                    }
+                                } else {
+                                    return _result;
+                                }
+                            }
+                        },
+                        second: function() {
+                            if (config().router()) {
+                                var _result = resultParser(dotParser(dot, routeResult), locale, plural);
+                                if (!_result) {
+                                    if (routeResult[search]) {
+                                        return routeResult[search];
+                                    }
+                                } else {
+                                    return _result;
+                                }
+                            }
+                        },
+                        third: function() {
+                            if (config().router()) {
+                                try {
+                                    var _result = resultParser(dotParser(dot, universeResult), locale, plural);
+                                    if (!_result) {
+                                        if (universeResult[search]) {
+                                            return universeResult[search];
+                                        }
+                                    } else {
+                                        return _result;
+                                    }
+                                } catch (error) {
 
+                                }
+                            }
+                        }
+                    };
+
+                    _.each(results, function(key) {
+                        var value = key();
+                        if (isDefined(value)) {
+                            result = value;
+                        }
+                    });
                 } else {
-                    //then the dot is only 'dot'
-                    return resultParser(result[dot], locale, plural);
+                    //then theres only one dot
+                    results = {
+                        first: function() {
+                            if (!config().router()) {
+                                var _result = resultParser(result[dot], locale, plural);
+                                if (!_result) {
+                                    if (result[search]) {
+                                        return result[search];
+                                    }
+                                } else {
+                                    return _result;
+                                }
+                            }
+                        },
+                        second: function() {
+                            if (config().router()) {
+                                var _result = resultParser(routeResult[dot], locale, plural) || resultParser(routeResult[search][dot], locale, plural);
+                                if (!_result) {
+                                    if (routeResult[search]) {
+                                        return routeResult[search];
+                                    }
+                                } else {
+                                    return _result;
+                                }
+                            }
+                        },
+                        third: function() {
+                            if (config().router()) {
+                                try {
+                                    var _result = resultParser(universeResult[dot], locale, plural) || resultParser(universeResult[search][dot], locale, plural);
+
+                                    if (!_result) {
+                                        if (universeResult[search]) {
+                                            return universeResult[search];
+                                        }
+                                    } else {
+                                        return _result;
+                                    }
+                                } catch (error) {
+
+                                }
+                            }
+                        }
+                    };
+                    _.each(results, function(key) {
+                        var value = key();
+                        if (value) {
+                            result = value;
+                        }
+                    });
                 }
             } else {
-                return resultParser(result, locale, plural);
+                results = {
+                    first: function() {
+                        if (!config().router()) {
+                            var _result = resultParser(result, locale, plural);
+
+                            if (!_result) {
+                                if (result[search]) {
+                                    return result[search];
+                                }
+                            } else {
+                                return _result;
+                            }
+                        }
+                    },
+                    second: function() {
+                        if (config().router()) {
+                            var _result = resultParser(routeResult, locale, plural) || resultParser(routeResult[search], locale, plural);
+                            if (!_result) {
+                                if (routeResult[search]) {
+                                    //try again
+                                    return routeResult[search];
+                                }
+                            } else {
+                                return _result;
+                            }
+                        }
+                    },
+                    third: function() {
+                        if (config().router()) {
+                            var _result = resultParser(universeResult, locale, plural) || resultParser(universeResult[search], locale, plural);
+                            if (!_result) {
+                                if (universeResult[search]) {
+                                    return universeResult[search];
+                                }
+                            } else {
+                                return _result;
+                            }
+                        }
+                    }
+                };
+                _.each(results, function(key) {
+                    var value = key();
+                    if (value) {
+                        result = value;
+                    }
+                });
             }
+            return result || search;
         } catch (error) {
             debug("module: parse fn: bracket, " + error.toString().replace("Error: ", " ")).error();
         }
     };
 
     parse.dot = function(input, locale, plural) {
-
         var search = input;
         if (search.indexOf('plural') > -1) {
             //prevents the word plural to clash with an existing 'plural' ie plural.plural
@@ -127,7 +262,7 @@
         }
         try {
             debug(search).debug("module parse, fn: bracket, Parse Bracket search");
-            var result, routeResult;
+            var result, routeResult, universeResult, results;
             if (isOverride(locale)) {
                 result = new loader(locale.locale).json();
             } else {
@@ -136,21 +271,55 @@
             if (config().router()) {
                 if (router().route().length() === 0) {
                     routeResult = result[router().route().dot()];
+                    universeResult = result[config().keywords().universe];
                 } else {
                     routeResult = dotParser(router().route().dot(), result);
-                }
-                //if result still has trouble
-                if (!routeResult) {
-                    //try universe
-                    routeResult = result[config().keywords().universe];
-                    if (routeResult) {
-                        result = routeResult;
-                    }
-                } else {
-                    result = routeResult;
+                    universeResult = result[config().keywords().universe];
                 }
             }
-            return resultParser(dotParser(search, result), locale, plural);
+            results = {
+                first: function() {
+                    if (!config().router()) {
+                        return resultParser(dotParser(search, result), locale, plural);
+                    }
+                },
+                second: function() {
+                    if (config().router()) {
+
+                        try {
+                            var _dotresult = dotParser(search, routeResult) || dotParser(search, universeResult);
+                            var _result = resultParser(_dotresult, locale, plural);
+                            if (!_result) {
+
+                            } else {
+                                return _result;
+                            }
+                        } catch (error) {
+
+                        }
+                    }
+                },
+                third: function() {
+                    if (config().router()) {
+                        try {
+                            var _result = resultParser(dotParser(search, universeResult), locale, plural);
+                            if (!_result) {} else {
+                                return _result;
+                            }
+                        } catch (error) {
+
+                        }
+
+                    }
+                }
+            };
+            _.each(results, function(key) {
+                var value = key();
+                if (isDefined(value)) {
+                    result = value;
+                }
+            });
+            return result;
         } catch (error) {
             debug("module: parse fn: dot," + error.toString().replace("Error: ", " ")).error();
         }
@@ -161,68 +330,77 @@
      */
     //http://stackoverflow.com/a/14375828/1251031
     function dotParser(input, obj) {
-        return input.split('.').reduce(function(obj, p) {
-            return obj[p];
-        }, obj);
+        try {
+            return input.split('.').reduce(function(obj, p) {
+                if (obj[p]) {
+                    return obj[p];
+                }
+            }, obj);
+        } catch (error) {
+            return undefined;
+        }
     }
 
     function resultParser(result, locale, plural) {
         var _result;
-        if (_.isString(result)) {
-            return result;
-        } else if (_.isObject(result)) {
-            if (isDefault(locale)) {
-                //check if the keyword 'default' exist in the object
-                if (Object.keys(result).indexOf(config().keywords().default) !== -1) {
-
-                    if (plural) {
-                        _result = result[config().keywords().plural][config().keywords().default];
-                    } else {
-                        _result = result[config().keywords().default];
-                    }
-                    if (!_result) {
+        try {
+            if (_.isString(result)) {
+                return result;
+            } else if (_.isObject(result)) {
+                if (isDefault(locale)) {
+                    //check if the keyword 'default' exist in the object
+                    if (result.hasOwnProperty(config().keywords().default)) {
                         if (plural) {
-                            _result = result[config().keywords().plural];
+                            _result = result[config().keywords().plural][config().keywords().default];
                         } else {
-                            _result = undefined;
+                            _result = result[config().keywords().default];
+                        }
+                        if (!_result) {
+                            if (plural) {
+                                _result = result[config().keywords().plural];
+                            } else {
+                                _result = undefined;
+                            }
+                        }
+                        return _result;
+                    } else {
+                        //then try
+                        if (plural) {
+                            return result[config().keywords().plural];
                         }
                     }
-                    return _result;
                 } else {
-                    //then try
-                    if (plural) {
-                        return result[config().keywords().plural];
-                    }
-                }
-            } else {
-                //check if the keyword 'translated' exist in the object
-                if (Object.keys(result).indexOf(config().keywords().translated) !== -1) {
-                    if (plural) {
-                        _result = result[config().keywords().plural][config().keywords().translated];
-                    } else {
-                        _result = result[config().keywords().translated];
-                    }
-                    if (!_result) {
+                    //check if the keyword 'translated' exist in the object
+                    if (result.hasOwnProperty(config().keywords().translated)) {
                         if (plural) {
-                            _result = result[config().keywords().plural];
+                            _result = result[config().keywords().plural][config().keywords().translated];
                         } else {
-                            //we tried so return undefined
-                            _result = undefined;
+                            _result = result[config().keywords().translated];
                         }
-                    }
-                    return _result;
-                } else {
-                    //then try
-                    if (plural) {
-                        return result[config().keywords().plural];
+                        if (!_result) {
+                            if (plural) {
+                                _result = result[config().keywords().plural];
+                            } else {
+                                //we tried so return undefined
+                                _result = undefined;
+                            }
+                        }
+                        return _result;
+                    } else {
+                        //then try
+                        if (plural) {
+                            return result[config().keywords().plural];
+                        }
                     }
                 }
             }
+        } catch (error) {
+            debug("module: parse fn: resultParser, " + error.toString().replace("Error: ", " ")).error();
         }
     }
 
     function isDefault(input) {
-        if (input === config().default()) {
+        if (localemap.gengo[input] === config().default().toString()) {
             return true;
         } else {
             return false;
@@ -239,7 +417,6 @@
         } else {
             return false;
         }
-
     }
 
     /************************************

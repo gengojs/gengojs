@@ -121,7 +121,7 @@ p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。
 * `routes` has been removed. Routes and subroutes are automatically chosen if `router` is `true`.
 * `universe` has been moved to `keywords` and is enabled if `router` is `true`.
 * `keywords` has been added. The following keywords can be changed: 
-    * `default` - used when you are using bracket notation or dot notation (in you native dictionary)
+    * `default` - used when you are using bracket notation or dot notation (in your native dictionary)
     * `translated` - same `default` (in the translated dictionary)
     * `universe` - used for router
     * `plural` - used for plurality
@@ -147,7 +147,32 @@ debug:{
 * Few tests added. More tests to come. Just run `npm start`.
 
 **alpha 0.2.18**
-*Updated readme
+* Updated readme
 
 **alpha 0.2.19**
-*Added Sprintf back as dependency for the original gengo.
+* Added Sprintf back as dependency for the original gengo.
+
+**alpha 0.2.20**
+* Added more tests (all 127 passing)
+* You can also run individual tests:
+    * `npm run functions` - checks the functionality
+    * `npm run cookies` - checks if cookies work
+    * `npm run libs` - checks if moment and numeral (in progess) works
+    * `npm run routes` - checks if routing works
+* You can now use a basic locale automator/creator. Just run `npm run factory`.
+* Changed locale naming convention from `'en_US'` to `'en-US'` (you may use `'en-US'`, `'en_us'`, or `'en-us'` and gengo will sanitize and return it in the form of `[a-z]-[A-Z]`) Note that you will need to rename your definitions to `'en-US'` etc.
+* Bug fix with locale not really doing anything. Changed the locale parsing engine to the same one used in i18n library so credits to [@mashpie](https://github.com/mashpie). But no worries it wasn't as bad as yesterday's 'bash bug' and not as bad as 'heartbleed'.
+* Moment.js and Numeral.js are now public.
+    * You can also have a global and local version of moment and numeral by simply passing an object like so:
+
+```js
+//use the gengo version of moment and numeral
+__.moment({locale:'ja'}).format('dddd'); //Will print today in Japanese
+__.numeral({locale: 'ja'}, 25).format('$0.00'); //will print in Japanese yen
+```
+* You can now change the cookie locale name in config. Use `cookiename`. Default is `'locale'`.
+* Reduced the number of gengo modules. `core`, `locale`, and `lib` have been moved to `gengo`.
+* Fixed bug issue with universe not working properly.
+* Better error handling for the most part.
+
+*alpha.gengo.js is now moving to omega phase after this release.*

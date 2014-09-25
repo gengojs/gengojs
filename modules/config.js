@@ -12,7 +12,9 @@
     'use strict';
 
     var config,
+        _ = require('underscore'),
         utils = require('./utils.js'),
+        localemap = require('../maps/locales.js'),
         hasModule = (typeof module !== 'undefined' && module.exports),
         defaults = {
             global: {
@@ -24,15 +26,16 @@
                 numeral: "numeral",
             },
             //set path to locale
-            directory: require('app-root-path') + '/locales/',
+            directory: require('app-root-path') + '/localemap/',
             //set to false; for debugging purposes
             debug: false,
-            //set supported locales
+            //set supported localemap
             supported: ['en_US'],
             //set default locale, which would be the locale used for your template of choice
             default: 'en_US',
             //set view aware
             router: false,
+            cookiename: 'locale',
             keywords: {
                 default: 'default',
                 translated: 'translated',
@@ -64,10 +67,17 @@
                 return extended.debug;
             },
             supported: function() {
-                return extended.supported;
+                var supported = [];
+                _.each(extended.supported, function(item) {
+                    supported.push(localemap.gengo[item]);
+                });
+                return supported;
             },
             default: function() {
-                return extended.default;
+                return localemap.gengo[extended.default];
+            },
+            cookie: function() {
+                return extended.cookiename;
             },
             router: function() {
                 return extended.router;
