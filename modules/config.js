@@ -26,7 +26,7 @@
                 numeral: "numeral",
             },
             //set path to locale
-            directory: require('app-root-path') + '/localemap/',
+            directory: require('app-root-path') + '/locales/',
             //set to false; for debugging purposes
             debug: false,
             //set supported localemap

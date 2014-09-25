@@ -177,15 +177,18 @@ gengo was made possible by:
 #Change Log
 
 **0.2.17**
+
 * Updated readme
 * gengojs.com has been updated for 0.2.16 but will be re-updated and tested with alpha.
 * Working on 0.3.x aka alpha.
 
 
 ####Alpha
+
 *For previous notes on changes, see CHANGELOG.md*
 
 **alpha 0.2.20**
+
 * Added more tests (all 127 passing)
 * You can also run individual tests:
     * `npm run functions` - checks the functionality
@@ -213,5 +216,12 @@ __.numeral({locale: 'ja'}, 25).format('$0.00'); //will print in Japanese yen
 ####Omega
 
 **omega 0.2.21**
+
 * Updated readme
 * Added mustache as dependency.
+
+**omega 0.2.22**
+
+* Updated readme
+* Fixed typo for default directory
+* Small clean up with JSHint
