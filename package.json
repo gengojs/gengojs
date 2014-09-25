@@ -1,7 +1,6 @@
 {
     "name": "gengojs",
-    "version": "0.2.23
-    ",
+    "version": "0.2.23",
     "description": "An uber basic and simple i18n library for Express 4",
     "main": "gengo.js",
     "scripts": {
