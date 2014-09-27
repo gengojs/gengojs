@@ -146,6 +146,7 @@
                         var value = key();
                         if (isDefined(value)) {
                             result = value;
+                            console.log("result:", result);
                         }
                     });
                 } else {
@@ -260,84 +261,84 @@
             //prevents the word plural to clash with an existing 'plural' ie plural.plural
             plural = false;
         }
-        try {
-            debug(search).debug("module parse, fn: bracket, Parse Bracket search");
-            var result, routeResult, universeResult, results;
-            if (isOverride(locale)) {
-                result = new loader(locale.locale).json();
-            } else {
-                result = loader(locale).json();
-            }
-            if (config().router()) {
-                if (router().route().length() === 0) {
-                    routeResult = result[router().route().dot()];
-                    universeResult = result[config().keywords().universe];
-                } else {
-                    routeResult = dotParser(router().route().dot(), result);
-                    universeResult = result[config().keywords().universe];
-                }
-            }
-            results = {
-                first: function() {
-                    if (!config().router()) {
-                        return resultParser(dotParser(search, result), locale, plural);
-                    }
-                },
-                second: function() {
-                    if (config().router()) {
-
-                        try {
-                            var _dotresult = dotParser(search, routeResult) || dotParser(search, universeResult);
-                            var _result = resultParser(_dotresult, locale, plural);
-                            if (!_result) {
-
-                            } else {
-                                return _result;
-                            }
-                        } catch (error) {
-
-                        }
-                    }
-                },
-                third: function() {
-                    if (config().router()) {
-                        try {
-                            var _result = resultParser(dotParser(search, universeResult), locale, plural);
-                            if (!_result) {} else {
-                                return _result;
-                            }
-                        } catch (error) {
-
-                        }
-
-                    }
-                }
-            };
-            _.each(results, function(key) {
-                var value = key();
-                if (isDefined(value)) {
-                    result = value;
-                }
-            });
-            return result;
-        } catch (error) {
-            debug("module: parse fn: dot," + error.toString().replace("Error: ", " ")).error();
+        debug(search).debug("module parse, fn: bracket, Parse Bracket search");
+        var result, routeResult, universeResult, results;
+        if (isOverride(locale)) {
+            result = new loader(locale.locale).json();
+        } else {
+            result = loader(locale).json();
         }
-    };
-
-    /*
-     *   Private functions
-     */
-    //http://stackoverflow.com/a/14375828/1251031
-    function dotParser(input, obj) {
-        try {
-            return input.split('.').reduce(function(obj, p) {
-                if (obj[p]) {
-                    return obj[p];
+        if (config().router()) {
+            if (router().route().length() === 0) {
+                routeResult = result[router().route().dot()];
+                universeResult = result[config().keywords().universe];
+            } else {
+                routeResult = dotParser(router().route().dot(), result);
+                universeResult = result[config().keywords().universe];
+            }
+        }
+        results = {
+            first: function() {
+                if (!config().router()) {
+                    return resultParser(dotParser(search, result), locale, plural);
                 }
-            }, obj);
-        } catch (error) {
-            return undefined;
+            },
+            second: function() {
+                if (config().router()) {
+                    var _dotresult = dotParser(search, routeResult) || dotParser(search, universeResult);
+                    if (_dotresult) {
+                        var _result = resultParser(_dotresult, locale, plural);
+                        if (_result) {
+                            return _result;
+                        }
+                    }
+                }
+            }
+        };
+        var _result;
+        _.each(results, function(key) {
+            var value = key();
+            if (value) {
+                _result = value;
+            }
+        });
+        return _result;
+    };
+    //https://github.com/rhalff/dot-object/blob/master/index.js
+    function dotParser(path, obj, remove) {
+        var i, keys, val;
+        if (path.indexOf('.') !== -1) {
+            keys = path.split('.');
+            for (i = 0; i < keys.length; i++) {
+                if (obj.hasOwnProperty(keys[i])) {
+                    if (i === (keys.length - 1)) {
+                        if (remove) {
+                            val = obj[keys[i]];
+                            delete obj[keys[i]];
+                            return val;
+                        } else {
+                            return obj[keys[i]];
+                        }
+                    } else {
+                        obj = obj[keys[i]];
+                    }
+                } else {
+                    debug("module: parse, fn: dotParser,  Type Cannot read property of " + keys[i] + " undefined").warn();
+                    if (config().router()) {
+                        debug("Could be universe?").warn();
+                    }
+                    return undefined;
+                }
+            }
+            return obj;
+        } else {
+            if (remove) {
+                val = obj[path];
+                delete obj[path];
+                return val;
+            } else {
+                return obj[path];
+            }
         }
     }
 

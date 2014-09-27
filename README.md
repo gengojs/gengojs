@@ -3,7 +3,7 @@ Gengo.js
 [![NPM](https://nodei.co/npm/gengojs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs/)
 
 ###gengo.js is getting better than ever!
-An alpha version is under development. The file is called `alpha.gengo.js` so it will not affect your current gengo.
+An alpha version is under development. The file is called `omega.gengo.js` so it will not affect your current gengo.
 See Change Log.
 
 ####Change Log at a Glance
@@ -215,9 +215,12 @@ __.numeral({locale: 'ja'}, 25).format('$0.00'); //will print in Japanese yen
 
 ####Omega
 
+*The file has been renamed to omega.gengo.js*
+
 **omega 0.2.21**
 
 * Updated readme
+
 * Added mustache as dependency.
 
 **omega 0.2.22**
@@ -225,5 +228,13 @@ __.numeral({locale: 'ja'}, 25).format('$0.00'); //will print in Japanese yen
 * Updated readme
 
 **omega 0.2.23**
+
 * Fixed typo for default directory
 * Small clean up with JSHint
+
+**omega 0.2.24**
+
+* Replaced dot notation parsing engine, credits to [rhalff](https://github.com/rhalff)
+* Replaced markdown engine which fixes a minor bug.
+* Removed a few try catch statements that caused issues to the core.
+* Updated readme

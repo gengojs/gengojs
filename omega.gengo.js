@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.2.23
+ * version : 0.2.24
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -17,7 +17,7 @@
         core,
         locale,
         lib,
-        VERSION = '0.2.23',
+        VERSION = 'omega 0.2.24',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),
@@ -366,95 +366,91 @@
         //the string with mustache and kawari if needed.
         function parser(phrase, value, args, type) {
             var result;
-            try {
-                //called like this __(something)
-                if (_.isEmpty(value) && _.isEmpty(args)) {
-                    return parse[type](phrase, negotiate(), false);
-                    //called like this __(something, {something})
-                } else if (!_.isEmpty(value)) {
-                    result = parse[type](phrase, negotiate(value), isPlural(value.count));
-                    if (regex(result).Mustache().match()) {
-                        result = mustache.render(result, value);
-                    }
-                    if (regex(result).Sprintf().match()) {
-                        result = kawari(result, value.sprintf);
-                    }
-                    return result;
-                    //called like this __(something, something)
-                } else if (!_.isEmpty(args)) {
-                    //if only one argument exists
-                    if (args.length === 1) {
-                        var arg = args[0];
-                        //called like this __(something, 'something')
-                        if (_.isString(arg)) {
-                            ////called like this __(something, '2')
-                            if (parseInt(arg)) {
-                                result = parse[type](phrase, negotiate(), isPlural(arg));
-                                if (regex(result).Sprintf().match()) {
-                                    return kawari(result, arg);
-                                } else {
-                                    return result;
-                                }
-                            } else if (localemap.gengo[arg]) {
-                                return parse[type](phrase, negotiate(arg), false);
-                            } else {
-                                result = parse[type](phrase, negotiate(), false);
-                                if (regex(result).Sprintf().match()) {
-                                    return kawari(result, arg);
-                                } else {
-                                    return result;
-                                }
-                            }
-                            //called like this __(something, 2)
-                        } else if (_.isNumber(arg)) {
+            //called like this __(something)
+            if (_.isEmpty(value) && _.isEmpty(args)) {
+                return parse[type](phrase, negotiate(), false);
+                //called like this __(something, {something})
+            } else if (!_.isEmpty(value)) {
+                result = parse[type](phrase, negotiate(value), isPlural(value.count));
+                if (regex(result).Mustache().match()) {
+                    result = mustache.render(result, value);
+                }
+                if (regex(result).Sprintf().match()) {
+                    result = kawari(result, value.sprintf);
+                }
+                return result;
+                //called like this __(something, something)
+            } else if (!_.isEmpty(args)) {
+                //if only one argument exists
+                if (args.length === 1) {
+                    var arg = args[0];
+                    //called like this __(something, 'something')
+                    if (_.isString(arg)) {
+                        ////called like this __(something, '2')
+                        if (parseInt(arg)) {
                             result = parse[type](phrase, negotiate(), isPlural(arg));
                             if (regex(result).Sprintf().match()) {
                                 return kawari(result, arg);
                             } else {
                                 return result;
                             }
-                            //called like this __(something, [something])
-                        } else if (_.isArray(arg)) {
+                        } else if (localemap.gengo[arg]) {
+                            return parse[type](phrase, negotiate(arg), false);
+                        } else {
                             result = parse[type](phrase, negotiate(), false);
                             if (regex(result).Sprintf().match()) {
                                 return kawari(result, arg);
-                            }
-                        }
-                        //called like this __(something, 'something', {something}, 'something', 2)
-                    } else {
-                        //lets separate them even further
-                        var objects = [],
-                            other = [];
-                        //combine the non objects into an array
-                        for (var i = 0; i < args.length; i++) {
-                            if (_.isObject(args[i])) {
-                                objects.push(args[i]);
                             } else {
-                                if ((!_.isArray(args[i]))) {
-                                    other.push(args[i]);
-                                }
+                                return result;
                             }
                         }
-                        //combine the objects
-                        var target = {};
-                        objects.forEach(function(object) {
-                            _.each(object, function(value, prop) {
-                                target[prop] = value;
-                            });
-                        });
-
-                        result = parse[type](phrase, negotiate(target), isPlural(target));
-                        if (regex(result).Mustache().match()) {
-                            result = mustache.render(result, target);
-                        }
+                        //called like this __(something, 2)
+                    } else if (_.isNumber(arg)) {
+                        result = parse[type](phrase, negotiate(), isPlural(arg));
                         if (regex(result).Sprintf().match()) {
-                            result = kawari(result, other);
+                            return kawari(result, arg);
+                        } else {
+                            return result;
                         }
-                        return result;
+                        //called like this __(something, [something])
+                    } else if (_.isArray(arg)) {
+                        result = parse[type](phrase, negotiate(), false);
+                        if (regex(result).Sprintf().match()) {
+                            return kawari(result, arg);
+                        }
                     }
+                    //called like this __(something, 'something', {something}, 'something', 2)
+                } else {
+                    //lets separate them even further
+                    var objects = [],
+                        other = [];
+                    //combine the non objects into an array
+                    for (var i = 0; i < args.length; i++) {
+                        if (_.isObject(args[i])) {
+                            objects.push(args[i]);
+                        } else {
+                            if ((!_.isArray(args[i]))) {
+                                other.push(args[i]);
+                            }
+                        }
+                    }
+                    //combine the objects
+                    var target = {};
+                    objects.forEach(function(object) {
+                        _.each(object, function(value, prop) {
+                            target[prop] = value;
+                        });
+                    });
+
+                    result = parse[type](phrase, negotiate(target), isPlural(target));
+                    if (regex(result).Mustache().match()) {
+                        result = mustache.render(result, target);
+                    }
+                    if (regex(result).Sprintf().match()) {
+                        result = kawari(result, other);
+                    }
+                    return result;
                 }
-            } catch (error) {
-                debug("module: core fn: parser, " + error.toString().replace("Error: ", " ")).error();
             }
         }
 
