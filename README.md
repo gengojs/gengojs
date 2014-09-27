@@ -3,7 +3,7 @@ Gengo.js
 [![NPM](https://nodei.co/npm/gengojs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs/)
 
 ###gengo.js is getting better than ever!
-An alpha version is under development. The file is called `omega.gengo.js` so it will not affect your current gengo.
+An omega version is under development. The file is called `omega.gengo.js` so it will not affect your current gengo.
 See Change Log.
 
 ####Change Log at a Glance
