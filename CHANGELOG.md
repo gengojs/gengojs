@@ -146,3 +146,22 @@ __.numeral({locale: 'ja'}, 25).format('$0.00'); //will print in Japanese yen
 * Replaced markdown engine which fixes a minor bug.
 * Removed a few try catch statements that caused issues to the core.
 * Updated readme
+
+**omega 0.2.25**
+
+* Router module can now accept urls that contain versions in the following format: `\d{1,2}(\.)\d{1,2}((\.)\d{1,2})?$` Note that adding 'v' before the numbers does not matter just as long its in the form.
+* If you want to use multiline line in JSON. Just create the text in the following form and it will work:
+
+```js
+//ja.js
+module.exports = {
+    "index": {
+        "something": [
+        "line1",
+        " line2",
+        " line3",
+        ].join('\n'),
+        "so forth and so on": "something"
+    }
+};
+```

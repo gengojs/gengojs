@@ -146,7 +146,6 @@
                         var value = key();
                         if (isDefined(value)) {
                             result = value;
-                            console.log("result:", result);
                         }
                     });
                 } else {
@@ -305,40 +304,35 @@
         return _result;
     };
     //https://github.com/rhalff/dot-object/blob/master/index.js
-    function dotParser(path, obj, remove) {
+    function dotParser(path, obj) {
         var i, keys, val;
         if (path.indexOf('.') !== -1) {
             keys = path.split('.');
             for (i = 0; i < keys.length; i++) {
-                if (obj.hasOwnProperty(keys[i])) {
-                    if (i === (keys.length - 1)) {
-                        if (remove) {
-                            val = obj[keys[i]];
-                            delete obj[keys[i]];
-                            return val;
-                        } else {
+                if (keys[i].indexOf("*") !== -1) {
+                    keys[i] = keys[i].replace('*', '.');
+                }
+                if (obj) {
+                    if (obj.hasOwnProperty(keys[i])) {
+                        if (i === (keys.length - 1)) {
                             return obj[keys[i]];
+                        } else {
+                            obj = obj[keys[i]];
                         }
                     } else {
-                        obj = obj[keys[i]];
+                        debug("module: parse, fn: dotParser,  Type Cannot read property " + keys[i] + " of undefined").warn();
+                        if (config().router()) {
+                            debug("Could be universe?").warn();
+                        }
+                        return undefined;
                     }
                 } else {
-                    debug("module: parse, fn: dotParser,  Type Cannot read property of " + keys[i] + " undefined").warn();
-                    if (config().router()) {
-                        debug("Could be universe?").warn();
-                    }
                     return undefined;
                 }
             }
             return obj;
         } else {
-            if (remove) {
-                val = obj[path];
-                delete obj[path];
-                return val;
-            } else {
-                return obj[path];
-            }
+            return obj[path];
         }
     }
 

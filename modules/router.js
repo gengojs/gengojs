@@ -19,6 +19,7 @@
         subdomains,
         originalUrl,
         baseUrl,
+        _ = require('underscore'),
         debug = require('./utils.js').debug,
         hasModule = (typeof module !== 'undefined' && module.exports);
 
@@ -59,7 +60,7 @@
                     length: function() {
                         if (dotPath.match(/\./g)) {
                             return dotPath.match(/\./g).length;
-                        }else{
+                        } else {
                             return 0;
                         }
                     }
@@ -80,7 +81,10 @@
 
     function constructArray(path) {
         var pathArray = path.split('/'),
+            filteredPathArray = [],
             newpath = [];
+        var regexVersion = /\d{1,2}(\.)\d{1,2}((\.)\d{1,2})?$/;
+
         if (pathArray.length < 3) {
             //its safe to say that pathArray[0] will always be ''
             if (pathArray[1] === '') {
@@ -90,6 +94,17 @@
                 newpath.push(pathArray[1]);
             }
         } else {
+            var regexVersion = /\d{1,2}(\.)\d{1,2}((\.)\d{1,2})?$/;
+            _.each(pathArray, function(item) {
+                if (item.match(regexVersion)) {
+                    filteredPathArray.push(item.replace('.', '*'));
+                } else {
+                    filteredPathArray.push(item);
+                }
+            });
+
+            pathArray = filteredPathArray;
+
             for (var count = 1; count < pathArray.length; count++) {
                 if (count === 1) {
                     if (pathArray[count] === '') {

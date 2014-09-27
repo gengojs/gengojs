@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.2.24
+ * version : 0.2.25
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -17,7 +17,7 @@
         core,
         locale,
         lib,
-        VERSION = 'omega 0.2.24',
+        VERSION = 'omega 0.2.25',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),
@@ -90,7 +90,7 @@
             var arg = arguments[0];
             if (_.isObject(arg)) {
                 if (arg.locale) {
-                    _locale = arg.locale;
+                    _locale = localemap.moment[arg.locale];
                 }
             } else if (_.isString(arg)) {
                 arg.push(arg);
@@ -143,7 +143,7 @@
             var arg = arguments[0];
             if (_.isObject(arg)) {
                 if (arg.locale) {
-                    _locale = arg.locale;
+                    _locale = localemap.numeral[arg.locale];
                 }
                 if (arg.self) {
                     if (_.isBoolean(arg.self)) {
@@ -247,7 +247,6 @@
             if (override) {
                 //check that its a string
                 if (_.isString(override)) {
-
                     //check if the string contains a locale
                     if (override) {
                         return {
