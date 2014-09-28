@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.3.26
+ * version : 0.3.27
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -17,7 +17,7 @@
         core,
         locale,
         lib,
-        VERSION = 'omega 0.3.26',
+        VERSION = 'omega 0.3.27',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),
@@ -555,11 +555,12 @@
                     if (region) {
                         regions.push(region.toLowerCase());
                     }
-                    if (!match && (config().supported()[i] === lang)) {
+                    if (!match && (config().supported().indexOf(localemap.gengo[lang]) !== -1)) {
                         match = lang;
                     }
-                    if (!fallbackMatch && (config().supported()[i] === parentLang)) {
-                        fallbackMatch = parentLang;
+
+                    if (!fallbackMatch && (config().supported().indexOf(localemap.gengo[parentLang]) === -1)) {
+                        fallbackMatch = config().default();
                     }
                 }
                 req.language = match || fallbackMatch || req.language;
@@ -569,7 +570,6 @@
             if (req.cookies && req.cookies[config().cookie()]) {
                 req.language = localemap.gengo[req.cookies[config().cookie()]];
             }
-
             bestmatch = req.language;
         }
         /**
