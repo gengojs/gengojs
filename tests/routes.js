@@ -3,7 +3,7 @@
 var express = require('express'),
     cookieParser = require('cookie-parser'),
     debug = require('../modules/utils.js').debug,
-    gengo = new require('../omega.gengo.js'),
+    gengo = new require('../gengo.js'),
     request = require('supertest'),
     approot = require('app-root-path'),
     assert = require('assert'),

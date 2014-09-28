@@ -2,66 +2,11 @@ Gengo.js
 ========
 [![NPM](https://nodei.co/npm/gengojs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs/)
 
-###gengo.js is getting better than ever!
-An omega version is under development. The file is called `omega.gengo.js` so it will not affect your current gengo.
-See Change Log.
-
-Note on version:
-
-How gengo versioning works is simply:
-* Major (When gengo becomes stable after rigid testings and user feedback)
-* Minor (Additions and stability improvements)
-* Patch (README updates, small fixes/patches)
-
-#####Features at a Glance
-* No need for international routes ie '/en' and '/ja'. gengo will translate the page according to the browser's settings, specifically the Accept-Language. Therefore you can use the same route for all languages.
-* Ability to change locales through the use of cookies.
-* Dictionary based. Meaning that you will provide the keys in your language and then the values into the desired translation.
-* JSON and XML support. Mix match is possible. Note that with XML, you can write longer sentences without newlines.
-* Ability to change the global varibles to prevent clashing with other libraries.
-* Built in Moment.js and Numeral.js (plus you can still use the browser version.)
-
-
-Supported locales:
-* en
-* en_US
-* ja
-
-Supported languages:
-* Japanese
-* English
-* English US
-
-To add more locales and languages please fork/pr and add your language and locale which are located in the maps folder. This will expand gengo's capability to support other languages. Don't forget to test it!
-
-#####What's new:
-* Updated website with two languages:
-  * English US
-  * Japanese
-
-For more info see Change Logs
-
-#####Coming soon:
-* More tests
-* Revamped gengo.js which is currently under omega status. It's <em>way</em> better:
-  * Bracket notation support
-  * Dot notation support
-  * Object support
-  * Mustache support
-  * see Change Log for more details.
-
-##Help needed!!
-First, I want to thank those who downloaded and tried gengo. gengo has a lot of room to grow but is really limited without your help. gengo now has a new site and is available at [gengojs.com](http://www.gengojs.com), but needs your help to improve it
-in means of translations and of course gengo itself. So, please visit the Github page and fork away gengo and the site! 
-
-**Also, I am looking for maintainers/collaborators. I don't know all the languages out there and surely, as mentioned earlier, gengo has a lot of room to grow. Please let me now if you are interested in improving gengo and its website.**
-You can contact me via twitter [@iwatakeshi](https://twitter.com/iwatakeshi) or [GitHub](https://github.com/iwatakeshi).
-
-
-
+Visit [Gengojs.com](http://www.gengojs.com) for installation, configuration, and documentation.
 
 ##Acknowledgements
 gengo was made possible by:
+
 * [locale](https://github.com/jed/locale)
 * [App Root Path](https://github.com/inxilpro/node-app-root-path)
 * [Moment.js](https://github.com/moment/moment)
@@ -159,3 +104,8 @@ module.exports = {
 * Updated readme
 * Fixed a bug in locale engine where cookie could set something that shouldn't be set.
 * Fixed a bug in phrase parser where try catch wouldn't let parser return the original phrase if route results didn't exists
+
+####gengo 0.3.26 Release
+
+* gengo is now at v0.3! If you want to continue to use v0.2 just change the require path to `gengojs/legacy/v0.2/gengo.js`
+* Changed test's gengo path.

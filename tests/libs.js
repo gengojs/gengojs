@@ -1,7 +1,7 @@
 /*jslint node: true*/
 /*global describe, before, it, after*/
 var express = require('express'),
-    gengo = new require('../omega.gengo.js'),
+    gengo = new require('../gengo.js'),
     request = require('supertest'),
     approot = require('app-root-path'),
     assert = require('assert'),
@@ -96,7 +96,9 @@ describe('Begin library test', function() {
                     if (error) {
                         throw error;
                     }
-                    assert.equal(gengo.moment("2010 11 31", "YYYY MM DD", {locale: 'ja'}).isValid(), false);
+                    assert.equal(gengo.moment("2010 11 31", "YYYY MM DD", {
+                        locale: 'ja'
+                    }).isValid(), false);
                     done();
                 });
         });
@@ -113,7 +115,9 @@ describe('Begin library test', function() {
                     if (error) {
                         throw error;
                     }
-                    assert.equal(gengo.numeral(25, {locale: 'en'}).format('$0.00'), "$25.00");
+                    assert.equal(gengo.numeral(25, {
+                        locale: 'en'
+                    }).format('$0.00'), "$25.00");
                     done();
                 });
         });
@@ -141,7 +145,9 @@ describe('Begin library test', function() {
                     if (error) {
                         throw error;
                     }
-                    assert.equal(gengo.numeral(25, {locale: 'ja'}).format('$0.00'), "¥25.00");
+                    assert.equal(gengo.numeral(25, {
+                        locale: 'ja'
+                    }).format('$0.00'), "¥25.00");
                     done();
                 });
         });

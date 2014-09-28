@@ -171,3 +171,7 @@ module.exports = {
 * Updated readme
 * Fixed a bug in locale engine where cookie could set something that shouldn't be set.
 * Fixed a bug in phrase parser where try catch wouldn't let parser return the original phrase if route results didn't exists
+
+####gengo 0.3.26 Release
+
+* gengo is now at v0.3! If you want to continue to use v0.2 just change the require path to `gengojs/legacy/v0.2/gengo.js`

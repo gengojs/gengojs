@@ -2,7 +2,7 @@
 /*global describe, before, it, after*/
 var express = require('express'),
     cookieParser = require('cookie-parser'),
-    gengo = new require('../omega.gengo.js'),
+    gengo = new require('../gengo.js'),
     request = require('supertest'),
     approot = require('app-root-path'),
     assert = require('assert'),
