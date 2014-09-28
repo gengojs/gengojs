@@ -94,7 +94,6 @@
                 newpath.push(pathArray[1]);
             }
         } else {
-            var regexVersion = /\d{1,2}(\.)\d{1,2}((\.)\d{1,2})?$/;
             _.each(pathArray, function(item) {
                 if (item.match(regexVersion)) {
                     filteredPathArray.push(item.replace('.', '*'));
