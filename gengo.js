@@ -17,7 +17,7 @@
         core,
         locale,
         lib,
-        VERSION = 'omega 0.3.27',
+        VERSION = '0.3.27',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),
