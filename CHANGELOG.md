@@ -165,3 +165,9 @@ module.exports = {
     }
 };
 ```
+
+**omega 0.2.26**
+
+* Updated readme
+* Fixed a bug in locale engine where cookie could set something that shouldn't be set.
+* Fixed a bug in phrase parser where try catch wouldn't let parser return the original phrase if route results didn't exists

@@ -6,11 +6,9 @@ Gengo.js
 An omega version is under development. The file is called `omega.gengo.js` so it will not affect your current gengo.
 See Change Log.
 
-####Change Log at a Glance
-
 Note on version:
 
-How gengo version works is simply:
+How gengo versioning works is simply:
 * Major (When gengo becomes stable after rigid testings and user feedback)
 * Minor (Additions and stability improvements)
 * Patch (README updates, small fixes/patches)
@@ -60,108 +58,6 @@ in means of translations and of course gengo itself. So, please visit the Github
 You can contact me via twitter [@iwatakeshi](https://twitter.com/iwatakeshi) or [GitHub](https://github.com/iwatakeshi).
 
 
-###What is Gengo.js?
-gengo is a library that allows you to translate your pages automatically (hot swapping) without having to do tedious stuff (such as creating more routes for each language)...well that is my goal. gengo only requires you to provide the translation files and then your done :).
-Also, before moving on, Moment.js and Numeral.js are part of gengo. What does that mean? Well it simply means you get the best of the best in a small package. Technically it means that moment and numeral will change along with gengo (see [Translating](https://github.com/iwatakeshi/gengojs/wiki/Translating) for more details). 
-
-###Install
-
-gengo is available on npm. To begin:
-```bash
-sudo npm install gengojs
-#or
-sudo npm install gengojs --save
-```
-
-###Configure
-then in your app.js
-```js
-//require
-var gengo = require('gengojs');
-//configure gengo (optional)
-gengo.config({
-    debug: false
-    localePath: 'Your locale folder'
-    default: 'en_US' 
-    supported: ['ja','en_US']
-});
-//init before your routes. if using express generator it would be right after the last app.use
-gengo.init(app);
-
-```
-for more configurations options see [Gengo](https://github.com/iwatakeshi/gengojs/wiki/Gengo).
-
-
-###Dictionaries
-
-From there you have two options, you can have gengo to:
-* load the words/sentences from the translation file directly
-* load the words/sentences from the translation file by route (not fully tested)
-an example will look like this in your locale folder:
-
-JSON:
-```js
-//ja.js
-
-//really simple, gengojs will just get what you have
-module.exports = {
-    "Welcome to express": "エクスプレスへようこそ",    
-};
-
-//with viewAware: true and universe: true
-module.exports = {
-    index:{
-        "Welcome to express": "エクスプレスへようこそ",
-    }
-    //gengo now supports 'universe'. Meaning that the definition will load at every route if routeAware is enabled.
-    gengo:{
-      "Welcome to express": "エクスプレスへようこそ"
-    }
-}
-```
-
-XML:
-```xml
-<!--again, really simple-->
-<?xml version="1.0" encoding="UTF-8" ?>
-<begin>
-   <data>
-      <key>今日から働きます。</key>
-      <value>From today, I will work</value>
-   </data>
-</begin>
-
-<!--with viewAware: true and universe: true-->
-<?xml version="1.0" encoding="UTF-8" ?>
-<begin>
-    <index>
-        <data>
-            <key>今日から働きます。</key>
-            <value>From today, I will work</value>
-        </data>
-    </index>
-    <gengo>
-        <data>
-            <key>こんにちは</key>
-            <value>Hello</value>
-        </data>
-    </gengo>
-</begin>
-
-```
-
-Now in your template file (Note: I've only used Jade, others should work)
-```jade
-extends layout
-
-block content
-  h1= title
-   //pretty much the same as i18n '__' (can be changed through config. see Gengo)
-  //this will output エクスプレスへようこそ or Welcome to express
-  p Welcome to #{__("Welcome to express")} 
-```
-For more templating and translation file examples see [Translating](https://github.com/iwatakeshi/gengojs/wiki/Translating)
-
 
 
 ##Acknowledgements
@@ -182,6 +78,7 @@ gengo was made possible by:
 * gengojs.com has been updated for 0.2.16 but will be re-updated and tested with alpha.
 * Working on 0.3.x aka alpha.
 
+*An alien invasion happened between 0.2.17 and alpha 0.2.20. oh well, we'll proceed from alpha 0.2.20*
 
 ####Alpha
 
@@ -257,3 +154,8 @@ module.exports = {
     }
 };
 ```
+**omega 0.2.26**
+
+* Updated readme
+* Fixed a bug in locale engine where cookie could set something that shouldn't be set.
+* Fixed a bug in phrase parser where try catch wouldn't let parser return the original phrase if route results didn't exists

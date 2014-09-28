@@ -8,7 +8,6 @@
  * Code heavily borrowed from Adam Draper
  * https://github.com/adamwdraper
  */
-
 (function() {
     'use strict';
 
@@ -27,34 +26,54 @@
     //normal parser for phrases
     parse = function(phrase, locale, plural) {
         var result, routeResult, universeResult;
-        try {
-            //check if we have to override
-            if (isOverride(locale)) {
-                //the load a new instance of loader with the json loaded
-                //to the overrided locale
-                result = new loader(locale.locale).json();
-            } else {
-                result = loader(locale).json();
-            }
-            if (config().router()) {
-                if (router().route().length() === 0) {
+        //check if we have to override
+        if (isOverride(locale)) {
+            //the load a new instance of loader with the json loaded
+            //to the overrided locale
+            result = new loader(locale.locale).json();
+        } else {
+            result = loader(locale).json();
+        }
+        var _result;
+        if (config().router()) {
+            if (router().route().length() === 0) {
+
+                _result = result[router().route().dot()][phrase];
+                if (_result) {
                     routeResult = resultParser(result[router().route().dot()][phrase], locale, plural);
+                } else if (result[config().keywords().universe][phrase]) {
                     universeResult = resultParser(result[config().keywords().universe][phrase], locale, plural);
                 } else {
-                    routeResult = resultParser(dotParser(router().route().dot(), result)[phrase], locale, plural);
-                    universeResult = resultParser(result[config().keywords().universe][phrase], locale, plural);
+                    return phrase;
                 }
-                //if result still has trouble
-                if (!routeResult) {
-                    //try universe
+            } else {
+                //check if the definition contains the route
+                _result = dotParser(router().route().dot(), result);
+                //if it does
+                if (_result) {
+                    // do something
+                    routeResult = resultParser(dotParser(router().route().dot(), result)[phrase], locale, plural);
+                    //else lets try universe
+                } else {
+                    _result = dotParser(router().route().dot(), result);
+                    //if universe exists
+                    if (_result) {
+                        universeResult = resultParser(result[config().keywords().universe][phrase], locale, plural);
+                    } else {
+                        return phrase;
+                    }
+                }
+            }
+            //if result still has trouble
+            if (!routeResult) {
+                //try universe
+                if (universeResult) {
                     routeResult = universeResult;
                 }
-                return routeResult || phrase;
-            } else {
-                return resultParser(result[phrase], locale, plural) || phrase;
             }
-        } catch (error) {
-            debug("module: parse fn: parse, " + error.toString().replace("Error: ", " ")).error();
+            return routeResult || phrase;
+        } else {
+            return resultParser(result[phrase], locale, plural) || phrase;
         }
     };
 

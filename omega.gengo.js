@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.2.25
+ * version : 0.2.26
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -17,7 +17,7 @@
         core,
         locale,
         lib,
-        VERSION = 'omega 0.2.25',
+        VERSION = 'omega 0.2.26',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),
@@ -202,9 +202,9 @@
     gengo.init = function(req, res, next) {
         var api = [gengo, numeral, moment],
             apiname = [
-                config().global().gengo().toString(),
-                config().global().numeral().toString(),
-                config().global().moment().toString()
+                config().global().gengo(),
+                config().global().numeral(),
+                config().global().moment()
             ],
             count = 0;
 
@@ -250,28 +250,28 @@
                     //check if the string contains a locale
                     if (override) {
                         return {
-                            locale: localemap.gengo[override].toString(),
+                            locale: localemap.gengo[override],
                             override: true
                         };
                     } else {
                         //then just return the bestmatch
-                        return locale().bestmatch().toString();
+                        return locale().bestmatch();
                     }
                     //if override is an object
                 } else if (_.isObject(override)) {
                     if (override.locale) {
                         return {
-                            locale: localemap.gengo[override.locale].toString(),
+                            locale: localemap.gengo[override.locale],
                             override: true
                         };
                     } else {
                         //then just return the bestmatch
-                        return locale().bestmatch().toString();
+                        return locale().bestmatch();
                     }
                 }
             } else {
                 //then just return the bestmatch
-                return locale().bestmatch().toString();
+                return locale().bestmatch();
             }
         }
         //separates the phrase into 4 parts: object, brackets, dots, phrases.
@@ -535,7 +535,7 @@
     //locale takes care of setting the locales, default locales, etc.
     locale = function(req) {
         //debug(bestmatch).warn();
-        if (typeof req === 'object') {
+        if (_.isObject(req)) {
             var langheader = req.headers['accept-language'],
                 languages = [],
                 regions = [];
@@ -546,7 +546,6 @@
             if (langheader) {
                 var match, fallbackMatch;
                 requested = acceptedlang(langheader);
-
                 for (var i = 0, len = requested.length; i < len; i++) {
                     var lang = requested[i],
                         lr = lang.split('-', 2),
@@ -568,12 +567,11 @@
             }
             // setting the language by cookie
             if (req.cookies && req.cookies[config().cookie()]) {
-                req.language = req.cookies[config().cookie()] || localemap.gengo[req.cookies[config().cookie()]];
+                req.language = localemap.gengo[req.cookies[config().cookie()]];
             }
 
             bestmatch = req.language;
         }
-
         /**
          * Credits to @Mashpie https://github.com/mashpie
          * https://github.com/mashpie/i18n-node/blob/master/i18n.js#L332
