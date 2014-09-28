@@ -175,3 +175,4 @@ module.exports = {
 ####gengo 0.3.26 Release
 
 * gengo is now at v0.3! If you want to continue to use v0.2 just change the require path to `gengojs/legacy/v0.2/gengo.js`
+* Changed test's gengo path.
