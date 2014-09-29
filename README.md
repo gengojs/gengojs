@@ -110,6 +110,12 @@ module.exports = {
 * gengo is now at v0.3! If you want to continue to use v0.2 just change the require path to `gengojs/legacy/v0.2/gengo.js`
 * Changed test's gengo path.
 
-####gengo 0.3.27
+**0.3.27**
 
 *Fixed bug when a browser with requesting a foreign locale would not change the site.
+
+**0.3.28**
+
+*Removed removed the global moment and numeral since it's now part of gengo.
+* Updated readme
+* Updated gengojs.com for v0.3.
