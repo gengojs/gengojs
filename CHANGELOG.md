@@ -179,7 +179,7 @@ module.exports = {
 
 **0.3.27**
 
-*Fixed bug when a browser with requesting a foreign locale would not change the site.
+* Fixed bug when a browser with requesting a foreign locale would not change the site.
 
 **0.3.28**
 
