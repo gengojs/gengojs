@@ -183,6 +183,11 @@ module.exports = {
 
 **0.3.28**
 
-*Removed removed the global moment and numeral since it's now part of gengo.
+* Removed removed the global moment and numeral since it's now part of gengo.
 * Updated readme
 * Updated gengojs.com for v0.3.
+
+**0.3.29**
+
+* Fixed bug in phrase parser when router is enabled. The parser will get the translated version when its suppose to return the original phrase.
+* Updated readme

@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.3.28
+ * version : 0.3.29
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -17,7 +17,7 @@
         core,
         locale,
         lib,
-        VERSION = '0.3.28',
+        VERSION = '0.3.29',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),

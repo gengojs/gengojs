@@ -71,7 +71,11 @@
                     routeResult = universeResult;
                 }
             }
-            return routeResult || phrase;
+            if (isDefault(locale) && !plural) {
+                return phrase;
+            } else {
+                return routeResult || phrase;
+            }
         } else {
             return resultParser(result[phrase], locale, plural) || phrase;
         }
