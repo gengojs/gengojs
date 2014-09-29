@@ -191,3 +191,7 @@ module.exports = {
 
 * Fixed bug in phrase parser when router is enabled. The parser will get the translated version when its suppose to return the original phrase.
 * Updated readme
+
+**0.3.30**
+
+* Removed accept-language npm module from the dependants
