@@ -77,7 +77,11 @@
                 return routeResult || phrase;
             }
         } else {
-            return resultParser(result[phrase], locale, plural) || phrase;
+            if (result) {
+                return resultParser(result[phrase], locale, plural) || phrase;
+            } else {
+                return phrase;
+            }
         }
     };
 
