@@ -20,19 +20,15 @@
             global: {
                 //set gengo global variable
                 gengo: "__",
-                //set moment global variable
-                moment: "moment",
-                //set numeral global variable
-                numeral: "numeral",
             },
             //set path to locale
             directory: require('app-root-path') + '/locales/',
             //set to false; for debugging purposes
             debug: false,
             //set supported localemap
-            supported: ['en_US'],
+            supported: ['en-US'],
             //set default locale, which would be the locale used for your template of choice
-            default: 'en_US',
+            default: 'en-US',
             //set view aware
             router: false,
             cookiename: 'locale',

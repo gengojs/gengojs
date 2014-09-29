@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.3.27
+ * version : 0.3.28
  * author : Takeshi Iwana
  * https://github.com/iwatakeshi
  * license : MIT
@@ -17,7 +17,7 @@
         core,
         locale,
         lib,
-        VERSION = '0.3.27',
+        VERSION = '0.3.28',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),
@@ -200,19 +200,7 @@
     };
     //initalize gengo
     gengo.init = function(req, res, next) {
-        var api = [gengo, numeral, moment],
-            apiname = [
-                config().global().gengo(),
-                config().global().numeral(),
-                config().global().moment()
-            ],
-            count = 0;
-
-        _.each(apiname, function(name) {
-            if (res.locals) {
-                res.locals[name] = api[count++];
-            }
-        });
+        res.locals[config().global().gengo()] = gengo;
         locale(req);
         router().init(req);
         if (_.isFunction(next) && isDefined(next)) {
