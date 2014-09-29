@@ -3,6 +3,8 @@ Gengo.js
 [![NPM](https://nodei.co/npm/gengojs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs/)
 
 Visit [Gengojs.com](http://www.gengojs.com) for installation, configuration, and documentation.
+Also, feel free to fork gengo and the site to add more languages and locale support!
+
 
 If you would like to see more examples other than the ones on gengojs.com then check out the tests there's 127 possible ways to gengo!
 
@@ -125,3 +127,7 @@ module.exports = {
 **0.3.29**
 
 * Fixed bug in phrase parser when router is enabled. The parser will get the translated version when its suppose to return the original phrase.
+
+**0.3.30**
+
+* Removed accept-language npm module from the dependants
