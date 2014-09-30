@@ -14,6 +14,7 @@
     var config,
         _ = require('underscore'),
         utils = require('./utils.js'),
+        approot = require('app-root-path'),
         localemap = require('../maps/locales.js'),
         hasModule = (typeof module !== 'undefined' && module.exports),
         defaults = {
@@ -22,7 +23,7 @@
                 gengo: "__",
             },
             //set path to locale
-            directory: require('app-root-path') + '/locales/',
+            directory: approot + '/locales/',
             //set to false; for debugging purposes
             debug: false,
             //set supported localemap
@@ -31,6 +32,7 @@
             default: 'en-US',
             //set view aware
             router: false,
+            extension: 'js',
             cookiename: 'locale',
             keywords: {
                 default: 'default',
@@ -57,7 +59,22 @@
                 };
             },
             directory: function() {
-                return extended.directory;
+                var tempPath = extended.directory,
+                    path;
+                if (extended.directory.indexOf(approot) === -1) {
+
+                    if (tempPath.indexOf('/') === 0) {
+                        tempPath = tempPath.replace("/", "");
+                    }
+                    if (tempPath.slice(-1) !== '/') {
+                        tempPath = tempPath + '/';
+                    }
+                    path = tempPath;
+                    path = approot + "/" + path;
+                } else {
+                    path = tempPath;
+                }
+                return path;
             },
             debug: function() {
                 return extended.debug;
@@ -77,6 +94,9 @@
             },
             router: function() {
                 return extended.router;
+            },
+            extension: function() {
+                return extended.extension;
             },
             keywords: function() {
                 return extended.keywords;

@@ -14,49 +14,153 @@
 
     var loader,
         utils = require('./utils.js'),
+        isDefined = utils.isDefined,
         debug = utils.debug,
+        _ = require('underscore'),
         config = require('./config.js'),
         //get an instance of fs for local file reading
         fs = require('fs'),
         //get an instance of xml2js for xml parsing
         xml2js = require('xml2js'),
         localemap = require('../maps/locales.js'),
+        locales = {},
         hasModule = (typeof module !== 'undefined' && module.exports);
 
     loader = function(locale) {
         return {
             json: function() {
-                return getJSON(locale);
+                var temp = getJSON(locale);
+                if (locales[locale]) {
+                    if (equal(temp, locales[locale])) {
+                        return locales[locale];
+                    } else {
+                        delete locales[locale];
+                        locales[locale] = getJSON(locale);
+                        return locales[locale];
+                    }
+                } else {
+                    locales[locale] = getJSON(locale);
+                    return locales[locale];
+                }
             }
         };
     };
 
-    function getXML(locale) {
-        var parser = new xml2js.Parser();
-        try {
-            //parse the xml
-            parser.parseString(fs.readFileSync(config().directory() + localemap.gengo[locale] + ".xml"), function(error, result) {
-                debug("module: loader fn: getXML, XML loaded successfully.").info();
-                //set the xml locale
-                debug(result).data();
-                return result;
-            });
-        } catch (error) {
-            debug("module: loader fn: getXML, Could not load XML or it does not exist.").warn();
+    function getJSON(locale) {
+        var json, ext;
+        //if a '.' exists
+        if (config().extension().indexOf('.') !== -1) {
+            ext = config().extension().replace('.', '');
+        } else {
+            ext = config().extension().toLowerCase();
         }
+        if (ext === 'js') {
+            try {
+                json = require(config().directory() + localemap.gengo[locale] + ".js");
+                if (isDefined(json)) {
+                    debug("module: loader fn: getJSON, " + localemap.gengo[locale] + ".js" + " loaded successfully.").info();
+                    debug(JSON.stringify(json, null, 2)).data();
+                    return sanitize(json);
+                }
+            } catch (error) {
+                debug("module: loader fn: getJSON, " + error.toString().replace("Error: ", " ")).warn();
+            }
+        }
+
+        if (ext === 'json') {
+            var result = {};
+            try {
+                result = fs.readFileSync(config().directory() + localemap.gengo[locale] + ".json");
+                try {
+                    json = JSON.parse(result);
+                    if (json) {
+                        return sanitize(json);
+                    }
+                } catch (error) {
+                    debug("module: loader fn: getJSON, " + error.toString().replace("Error: ", " ")).warn();
+                }
+            } catch (error) {
+                debug("module: loader fn: getJSON, " + error.toString().replace("Error: ", " ")).warn();
+            }
+
+        }
+
     }
 
-    function getJSON(locale) {
-        try {
-            var json = require(config().directory() + localemap.gengo[locale] + ".js");
-            if (utils.isDefined(json)) {
-                debug("module: loader fn: getJSON, " + localemap.gengo[locale] + ".js" + " loaded successfully.").info();
-                debug(JSON.stringify(json, null, 2)).data();
-                return json;
+    //creates a copy of the object and joins any array
+    //https://github.com/simov/deep-copy/blob/master/lib/dcopy.js#L22
+    function sanitize(json) {
+        var copy = (json instanceof Array) ? [] : {};
+        (function read(json, copy) {
+            for (var key in json) {
+                var obj;
+                //customized for gengojs
+                if (_.isArray(json[key])) {
+                    obj = json[key].join('\n');
+                } else {
+                    obj = json[key];
+                }
+                if (obj instanceof Object) {
+                    var value = {},
+                        last = add(copy, key, value);
+                    read(obj, last);
+                } else {
+                    var _value = obj;
+                    add(copy, key, _value);
+                }
             }
-        } catch (error) {
-            debug("module: loader fn: getJSON, " + error.toString().replace("Error: ", " ")).warn();
+        }(json, copy));
+
+        function add(copy, key, value) {
+            if (copy instanceof Object) {
+                copy[key] = value;
+                return copy[key];
+            }
         }
+        return copy;
+    }
+    //http://stackoverflow.com/a/1144249
+    function equal(obj1, obj2) {
+        function objectEquals(x, y) {
+            // if both are function
+            if (x instanceof Function) {
+                if (y instanceof Function) {
+                    return x.toString() === y.toString();
+                }
+                return false;
+            }
+            if (x === null || x === undefined || y === null || y === undefined) {
+                return x === y;
+            }
+            if (x === y || x.valueOf() === y.valueOf()) {
+                return true;
+            }
+
+            // if one of them is date, they must had equal valueOf
+            if (x instanceof Date) {
+                return false;
+            }
+            if (y instanceof Date) {
+                return false;
+            }
+
+            // if they are not function or strictly equal, they both need to be Objects
+            if (!(x instanceof Object)) {
+                return false;
+            }
+            if (!(y instanceof Object)) {
+                return false;
+            }
+
+            var p = Object.keys(x);
+            return Object.keys(y).every(function(i) {
+                return p.indexOf(i) !== -1;
+            }) ?
+                p.every(function(i) {
+                    return objectEquals(x[i], y[i]);
+                }) : false;
+        }
+        return objectEquals(obj1, obj2);
     }
 
     /************************************

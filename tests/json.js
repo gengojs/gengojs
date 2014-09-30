@@ -2,245 +2,37 @@
 /*global describe, before, it, after*/
 var express = require('express'),
     cookieParser = require('cookie-parser'),
-    debug = require('../modules/utils.js').debug,
     gengo = new require('../gengo.js'),
     request = require('supertest'),
     approot = require('app-root-path'),
     assert = require('assert'),
     app = express(),
     server;
+describe('Begin JSON test', function() {
 
-describe('Begin Route test', function() {
     before(function(done) {
-        var name = require.resolve('../modules/config.js');
-        delete require.cache[name];
         gengo.config({
             default: 'en-US',
-            router: true,
-            //not nessesary but since routes.js comes after
-            //json.js, we'll add the extension to prevent errors.
-            extension: 'js',
             supported: ['ja', 'en-US'],
-            directory:'/tests/locales/with routes/',
+            extension: 'json',
+            directory: approot + '/tests/locales/with JSON/',
             debug: {
                 level: ['error', 'warn']
             }
         });
         app.use(gengo.init);
         app.get('/', function(req, res) {
-            var router = require('../modules/router.js');
-            var dot = router().route().dot();
             res.status(200).send({
-                language: gengo.language(),
-                dot: dot
+                language: gengo.language()
             });
         });
-
-        app.get('/second/', function(req, res) {
-            var router = require('../modules/router.js');
-            var dot = router().route().dot();
-            res.status(200).send({
-                language: gengo.language(),
-                dot: dot
-            });
-        });
-
-        app.get('/second/third', function(req, res) {
-            var router = require('../modules/router.js');
-            var dot = router().route().dot();
-            res.status(200).send({
-                language: gengo.language(),
-                dot: dot
-            });
-        });
-
         server = app.listen(3000);
         done();
     });
-    describe('Routes will return in dot notation unless it\'s a root', function() {
-        it('Should return: index', function(done) {
-            request(app)
-                .get('/')
-                .set('Accept-Language', 'en_US')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(res.body.dot, "index");
-                    done();
-                });
-        });
-
-        it('Should return: second', function(done) {
-            request(app)
-                .get('/second')
-                .set('Accept-Language', 'en_US')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(res.body.dot, "second");
-                    done();
-                });
-        });
-
-        it('Should return: second.third', function(done) {
-            request(app)
-                .get('/second/third')
-                .set('Accept-Language', 'en_US')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(res.body.dot, "second.third");
-                    done();
-                });
-        });
-    });
-    describe('Gengo should be able to find its definitions within their routes', function() {
-
-
-        it('Should print: ホーム using \'/\'', function(done) {
-            request(app)
-                .get('/')
-                .set('Accept-Language', 'ja')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(gengo("[navbar.home]"), "ホーム");
-                    done();
-                });
-        });
-
-        it('Should print: ホーム using \'/second\'', function(done) {
-            request(app)
-                .get('/second')
-                .set('Accept-Language', 'ja')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(gengo("[navbar.home]"), "ホーム");
-                    done();
-                });
-        });
-
-        it('Should print: ホーム using \'second/third\'', function(done) {
-            request(app)
-                .get('/second/third')
-                .set('Accept-Language', 'ja')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(gengo("[navbar.home]"), "ホーム");
-                    done();
-                });
-        });
-
-        it('Should print: Home using \'/\'', function(done) {
-            request(app)
-                .get('/')
-                .set('Accept-Language', 'en_US')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(gengo("[navbar.home]"), "Home");
-                    done();
-                });
-        });
-
-        it('Should print: Home using \'/second\'', function(done) {
-            request(app)
-                .get('/second')
-                .set('Accept-Language', 'en_US')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(gengo("[navbar.home]"), "Home");
-                    done();
-                });
-        });
-
-        it('Should print: Home using \'second/third\'', function(done) {
-            request(app)
-                .get('/second/third')
-                .set('Accept-Language', 'en_US')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(gengo("[navbar.home]"), "Home");
-                    done();
-                });
-        });
-
-        it('Should print: Maison using \'/\'', function(done) {
-            request(app)
-                .get('/')
-                .set('Accept-Language', 'en_US')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(gengo("[navbar.home]", {
-                        locale: 'fr'
-                    }), "Maison");
-                    done();
-                });
-        });
-
-        it('Should print: Maison using \'/second\'', function(done) {
-            request(app)
-                .get('/second')
-                .set('Accept-Language', 'en_US')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(gengo("[navbar.home]", {
-                        locale: 'fr'
-                    }), "Maison");
-                    done();
-                });
-        });
-
-        it('Should print: Maison using \'second/third\'', function(done) {
-            request(app)
-                .get('/second/third')
-                .set('Accept-Language', 'en_US')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(gengo("[navbar.home]", {
-                        locale: 'fr'
-                    }), "Maison");
-                    done();
-                });
-        });
-
-    });
-
-    describe('Notation Tests with routes', function() {
+    describe('Notation Tests', function() {
         describe('Phrase test with default being en-US', function() {
 
-            it('Should find key: \"Home\" and print: ホーム', function(done) {
+            it('Should find key: \"Home\" and print: ホーム with Accept-Language \'ja\'', function(done) {
                 request(app)
                     .get('/')
                     .set('Accept-Language', 'ja')
@@ -254,7 +46,21 @@ describe('Begin Route test', function() {
                     });
             });
 
-            it('Should find key: \"Home\" and print: Home', function(done) {
+            it('Should find key: \"Home\" and print: Home with Accept-Language \'de\'', function(done) {
+                request(app)
+                    .get('/')
+                    .set('Accept-Language', 'de')
+                    .expect(200)
+                    .end(function(error, res) {
+                        if (error) {
+                            throw error;
+                        }
+                        assert.equal(gengo("Home"), "Home");
+                        done();
+                    });
+            });
+
+            it('Should find key: \"Home\" and print: Home with Accept-Language \'en_US\'', function(done) {
                 request(app)
                     .get('/')
                     .set('Accept-Language', 'en_US')
@@ -637,50 +443,33 @@ describe('Begin Route test', function() {
                         done();
                     });
             });
-        });
-    });
-    describe('Universe test', function() {
-        it('Should print: ホーム with Accept-Language \'ja\' using brackets', function(done) {
-            request(app)
-                .get('/')
-                .set('Accept-Language', 'ja')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(gengo("[navbar.gengo]"), "ホーム");
-                    done();
-                });
-        });
 
-        it('Should print: これはgengo.jsテストです！！ with Accept-Language \'ja\' using dots', function(done) {
-            request(app)
-                .get('/')
-                .set('Accept-Language', 'ja')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(gengo("gengo.test", "gengo.js"), "これはgengo.jsテストです！！");
-                    done();
-                });
-        });
-        it('Should print: This is a gengo.js test!! with Accept-Language \'en_US\' using phrase', function(done) {
-            request(app)
-                .get('/')
-                .set('Accept-Language', 'en_US')
-                .expect(200)
-                .end(function(error, res) {
-                    if (error) {
-                        throw error;
-                    }
-                    assert.equal(gengo("This is a %s test!!", "gengo.js"), "This is a gengo.js test!!");
-                    done();
-                });
+            it('Should find key: \"dot\", subkey: \"test\", subkey: \"array\" and print: ' + [
+                "This is a paragraph. ",
+                ".................... ",
+                "...................."
+            ].join('\n'), function(done) {
+                request(app)
+                    .get('/')
+                    .set('Accept-Language', 'en_US')
+                    .expect(200)
+                    .end(function(error, res) {
+                        if (error) {
+                            throw error;
+                        }
+                        assert.equal(gengo({
+                            phrase: "dot.test.array"
+                        }), [
+                            "This is a paragraph. ",
+                            ".................... ",
+                            "...................."
+                        ].join('\n'));
+                        done();
+                    });
+            });
         });
     });
+
     after(function(done) {
         server.close();
         var name = require.resolve('../gengo.js');

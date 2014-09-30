@@ -82,15 +82,6 @@ p!= __("<a href='https://google.com'>%s</a> にアクセスしてください。
 * Working on 0.3.x aka alpha.
 
 
-#Change Log
-
-**0.2.17**
-
-* Updated readme
-* gengojs.com has been updated for 0.2.16 but will be re-updated and tested with alpha.
-* Working on 0.3.x aka alpha.
-
-
 ####Alpha
 
 *For previous notes on changes, see CHANGELOG.md*
@@ -298,3 +289,11 @@ module.exports.http = {
 
 
 ```
+
+**0.3.31**
+
+* Added support for traditional JSON. Change the extension in config with: `extension: 'json'`
+* Added support for arrays in JSON format if you want to use multiline. Specifically, you don't need to add `.join('\n')` to the array.
+* Updated gengo.js site to reflect changes and also added more examples.
+* Added more tests. Total of 156 tests and passing.
+* The way how path works has changed!! The default is the same but if you specify a certain location other than the default, gengo will automatically append the root folder. Therefore, you no longer need to do something like "../../somewhere". It would automatically point from the root. Example: 'root + your/folder/'
