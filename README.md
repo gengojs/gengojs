@@ -8,6 +8,37 @@ Also, feel free to fork gengo and the site to add more languages and locale supp
 
 If you would like to see more examples other than the ones on gengojs.com then check out the tests there's 127 possible ways to gengo!
 
+###Tests
+```bash
+#run all
+npm test
+
+#run functions
+npm run functions
+
+#run cookies
+npm run cookies
+
+#run json
+npm run json
+
+#run libs
+npm run libs
+
+#run routes
+npm run routes
+
+#run api
+npm run api
+
+```
+
+###Basic locale creator
+```bash
+#run factory
+npm run factory
+```
+
 ##Acknowledgements
 gengo was made possible by:
 
@@ -204,5 +235,12 @@ module.exports.http = {
 * Added support for traditional JSON. Change the extension in config with: `extension: 'json'`
 * Added support for arrays in JSON format if you want to use multiline. Specifically, you don't need to add `.join('\n')` to the array.
 * Updated gengo.js site to reflect changes and also added more examples.
-* Added more tests. Total of 156 tests and passing.
+* Added more tests. Total of 164 tests and passing.
 * The way how path works has changed!! The default is the same but if you specify a certain location other than the default, gengo will automatically append the root folder. Therefore, you no longer need to do something like "../../somewhere". It would automatically point from the root. Example: 'root + your/folder/'
+
+**0.3.32**
+
+* Updated readme
+* Changed locale function to `getLocale()` and `setLocale()`.
+  * They are now exposed to `req` and also work the same way in [mashpie](https://github.com/mashpie/i18n-node)'s i18n library.
+  * Added more tests. 164 tests and passing

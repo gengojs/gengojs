@@ -20,7 +20,7 @@
         defaults = {
             global: {
                 //set gengo global variable
-                gengo: "__",
+                gengo: "__"
             },
             //set path to locale
             directory: approot + '/locales/',

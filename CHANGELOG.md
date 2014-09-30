@@ -28,14 +28,14 @@ tedious stuff such as using `\n` in your sentences. Also, XML will be able to ru
         </data>
     </index>
     <data>
-    	<!--if routeAware is disabled then it would start with the 
+    	<!--if routeAware is disabled then it would start with the
     	data tag and have just the key and value tags-->
     </data>
     <gengo> <!--universal route for XML would look like this, can be changed through config -->
     </gengo>
 </begin>
 
-``` 
+```
 easy right? gengo will try to load the XML even if it doesn't exist but it will not crash your server or your template.
 
 * Renamed `viewAware` to `routeAware` in config. So just change in your option, viewAware to routeAware and views to routes. This was
@@ -297,3 +297,10 @@ module.exports.http = {
 * Updated gengo.js site to reflect changes and also added more examples.
 * Added more tests. Total of 156 tests and passing.
 * The way how path works has changed!! The default is the same but if you specify a certain location other than the default, gengo will automatically append the root folder. Therefore, you no longer need to do something like "../../somewhere". It would automatically point from the root. Example: 'root + your/folder/'
+
+**0.3.32**
+
+* Updated readme
+* Changed locale function to `getLocale()` and `setLocale()`.
+  * They are now exposed to `req` and also work the same way in [mashpie](https://github.com/mashpie/i18n-node)'s i18n library.
+  * Added more tests. 164 tests and passing
