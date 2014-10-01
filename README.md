@@ -5,6 +5,8 @@ Gengo.js
 Visit [Gengojs.com](http://www.gengojs.com) for installation, configuration, and documentation.
 Also, feel free to fork gengo and the site to add more languages and locale support!
 
+To fork gengo visit http://www.github.com/iwatakeshi/gengojs
+To fork the site visit http://www.github.com/iwatakeshi/gengojs-site
 
 If you would like to see more examples other than the ones on gengojs.com then check out the tests there's 127 possible ways to gengo!
 
@@ -244,3 +246,8 @@ module.exports.http = {
 * Changed locale function to `getLocale()` and `setLocale()`.
   * They are now exposed to `req` and also work the same way in [mashpie](https://github.com/mashpie/i18n-node)'s i18n library.
   * Added more tests. 164 tests and passing
+
+**0.3.33**
+
+* Updated readme
+* Updated site.

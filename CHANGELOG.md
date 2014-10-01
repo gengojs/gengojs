@@ -304,3 +304,8 @@ module.exports.http = {
 * Changed locale function to `getLocale()` and `setLocale()`.
   * They are now exposed to `req` and also work the same way in [mashpie](https://github.com/mashpie/i18n-node)'s i18n library.
   * Added more tests. 164 tests and passing
+
+**0.3.33**
+
+* Updated readme
+* Updated site.
