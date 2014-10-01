@@ -33,7 +33,7 @@
             //set view aware
             router: false,
             extension: 'js',
-            cookiename: 'locale',
+            cookie: 'locale',
             keywords: {
                 default: 'default',
                 translated: 'translated',
@@ -90,7 +90,7 @@
                 return localemap.gengo[extended.default];
             },
             cookie: function() {
-                return extended.cookiename;
+                return extended.cookie;
             },
             router: function() {
                 return extended.router;

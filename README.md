@@ -6,9 +6,35 @@ Visit [Gengojs.com](http://www.gengojs.com) for installation, configuration, and
 Also, feel free to fork gengo and the site to add more languages and locale support!
 
 To fork gengo visit http://www.github.com/iwatakeshi/gengojs
+
 To fork the site visit http://www.github.com/iwatakeshi/gengojs-site
 
-If you would like to see more examples other than the ones on gengojs.com then check out the tests there's 127 possible ways to gengo!
+If you would like to see more examples other than the ones on gengojs.com then check out the tests there's 127+ possible ways to gengo!
+
+###Supported file extensions:
+
+* json
+
+```json
+{
+  ...
+}
+
+```
+
+* js (modulized json)
+
+```js
+module.exports = {
+  //...
+}
+
+```
+
+###Notes
+
+* Cache - gengo does cache if and only if the loaded objects are the same. If a change occurs, it will update the cached object. Tested with .json files.
+
 
 ###Tests
 ```bash
@@ -251,3 +277,14 @@ module.exports.http = {
 
 * Updated readme
 * Updated site.
+
+**0.3.34**
+
+* Updated readme
+* Fixed server crashing if the default locale's dictionary does not exist. gengo will now try to return the phrase or it will return undefined depending on the type of input.
+* Added starter sails js apps with different templates.
+    * jade (with router: true) ✔
+    * handlebars ✔
+    * ejs ✔
+* Added a few more known locales: fr, es, de, de-AT. Please fork away to add more locales to `locales.js`! Note that I am adding locales but it would take some time. Sharing is caring and it can be fun so please contribute to this amazing library!
+* Changed how init works but it shouldn't affect anyone.

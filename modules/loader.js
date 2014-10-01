@@ -74,6 +74,8 @@
         try {
           json = JSON.parse(result);
           if (json) {
+            debug("module: loader fn: getJSON, " + localemap.gengo[locale] + ".json" + " loaded successfully.").info();
+            debug(JSON.stringify(json, null, 2)).data();
             return sanitize(json);
           }
         } catch (error) {

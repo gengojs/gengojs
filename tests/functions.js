@@ -10,6 +10,7 @@ var express = require('express'),
   server;
 
 describe('Begin functionality test', function() {
+  console.log(gengo.moment().format('dddd'));
   before(function(done) {
     gengo.config({
       default: 'en-US',

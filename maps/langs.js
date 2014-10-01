@@ -4,5 +4,5 @@ module.exports = {
     "ja": 'Japanese',
     "en": 'English',
     "en-US": 'English US',
-    "fr": "fr"
+    "fr": "French"
 };

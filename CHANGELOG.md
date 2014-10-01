@@ -309,3 +309,13 @@ module.exports.http = {
 
 * Updated readme
 * Updated site.
+
+**0.3.34**
+
+* Updated readme
+* Fixed server crashing if the default locale's dictionary does not exist. gengo will now try to return the phrase or it will return undefined depending on the type of input.
+* Added starter sails js apps with different templates.
+    * jade (with router: true) ✔
+    * handlebars ✔
+    * ejs ✔
+* Added a few more known locales: fr, es, de, de-AT. Please fork away to add more locales to `locales.js`! Note that I am adding locales but it would take some time. Sharing is caring and it can be fun so please contribute to this amazing library!
