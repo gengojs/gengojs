@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.3.34
+ * version : 0.3.35
  * author : Takeshi Iwana aka iwatakeshi
  * https://github.com/iwatakeshi
  * license : MIT
@@ -21,7 +21,7 @@
         core,
         locale,
         lib,
-        VERSION = '0.3.34',
+        VERSION = '0.3.35',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),
@@ -594,7 +594,7 @@
         };
     };
 
-    // Credits to @Mashpie https://github.com/mashpie
+    // Credits to @mashpie
     //locale takes care of setting the locales, default locales, etc.
     locale = function (req) {
         if (_.isObject(req)) {
@@ -674,6 +674,7 @@
         };
     };
 
+    //helpers to expose api by @mashpie
     function applyAPItoObject(request, response) {
         // attach to itself if not provided
         var object = response || request;

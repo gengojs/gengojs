@@ -319,3 +319,7 @@ module.exports.http = {
     * handlebars ✔
     * ejs ✔
 * Added a few more known locales: fr, es, de, de-AT. Please fork away to add more locales to `locales.js`! Note that I am adding locales but it would take some time. Sharing is caring and it can be fun so please contribute to this amazing library!
+
+**0.3.35**
+
+* Changed `cookiename` to `cookie`. Just simpler if you're coming from i18n.
