@@ -41,6 +41,8 @@ module.exports = {
 ```
 
 ###Recent Changes
+*For previous notes on changes, see CHANGELOG.md*
+
 **0.3.34**
 
 * Updated readme
@@ -58,8 +60,6 @@ module.exports = {
 
 **0.3.36**
 
-*For previous notes on changes, see CHANGELOG.md*
-
 * Changed how you enable debugging. You no longer need to pass a `level`object. Just pass an array `['warn', 'debug',...]
 * gengo no longer cares whether you set your locale in uppercase or lowercase it will always return the locale as xx-XX or xx-XXX. Your filename should also be in that format.
 * Added a huge list of supported locales. While it may seem dumb at first to have a file of locales, but actually gengo uses it to see if if a string is a locale or not so please add more locales if your locale is not supported yet.
@@ -67,6 +67,11 @@ module.exports = {
 * All tests still pass.
 * Legacies will now have their own package.json so install the node modules at their located folder.
 * Updated readme.
+
+**0.3.37**
+
+* Fixed markdown issues for bold and italics. Improved markdown for code and strike.
+* Cleaned up some code in parse module.
 
 ###Notes
 

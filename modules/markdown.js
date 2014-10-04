@@ -13,6 +13,16 @@
   'use strict';
 
   var markdown,
+    regex = {
+      bold: {
+        "*": /\*{1}(.*?)\*{1}/g,
+        "_": /\_{1}(.*?)\_{1}/g
+      },
+      italic: {
+        "**": /\*{2}(.*?)\*{2}/g,
+        "__": /\_{2}(.*?)\_{2}/g
+      }
+    },
     _ = require('underscore'),
     hasModule = (typeof module !== 'undefined' && module.exports);
   markdown = function(phrase) {
@@ -40,17 +50,31 @@
       /*bold, italics, and code formatting*/
 
       //italics --> *hello* or _hello_
-      r = r.replace(/\*(.*?)\*/g, '<em>$1</em>');
-      r = r.replace(/\_(.*?)\_/g, '<em>$1</em>');
-      r = r.replace(new RegExp('//(((?!https?://).)*?)//', 'g'), '<em>$1</em>');
+      var italics = regex.italic['**'].exec(r) || regex.italic['__'].exec(r);
+      //this will prevent regex from breaking
+      if (italics) {
+        if (r.match(regex.italic['**'])) {
+          r = r.replace(regex.italic['**'], '<em>$1</em>')
+        }
+        if (r.match(regex.italic['__'])) {
+          r = r.replace(regex.italic['__'], '<em>$1</em>')
+        }
+      }
       //bold --> **hello** or __hello__
-      r = r.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      r = r.replace(/\_\_(.*?)\_\_/g, '<strong>$1</strong>');
+      var bold = regex.bold['*'].exec(r) || regex.bold['_'].exec(r);
+      if (bold) {
+        if (r.match(regex.bold['*'])) {
+          r = r.replace(regex.bold['*'], '<strong>$1</strong>')
+
+        }
+        if (r.match(regex.bold['_'])) {
+          r = r.replace(regex.bold['_'], '<strong>$1</strong>')
+        }
+      }
       //code
-      r = r.replace(/`(.*?)`/g, '<code>$1</code>');
-      r = r.replace(/``(.*?)``/g, '<code>$1</code>');
+      r = r.replace(/\`(.*?)\`/g, '<code>$1</code>');
       //strike
-      r = r.replace(/~~(.*?)~~/g, '<strike>$1</strike>')
+      r = r.replace(/\~\~(.*?)\~\~/g, '<strike>$1</strike>')
       // links
       r = r.replace(/\[\[(http:[^\]|]*?)\]\]/g, '<a target="_blank" href="$1">$1</a>');
       r = r.replace(/\[\[(http:[^|]*?)\|(.*?)\]\]/g, '<a target="_blank" href="$1">$2</a>');

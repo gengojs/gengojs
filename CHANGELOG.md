@@ -333,3 +333,8 @@ module.exports.http = {
 * All tests still pass.
 * Legacies will now have their own package.json so install the node modules at their located folder.
 * Updated readme.
+
+**0.3.37**
+
+* Fixed markdown issues for bold and italics. Improved markdown for code and strike.
+* Cleaned up some code in parse module.
