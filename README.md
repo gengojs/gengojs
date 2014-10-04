@@ -2,6 +2,10 @@ Gengo.js
 ========
 [![NPM](https://nodei.co/npm/gengojs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs/)
 
+[![Build Status](https://travis-ci.org/iwatakeshi/gengojs.svg?branch=master)](https://travis-ci.org/iwatakeshi/gengojs)
+
+[![Dependency Status](https://david-dm.org/iwatakeshi/gengojs.png)](https://david-dm.org/iwatakeshi/gengojs.png)
+
 Visit [Gengojs.com](http://www.gengojs.com) for installation, configuration, and documentation.
 Also, feel free to fork gengo and the site to add more languages and locale support!
 

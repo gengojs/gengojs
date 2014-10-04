@@ -354,3 +354,7 @@ module.exports.http = {
 * Fixed a bug if a requested locale is en then it should have fell back to en-US but it didn't.
 * Sanitized more locales to make it easier to compare locales.
 * Improved the way isDefault handles comparison with the default.
+
+**0.3.40**
+
+*Added travis ci, dependency badge, and travis badge.
