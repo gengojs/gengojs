@@ -8,7 +8,7 @@
  * https://github.com/adamwdraper
  */
 
-(function() {
+(function () {
     'use strict';
 
     var config,
@@ -25,7 +25,7 @@
             //set path to locale
             directory: approot + '/locales/',
             //set to false; for debugging purposes
-            debug: false,
+            debug: false || ['warn', 'info'],
             //set supported localemap
             supported: ['en-US'],
             //set default locale, which would be the locale used for your template of choice
@@ -42,23 +42,23 @@
             }
         };
 
-    config = function(config) {
+    config = function (config) {
         var extended = utils.Object(config).extend(defaults);
         return {
-            global: function() {
+            global: function () {
                 return {
-                    gengo: function() {
+                    gengo: function () {
                         return extended.global.gengo;
                     },
-                    moment: function() {
+                    moment: function () {
                         return extended.global.moment;
                     },
-                    numeral: function() {
+                    numeral: function () {
                         return extended.global.numeral;
                     }
                 };
             },
-            directory: function() {
+            directory: function () {
                 var tempPath = extended.directory,
                     path;
                 if (extended.directory.indexOf(approot) === -1) {
@@ -76,29 +76,37 @@
                 }
                 return path;
             },
-            debug: function() {
+            debug: function () {
                 return extended.debug;
             },
-            supported: function() {
+            supported: function () {
                 var supported = [];
-                _.each(extended.supported, function(item) {
+                _.each(extended.supported, function (item) {
+                    item = item.toLowerCase();
+                    if (item.indexOf('_') !== -1) {
+                        item = item.replace('_', '-');
+                    }
                     supported.push(localemap.gengo[item]);
                 });
                 return supported;
             },
-            default: function() {
+            default: function () {
+                extended.default = extended.default.toLowerCase();
+                if (extended.default.indexOf('_') !== -1) {
+                    extended.default = extended.default.replace('_', '-');
+                }
                 return localemap.gengo[extended.default];
             },
-            cookie: function() {
+            cookie: function () {
                 return extended.cookie;
             },
-            router: function() {
+            router: function () {
                 return extended.router;
             },
-            extension: function() {
+            extension: function () {
                 return extended.extension;
             },
-            keywords: function() {
+            keywords: function () {
                 return extended.keywords;
             }
         };
@@ -123,7 +131,7 @@
 
     /*global define:false */
     if (typeof define === 'function' && define.amd) {
-        define([], function() {
+        define([], function () {
             return config;
         });
     }

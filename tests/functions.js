@@ -10,15 +10,12 @@ var express = require('express'),
   server;
 
 describe('Begin functionality test', function() {
-  console.log(gengo.moment().format('dddd'));
   before(function(done) {
     gengo.config({
       default: 'en-US',
       supported: ['ja', 'en-US'],
       directory: '/tests/locales/',
-      debug: {
-        level: ['error', 'warn']
-      }
+      debug: ['error', 'warn']
     });
     app.use(gengo.init);
     app.get('/', function(req, res) {

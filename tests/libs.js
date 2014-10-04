@@ -12,9 +12,7 @@ gengo.config({
     default: 'en-US',
     supported: ['ja', 'en-US'],
     directory: approot + '/tests/locales/',
-    debug: {
-        level: ['error', 'warn']
-    }
+    debug: ['error', 'warn']
 });
 
 app.use(gengo.init);

@@ -15,9 +15,7 @@ describe('Begin API test', function() {
       default: 'en-US',
       supported: ['ja', 'en-US'],
       directory: '/tests/locales/',
-      debug: {
-        level: ['error', 'warn']
-      }
+      debug: ['error', 'warn']
     });
     app.use(gengo.init);
     app.get('/', function(req, res) {

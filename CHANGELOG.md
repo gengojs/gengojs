@@ -323,3 +323,13 @@ module.exports.http = {
 **0.3.35**
 
 * Changed `cookiename` to `cookie`. Just simpler if you're coming from i18n.
+
+**0.3.36**
+
+* Changed how you enable debugging. You no longer need to pass a `level`object. Just pass an array `['warn', 'debug',...]
+* gengo no longer cares whether you set your locale in uppercase or lowercase it will always return the locale as xx-XX or xx-XXX. Your filename should also be in that format.
+* Added a huge list of supported locales. While it may seem dumb at first to have a file of locales, but actually gengo uses it to see if if a string is a locale or not so please add more locales if your locale is not supported yet.
+* Added little support for Github markdown style. Specifically, italics, bold and strike.
+* All tests still pass.
+* Legacies will now have their own package.json so install the node modules at their located folder.
+* Updated readme.

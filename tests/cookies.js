@@ -15,9 +15,7 @@ describe('Begin cookie test', function() {
       default: 'en-US',
       supported: ['ja', 'en-US'],
       directory: '/tests/locales/',
-      debug: {
-        level: ['error', 'warn', 'debug']
-      }
+      debug: ['error', 'warn', 'debug']
     });
     app.use(cookieParser());
     app.use(gengo.init);

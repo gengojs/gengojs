@@ -14,9 +14,7 @@ require('../../../gengo.js').config({
   router: true,
   extension: 'json',
   directory: 'sails-apps/sailsapp-jade/config/locales',
-  debug: {
-    level: ['warn', 'debug']
-  }
+  debug: ['warn', 'debug']
 })
 
 module.exports.http = {

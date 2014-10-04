@@ -1,0 +1,32 @@
+{
+  "name": "gengojs",
+  "private":"true",
+  "version": "0.2.26",
+  "description": "An uber basic and simple i18n library for Express 4",
+  "main": "gengo.js",
+  "dependencies": {
+    "app-root-path": "^0.1.0",
+    "locale": "0.0.20",
+    "moment": "^2.8.3",
+    "numeral": "^1.5.3",
+    "sprintf-js": "0.0.7",
+    "xml2js": "^0.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iwatakeshi/gengojs.git"
+  },
+  "keywords": [
+    "i18n",
+    "translate",
+    "gengo",
+    "international",
+    "express"
+  ],
+  "author": "iwatakeshi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iwatakeshi/gengojs/issues"
+  },
+  "homepage": "http://gengojs.com"
+}

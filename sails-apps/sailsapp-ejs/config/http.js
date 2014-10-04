@@ -13,9 +13,7 @@ require('../../../gengo.js').config({
   default: 'en-US',
   extension: 'json',
   directory: 'sails-apps/sailsapp-ejs/config/locales',
-  debug: {
-    level: ['warn', 'debug']
-  }
+  debug: ['warn', 'debug']
 })
 
 module.exports.http = {

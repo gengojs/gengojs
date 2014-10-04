@@ -22,9 +22,7 @@ describe('Begin Route test', function() {
             extension: 'js',
             supported: ['ja', 'en-US'],
             directory:'/tests/locales/with routes/',
-            debug: {
-                level: ['error', 'warn']
-            }
+            debug: ['error', 'warn']
         });
         app.use(gengo.init);
         app.get('/', function(req, res) {

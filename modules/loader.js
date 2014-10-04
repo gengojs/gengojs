@@ -14,14 +14,13 @@
 
   var loader,
     utils = require('./utils.js'),
+    regex = utils.regex,
     isDefined = utils.isDefined,
     debug = utils.debug,
     _ = require('underscore'),
     config = require('./config.js'),
     //get an instance of fs for local file reading
     fs = require('fs'),
-    //get an instance of xml2js for xml parsing
-    xml2js = require('xml2js'),
     localemap = require('../maps/locales.js'),
     locales = {},
     hasModule = (typeof module !== 'undefined' && module.exports);
