@@ -81,6 +81,12 @@ module.exports = {
 [username or text](@username) --> https://www.twitter.com/username
 [text](#name-of-attribute) --> href='#name-of-attribute'
 ```
+**0.3.39**
+
+* Fixed a bug if a requested locale is en then it should have fell back to en-US but it didn't.
+* Sanitized more locales to make it easier to compare locales.
+* Improved the way isDefault handles comparison with the default.
+
 ###Notes
 
 * Cache - gengo does cache if and only if the loaded objects are the same. If a change occurs, it will update the cached object. Tested with .json files.

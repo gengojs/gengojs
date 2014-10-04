@@ -15,7 +15,6 @@
         _ = require('underscore'),
         utils = require('./utils.js'),
         approot = require('app-root-path'),
-        localemap = require('../maps/locales.js'),
         hasModule = (typeof module !== 'undefined' && module.exports),
         defaults = {
             global: {
@@ -83,19 +82,20 @@
                 var supported = [];
                 _.each(extended.supported, function (item) {
                     item = item.toLowerCase();
-                    if (item.indexOf('_') !== -1) {
+                    if (item.indexOf('_') > -1) {
                         item = item.replace('_', '-');
+
                     }
-                    supported.push(localemap.gengo[item]);
+                    supported.push(item);
                 });
                 return supported;
             },
             default: function () {
                 extended.default = extended.default.toLowerCase();
-                if (extended.default.indexOf('_') !== -1) {
+                if (extended.default.indexOf('_') > -1) {
                     extended.default = extended.default.replace('_', '-');
                 }
-                return localemap.gengo[extended.default];
+                return extended.default;
             },
             cookie: function () {
                 return extended.cookie;

@@ -19,7 +19,6 @@
         utils = require('./utils.js'),
         isDefined = utils.isDefined,
         router = require('./router.js'),
-        localemap = require('../maps/locales.js'),
         regex = utils.regex,
         debug = utils.debug;
 
@@ -434,10 +433,23 @@
     }
 
     function isDefault(input) {
-        if (localemap.gengo[input] === config().default().toString()) {
-            return true;
+        //console.log(input);
+        if (_.isString(input)) {
+            if (input === config().default()) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            if (input.locale) {
+                if (input.locale === config().default()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
         }
     }
 

@@ -348,3 +348,9 @@ module.exports.http = {
 [text](#name-of-attribute) --> href='#name-of-attribute'
  
 ```
+
+**0.3.39**
+
+* Fixed a bug if a requested locale is en then it should have fell back to en-US but it didn't.
+* Sanitized more locales to make it easier to compare locales.
+* Improved the way isDefault handles comparison with the default.

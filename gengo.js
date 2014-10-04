@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.3.38
+ * version : 0.3.39
  * author : Takeshi Iwana aka iwatakeshi
  * https://github.com/iwatakeshi
  * license : MIT
@@ -21,7 +21,7 @@
         core,
         locale,
         lib,
-        VERSION = '0.3.38',
+        VERSION = '0.3.39',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),
@@ -254,7 +254,7 @@
         // called like req.setLocale('en')
         if (locale === undefined && _.isString(this.locale) && _.isString(obj)) {
             req = this;
-            target = obj;
+            target = obj.toLowerCase();
         }
 
         //if the locale exists
@@ -313,6 +313,9 @@
                 if (_.isString(override)) {
                     //check if the string contains a locale
                     if (localemap.gengo[override.toLowerCase()]) {
+                        if (override.indexOf('_') > -1) {
+                            override = override.replace('_', '-');
+                        }
                         return {
                             locale: override,
                             override: true
@@ -324,6 +327,9 @@
                     //if override is an object
                 } else if (_.isObject(override)) {
                     if (override.locale) {
+                        if (override.locale.indexOf('_') > -1) {
+                            override.locale = override.locale.replace('_', '-');
+                        }
                         return {
                             locale: override.locale,
                             override: true
@@ -628,12 +634,14 @@
                     if (region) {
                         regions.push(region.toLowerCase());
                     }
-                    if (!match && (config().supported().indexOf(lang) !== -1)) {
+                    if (!match && (config().supported().indexOf(lang) > -1)) {
                         match = lang;
+                        //console.log("match", match);
                     }
 
-                    if (!fallbackMatch && (config().supported().indexOf(parentLang) === -1)) {
-                        fallbackMatch = parentLang;
+                    if (!fallbackMatch && (config().supported().indexOf(lang) === -1)) {
+                        fallbackMatch = config().default();
+                        //console.log("fallback", fallbackMatch)
                     }
                 }
                 req.language = match || fallbackMatch || req.language;
@@ -641,10 +649,15 @@
             }
             // setting the language by cookie
             if (req.cookies && req.cookies[config().cookie()]) {
-                req.language = req.cookies[config().cookie()].toLowerCase();
+                var cookie = req.cookies[config().cookie()].toLowerCase();
+                if (cookie.indexOf('_') > -1) {
+                    req.language = cookie.replace('_', '-');
+                } else {
+                    req.language = cookie;
+                }
             }
             //sanitize the locale
-            if (req.language.indexOf('_') !== -1) {
+            if (req.language.indexOf('_') > -1) {
                 req.language = req.language.replace('_', '-');
             }
             gengo.setLocale(req, req.language);
