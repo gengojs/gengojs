@@ -73,6 +73,14 @@ module.exports = {
 * Fixed markdown issues for bold and italics. Improved markdown for code and strike.
 * Cleaned up some code in parse module.
 
+**0.3.38**
+
+* Added more custom markdown syntax. You can easily add twitter and site attributes links by simply using:
+
+```markdown
+[username or text](@username) --> https://www.twitter.com/username
+[text](#name-of-attribute) --> href='#name-of-attribute'
+```
 ###Notes
 
 * Cache - gengo does cache if and only if the loaded objects are the same. If a change occurs, it will update the cached object. Tested with .json files.
