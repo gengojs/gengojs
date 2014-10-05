@@ -346,7 +346,7 @@ module.exports.http = {
 ```markdown
 [username or text](@username) --> https://www.twitter.com/username
 [text](#name-of-attribute) --> href='#name-of-attribute'
- 
+
 ```
 
 **0.3.39**
@@ -356,5 +356,5 @@ module.exports.http = {
 * Improved the way isDefault handles comparison with the default.
 
 **0.3.40**
-
-*Added travis ci, dependency badge, and travis badge.
+* Added travis ci, dependency badge, and travis badge and other badges.
+* Fixed langs.js map file. Added tests for `language()`, `getLocale()`, `setLocale()`

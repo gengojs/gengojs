@@ -41,8 +41,8 @@
             }
         };
 
-    config = function (config) {
-        var extended = utils.Object(config).extend(defaults);
+    config = function (configuration) {
+        var extended = utils.Object(configuration).extend(defaults);
         return {
             global: function () {
                 return {

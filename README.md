@@ -1,10 +1,11 @@
-Gengo.js
+Gengo.js  
 ========
+
+[![Build Status](https://travis-ci.org/iwatakeshi/gengojs.svg?branch=master)](https://travis-ci.org/iwatakeshi/gengojs)  [![Dependency Status](https://david-dm.org/iwatakeshi/gengojs.png)](https://github.com/iwatakeshi/gengojs/blob/master/package.json) [![License Status](http://img.shields.io/npm/l/gengojs.svg)](https://github.com/iwatakeshi/gengojs/blob/master/LICENSE) [![Downloads](http://img.shields.io/npm/dm/gengojs.svg)]() [![Version](http://img.shields.io/npm/v/gengojs.svg)]()
+
 [![NPM](https://nodei.co/npm/gengojs.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs/)
 
-[![Build Status](https://travis-ci.org/iwatakeshi/gengojs.svg?branch=master)](https://travis-ci.org/iwatakeshi/gengojs)
 
-[![Dependency Status](https://david-dm.org/iwatakeshi/gengojs.png)](https://david-dm.org/iwatakeshi/gengojs.png)
 
 Visit [Gengojs.com](http://www.gengojs.com) for installation, configuration, and documentation.
 Also, feel free to fork gengo and the site to add more languages and locale support!
@@ -47,17 +48,6 @@ module.exports = {
 ###Recent Changes
 *For previous notes on changes, see CHANGELOG.md*
 
-**0.3.34**
-
-* Updated readme
-* Fixed server crashing if the default locale's dictionary does not exist. gengo will now try to return the phrase or it will return undefined depending on the type of input.
-* Added starter sails js apps with different templates.
-    * jade (with router: true) ✔
-    * handlebars ✔
-    * ejs ✔
-* Added a few more known locales: fr, es, de, de-AT. Please fork away to add more locales to `locales.js`! Note that I am adding locales but it would take some time. Sharing is caring and it can be fun so please contribute to this amazing library!
-* Changed how init works but it shouldn't affect anyone.
-
 **0.3.35**
 
 * Changed `cookiename` to `cookie`. Just simpler if you're coming from i18n.
@@ -90,6 +80,11 @@ module.exports = {
 * Fixed a bug if a requested locale is en then it should have fell back to en-US but it didn't.
 * Sanitized more locales to make it easier to compare locales.
 * Improved the way isDefault handles comparison with the default.
+
+**0.3.40**
+
+* Added travis ci, dependency badge, and travis badge and other badges.
+* Fixed langs.js map file. Added tests for `language()`, `getLocale()`, `setLocale()`
 
 ###Notes
 
@@ -141,5 +136,3 @@ gengo was made possible by:
 * [underscore.js](https://github.com/jashkenas/underscore)
 * [sprintf.js](https://github.com/alexei/sprintf.js)
 * [xml2js](https://github.com/Leonidas-from-XIV/node-xml2js)
-
-
