@@ -356,5 +356,12 @@ module.exports.http = {
 * Improved the way isDefault handles comparison with the default.
 
 **0.3.40**
+
 * Added travis ci, dependency badge, and travis badge and other badges.
 * Fixed langs.js map file. Added tests for `language()`, `getLocale()`, `setLocale()`
+
+**0.3.41**
+
+* Added more custom markdown syntax such as superscript.
+* Removed a few markdown syntaxes that may become a conflict with mustache syntax.
+* Replaced comparison method in loader module. It should compare json objects. If the objects are different then update the cache.

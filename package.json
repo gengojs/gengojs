@@ -1,6 +1,6 @@
 {
   "name": "gengojs",
-  "version": "0.3.40",
+  "version": "0.3.41",
   "description": "An uber basic and simple i18n library for Express 4",
   "main": "gengo.js",
   "scripts": {
@@ -16,6 +16,7 @@
   "dependencies": {
     "app-root-path": "^0.1.0",
     "colors": "^1.0.2",
+    "deep-equal": "^0.2.1",
     "kawari": "0.0.1",
     "moment": "^2.8.3",
     "mustache": "^0.8.2",
