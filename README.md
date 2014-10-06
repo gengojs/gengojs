@@ -92,6 +92,10 @@ module.exports = {
 * Removed a few markdown syntaxes that may become a conflict with mustache syntax.
 * Replaced comparison method in loader module. It should compare json objects. If the objects are different then update the cache.
 
+**0.3.42**
+* Apologies. Removed comparison method and replaced with underscore's after I realized underscore had their own.
+* Also auto-cache* feature now works for both .json and .js files. Meaning you can update your dictionary live in production and development. Gengo updates the cache only if the files have been updated.
+
 ###Notes
 
 * Cache - gengo does cache if and only if the loaded objects are the same. If a change occurs, it will update the cached object. Tested with .json files.
