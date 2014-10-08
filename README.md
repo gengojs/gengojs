@@ -18,7 +18,7 @@ If you would like to see more examples other than the ones on gengojs.com then c
 
 
 ###Coming soon
-* Updated docs.
+* Updated Japanese docs.
 
 ###Supported locales
 
@@ -95,6 +95,10 @@ module.exports = {
 **0.3.42**
 * Apologies. Removed comparison method and replaced with underscore's after I realized underscore had their own.
 * Also auto-cache* feature now works for both .json and .js files. Meaning you can update your dictionary live in production and development. Gengo updates the cache only if the files have been updated.
+
+**0.3.43**
+* Updated English docs for gengojs-site.
+* Added keyword to package.json
 
 ###Notes
 
