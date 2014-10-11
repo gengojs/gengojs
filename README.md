@@ -74,6 +74,7 @@ module.exports = {
 * Improved config module for gengo
 * Replaced underscore with lodash.
 * Removed utils module and replaced with regex.js.
+* Replaced sails app. I will add more templates later.
 
 ###Notes
 
