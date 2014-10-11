@@ -19,8 +19,8 @@
         subdomains,
         originalUrl,
         baseUrl,
-        _ = require('underscore'),
-        debug = require('./utils.js').debug,
+        _ = require('lodash'),
+        cout = require('cout'),
         hasModule = (typeof module !== 'undefined' && module.exports);
 
     router = function() {
@@ -32,21 +32,21 @@
                     baseUrl = req.baseUrl;
                     originalUrl = req.originalUrl;
                     subdomains = req.subdomains;
-                    debug({
+                    cout("module: router, fn: init.", {
                         path: path,
                         baseUrl: baseUrl,
                         originalUrl: originalUrl,
                         subdomains: subdomains
-                    }).debug("module: router, fn: init.");
+                    }).debug();
                 } catch (error) {
-                    debug("module: router, fn: init, Could not set the router.").error();
+                    cout("module: router, fn: init, Could not set the router.").error();
                 }
             },
             route: function() {
                 pathArray = constructArray(path);
                 dotPath = constructDot(pathArray);
-                debug(pathArray).debug("Router route path array");
-                debug(dotPath).debug("Router route dot");
+                cout("Router route path array", pathArray).debug();
+                cout("Router route dot", dotPath).debug();
                 return {
                     path: function() {
                         return path;
@@ -94,7 +94,7 @@
                 newpath.push(pathArray[1]);
             }
         } else {
-            _.each(pathArray, function(item) {
+            _.forEach(pathArray, function(item) {
                 if (item.match(regexVersion)) {
                     filteredPathArray.push(item.replace('.', '*'));
                 } else {
@@ -103,7 +103,6 @@
             });
 
             pathArray = filteredPathArray;
-
             for (var count = 1; count < pathArray.length; count++) {
                 if (count === 1) {
                     if (pathArray[count] === '') {

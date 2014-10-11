@@ -1,113 +1,131 @@
 /*jslint node: true, forin: true, jslint white: true, newcap: true*/
+/*global console*/
 /*
- * config
+ * config.js
  * author : Takeshi Iwana
- * https://github.com/iwatakeshi
  * license : MIT
  * Code heavily borrowed from Adam Draper
- * https://github.com/adamwdraper
  */
 
-(function () {
+(function() {
     'use strict';
 
+    /************************************
+        Helpers
+    ************************************/
+    //noramlizes the locales to lowercase and a dash
+    function normalize(locale) {
+        var str = locale.toLowerCase();
+        if (str.indexOf('_') > -1) {
+            str = str.replace('_', '-');
+        }
+        return str;
+    }
+    /************************************
+        Constants & Variables
+    ************************************/
+
     var config,
-        _ = require('underscore'),
-        utils = require('./utils.js'),
-        approot = require('app-root-path'),
+        // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
+        path = require('path'),
         defaults = {
+        	//set global variables
             global: {
-                //set gengo global variable
                 gengo: "__"
             },
             //set path to locale
-            directory: approot + '/locales/',
-            //set to false; for debugging purposes
-            debug: false || ['warn', 'info'],
-            //set supported localemap
+            directory: require('app-root-path') + path.normalize('/locales/'),
+            //set to false
+            debug: false,
+            //supported locales
             supported: ['en-US'],
             //set default locale, which would be the locale used for your template of choice
             default: 'en-US',
             //set view aware
             router: false,
+            //set file extension
             extension: 'js',
+            //set cookie
             cookie: 'locale',
+            //set keywords
             keywords: {
                 default: 'default',
                 translated: 'translated',
                 universe: 'gengo',
                 plural: 'plural'
             }
-        };
+        },
+        configs = defaults,
+        //node modules
+        _ = require('lodash'),
+        cout = require('cout');
 
-    config = function (configuration) {
-        var extended = utils.Object(configuration).extend(defaults);
+    /************************************
+        Top Level Functions
+    ************************************/
+
+    config = function(opt) {
+        configs = _.assign(_.extend(defaults, opt));
+        //configure cout
+        cout.config({
+            cout: configs.debug
+        });
         return {
-            global: function () {
+            global: function() {
                 return {
-                    gengo: function () {
-                        return extended.global.gengo;
-                    },
-                    moment: function () {
-                        return extended.global.moment;
-                    },
-                    numeral: function () {
-                        return extended.global.numeral;
+                    gengo: function() {
+                        return configs.global.gengo;
                     }
                 };
             },
-            directory: function () {
-                var tempPath = extended.directory,
-                    path;
-                if (extended.directory.indexOf(approot) === -1) {
-
-                    if (tempPath.indexOf('/') === 0) {
-                        tempPath = tempPath.replace("/", "");
+            directory: function() {
+                var root = require('app-root-path'),
+                    sep = path.sep || '/',
+                    defaultPath = require('app-root-path') + path.normalize('/locales/'),
+                    tempPath = configs.directory;
+                //if it's a different path then sanitize it
+                if (tempPath.indexOf(defaultPath) === -1) {
+                    tempPath = root + tempPath.split(path.sep).join().replace(/\,/g, sep);
+                    if(tempPath[tempPath.length - 1] !== '/'){
+                        tempPath += sep;
                     }
-                    if (tempPath.slice(-1) !== '/') {
-                        tempPath = tempPath + '/';
-                    }
-                    path = tempPath;
-                    path = approot + "/" + path;
-                } else {
-                    path = tempPath;
                 }
-                return path;
+                return tempPath;
             },
-            debug: function () {
-                return extended.debug;
-            },
-            supported: function () {
-                var supported = [];
-                _.each(extended.supported, function (item) {
-                    item = item.toLowerCase();
-                    if (item.indexOf('_') > -1) {
-                        item = item.replace('_', '-');
-
-                    }
-                    supported.push(item);
+            supported: function() {
+                var supported = configs.supported.map(function(item) {
+                    return normalize(item);
                 });
                 return supported;
             },
-            default: function () {
-                extended.default = extended.default.toLowerCase();
-                if (extended.default.indexOf('_') > -1) {
-                    extended.default = extended.default.replace('_', '-');
-                }
-                return extended.default;
+            default: function() {
+                return normalize(configs.default);
             },
-            cookie: function () {
-                return extended.cookie;
+            cookie: function() {
+                return normalize(configs.cookie);
             },
             router: function () {
-                return extended.router;
+            	return configs.router;
             },
             extension: function () {
-                return extended.extension;
+            	return configs.extension;
             },
-            keywords: function () {
-                return extended.keywords;
+            keywords: function  () {
+            	return {
+            		default: function () {
+            			return configs.keywords.default;
+            		},
+            		translated: function () {
+            			return configs.keywords.translated;
+            		},
+            		universe: function () {
+            			return configs.keywords.universe;
+            		},
+            		plural: function () {
+            			return configs.keywords.plural;
+            		}
+            	};
             }
         };
     };
@@ -131,7 +149,7 @@
 
     /*global define:false */
     if (typeof define === 'function' && define.amd) {
-        define([], function () {
+        define([], function() {
             return config;
         });
     }

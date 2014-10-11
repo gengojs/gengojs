@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.3.43
+ * version : 0.3.44
  * author : Takeshi Iwana aka iwatakeshi
  * https://github.com/iwatakeshi
  * license : MIT
@@ -21,7 +21,7 @@
     core,
     locale,
     lib,
-    VERSION = '0.3.43',
+    VERSION = '0.3.44',
     //gengo modules
     config = require('./modules/config.js'),
     router = require('./modules/router.js'),
@@ -36,17 +36,16 @@
     numeral = require('numeral'),
     mustache = require('mustache'),
     kawari = require('kawari'),
-    _ = require('underscore'),
+    cout = require('cout'),
+    _ = require('lodash'),
     //utilities
-    utils = require('./modules/utils.js'),
-    regex = utils.regex,
-    debug = utils.debug,
+    regex = require('./modules/regex.js'),
     //variables
     bestmatch,
     requested = [],
     localemap = require('./maps/locales.js'),
     langmap = require('./maps/langs.js'),
-    loader = require('./modules/loader.js'),
+    load = require('./modules/load.js'),
     api = ['moment', 'numeral', 'language', 'getLocale', 'setLocale'],
     hasModule = (typeof module !== 'undefined' && module.exports);
 
@@ -62,7 +61,7 @@
     //also ignore the first argument
     var array = Array.prototype.slice.call(arguments, 1);
     if (array.length > 1) {
-      _.each(array, function(item) {
+      _.forEach(array, function(item) {
         args.push(item);
       });
       values = {};
@@ -101,7 +100,7 @@
         arg.push(arg);
       }
     } else {
-      _.each(arguments, function(key) {
+      _.forEach(arguments, function(key) {
         if (_.isString(key)) {
           if (localemap.moment[key]) {
             _locale = key;
@@ -159,7 +158,7 @@
         args.push(arg);
       }
     } else {
-      _.each(arguments, function(key) {
+      _.forEach(arguments, function(key) {
         if (_.isNumber(key)) {
           args.push(key);
         } else if (_.isString(key)) {
@@ -197,9 +196,8 @@
     }
   };
   //configuration
-  gengo.config = function(configuration) {
-    config(configuration);
-    utils(config);
+  gengo.config = function(opt) {
+    config(opt);
   };
   //initalize gengo
   gengo.init = function(req, res, next) {
@@ -258,7 +256,7 @@
     }
 
     //if the locale exists
-    if (loader(locale)) {
+    if (load(locale)) {
       // called like setLocale('en')
       if (req === undefined) {
         bestmatch = target;
@@ -299,11 +297,14 @@
   //since we have separated the inputs into three parts
   //we can easily organize our tasks
   core = function(phrase, value, args) {
-    debug("module, core, fn: core, Input").info();
-    debug(phrase).info();
-    debug(value).info();
-    debug(args).info();
-
+    cout("fn, core, fn: core, Input").info();
+    cout(phrase).info();
+    if(!_.isEmpty(value)){
+      cout(value).info();
+    }
+    if(!_.isEmpty(args)){
+      cout(args).info();
+    }
     //decides which locale to use
     function negotiate(override) {
         //override is used when its explicitly called
@@ -395,7 +396,7 @@
             //then let expression and parser handle the rest
             return parser(expression(phrase.phrase).phrase, value, args, expression(phrase.phrase).type);
           } else {
-            debug("No phrase found in object.").error();
+            cout("No phrase found in object.").error();
           }
           //called like this __("something", something)
         } else if (_.isString(phrase)) {
@@ -409,8 +410,8 @@
         //if the phrase contains brackets
         if (regex(phrase).Bracket().match()) {
 
-          debug("module: core, fn: core, Input contains brackets").debug();
-          debug(phrase).data();
+          cout("fn: core, Input contains brackets").debug();
+          cout(phrase).data();
           //return the regex result and the type of parser
           return {
             phrase: regex(phrase).Bracket().exec(),
@@ -419,16 +420,16 @@
           //if the phrase contains dots
         } else if (regex(phrase).Dot().match()) {
 
-          debug("module: core, fn: core, Input contains dots").debug();
-          debug(phrase).data();
+          cout("fn: core, Input contains dots").debug();
+          cout(phrase).data();
           return {
             phrase: phrase,
             type: 'dot'
           };
           //if the phrase is just something ordinary
         } else {
-          debug("module: core, fn: core, Input contains phrases").debug();
-          debug(phrase).data();
+          cout("fn: core, Input contains phrases").debug();
+          cout(phrase).data();
           return {
             phrase: phrase,
             type: 'phrase'
@@ -502,7 +503,7 @@
             var objects = [],
               other = [];
             //combine the non objects into an array
-            _.each(args, function(arg) {
+            _.forEach(args, function(arg) {
               if (_.isObject(arg)) {
                 objects.push(arg);
               } else {
@@ -514,7 +515,7 @@
             //combine the objects
             var target = {};
             objects.forEach(function(object) {
-              _.each(object, function(value, prop) {
+              _.forEach(object, function(value, prop) {
                 target[prop] = value;
               });
             });
@@ -563,7 +564,7 @@
             return localmoment;
           }
         } catch (error) {
-          debug("module: core, fn: moment" + error.toString().replace("Error: ", " ")).error();
+          cout("fn: lib, fn: moment" + error.toString().replace("Error: ", " ")).error();
         }
       },
       numeral: function(override) {
@@ -582,7 +583,7 @@
             }
 
           } catch (error) {
-            debug("module: core, fn: numeral" + error.toString().replace("Error: ", " ")).error();
+            cout("fn: lib, fn: numeral" + error.toString().replace("Error: ", " ")).error();
           }
         }
 
@@ -604,7 +605,7 @@
             }
 
           } catch (error) {
-            debug("module: core, fn: numeral" + error.toString().replace("Error: ", " ")).error();
+            cout("fn: lib , fn: numeral" + error.toString().replace("Error: ", " ")).error();
           }
         }
       }

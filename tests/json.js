@@ -4,7 +4,6 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     gengo = new require('../gengo.js'),
     request = require('supertest'),
-    approot = require('app-root-path'),
     assert = require('assert'),
     app = express(),
     server;
@@ -15,7 +14,7 @@ describe('Begin JSON test', function() {
             default: 'en-US',
             supported: ['ja', 'en-US'],
             extension: 'json',
-            directory: approot + '/tests/locales/with JSON/',
+            directory: '/tests/locales/with JSON/',
             debug: ['error', 'warn']
         });
         app.use(gengo.init);

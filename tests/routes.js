@@ -2,7 +2,6 @@
 /*global describe, before, it, after*/
 var express = require('express'),
     cookieParser = require('cookie-parser'),
-    debug = require('../modules/utils.js').debug,
     gengo = new require('../gengo.js'),
     request = require('supertest'),
     approot = require('app-root-path'),
@@ -12,8 +11,6 @@ var express = require('express'),
 
 describe('Begin Route test', function() {
     before(function(done) {
-        var name = require.resolve('../modules/config.js');
-        delete require.cache[name];
         gengo.config({
             default: 'en-US',
             router: true,

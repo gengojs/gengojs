@@ -13,14 +13,12 @@
 
     var parse,
         hasModule = (typeof module !== 'undefined' && module.exports),
-        _ = require('underscore'),
-        loader = require('./loader.js'),
+        cout = require('cout'),
+        _ = require('lodash'),
+        loader = require('./load.js'),
         config = require('./config.js'),
-        utils = require('./utils.js'),
-        isDefined = utils.isDefined,
         router = require('./router.js'),
-        regex = utils.regex,
-        debug = utils.debug;
+        regex = require('./regex.js');
 
     //normal parser for phrases
     parse = function (phrase, locale, plural) {
@@ -40,8 +38,8 @@
                     _result = result[router().route().dot()][phrase];
                     if (_result) {
                         routeResult = resultParser(result[router().route().dot()][phrase], locale, plural);
-                    } else if (result[config().keywords().universe][phrase]) {
-                        universeResult = resultParser(result[config().keywords().universe][phrase], locale, plural);
+                    } else if (result[config().keywords().universe()][phrase]) {
+                        universeResult = resultParser(result[config().keywords().universe()][phrase], locale, plural);
                     } else {
                         return phrase;
                     }
@@ -61,7 +59,7 @@
                     _result = dotParser(router().route().dot(), result);
                     //if universe exists
                     if (_result) {
-                        universeResult = resultParser(result[config().keywords().universe][phrase], locale, plural);
+                        universeResult = resultParser(result[config().keywords().universe()][phrase], locale, plural);
                     } else {
                         return phrase;
                     }
@@ -99,11 +97,11 @@
         try {
             if (input[1]) {
                 search = input[1];
-                debug(search).debug("module parse, fn: bracket, Parse Bracket search");
+                cout("module parse, fn: bracket, Parse Bracket search", search).debug();
             }
             if (input[2]) {
                 dot = input[2];
-                debug(dot).debug("module parse, fn: bracket, Parse Bracket dot");
+                cout("module parse, fn: bracket, Parse Bracket dot", dot).debug();
                 if (dot.indexOf('plural') > -1) {
                     //prevents the word plural to clash with an existing 'plural' ie plural.plural
                     plural = false;
@@ -118,10 +116,10 @@
                 if (config().router()) {
                     if (router().route().length() === 0) {
                         routeResult = result[router().route().dot()];
-                        universeResult = result[config().keywords().universe];
+                        universeResult = result[config().keywords().universe()];
                     } else {
                         routeResult = dotParser(router().route().dot(), result);
-                        universeResult = result[config().keywords().universe];
+                        universeResult = result[config().keywords().universe()];
                     }
                 } else {
                     result = result[search];
@@ -172,9 +170,9 @@
                             }
                         };
 
-                        _.each(results, function (key) {
+                        _.forEach(results, function (key) {
                             var value = key();
-                            if (isDefined(value)) {
+                            if (value) {
                                 result = value;
                             }
                         });
@@ -223,7 +221,7 @@
                                 }
                             }
                         };
-                        _.each(results, function (key) {
+                        _.forEach(results, function (key) {
                             var value = key();
                             if (value) {
                                 result = value;
@@ -271,7 +269,7 @@
                             }
                         }
                     };
-                    _.each(results, function (key) {
+                    _.forEach(results, function (key) {
                         var value = key();
                         if (value) {
                             result = value;
@@ -284,7 +282,7 @@
 
             return result || search;
         } catch (error) {
-            debug("module: parse fn: bracket, " + error.toString().replace("Error: ", " ")).error();
+            cout("module: parse fn: bracket, " + error.toString().replace("Error: ", " ")).error();
         }
     };
 
@@ -294,7 +292,7 @@
             //prevents the word plural to clash with an existing 'plural' ie plural.plural
             plural = false;
         }
-        debug(search).debug("module parse, fn: bracket, Parse Bracket search");
+        cout("module parse, fn: bracket, Parse Bracket search", search).debug();
         var result, routeResult, universeResult, results;
         if (isOverride(locale)) {
             result = new loader(locale.locale).json();
@@ -304,10 +302,10 @@
         if (config().router()) {
             if (router().route().length() === 0) {
                 routeResult = result[router().route().dot()];
-                universeResult = result[config().keywords().universe];
+                universeResult = result[config().keywords().universe()];
             } else {
                 routeResult = dotParser(router().route().dot(), result);
-                universeResult = result[config().keywords().universe];
+                universeResult = result[config().keywords().universe()];
             }
         }
         if (result) {
@@ -358,9 +356,9 @@
                             obj = obj[keys[i]];
                         }
                     } else {
-                        debug("module: parse, fn: dotParser,  Type Cannot read property " + keys[i] + " of undefined").warn();
+                        cout("module: parse, fn: dotParser,  Type Cannot read property " + keys[i] + " of undefined").warn();
                         if (config().router()) {
-                            debug("Could be universe?").warn();
+                            cout("Could be universe?").warn();
                         }
                         return undefined;
                     }
@@ -382,15 +380,15 @@
             } else if (_.isObject(result)) {
                 if (isDefault(locale)) {
                     //check if the keyword 'default' exist in the object
-                    if (result.hasOwnProperty(config().keywords().default)) {
+                    if (result.hasOwnProperty(config().keywords().default())) {
                         if (plural) {
-                            _result = result[config().keywords().plural][config().keywords().default];
+                            _result = result[config().keywords().plural][config().keywords().default()];
                         } else {
-                            _result = result[config().keywords().default];
+                            _result = result[config().keywords().default()];
                         }
                         if (!_result) {
                             if (plural) {
-                                _result = result[config().keywords().plural];
+                                _result = result[config().keywords().plural()];
                             } else {
                                 _result = undefined;
                             }
@@ -399,20 +397,20 @@
                     } else {
                         //then try
                         if (plural) {
-                            return result[config().keywords().plural];
+                            return result[config().keywords().plural()];
                         }
                     }
                 } else {
                     //check if the keyword 'translated' exist in the object
-                    if (result.hasOwnProperty(config().keywords().translated)) {
+                    if (result.hasOwnProperty(config().keywords().translated())) {
                         if (plural) {
-                            _result = result[config().keywords().plural][config().keywords().translated];
+                            _result = result[config().keywords().plural()][config().keywords().translated()];
                         } else {
-                            _result = result[config().keywords().translated];
+                            _result = result[config().keywords().translated()];
                         }
                         if (!_result) {
                             if (plural) {
-                                _result = result[config().keywords().plural];
+                                _result = result[config().keywords().plural()];
                             } else {
                                 //we tried so return undefined
                                 _result = undefined;
@@ -422,18 +420,17 @@
                     } else {
                         //then try
                         if (plural) {
-                            return result[config().keywords().plural];
+                            return result[config().keywords().plural()];
                         }
                     }
                 }
             }
         } catch (error) {
-            debug("module: parse fn: resultParser, " + error.toString().replace("Error: ", " ")).error();
+            cout("module: parse fn: resultParser, " + error.toString().replace("Error: ", " ")).error();
         }
     }
 
     function isDefault(input) {
-        //console.log(input);
         if (_.isString(input)) {
             if (input === config().default()) {
                 return true;

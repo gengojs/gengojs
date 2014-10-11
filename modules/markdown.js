@@ -26,9 +26,16 @@
                 sup: /\^\[([^\s])\]/g,
                 bookmark: /\^\[([^\s])\]\((#[^\s]+)\)/g,
                 link: /\^\[\[([^\s])\]\]\((#[^\s]+)\)/g
+            },
+            code :/\`(.*?)\`/g,
+            strike: /\~\~(.*?)\~\~/g,
+            link: {
+                default:/\[([^\]]+)]\(\s*(http[s]?:\/\/[^)]+)\s*\)\[?(blank|self|parent|top|[a-z]+)?\]?/gm,
+                bookmark:/\[([^\]]+)\]\((\#[^\s]+)\)/gm,
+                twitter: /\[([^\]]+)]\([\@]([^\s]+)\)\[?(blank|self|parent|top|[a-z]+)?\]?/gm
             }
         },
-        _ = require('underscore'),
+        _ = require('lodash'),
         hasModule = (typeof module !== 'undefined' && module.exports);
     markdown = function (phrase) {
         return parse(phrase);
@@ -57,9 +64,9 @@
                 r = r.replace(regex.bold._, '<strong>$1</strong>');
             }
             //code --> `code`
-            r = r.replace(/\`(.*?)\`/g, '<code>$1</code>');
+            r = r.replace(regex.code, '<code>$1</code>');
             //strike --> ~~strike~~
-            r = r.replace(/\~\~(.*?)\~\~/g, '<strike>$1</strike>');
+            r = r.replace(regex.strike, '<strike>$1</strike>');
 
             //superscript
             //normal --> ^[^\s]
@@ -77,11 +84,11 @@
 
             /*links*/
             //link --> [some text](http[s]?://...) or [some text](http[s]?://...)[target]
-            r = r.replace(/\[([^\]]+)]\(\s*(http[s]?:\/\/[^)]+)\s*\)\[?(blank|self|parent|top|[a-z]+)?\]?/gm, '<a href="$2" target="$3">$1</a>');
-            //twitter --> [some text](#attribute-to-text)
-            r = r.replace(/\[([^\]]+)\]\((\#[^\s]+)\)/gm, '<a href="$2">$1</a>');
-            //username --> [username](@username123) you can also add _blank etc
-            r = r.replace(/\[([^\]]+)]\([\@]([^\s]+)\)\[?(blank|self|parent|top|[a-z]+)?\]?/gm, '<a href="https://twitter.com/$2" target="$3">$1</a>');
+            r = r.replace(regex.link.default, '<a href="$2" target="$3">$1</a>');
+            //bookmark --> [some text](#attribute-to-text)
+            r = r.replace(regex.link.bookmark, '<a href="$2">$1</a>');
+            //twitter --> [username](@username123) you can also add _blank etc
+            r = r.replace(regex.link.twitter, '<a href="https://twitter.com/$2" target="$3">$1</a>');
 
             // video ..will probably change to standard markdown syntax
             r = r.replace(/<<(.*?)>>/g, '<embed class="video" src="$1" allowfullscreen="true" allowscriptaccess="never" type="application/x-shockwave/flash"></embed>');

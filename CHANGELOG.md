@@ -367,9 +367,17 @@ module.exports.http = {
 * Replaced comparison method in loader module. It should compare json objects. If the objects are different then update the cache.
 
 **0.3.42**
+
 * Apologies. Removed comparison method and replaced with underscore's after I realized underscore had their own.
 * Also auto-cache* feature now works for both .json and .js files. Meaning you can update your dictionary live in production and development. Gengo updates the cache only if the files have been updated.
 
 **0.3.43**
+
 * Updated English docs for gengojs-site.
 * Added keyword to package.json
+
+**0.3.44**
+
+* Improved config module for gengo
+* Replaced underscore with lodash.
+* Removed utils module and replaced with regex.js.
