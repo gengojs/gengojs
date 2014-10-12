@@ -45,6 +45,19 @@ module.exports = {
 
 ```
 
+###Tested environmnents
+
+* Elementary OS (Ubuntu based distro and mainly used for developing gengo)
+* Windows 10 (works great but make sure to use nodejs's path.normalize('/path/to/locales') for simplicity)
+
+
+###Sails.js setup
+
+See sails/(ejs or jade)/config/http.js.
+
+For some reason, I am not able to use '__' like before but it will work if you change the global variable for gengo to something simple of your choice. The examples have their global variables set to '__g'
+
+
 ###Recent Changes
 *For previous notes on changes, see CHANGELOG.md*
 
@@ -76,9 +89,15 @@ module.exports = {
 * Removed utils module and replaced with regex.js.
 * Replaced sails app. I will add more templates later.
 
+**0.3.45**
+
+* Added sails app with jade.
+  * gengo now has two sails apps that runs perfectly. One with EJS and the other with Jade. (Tried creating hbs app but sails seem to fail? I must have done something wrong. But it should work with most templating engines.)
+* Updated readme
+
 ###Notes
 
-* Cache - gengo does cache if and only if the loaded objects are the same. If a change occurs, it will update the cached object. Tested with .json files.
+* Cache - gengo does cache but will replace the cached object if changes have occurred.
 
 ###Message from the author
 
