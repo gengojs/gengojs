@@ -55,7 +55,7 @@ module.exports = {
 
 See sails/(ejs or jade)/config/http.js.
 
-For some reason, I am not able to use '__' like before but it will work if you change the global variable for gengo to something simple of your choice. The examples have their global variables set to '__g'
+For some reason, I am not able to use '\_\_' like before but it will work if you change the global variable for gengo to something simple of your choice. The examples have their global variables set to '\_\_g'
 
 
 ###Recent Changes
@@ -94,6 +94,10 @@ For some reason, I am not able to use '__' like before but it will work if you c
 * Added sails app with jade.
   * gengo now has two sails apps that runs perfectly. One with EJS and the other with Jade. (Tried creating hbs app but sails seem to fail? I must have done something wrong. But it should work with most templating engines.)
 * Updated readme
+
+**0.3.46**
+
+* Fixed readme
 
 ###Notes
 

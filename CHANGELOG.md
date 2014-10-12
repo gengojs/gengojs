@@ -388,3 +388,7 @@ module.exports.http = {
 * Added sails app with jade.
   * gengo now has two sails apps that runs perfectly. One with EJS and the other with Jade. (Tried creating hbs app but sails seem to fail? I must have done something wrong. But it should work with most templating engines.)
 * Updated readme
+
+**0.3.46**
+
+* Fixed readme
