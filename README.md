@@ -99,6 +99,10 @@ For some reason, I am not able to use '\_\_' like before but it will work if you
 
 * Fixed readme
 
+**0.3.47**
+
+* Updated dependencies
+
 ###Notes
 
 * Cache - gengo does cache but will replace the cached object if changes have occurred.
