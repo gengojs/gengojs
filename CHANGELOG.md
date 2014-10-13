@@ -392,3 +392,8 @@ module.exports.http = {
 **0.3.46**
 
 * Fixed readme
+
+**0.3.47**
+
+* Updated dependencies
+
