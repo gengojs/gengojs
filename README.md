@@ -57,6 +57,11 @@ See sails/(ejs or jade)/config/http.js.
 
 For some reason, I am not able to use '\_\_' like before but it will work if you change the global variable for gengo to something simple of your choice. The examples have their global variables set to '\_\_g'
 
+**Update**
+
+I didn't realize it till now but gengo must be set in a certain order for '\_\_' to work. I've created a gist so that you can just copy and paste it into yourSailsApp/config/. Therefore there is no need to mess with sail's built in i18n or its locales. This will work on all platforms (linux, mac, windows)
+
+*gist*: https://gist.github.com/iwatakeshi/e6f73cd0f19ce1816c70
 
 ###Recent Changes
 *For previous notes on changes, see CHANGELOG.md*
@@ -102,6 +107,20 @@ For some reason, I am not able to use '\_\_' like before but it will work if you
 **0.3.47**
 
 * Updated dependencies
+
+**0.3.48**
+
+* Fixed and updated readme (missing changes from last publish)
+* Added an override option for directory's path. You can now pass an object with a `path` key which gengo will not append a root to the given path. This is useful in cases where for some reason the root points to a /bin folder (something that happened to me in Windows). 
+
+```
+//example
+  gengo.config({
+    directory: {
+    path: __dirname + '/locales'
+  }
+  });
+```
 
 ###Notes
 

@@ -30,12 +30,12 @@
         hasModule = (typeof module !== 'undefined' && module.exports),
         path = require('path'),
         defaults = {
-        	//set global variables
+            //set global variables
             global: {
                 gengo: "__"
             },
             //set path to locale
-            directory: require('app-root-path') + path.normalize('/locales/'),
+            directory: + path.normalize('/locales/'),
             //set to false
             debug: false,
             //supported locales
@@ -82,16 +82,37 @@
             directory: function() {
                 var root = require('app-root-path'),
                     sep = path.sep || '/',
-                    defaultPath = require('app-root-path') + path.normalize('/locales/'),
+                    defaultPath = root + path.normalize('/locales/'),
                     tempPath = configs.directory;
-                //if it's a different path then sanitize it
-                if (tempPath.indexOf(defaultPath) === -1) {
-                    tempPath = root + tempPath.split(path.sep).join().replace(/\,/g, sep);
-                    if(tempPath[tempPath.length - 1] !== '/'){
-                        tempPath += sep;
+
+
+                //if user doesn't want a root appended
+                //for some reason
+                if (_.isPlainObject(configs.directory)) {
+                    if (configs.directory.path) {
+                        if (configs.directory.path[configs.directory.path.length - 1] !== sep) {
+                            configs.directory.path += sep;
+                        }
+                        return configs.directory.path;
                     }
+                } else {
+                    //if it's a different path compared to the default then change it and sanitize it
+                    if (tempPath.indexOf(defaultPath) === -1) {
+                        tempPath = tempPath.split(path.sep).join().replace(/\,/g, sep);
+
+                        if (tempPath[0] !== sep) {
+                            tempPath = sep + tempPath;
+                        }
+
+                        if (tempPath[tempPath.length - 1] !== sep) {
+                            tempPath += sep;
+                        }
+                        tempPath = root + tempPath;
+                    }
+                    return tempPath;
                 }
-                return tempPath;
+
+
             },
             supported: function() {
                 var supported = configs.supported.map(function(item) {
@@ -105,27 +126,27 @@
             cookie: function() {
                 return normalize(configs.cookie);
             },
-            router: function () {
-            	return configs.router;
+            router: function() {
+                return configs.router;
             },
-            extension: function () {
-            	return configs.extension;
+            extension: function() {
+                return configs.extension;
             },
-            keywords: function  () {
-            	return {
-            		default: function () {
-            			return configs.keywords.default;
-            		},
-            		translated: function () {
-            			return configs.keywords.translated;
-            		},
-            		universe: function () {
-            			return configs.keywords.universe;
-            		},
-            		plural: function () {
-            			return configs.keywords.plural;
-            		}
-            	};
+            keywords: function() {
+                return {
+                    default: function() {
+                        return configs.keywords.default;
+                    },
+                    translated: function() {
+                        return configs.keywords.translated;
+                    },
+                    universe: function() {
+                        return configs.keywords.universe;
+                    },
+                    plural: function() {
+                        return configs.keywords.plural;
+                    }
+                };
             }
         };
     };
