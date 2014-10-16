@@ -12,7 +12,7 @@ describe('Begin functionality test', function() {
     gengo.config({
       default: 'en-US',
       supported: ['ja', 'en-US', 'en'],
-      directory: '/tests/locales/',
+      directory: {path: __dirname + '/locales/'},
       debug: ['error', 'warn']
     });
     app.use(gengo.init);

@@ -11,7 +11,7 @@ var express = require('express'),
 gengo.config({
     default: 'en-US',
     supported: ['ja', 'en-US'],
-    directory: approot + '/tests/locales/',
+    directory:{path: __dirname + '/locales/'},
     debug: ['error', 'warn']
 });
 

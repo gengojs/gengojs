@@ -1,7 +1,7 @@
 {
   "name": "gengojs",
-  "version": "0.3.49",
-  "description": "An uber basic and simple i18n library for Express 4",
+  "version": "0.3.50",
+  "description": "The best and simple i18n library for Express 4 and Sails.js",
   "main": "gengo.js",
   "scripts": {
     "test": "mocha ./tests/*.js",

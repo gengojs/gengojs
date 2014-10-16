@@ -18,7 +18,7 @@ describe('Begin Route test', function() {
             //json.js, we'll add the extension to prevent errors.
             extension: 'js',
             supported: ['ja', 'en-US'],
-            directory:'/tests/locales/with routes/',
+            directory:{path: __dirname + '/locales/with routes'},
             debug: ['error', 'warn']
         });
         app.use(gengo.init);

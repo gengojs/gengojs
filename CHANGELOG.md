@@ -415,3 +415,8 @@ module.exports.http = {
 
 * Fixed missing root for directory. Apologies if 3.48 affected you.
 * All paths are normalized. This will allow node to change the paths from `/` to `\\` on windows. Essentially making gengo cross platform.
+
+**0.3.50**
+
+* Fixed tests for windows.
+* Changed gengojs's description.

@@ -14,7 +14,7 @@ describe('Begin cookie test', function () {
         gengo.config({
             default: 'en-US',
             supported: ['ja', 'en-US'],
-            directory: '/tests/locales/',
+            directory: {path: __dirname + '/locales/'},
             debug: ['error', 'warn']
         });
         app.use(cookieParser());
