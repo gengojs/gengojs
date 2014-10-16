@@ -35,7 +35,7 @@
                 gengo: "__"
             },
             //set path to locale
-            directory: + path.normalize('/locales/'),
+            directory: path.normalize(require('app-root-path') +'/locales/'),
             //set to false
             debug: false,
             //supported locales
@@ -82,7 +82,7 @@
             directory: function() {
                 var root = require('app-root-path'),
                     sep = path.sep || '/',
-                    defaultPath = root + path.normalize('/locales/'),
+                    defaultPath = path.normalize(root +'/locales/'),
                     tempPath = configs.directory;
 
 
@@ -93,7 +93,7 @@
                         if (configs.directory.path[configs.directory.path.length - 1] !== sep) {
                             configs.directory.path += sep;
                         }
-                        return configs.directory.path;
+                        return path.normalize(configs.directory.path);
                     }
                 } else {
                     //if it's a different path compared to the default then change it and sanitize it
@@ -109,7 +109,7 @@
                         }
                         tempPath = root + tempPath;
                     }
-                    return tempPath;
+                    return path.normalize(tempPath);
                 }
 
 

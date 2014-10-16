@@ -122,6 +122,11 @@ I didn't realize it till now but gengo must be set in a certain order for '\_\_'
   });
 ```
 
+**0.3.49**
+
+* Fixed missing root for directory. Apologies if 3.48 affected you.
+* All paths are normalized. This will allow node to change the paths from `/` to `\\` on windows. Essentially making gengo cross platform.
+
 ###Notes
 
 * Cache - gengo does cache but will replace the cached object if changes have occurred.
