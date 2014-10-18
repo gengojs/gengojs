@@ -420,3 +420,8 @@ module.exports.http = {
 
 * Fixed tests for windows.
 * Changed gengojs's description.
+
+**0.3.51**
+* Updated readme
+* Fixed weird log/debug (cout) when loading locales.
+* Updated node modules.

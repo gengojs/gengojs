@@ -4,3 +4,4 @@
 /scripts/dir.txt
 /example-apps/node_modules/
 /sails-apps/sailsapp-handlebars/config/http.js
+npm-debug.log

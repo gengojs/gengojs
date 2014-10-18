@@ -66,48 +66,6 @@ I didn't realize it till now but gengo must be set in a certain order for '\_\_'
 ###Recent Changes
 *For previous notes on changes, see CHANGELOG.md*
 
-**0.3.40**
-
-* Added travis ci, dependency badge, and travis badge and other badges.
-* Fixed langs.js map file. Added tests for `language()`, `getLocale()`, `setLocale()`
-
-**0.3.41**
-
-* Added more custom markdown syntax such as superscript.
-* Removed a few markdown syntaxes that may become a conflict with mustache syntax.
-* Replaced comparison method in loader module. It should compare json objects. If the objects are different then update the cache.
-
-**0.3.42**
-
-* Apologies. Removed comparison method and replaced with underscore's after I realized underscore had their own.
-* Also auto-cache* feature now works for both .json and .js files. Meaning you can update your dictionary live in production and development. Gengo updates the cache only if the files have been updated.
-
-**0.3.43**
-
-* Updated English docs for gengojs-site.
-* Added keyword to package.json
-
-**0.3.44**
-
-* Improved config module for gengo
-* Replaced underscore with lodash.
-* Removed utils module and replaced with regex.js.
-* Replaced sails app. I will add more templates later.
-
-**0.3.45**
-
-* Added sails app with jade.
-  * gengo now has two sails apps that runs perfectly. One with EJS and the other with Jade. (Tried creating hbs app but sails seem to fail? I must have done something wrong. But it should work with most templating engines.)
-* Updated readme
-
-**0.3.46**
-
-* Fixed readme
-
-**0.3.47**
-
-* Updated dependencies
-
 **0.3.48**
 
 * Fixed and updated readme (missing changes from last publish)
@@ -126,6 +84,16 @@ I didn't realize it till now but gengo must be set in a certain order for '\_\_'
 
 * Fixed missing root for directory. Apologies if 3.48 affected you.
 * All paths are normalized. This will allow node to change the paths from `/` to `\\` on windows. Essentially making gengo cross platform.
+
+**0.3.50**
+
+* Fixed tests for windows.
+* Changed gengojs's description.
+
+**0.3.51**
+* Updated readme
+* Fixed weird log/debug (cout) when loading locales.
+* Updated node modules.
 
 ###Notes
 
