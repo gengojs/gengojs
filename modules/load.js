@@ -44,7 +44,6 @@
                 } else {
                     //lets load it if cached doesn't exist.
                     locales[locale] = getJSON(locale);
-                     cout("module: load fn: getJSON, " + localemap.gengo[locale] + ".json" + " loaded successfully.").info();
                     return locales[locale];
                 }
             }
@@ -64,6 +63,7 @@
                 json = require(config().directory() + localemap.gengo[locale] + ".js");
                 require.uncache(config().directory() + localemap.gengo[locale] + ".js");
                 if (json) {
+                    cout("module: load fn: getJSON, " + localemap.gengo[locale] + ext + " loaded successfully.").info();
                     cout(JSON.stringify(json, null, 2)).data();
                     return sanitize(json);
                 }
@@ -79,6 +79,7 @@
                 try {
                     json = JSON.parse(result);
                     if (json) {
+                        cout("module: load fn: getJSON, " + localemap.gengo[locale] + ext + " loaded successfully.").info();
                         cout(JSON.stringify(json, null, 2)).data();
                         return sanitize(json);
                     }
