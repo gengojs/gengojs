@@ -9,7 +9,7 @@
  * https://github.com/adamwdraper
  */
 
-(function() {
+(function () {
     'use strict';
 
     var router,
@@ -23,9 +23,9 @@
         cout = require('cout'),
         hasModule = (typeof module !== 'undefined' && module.exports);
 
-    router = function() {
+    router = function () {
         return {
-            init: function(req) {
+            init: function (req) {
                 try {
                     path = req.path;
                     //dont know if we ever need these but its there
@@ -42,22 +42,22 @@
                     cout("module: router, fn: init, Could not set the router.").error();
                 }
             },
-            route: function() {
+            route: function () {
                 pathArray = constructArray(path);
                 dotPath = constructDot(pathArray);
                 cout("Router route path array", pathArray).debug();
                 cout("Router route dot", dotPath).debug();
                 return {
-                    path: function() {
+                    path: function () {
                         return path;
                     },
-                    array: function() {
+                    array: function () {
                         return pathArray;
                     },
-                    dot: function() {
+                    dot: function () {
                         return dotPath;
                     },
-                    length: function() {
+                    length: function () {
                         if (dotPath.match(/\./g)) {
                             return dotPath.match(/\./g).length;
                         } else {
@@ -94,7 +94,7 @@
                 newpath.push(pathArray[1]);
             }
         } else {
-            _.forEach(pathArray, function(item) {
+            _.forEach(pathArray, function (item) {
                 if (item.match(regexVersion)) {
                     filteredPathArray.push(item.replace('.', '*'));
                 } else {
@@ -111,7 +111,10 @@
                         newpath.push(pathArray[count]);
                     }
                 } else {
-                    newpath.push(pathArray[count]);
+                    //make sure nothing else is empty
+                    if (pathArray[count] !== '') {
+                        newpath.push(pathArray[count]);
+                    }
                 }
             }
         }
@@ -136,7 +139,7 @@
 
     /*global define:false */
     if (typeof define === 'function' && define.amd) {
-        define([], function() {
+        define([], function () {
             return router;
         });
     }

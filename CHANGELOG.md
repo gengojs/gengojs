@@ -422,6 +422,13 @@ module.exports.http = {
 * Changed gengojs's description.
 
 **0.3.51**
+
 * Updated readme
 * Fixed weird log/debug (cout) when loading locales.
 * Updated node modules.
+
+**0.30.52**
+
+* Fixed missing "." when debugging successful locale loads.
+* Fixed bug in router.
+* Updated readme.

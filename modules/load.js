@@ -1,5 +1,4 @@
 /*jslint node: true, forin: true, jslint white: true, newcap: true*/
-/*global console*/
 /*
  * load
  * author : Takeshi Iwana
@@ -63,7 +62,7 @@
                 json = require(config().directory() + localemap.gengo[locale] + ".js");
                 require.uncache(config().directory() + localemap.gengo[locale] + ".js");
                 if (json) {
-                    cout("module: load fn: getJSON, " + localemap.gengo[locale] + ext + " loaded successfully.").info();
+                    cout("module: load fn: getJSON, " + localemap.gengo[locale] + "." + ext + " loaded successfully.").info();
                     cout(JSON.stringify(json, null, 2)).data();
                     return sanitize(json);
                 }
@@ -79,7 +78,7 @@
                 try {
                     json = JSON.parse(result);
                     if (json) {
-                        cout("module: load fn: getJSON, " + localemap.gengo[locale] + ext + " loaded successfully.").info();
+                        cout("module: load fn: getJSON, " + localemap.gengo[locale] + "." + ext + " loaded successfully.").info();
                         cout(JSON.stringify(json, null, 2)).data();
                         return sanitize(json);
                     }
