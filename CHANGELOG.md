@@ -437,3 +437,7 @@ module.exports.http = {
 
 * Updated readme
 * Fixed core debug message
+
+**0.3.54**
+
+* Updated node modules

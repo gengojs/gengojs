@@ -98,6 +98,10 @@ gengo must be set in a certain order for '\_\_' to work. I've created a gist so 
 * Updated readme
 * Fixed core debug message
 
+**0.3.54**
+
+* Updated node modules
+
 ###Notes
 
 * Cache - gengo does cache but will replace the cached object if changes have occurred.
