@@ -87,11 +87,16 @@ gengo must be set in a certain order for '\_\_' to work. I've created a gist so 
 * Fixed weird log/debug (cout) when loading locales.
 * Updated node modules.
 
-**0.30.52**
+**0.3.52**
 
 * Fixed missing "." when debugging successful locale loads.
 * Fixed bug in router.
 * Updated readme.
+
+**0.3.53**
+
+* Updated readme
+* Fixed core debug message
 
 ###Notes
 

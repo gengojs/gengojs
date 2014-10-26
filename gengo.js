@@ -2,7 +2,7 @@
 /*global console*/
 /*
  * gengojs
- * version : 0.3.52
+ * version : 0.3.53
  * author : Takeshi Iwana aka iwatakeshi
  * https://github.com/iwatakeshi
  * license : MIT
@@ -21,7 +21,7 @@
         core,
         locale,
         lib,
-        VERSION = '0.3.52',
+        VERSION = '0.3.53',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),
@@ -297,7 +297,7 @@
     //since we have separated the inputs into three parts
     //we can easily organize our tasks
     core = function (phrase, value, args) {
-        cout("fn, core, fn: core, Input").info();
+        cout("module:gengo, fn: core, Input").info();
         cout(phrase).info();
         if (!_.isEmpty(value)) {
             cout(value).info();
