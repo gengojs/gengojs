@@ -18,7 +18,7 @@ If you would like to see more examples other than the ones on gengojs.com then c
 
 
 ###Coming soon
-* Updated Japanese docs.
+* Updated Japanese docs. (May take a while since I'm working on a project)
 
 ###Supported locales
 
@@ -101,6 +101,13 @@ gengo must be set in a certain order for '\_\_' to work. I've created a gist so 
 **0.3.54**
 
 * Updated node modules
+
+**0.3.55**
+
+* Added support for file prefix
+* Changed gengo's description in package.json
+* Added support for plain object options for debugging. This will allow you to add timestamps. see [cout](https://github.com/iwatakekshi/cout)
+* Updated node modules for sails apps.
 
 ###Notes
 
