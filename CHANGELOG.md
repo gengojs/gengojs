@@ -400,7 +400,7 @@ module.exports.http = {
 **0.3.48**
 
 * Fixed and updated readme (missing changes from last publish)
-* Added an override option for directory's path. You can now pass an object with a `path` key which gengo will not append a root to the given path. This is useful in cases where for some reason the root points to a /bin folder (something that happened to me in Windows). 
+* Added an override option for directory's path. You can now pass an object with a `path` key which gengo will not append a root to the given path. This is useful in cases where for some reason the root points to a /bin folder (something that happened to me in Windows).
 
 ```
 //example
@@ -441,3 +441,10 @@ module.exports.http = {
 **0.3.54**
 
 * Updated node modules
+
+**0.3.55**
+
+* Added support for file prefix
+* Changed gengo's description in package.json
+* Added support for plain object options for debugging. This will allow you to add timestamps. see [cout](https://github.com/iwatakekshi/cout)
+* Updated node modules for sails apps.
