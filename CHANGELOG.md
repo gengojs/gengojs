@@ -448,3 +448,11 @@ module.exports.http = {
 * Changed gengo's description in package.json
 * Added support for plain object options for debugging. This will allow you to add timestamps. see [cout](https://github.com/iwatakekshi/cout)
 * Updated node modules for sails apps.
+
+**0.3.56**
+
+* Added an instance of gengo to itself. Similar to i18n's method.
+* Revamped site. Completely better...waaay better.
+* Final change to npm's description.
+* Removed legacies. Support for v0.2 ends.
+* Removed factory support.

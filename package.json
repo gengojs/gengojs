@@ -1,7 +1,7 @@
 {
   "name": "gengojs",
-  "version": "0.3.55",
-  "description": "A simple Uber i18n library for Express 4 and Sails.js",
+  "version": "0.3.56",
+  "description": "the best i18n middleware for Express",
   "main": "gengo.js",
   "scripts": {
     "test": "mocha ./tests/*.js",
@@ -10,8 +10,7 @@
     "routes": "mocha ./tests/routes.js",
     "libs": "mocha ./tests/libs.js",
     "json": "mocha ./tests/json.js",
-    "api": "mocha ./tests/api.js",
-    "factory": "node ./scripts/locale.js"
+    "api": "mocha ./tests/api.js"
   },
   "dependencies": {
     "app-root-path": "^0.1.0",

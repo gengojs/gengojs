@@ -1,7 +1,7 @@
 /*jslint node: true, forin: true, jslint white: true, newcap: true*/
 /*
  * gengojs
- * version : 0.3.55
+ * version : 0.3.56
  * author : Takeshi Iwana aka iwatakeshi
  * https://github.com/iwatakeshi
  * license : MIT
@@ -20,7 +20,7 @@
     core,
     locale,
     lib,
-    VERSION = '0.3.55',
+    VERSION = '0.3.56',
     //gengo modules
     config = require('./modules/config.js'),
     router = require('./modules/router.js'),
@@ -708,6 +708,12 @@
   function applyAPItoObject(request, response) {
     // attach to itself if not provided
     var object = response || request;
+
+    if (!api.indexOf(config().global().gengo())) {
+      api.push(config().global().gengo());
+      gengo[config().global().gengo()] = gengo;
+    }
+
     api.forEach(function(method) {
 
       // be kind rewind, or better not touch anything already exiting
