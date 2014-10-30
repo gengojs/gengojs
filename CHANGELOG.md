@@ -456,3 +456,7 @@ module.exports.http = {
 * Final change to npm's description.
 * Removed legacies. Support for v0.2 ends.
 * Removed factory support.
+
+**0.3.57**
+
+* Fixed typo in readme.

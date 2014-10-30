@@ -9,8 +9,8 @@ gengo.js
 
 *10/30/14*
 
-The site for gengo.js has been improved! Of course, typos may exist and will be fixed along the way. Until then
-I will not translate it until the site seems stable enough.
+The site for gengo.js has been improved! Of course, typos may exist and will be fixed along the way.
+This means that I will not translate it until the site seems stable enough.
 
 Visit [Gengojs.com](http://www.gengojs.com) for installation, configuration, and documentation.
 Also, feel free to fork gengo and the site to add more languages and locale support!
@@ -61,6 +61,9 @@ gengo must be set in a certain order for '\_\_' to work. I've created a gist so 
 * Removed legacies. Support for v0.2 ends.
 * Removed factory support.
 
+**0.3.57**
+
+* Fixed typo in readme.
 
 ###Tests
 ```bash
