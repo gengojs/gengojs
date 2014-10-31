@@ -12,38 +12,17 @@ gengo.js
 The site for gengo.js has been improved! Of course, typos may exist and will be fixed along the way.
 This means that I will not translate it until the site seems stable enough.
 
-Visit [Gengojs.com](http://www.gengojs.com) for installation, configuration, and documentation.
-Also, feel free to fork gengo and the site to add more languages and locale support!
+Visit [gengojs.com](http://www.gengojs.com) for installation, configuration, and documentation.
+Also, please fork gengo and the site to add more languages and locale support!
 
 To fork gengo visit http://www.github.com/iwatakeshi/gengojs
 
 To fork the site visit http://www.github.com/iwatakeshi/gengojs-site
 
-If you would like to see more examples other than the ones on gengojs.com then check out the tests there's 127+ possible ways to gengo!
-
-###Using gengo in scripts
-
-I am not savy to say whether it is safe or not but it is possible to use gengo in your view.
-I am using Jade, but the following should work for other view engines.
-
-```jade
-//body ...
-script.
-    $(document).ready(function(){
-        alert("!{__('Hello', 'ja')}"); // --> こんにちは
-    });
-
-```
-
-###Sails.js setup
-
-See sails/(ejs or jade)/config/http.js.
-
-gengo must be set in a certain order for '\_\_' to work. I've created a gist so that you can just copy and paste it into yourSailsApp/config/. Therefore there is no need to mess with sail's built in i18n or its locales. This will work on all platforms (linux, mac, windows)
-
-*gist*: https://gist.github.com/iwatakeshi/e6f73cd0f19ce1816c70
+If you would like to see more examples other than the ones on gengojs.com then check out the tests there are 127+ possible ways to gengo!
 
 ###Recent Changes
+
 *For previous notes on changes, see CHANGELOG.md*
 
 **0.3.55**
@@ -64,6 +43,10 @@ gengo must be set in a certain order for '\_\_' to work. I've created a gist so 
 **0.3.57**
 
 * Fixed typo in readme.
+
+**0.3.58**
+
+* Updated readme.
 
 ###Tests
 ```bash
@@ -98,4 +81,5 @@ gengo was made possible by:
 * [Moment.js](https://github.com/moment/moment)
 * [Numeral.js](https://github.com/adamwdraper/Numeral-js)
 * [lodash.js](https://github.com/lodash/lodash)
-* [sprintf.js](https://github.com/alexei/sprintf.js)
+* [kawari.js](https://github.com/iwatakeshi/kawarijs)
+* [mustache.js](https://github.com/janl/mustache.js)

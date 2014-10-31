@@ -460,3 +460,7 @@ module.exports.http = {
 **0.3.57**
 
 * Fixed typo in readme.
+
+**0.3.58**
+
+* Updated readme.
