@@ -48,6 +48,10 @@ If you would like to see more examples other than the ones on gengojs.com then c
 
 * Updated readme.
 
+**0.3.59**
+
+* Updated node modules (tests pass)
+
 ###Tests
 ```bash
 #run all

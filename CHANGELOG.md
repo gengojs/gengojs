@@ -464,3 +464,7 @@ module.exports.http = {
 **0.3.58**
 
 * Updated readme.
+
+**0.3.59**
+
+* Updated node modules (tests pass)
