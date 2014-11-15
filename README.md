@@ -52,6 +52,10 @@ If you would like to see more examples other than the ones on gengojs.com then c
 
 * Updated node modules (tests pass)
 
+**0.3.60**
+
+* Added a Visual Studio solution
+
 ###Tests
 ```bash
 #run all

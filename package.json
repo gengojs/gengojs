@@ -1,6 +1,6 @@
 {
     "name": "gengojs",
-    "version": "0.3.59",
+    "version": "0.3.60",
     "description": "the best i18n middleware for Express",
     "main": "gengo.js",
     "scripts": {

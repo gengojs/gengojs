@@ -468,3 +468,7 @@ module.exports.http = {
 **0.3.59**
 
 * Updated node modules (tests pass)
+
+**0.3.60**
+
+* Added a Visual Studio solution

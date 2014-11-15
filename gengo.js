@@ -1,7 +1,7 @@
 /*jslint node: true, forin: true, jslint white: true, newcap: true*/
 /*
  * gengojs
- * version : 0.3.59
+ * version : 0.3.60
  * author : Takeshi Iwana aka iwatakeshi
  * https://github.com/iwatakeshi
  * license : MIT
@@ -20,7 +20,7 @@
         core,
         locale,
         lib,
-        VERSION = '0.3.59',
+        VERSION = '0.3.60',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),
