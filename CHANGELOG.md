@@ -472,3 +472,9 @@ module.exports.http = {
 **0.3.60**
 
 * Added a Visual Studio solution
+
+**0.3.61**
+
+* gengo.js will now give a "safe" error message when router is enabled. The message will appear when a route is missing in your dictionary. Note that the server will not crash but the page will display properly as gengo returns the original phrase instead.
+
+* Updated readme

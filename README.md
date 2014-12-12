@@ -12,6 +12,10 @@ gengo.js
 The site for gengo.js has been improved! Of course, typos may exist and will be fixed along the way.
 This means that I will not translate it until the site seems stable enough.
 
+*12/11/14*
+
+Sorry folks! I've been busy with finals and will now have some time to work on gengojs's site. To me, the site seems reasonably stable enough so I will be begin translating it sometime next week. Currently, I'm working on some interesting projects so if interested check them out at [my GitHub page](https://github.com/iwatakeshi). One final note: If you are not satisfied with gengo.js (or the website) by the way it works or by its designed, do not hesitate the pull or fork this project for contribution. Since the project is free of charge, I will not be bothered if someone breaks the code. In fact, break it! then improve it! Anyways happy coding! - Takeshi
+
 Visit [gengojs.com](http://www.gengojs.com) for installation, configuration, and documentation.
 Also, please fork gengo and the site to add more languages and locale support!
 
@@ -56,7 +60,20 @@ If you would like to see more examples other than the ones on gengojs.com then c
 
 * Added a Visual Studio solution
 
+**0.3.61**
+
+* gengo.js will now give a "safe" error message when router is enabled. The message will appear when a route is missing in your dictionary. Note that the server will not crash but the page will display properly as gengo returns the original phrase instead.
+
+* Updated readme
+
 ###Tests
+
+```bash
+#make sure to install the node modules
+npm install
+```
+
+
 ```bash
 #run all
 npm test

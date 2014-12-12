@@ -35,7 +35,14 @@
         if (config().router()) {
             if (router().route().length() === 0) {
                 if (result) {
-                    _result = result[router().route().dot()][phrase];
+                    
+                    if(result[router().route().dot()]){
+                        _result = result[router().route().dot()][phrase];
+                    }else{
+                        cout("Cannot read property of undefined. Check dictionary for missing route?").error();
+                        return phrase;
+                    }
+                    
                     if (_result) {
                         routeResult = resultParser(result[router().route().dot()][phrase], locale, plural);
                     } else if (result[config().keywords().universe()][phrase]) {
