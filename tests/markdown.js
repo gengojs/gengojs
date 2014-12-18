@@ -40,7 +40,6 @@ describe('Begin Markdown Test', function() {
                     if (error) {
                         throw error;
                     }
-                    console.log(gengo('Bold is **awesome**.'));
                     assert.equal(gengo('Bold is **awesome**.'), '太字は<strong>すごい</strong>。');
                     done();
                 });
