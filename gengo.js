@@ -13,14 +13,14 @@
  * https://github.com/mashpie
  */
 
-(function () {
+(function() {
     "use strict";
     //main functions
     var gengo,
         core,
         locale,
         lib,
-        VERSION = '0.3.61',
+        VERSION = '0.3.62',
         //gengo modules
         config = require('./modules/config.js'),
         router = require('./modules/router.js'),
@@ -52,7 +52,7 @@
       Top Level Functions
   ************************************/
     //gengo
-    gengo = function (phrase) {
+    gengo = function(phrase) {
         var values = {},
             args = [];
         //Credits to @mashpie for the idea
@@ -60,7 +60,7 @@
         //also ignore the first argument
         var array = Array.prototype.slice.call(arguments, 1);
         if (array.length > 1) {
-            _.forEach(array, function (item) {
+            _.forEach(array, function(item) {
                 args.push(item);
             });
             values = {};
@@ -86,7 +86,7 @@
      * The object can only contain the locale {locale: 'en'}.
      * This function can take 1 - 3 arguments, see momentjs.com for api
      */
-    gengo.moment = function () {
+    gengo.moment = function() {
         var _moment, args = [],
             _locale;
         if (arguments.length === 1) {
@@ -99,7 +99,7 @@
                 arg.push(arg);
             }
         } else {
-            _.forEach(arguments, function (key) {
+            _.forEach(arguments, function(key) {
                 if (_.isString(key)) {
                     if (localemap.moment[key]) {
                         _locale = key;
@@ -120,17 +120,17 @@
             _moment = lib(locale().bestmatch()).moment();
         }
         switch (args.length) {
-        case 0:
-            return _moment();
-        case 1:
-            return _moment(args[0]);
-        case 2:
+            case 0:
+                return _moment();
+            case 1:
+                return _moment(args[0]);
+            case 2:
 
-            return _moment(args[0], args[1]);
-        case 3:
-            return _moment(args[0], args[1], args[2]);
-        case 4:
-            return _moment(args[0], args[1], args[2], args[3]);
+                return _moment(args[0], args[1]);
+            case 3:
+                return _moment(args[0], args[1], args[2]);
+            case 4:
+                return _moment(args[0], args[1], args[2], args[3]);
         }
     };
     /*
@@ -139,7 +139,7 @@
      * The object can only contain the locale {locale: 'en'}.
      * This function can take 1 - 2 arguments, see numeraljs.com for api
      */
-    gengo.numeral = function () {
+    gengo.numeral = function() {
         var _numeral, args = [],
             _locale, self;
         if (arguments.length === 1) {
@@ -157,7 +157,7 @@
                 args.push(arg);
             }
         } else {
-            _.forEach(arguments, function (key) {
+            _.forEach(arguments, function(key) {
                 if (_.isNumber(key)) {
                     args.push(key);
                 } else if (_.isString(key)) {
@@ -179,27 +179,27 @@
             _numeral = lib(locale().bestmatch()).numeral();
         }
         switch (args.length) {
-        case 0:
-            if (self) {
-                //known issue when figuring out the language of numeral
-                //_numeral.langauge() = error. still works without knowing
-                //language
-                return _numeral;
-            } else {
-                return _numeral();
+            case 0:
+                if (self) {
+                    //known issue when figuring out the language of numeral
+                    //_numeral.langauge() = error. still works without knowing
+                    //language
+                    return _numeral;
+                } else {
+                    return _numeral();
 
-            }
-            break;
-        case 1:
-            return _numeral(args[0]);
+                }
+                break;
+            case 1:
+                return _numeral(args[0]);
         }
     };
     //configuration
-    gengo.config = function (opt) {
+    gengo.config = function(opt) {
         config(opt);
     };
     //initalize gengo
-    gengo.init = function (req, res, next) {
+    gengo.init = function(req, res, next) {
         if (typeof req === 'object') {
             locale(req);
             router().init(req);
@@ -234,12 +234,12 @@
         }
     };
     //expose the langauge
-    gengo.language = function () {
+    gengo.language = function() {
         return langmap[locale().bestmatch()];
     };
     //expose setLocale
     //this will set the locale globally
-    gengo.setLocale = function (obj, locale) {
+    gengo.setLocale = function(obj, locale) {
         var target = obj,
             req;
         // called like setLocale(req, 'en')
@@ -273,7 +273,7 @@
     };
     //expose getLocale
     //returns the locale
-    gengo.getLocale = function (req) {
+    gengo.getLocale = function(req) {
         // called like getlocale(req)
         if (req && req.locale) {
             req.locale = regex(req.locale).Locale().toUpperCase();
@@ -295,7 +295,7 @@
     //core takes care of the nitty gritty stuff
     //since we have separated the inputs into three parts
     //we can easily organize our tasks
-    core = function (phrase, value, args) {
+    core = function(phrase, value, args) {
         cout("module:gengo, fn: core, Input").info();
         cout(phrase).info();
         if (!_.isEmpty(value)) {
@@ -502,7 +502,7 @@
                     var objects = [],
                         other = [];
                     //combine the non objects into an array
-                    _.forEach(args, function (arg) {
+                    _.forEach(args, function(arg) {
                         if (_.isObject(arg)) {
                             objects.push(arg);
                         } else {
@@ -513,8 +513,8 @@
                     });
                     //combine the objects
                     var target = {};
-                    objects.forEach(function (object) {
-                        _.forEach(object, function (value, prop) {
+                    objects.forEach(function(object) {
+                        _.forEach(object, function(value, prop) {
                             target[prop] = value;
                         });
                     });
@@ -542,15 +542,19 @@
         }
         //let discern handle the difference and markdown
         //take care of any markdown syntax
-        return markdown(discern(phrase, value, args));
+        if (config().markdown()) {
+            return markdown(discern(phrase, value, args));
+        } else {
+            return discern(phrase, value, args);
+        }
     };
     //lib takes care of changing the locales of moment and numeral
-    lib = function (input) {
+    lib = function(input) {
         if (input) {
             input = input.toLowerCase();
         }
         return {
-            moment: function (override) {
+            moment: function(override) {
                 try {
                     if (input) {
                         moment.locale(localemap.moment[input]);
@@ -566,7 +570,7 @@
                     cout("fn: lib, fn: moment" + error.toString().replace("Error: ", " ")).error();
                 }
             },
-            numeral: function (override) {
+            numeral: function(override) {
                 if (input) {
                     try {
                         //if for some reason our locale is English
@@ -613,7 +617,7 @@
 
     // Credits to @mashpie
     //locale takes care of setting the locales, default locales, etc.
-    locale = function (req) {
+    locale = function(req) {
         if (_.isObject(req)) {
             var langheader = req.headers['accept-language'],
                 languages = [],
@@ -680,23 +684,23 @@
                 }
                 preferences[preferenceParts[0]] = preferenceParts[1];
                 return preferenceParts[0];
-            }).filter(function (lang) {
+            }).filter(function(lang) {
                 return preferences[lang] > 0;
             }).sort(function sortLanguages(a, b) {
                 return preferences[b] - preferences[a];
             });
         }
         return {
-            supported: function () {
+            supported: function() {
                 return config().supported();
             },
-            requested: function () {
+            requested: function() {
                 return requested;
             },
-            default: function () {
+            default: function() {
                 return config().default();
             },
-            bestmatch: function () {
+            bestmatch: function() {
                 var _locale = gengo.getLocale().toLowerCase(),
                     _default = config().default().toLowerCase();
                 return (_locale === _default) ? _default : _locale;
@@ -714,11 +718,11 @@
             gengo[config().global().gengo()] = gengo;
         }
 
-        api.forEach(function (method) {
+        api.forEach(function(method) {
 
             // be kind rewind, or better not touch anything already exiting
             if (!object[method]) {
-                object[method] = function () {
+                object[method] = function() {
                     if (gengo[method]) {
                         return gengo[method].apply(request, arguments);
                     }
@@ -746,7 +750,7 @@
 
     /*global define:false */
     if (typeof define === 'function' && define.amd) {
-        define([], function () {
+        define([], function() {
             return gengo;
         });
     }

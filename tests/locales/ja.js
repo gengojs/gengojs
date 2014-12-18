@@ -52,5 +52,12 @@ module.exports = {
     "Welcome to {{gengo}}.": "{{gengo}}へようこそ。",
     "moment.test": {
         "default": "モーメントてすとです。"
-    }
+    },
+    "Bold is **awesome**.":"太字は**すごい**。",
+    "Bold is __awesome__.":"太字は__すごい__。",
+    "Italic is *awesome*.":"イタリックは*すごい*。",
+    "Italic is _awesome_.":"イタリックは_すごい_。",
+    "Code is `awesome`.":"コードは`すごい`。",
+    "Code is `__`.":"コードは`__`。",
+
 };

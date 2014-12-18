@@ -4,13 +4,14 @@
     "description": "the best i18n middleware for Express",
     "main": "gengo.js",
     "scripts": {
-        "test": "mocha ./tests/*.js",
+        "test": "mocha ./tests/api && mocha ./tests/cookies && mocha ./tests/cookies && mocha ./tests/functions && mocha ./tests/json && mocha ./tests/libs && mocha ./tests/markdown && mocha ./tests/routes",
         "cookies": "mocha ./tests/cookies.js",
         "functions": "mocha ./tests/functions.js",
         "routes": "mocha ./tests/routes.js",
         "libs": "mocha ./tests/libs.js",
         "json": "mocha ./tests/json.js",
-        "api": "mocha ./tests/api.js"
+        "api": "mocha ./tests/api.js",
+        "markdown": "mocha ./tests/markdown.js"
     },
     "dependencies": {
         "app-root-path": "^1.0.0",

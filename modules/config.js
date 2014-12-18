@@ -56,6 +56,8 @@
       default: 'en-US',
       //set view aware
       router: false,
+      //disable markdown
+      markdown:false,
       //set file extension
       extension: 'js',
       //set cookie
@@ -138,6 +140,9 @@
       },
       router: function() {
         return configs.router;
+      },
+      markdown: function (){
+        return configs.markdown;
       },
       extension: function() {
         return configs.extension;

@@ -478,3 +478,9 @@ module.exports.http = {
 * gengo.js will now give a "safe" error message when router is enabled. The message will appear when a route is missing in your dictionary. Note that the server will not crash but the page will display properly as gengo returns the original phrase instead.
 
 * Updated readme
+
+**0.3.62**
+
+* Fixed markdown bug and disabled markdown by default
+* Added markdown to option
+* Added markdown tests (more to come)

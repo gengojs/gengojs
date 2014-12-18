@@ -9,35 +9,35 @@
  * https://github.com/adamwdraper
  */
 
-(function () {
+(function() {
     'use strict';
 
     var markdown,
         regex = {
             bold: {
-                "*": /\*{1}(.*?)\*{1}/g,
-                "_": /\_{1}(.*?)\_{1}/g
+                "**": /\*{2}([^\s ]+)\*{2}/g,
+                "__": /\_{2}([^\s ]+)\_{2}/g
             },
             italic: {
-                "**": /\*{2}(.*?)\*{2}/g,
-                "__": /\_{2}(.*?)\_{2}/g
+                "*": /\*{1}([^\s ]+)\*{1}/g,
+                "_": /\_{1}([^\s ]+)\_{1}/g
             },
             superscript: {
                 sup: /\^\[([^\s])\]/g,
                 bookmark: /\^\[([^\s])\]\((#[^\s]+)\)/g,
                 link: /\^\[\[([^\s])\]\]\((#[^\s]+)\)/g
             },
-            code :/\`(.*?)\`/g,
+            code: /\`(.*?)\`/g,
             strike: /\~\~(.*?)\~\~/g,
             link: {
-                default:/\[([^\]]+)]\(\s*(http[s]?:\/\/[^)]+)\s*\)\[?(blank|self|parent|top|[a-z]+)?\]?/gm,
-                bookmark:/\[([^\]]+)\]\((\#[^\s]+)\)/gm,
+                default: /\[([^\]]+)]\(\s*(http[s]?:\/\/[^)]+)\s*\)\[?(blank|self|parent|top|[a-z]+)?\]?/gm,
+                bookmark: /\[([^\]]+)\]\((\#[^\s]+)\)/gm,
                 twitter: /\[([^\]]+)]\([\@]([^\s]+)\)\[?(blank|self|parent|top|[a-z]+)?\]?/gm
             }
         },
         _ = require('lodash'),
         hasModule = (typeof module !== 'undefined' && module.exports);
-    markdown = function (phrase) {
+    markdown = function(phrase) {
         return parse(phrase);
     };
     //http://pzxc.com/simple-javascript-markdown-parsing-function
@@ -48,21 +48,23 @@
             var r = phrase;
             /*bold, italics, and code formatting*/
 
+            //bold --> **hello** or __hello__
+            if (r.match(regex.bold['**'])) {
+                r = r.replace(regex.bold['**'], '<strong>$1</strong>');
+            }
+            if (r.match(regex.bold.__)) {
+                r = r.replace(regex.bold.__, '<strong>$1</strong>');
+            }
+
             //italics --> *hello* or _hello_
             //this will prevent regex from breaking
-            if (r.match(regex.italic['**'])) {
-                r = r.replace(regex.italic['**'], '<em>$1</em>');
+            if (r.match(regex.italic['*'])) {
+                r = r.replace(regex.italic['*'], '<em>$1</em>');
             }
-            if (r.match(regex.italic.__)) {
-                r = r.replace(regex.italic.__, '<em>$1</em>');
+            if (r.match(regex.italic._)) {
+                r = r.replace(regex.italic._, '<em>$1</em>');
             }
-            //bold --> **hello** or __hello__
-            if (r.match(regex.bold['*'])) {
-                r = r.replace(regex.bold['*'], '<strong>$1</strong>');
-            }
-            if (r.match(regex.bold._)) {
-                r = r.replace(regex.bold._, '<strong>$1</strong>');
-            }
+
             //code --> `code`
             r = r.replace(regex.code, '<code>$1</code>');
             //strike --> ~~strike~~
@@ -117,7 +119,7 @@
 
     /*global define:false */
     if (typeof define === 'function' && define.amd) {
-        define([], function () {
+        define([], function() {
             return markdown;
         });
     }

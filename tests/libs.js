@@ -11,8 +11,7 @@ var express = require('express'),
 gengo.config({
     default: 'en-US',
     supported: ['ja', 'en-US'],
-    directory:{path: __dirname + '/locales/'},
-    debug: ['error', 'warn']
+    directory:{path: __dirname + '/locales/'}
 });
 
 app.use(gengo.init);
@@ -167,6 +166,8 @@ describe('Begin library test', function() {
 
     after(function(done) {
         server.close();
+        var name = require.resolve('../gengo.js');
+        delete require.cache[name];
         done();
     });
 

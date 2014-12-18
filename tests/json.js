@@ -14,8 +14,7 @@ describe('Begin JSON test', function() {
             default: 'en-US',
             supported: ['ja', 'en-US'],
             extension: 'json',
-            directory: {path: __dirname + '/locales/with JSON'},
-            debug: ['error', 'warn']
+            directory: {path: __dirname + '/locales/with JSON'}
         });
         app.use(gengo.init);
         app.get('/', function(req, res) {

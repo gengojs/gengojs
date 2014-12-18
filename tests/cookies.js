@@ -14,8 +14,7 @@ describe('Begin cookie test', function () {
         gengo.config({
             default: 'en-US',
             supported: ['ja', 'en-US'],
-            directory: {path: __dirname + '/locales/'},
-            debug: ['error', 'warn']
+            directory: {path: __dirname + '/locales/'}
         });
         app.use(cookieParser());
         app.use(gengo.init);
@@ -360,6 +359,8 @@ describe('Begin cookie test', function () {
                 }
             });
         server.close();
+        var name = require.resolve('../gengo.js');
+        delete require.cache[name];
         done();
     });
 });
