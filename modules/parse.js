@@ -39,7 +39,7 @@
                     if(result[router().route().dot()]){
                         _result = result[router().route().dot()][phrase];
                     }else{
-                        cout("Cannot read property of undefined. Check dictionary for missing route?").error();
+                        cout("module parse, fn: parse, Cannot read property of undefined. Check dictionary for missing route?").error();
                         return phrase;
                     }
                     

@@ -484,3 +484,6 @@ module.exports.http = {
 * Fixed markdown bug and disabled markdown by default
 * Added markdown to option
 * Added markdown tests (more to come)
+* Updated readme
+* Updated site to reflect changes and also the site has been translated
+* Updated error message in parse

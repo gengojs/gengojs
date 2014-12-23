@@ -25,6 +25,13 @@ To fork the site visit http://www.github.com/iwatakeshi/gengojs-site
 
 If you would like to see more examples other than the ones on gengojs.com then check out the tests there are 127+ possible ways to gengo!
 
+
+*12/22/14*
+
+Merry Christmas! This is an early Christmas gift from me to you! Yup! It's an update! So whats new? Check out the **Recent Changes**! You'll notice there are a few changes to gengojs. Other than that the website for gengojs has been translated to Japanese. If you would
+like to add your language to the docs, please please please (with dogeza) fork the site and translate the `en-us.json` file located under `'/config/locales'` to your language. On that note, take your time. I've had visitors from around the world and that really inspires me to support this project, but
+it's been a one man show so I need all the support that I can get from the nodejs community. 
+
 ###Recent Changes
 
 *For previous notes on changes, see CHANGELOG.md*
@@ -63,8 +70,16 @@ If you would like to see more examples other than the ones on gengojs.com then c
 **0.3.61**
 
 * gengo.js will now give a "safe" error message when router is enabled. The message will appear when a route is missing in your dictionary. Note that the server will not crash but the page will display properly as gengo returns the original phrase instead.
-
 * Updated readme
+
+**0.3.62**
+
+* Fixed markdown bug and disabled markdown by default
+* Added markdown to option
+* Added markdown tests (more to come)
+* Updated readme
+* Updated site to reflect changes and also the site has been translated
+* Updated error message in parse
 
 ###Tests
 
@@ -95,6 +110,9 @@ npm run routes
 
 #run api
 npm run api
+
+#run markdown
+npm run markdown
 
 ```
 
