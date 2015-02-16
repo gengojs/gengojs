@@ -4,7 +4,7 @@
      "description": "the best i18n middleware for Express",
      "main": "gengo.js",
      "scripts": {
-         "test": "mocha ./tests/input.js"
+         "test": "mocha ./tests/*.js"
      },
      "dependencies": {
          "app-root-path": "*",

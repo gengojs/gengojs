@@ -30,7 +30,11 @@
     /************************************
         Top Level Functions
     ************************************/
-    //gengo
+    /**
+     * gengo factory
+     * @param  {String || Object} phrase Contains a string or Object to translate
+     * @return {Gengo}        The Gengo instance
+     */
     gengo = function(phrase) {
         return new Gengo(phrase, extract(arguments));
     };
@@ -38,7 +42,7 @@
     /**
      * gengo Constructor
      * @param {String || Object} phrase Contains a string or Object to translate
-     * @param {[type]} other  [description]
+     * @param {Object || Array} other  Contains the values or sprintf arguments.
      */
     function Gengo(phrase, other) {
         this.extract = other;
@@ -400,72 +404,6 @@
     //     } else {
     //         return discern(phrase, value, args);
     //     }
-    // };
-    // //lib takes care of changing the locales of moment and numeral
-    // lib = function(input) {
-    //     if (input) {
-    //         input = input.toLowerCase();
-    //     }
-    //     return {
-    //         moment: function(override) {
-    //             try {
-    //                 if (input) {
-    //                     moment.locale(localemap.moment[input]);
-    //                     return moment;
-    //                 }
-
-    //                 if (override) {
-    //                     var localmoment = require('moment');
-    //                     localmoment.locale(localemap.moment[override]);
-    //                     return localmoment;
-    //                 }
-    //             } catch (error) {
-    //                 cout("fn: lib, fn: moment" + error.toString().replace("Error: ", " ")).error();
-    //             }
-    //         },
-    //         numeral: function(override) {
-    //             if (input) {
-    //                 try {
-    //                     //if for some reason our locale is English
-    //                     if (localemap.numeral[input] === 'en') {
-    //                         //set numeral's language
-    //                         return numeral.language('en');
-    //                     } else {
-    //                         //load the language
-    //                         numeral.language(localemap.numeral[input], require('numeral/languages/' + localemap.numeral[input] + '.js'));
-    //                         //set the language
-    //                         numeral.language(localemap.numeral[input]);
-    //                         return numeral;
-    //                     }
-
-    //                 } catch (error) {
-    //                     cout("fn: lib, fn: numeral" + error.toString().replace("Error: ", " ")).error();
-    //                 }
-    //             }
-
-    //             if (override) {
-    //                 try {
-    //                     var localenumeral = require('numeral');
-    //                     //if for some reason our locale is English
-    //                     if (localemap.numeral[override] === 'en') {
-    //                         //set numeral's language
-    //                         localenumeral.language('en');
-    //                         return localenumeral;
-    //                     } else {
-    //                         //load the language
-
-    //                         localenumeral.language(localemap.numeral[override], require('numeral/languages/' + localemap.numeral[override] + '.js'));
-    //                         //set the language
-    //                         localenumeral.language(localemap.numeral[override]);
-    //                         return localenumeral;
-    //                     }
-
-    //                 } catch (error) {
-    //                     cout("fn: lib , fn: numeral" + error.toString().replace("Error: ", " ")).error();
-    //                 }
-    //             }
-    //         }
-    //     };
     // };
 
     // // Credits to @mashpie

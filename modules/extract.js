@@ -1,3 +1,6 @@
+/*jslint node: true, forin: true, jslint white: true, newcap: true*/
+'use strict';
+
 var Proto = require("uberproto");
 var _ = require('lodash');
 
@@ -34,13 +37,13 @@ var extract = Proto.extend({
         return this.value;
     },
     hasValues: function() {
-        return _.isEmpty(this.value);
+        return !_.isEmpty(this.value);
     },
     args: function() {
         return this.arg;
     },
     hasArgs: function() {
-        return _.isEmpty(this.arg);
+        return !_.isEmpty(this.arg);
     }
 });
 
