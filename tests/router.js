@@ -6,7 +6,6 @@ var assert = require('assert');
 
 describe('Begin module "router" tests', function() {
     app.use(function(req, res, next) {
-        console.log(req.path);
         var result = router(req);
         res.send({
             array: result.toArray(),
