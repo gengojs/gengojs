@@ -14,23 +14,23 @@ function normalize(str) {
 var root = require('app-root-path').path;
 var path = require('path'),
     defaults = {
-        //set global variables
+        //global variables
         global: "__",
-        //set path to locale
+        //path to locale
         directory: path.normalize(path.join(root, '/locales')),
         //supported locales
         supported: ['en-US'],
-        //set default locale, which would be the locale used for your template of choice
+        //default locale, which would be the locale used for your template of choice
         default: 'en-US',
-        //set view aware
+        //route aware ?
         router: false,
-        //disable markdown
+        //enable markdown ?
         markdown: false,
-        //set file extension
+        //file extension
         extension: 'json',
-        //set cookie
+        //cookie
         cookie: 'locale',
-        //set keywords
+        //keywords
         keywords: {
             default: 'default',
             translated: 'translated',
@@ -39,6 +39,7 @@ var path = require('path'),
         },
         prefix: ""
     };
+
 var config = Proto.extend({
     init: function(opt) {
         this.settings = _.assign(_.extend(defaults, opt));
