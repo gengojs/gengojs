@@ -160,7 +160,7 @@ describe('Begin configuration tests', function() {
             done();
         });
 
-        it('The default template should === "{{" && "}}"', function(done) {
+        it('The configured template should === "{{" && "}}"', function(done) {
             var template = config({
                 template: {
                     open: '{',

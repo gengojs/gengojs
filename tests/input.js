@@ -274,4 +274,226 @@ describe('Begin input functionality tests without translations', function() {
         });
     });
 
+    describe('Begin tests with n arguments', function() {
+        describe('String', function() {
+            it('input __("hello", "world", "!") should === "hello" &&  === ["world", "!"]', function(done) {
+                var result = __('hello', 'world', '!');
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world', '!']);
+                done();
+            });
+
+            it('input __("hello", "world", "!", 2) should === "hello" &&  === ["world", "!", 2]', function(done) {
+                var result = __('hello', 'world', '!', 2);
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world', '!', 2]);
+                done();
+            });
+
+            it('input __("hello", "world", {phrase:"goodbye"}) should === "hello" &&  === ["world"]', function(done) {
+                var result = __('hello', 'world', {
+                    phrase: 'goodbye'
+                });
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world']);
+                assert.deepEqual(result.values, {});
+                done();
+            });
+
+            it('input __("hello", "world", {phrase:"goodbye", locale:"ja"}) should === "hello" &&  === ["world"] && === {locale:"ja"}', function(done) {
+                var result = __('hello', 'world', {
+                    phrase: 'goodbye',
+                    locale: "ja"
+                });
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world']);
+                assert.deepEqual(result.values, {
+                    locale: 'ja'
+                });
+                done();
+            });
+
+            it('input __("hello", "world", {phrase:"goodbye"}, {locale:"ja"}) should === "hello" &&  === ["world"] && === {locale:"ja"}', function(done) {
+                var result = __('hello', 'world', {
+                    phrase: 'goodbye'
+                }, {
+                    locale: "ja"
+                });
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world']);
+                assert.deepEqual(result.values, {
+                    locale: 'ja'
+                });
+                done();
+            });
+
+            it('input __("hello", "world", {phrase:"goodbye"}, {locale:"ja"} ,{x:"!"}) should === "hello" &&  === ["world"] && === {locale:"ja"} && === {x:"!"}', function(done) {
+                var result = __('hello', 'world', {
+                    phrase: 'goodbye'
+                }, {
+                    locale: "ja"
+                }, {
+                    x: "!"
+                });
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world']);
+                assert.deepEqual(result.values, {
+                    locale: 'ja'
+                });
+                assert.deepEqual(result.template, {
+                    x: "!"
+                });
+                done();
+            });
+
+            it('input __("hello", "world", {count:2}, {locale:"ja"} , {x:"!"}) should === "hello" &&  === ["world"] && === {locale:"ja", count:2} && === {x:"!"}', function(done) {
+                var result = __('hello', 'world', {
+                    count: 2
+                }, {
+                    locale: "ja"
+                }, {
+                    x: "!"
+                });
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world']);
+                assert.deepEqual(result.values, {
+                    locale: 'ja',
+                    count: 2
+                });
+                assert.deepEqual(result.template, {
+                    x: "!"
+                });
+                done();
+            });
+
+            it('input __("hello", "world", {locale:"ja"}, ["cake"], {x:"!"}) should === "hello" &&  === ["world","cake"] && === {locale:"ja"} && === {x:"!"}', function(done) {
+                var result = __('hello', 'world', ['cake'], {
+                    locale: "ja"
+                }, {
+                    x: "!"
+                });
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world', 'cake']);
+                assert.deepEqual(result.values, {
+                    locale: 'ja'
+                });
+                assert.deepEqual(result.template, {
+                    x: "!"
+                });
+                done();
+            });
+
+            it('input __("hello", "world",["!", {locale:"ja"}]) should === "hello" &&  === ["world", "!"]', function(done) {
+                var result = __('hello', 'world', ['!', {
+                    locale: 'ja'
+                }]);
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world', '!']);
+                done();
+            });
+        });
+
+        describe('Object', function() {
+            it('input __({phrase:"hello"}, "world", "!") should === "hello" && === ["world"]', function(done) {
+                var result = __({
+                    phrase: 'hello'
+                }, 'world', '!');
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world', '!']);
+                done();
+            });
+
+            it('input __({phrase:"hello"}, "world", {phrase:"!"}) should === "hello" && === ["world"]', function(done) {
+                var result = __({
+                    phrase: 'hello'
+                }, 'world', {
+                    phrase: '!'
+                });
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world']);
+                done();
+            });
+
+            it('input __({phrase:"hello"}, "world", {locale:"ja"}) should === "hello" && === ["world"] && === {locale:"ja"}', function(done) {
+                var result = __({
+                    phrase: 'hello'
+                }, 'world', {
+                    locale: 'ja'
+                });
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world']);
+                assert.deepEqual(result.values, {
+                    locale: 'ja'
+                });
+                done();
+            });
+
+            it('input __({phrase:"hello", locale:"en"}, "world", {locale:"ja"}) should === "hello" && === ["world"] && === {locale:"en"}', function(done) {
+                var result = __({
+                    phrase: 'hello',
+                    locale: 'en'
+                }, 'world', {
+                    locale: 'ja'
+                });
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world']);
+                assert.deepEqual(result.values, {
+                    locale: 'en'
+                });
+                done();
+            });
+
+            it('input __({phrase:"hello", count:"2"}, "world", {count:3}) should === "hello" && === ["world"] && === {count:2}', function(done) {
+                var result = __({
+                    phrase: 'hello',
+                    count: 2
+                }, 'world', {
+                    count: 3
+                });
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world']);
+                assert.deepEqual(result.values, {
+                    count: 2
+                });
+                done();
+            });
+
+            it('input __({phrase:"hello", count:"2"}, "world", {count:3}, ["!"], 2) should === "hello" && === ["world", "!", 2] && === {count:2}', function(done) {
+                var result = __({
+                    phrase: 'hello',
+                    count: 2
+                }, 'world', {
+                    count: 3
+                }, ["!"], 2);
+                assert.strictEqual(result.phrase, 'hello');
+                assert.deepEqual(result.args, ['world', '!', 2]);
+                assert.deepEqual(result.values, {
+                    count: 2
+                });
+                done();
+            });
+        });
+
+        describe('Array', function() {
+            it('input __(["hello"], "world", {locale:"ja"}) should !== "hello"', function(done) {
+                var result = __(['hello'], 'world', {
+                    locale: 'ja'
+                });
+                assert.notStrictEqual(result.phrase, 'hello');
+                done();
+            });
+        });
+
+        describe('Number', function() {
+            it('input __(2, "world", {locale:"ja"}) should !== "hello"', function(done) {
+                var result = __(2, 'world', {
+                    locale: 'ja'
+                });
+                assert.notStrictEqual(result.phrase, 'hello');
+                done();
+            });
+        });
+    });
+
+
 });

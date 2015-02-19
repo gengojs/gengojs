@@ -5,7 +5,7 @@
  * author : Takeshi Iwana aka iwatakeshi
  * https://github.com/iwatakeshi
  * license : MIT
- * Code heavily inspired from :
+ * Code heavily inspired by :
  *        Adam Draper
  * https://github.com/adamwdraper
  *            &
@@ -15,7 +15,6 @@
 
 (function() {
     "use strict";
-    //main functions
     var version = '1.0.0',
         //gengo modules
         extract = require('./modules/extract'),
@@ -29,16 +28,11 @@
         hasModule = (typeof module !== 'undefined' && module.exports);
 
     /**
-     * Top level functions
-     */
-
-    /**
      * gengo Constructor
      * @param {String || Object} phrase Contains a string or Object to translate
      * @param {Object || Array} other  Contains the values or sprintf arguments.
      * @api private
      */
-
     var Gengo = Proto.extend({
         init: function() {
             this.result = '';

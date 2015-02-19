@@ -32,53 +32,27 @@ var filter = Proto.extend({
         switch (l) {
             case 1:
                 //called like this: _({Object})
-                if (p && !_.isString(p) && _.isPlainObject(p)) {
-                    result = this.filterObject(p, v, a);
-                }
+                if (_.isPlainObject(p)) result = this.filterObject(p, v, a);
+
                 break;
             case 2:
-                //called like this: __('String', 'String')
-                //note that the second String is strict
-                //therefore, 1.0.0 will no longer parse integers
-                //from strings
-                //...skip since it's already taken care of
-
                 //called like this: __('String', {Object})
                 if (_.isString(p) && !_.isEmpty(v)) {
                     //make sure that the object doesn't contain a phrase
                     if (v['phrase']) delete v['phrase'];
                     result = this.filterObject(v, v, a);
                 }
-
-                //called like this: __('String', [Array])
-                //...skip since it's already taken care of
-
-                //called like this: __('String', Number)
-                //note that numbers will be considered sprintf but
-                //not as count in 1.0.0
-                //...skip since it's already taken care of
-
-                //called like this: __({Object}, 'String')
-                //...skip since it's already taken care of
-
-                //called like this: __({Object}, {Object})
-                //...skip since it's already taken care of
-
-                if (!_.isString(p) && _.isPlainObject(p)) {
+                //called like this: __({Object})
+                if (_.isPlainObject(p)) {
                     //make sure that the object doesn't contain a phrase
                     if (v['phrase']) delete v['phrase'];
                     result = this.filterObject(p, v, a);
                 }
-                //called like this: __({Object}, [Array])
-                //...skip since it's already taken care of
-                //called like this: __({Object}, Number)
-                //...skip since it's already taken care of
-                //
                 break;
             default:
                 //assume it's greater than 2
                 //meaning it's called like this: __(something, something, something)
-
+                result = this.consolidate(p, a);
                 //could the 
                 break;
         }
@@ -95,7 +69,7 @@ var filter = Proto.extend({
         _.forOwn(o, function(item, key) {
             switch (key.toLowerCase()) {
                 case 'phrase':
-                    p = item;
+                    if (!p) p = item;
                     break;
                 case 'locale':
                     v[key] = item;
@@ -122,38 +96,40 @@ var filter = Proto.extend({
         if (_.isEqual(o, v)) {
             //remove anything in values that may be in templates
             _.forEach(t, function(item, key) {
-                if (v[key]) {
-                    delete v[key];
-                }
+                if (v[key]) delete v[key];
             })
+        } else {
+            if (_.isPlainObject(o) && _.isPlainObject(v)) {
+                //double check that values only has what it needs
+                var temp = v;
+                _.forOwn(temp, function(item, key) {
+                    switch (key.toLowerCase()) {
+                        case 'locale':
+                            break;
+                        case 'count':
+                            break;
+                        case 'sprintf':
+                            //just in case it may not have been passed
+                            if (_.isArray(item)) {
+                                _.forEach(item, function(aitem) {
+                                    a.push(aitem);
+                                });
+                            } else {
+                                a.push(item);
+                            }
+                            delete v[key];
+                            break;
+                        default:
+                            //assume that it's for templating
+                            t[key] = item;
+                            delete v[key];
+                            break;
+                    }
+                });
+            }
         }
 
-        if (_.isPlainObject(o) && _.isPlainObject(v) && !_.isEqual(o, v)) {
-            //double check that values only has what it needs
-            var temp = v;
-            _.forOwn(temp, function(item, key) {
-                switch (key.toLowerCase()) {
-                    case 'locale':
-                        break;
-                    case 'count':
-                        break;
-                    case 'sprintf':
-                        if (_.isArray(item)) {
-                            _.forEach(item, function(aitem) {
-                                a.push(aitem);
-                            });
-                        } else {
-                            a.push(item);
-                        }
-                        delete v[key];
-                        break;
-                    default:
-                        t[key] = item;
-                        delete v[key];
-                        break;
-                }
-            });
-        }
+
         return {
             phrase: p,
             values: v,
@@ -179,6 +155,108 @@ var filter = Proto.extend({
             });
         }
         return temp;
+    },
+    consolidate: function(p, a) {
+        var ptemp;
+        var atemp = [];
+        var vtemp = {};
+        var ttemp = {};
+        //called like this: __('String', something ...n)
+        if (_.isString(p)) {
+            ptemp = p;
+            _.forEach(a, function(aitem, index) {
+                if (_.isString(aitem) || _.isNumber(aitem)) atemp.push(aitem);
+                if (_.isArray(aitem)) _.forEach(aitem, function(aitem2) {
+                    if (!_.isPlainObject(aitem2)) atemp.push(aitem2);
+                });
+                if (_.isPlainObject(aitem)) _.forOwn(aitem, function(vitem, key) {
+                    switch (key.toLowerCase()) {
+                        case 'phrase':
+                            //ignore
+                            break;
+                        case 'locale':
+                            vtemp[key] = vitem;
+                            break;
+                        case 'sprintf':
+                            if (_.isArray(vitem)) _.forEach(vitem, function(aitem2) {
+                                atemp.push(aitem2);
+                            });
+                            else
+                                atemp.push(aitem2);
+                            break;
+                        case 'count':
+                            vtemp[key] = vitem;
+                            break;
+                        default:
+                            ttemp[key] = vitem;
+                            break;
+                    }
+                });
+            });
+        }
+
+        if (_.isPlainObject(p)) {
+            _.forOwn(p, function(item, key) {
+                switch (key) {
+                    case 'phrase':
+                        if (!ptemp) ptemp = item;
+                        break;
+                    case 'locale':
+                        vtemp[key] = item;
+                        break;
+                    case 'count':
+                        vtemp[key] = item;
+                        break;
+                    case 'sprintf':
+                        if (_.isArray(item)) _.forEach(item, function(aitem) {
+                            if (!_.isPlainObject(aitem)) atemp.push(aitem);
+                        });
+                        else atemp.push(aitem);
+                        break;
+                    default:
+                        ttemp[key] = item;
+                        break;
+                }
+            });
+
+            //now tackle the array
+            _.forEach(a, function(aitem) {
+                if (_.isString(aitem) || _.isNumber(aitem)) atemp.push(aitem);
+                if (_.isArray(aitem)) _.forEach(aitem, function(aitem2) {
+                    if (!_.isPlainObject(aitem2)) atemp.push(aitem2);
+                });
+                if (_.isPlainObject(aitem)) _.forOwn(aitem, function(vitem, key) {
+                    switch (key.toLowerCase()) {
+                        case 'phrase':
+                            //ignore 
+                            break;
+                        case 'locale':
+                            if (!vtemp[key]) vtemp[key] = vitem;
+                            break;
+                        case 'sprintf':
+                            if (_.isArray(vitem)) _.forEach(vitem, function(aitem2) {
+                                atemp.push(aitem2);
+                            });
+                            else
+                                atemp.push(aitem2);
+                            break;
+                        case 'count':
+                            if (!vtemp[key]) vtemp[key] = vitem;
+                            break;
+                        default:
+                            if (!vtemp[key]) ttemp[key] = vitem;
+                            break;
+                    }
+                });
+            });
+        }
+
+        return {
+            phrase: ptemp,
+            values: vtemp,
+            args: atemp,
+            template: ttemp
+        }
     }
 
 }).create();
