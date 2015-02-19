@@ -16,515 +16,119 @@
 (function() {
     "use strict";
     //main functions
-    var gengo,
-        VERSION = '1.0.0',
+    var version = '1.0.0',
+        //gengo modules
         extract = require('./modules/extract'),
-        //npm modules\
+        middleware = require('./modules/middleware'),
+        filter = require('./modules/filter'),
+        Proto = require('uberproto'),
+        //npm modules
         mustache = require('mustache'),
         vsprintf = require('sprintf-js').vsprintf,
         _ = require('lodash'),
         hasModule = (typeof module !== 'undefined' && module.exports);
 
-
-
-    /************************************
-        Top Level Functions
-    ************************************/
     /**
-     * gengo factory
-     * @param  {String || Object} phrase Contains a string or Object to translate
-     * @return {Gengo}        The Gengo instance
+     * Top level functions
      */
-    gengo = function(phrase) {
-        return new Gengo(phrase, extract(arguments));
-    };
 
     /**
      * gengo Constructor
      * @param {String || Object} phrase Contains a string or Object to translate
      * @param {Object || Array} other  Contains the values or sprintf arguments.
+     * @api private
      */
-    function Gengo(phrase, other) {
-        this.extract = other;
-        this.phrase = !_.isArray(phrase) ? phrase : null;
-        this.values = this.extract.values();
-        this.args = this.extract.args();
+
+    var Gengo = Proto.extend({
+        init: function() {
+            this.result = '';
+            this.settings = {
+                parser: 'default'
+            };
+            this.middlewares = null;
+            //number of arguments
+            this.length = 0;
+        },
+        parse: function(phrase, other, length) {
+            this.length = length;
+            this.build(phrase, other);
+            if (this.settings.parser === 'default') {
+                //add default parser
+            }
+
+            if (this.middlewares) {
+                this.middlewares.stack.forEach(function(fn) {
+                    fn.bind(this)();
+                }, this);
+            }
+
+            return this;
+        },
+        build: function(phrase, other) {
+            var f = filter(phrase, other.values(), other.args(), this.length);
+            this.phrase = f.phrase;
+            this.values = f.values;
+            this.args = f.args;
+            this.template = f.template || {};
+        },
+        express: function(req, res, next) {
+            next();
+        },
+        set: function(type, value) {
+            this.settings[type] = value;
+        },
+        use: function(fn) {
+            this.middlewares = middleware(fn);
+        },
+        //for mocha tests
+        mock: function(phrase, other, length) {
+            this.parse(phrase, other, length);
+            return this;
+        }
+    }).create();
+
+
+    /**
+     * gengo factory
+     * @param  {String || Object} phrase Contains a string or Object to translate
+     * @return {String}        The translated phrase
+     */
+    function gengo(phrase) {
+        return Gengo.parse(phrase, extract(arguments), arguments.length);
+    };
+
+    /**
+     * Static API functions
+     */
+
+    /**
+     * 'use' is a middleware handler that allows developers to
+     *  append their own parser into gengo.js
+     * @param  {Function} fn The parser to use
+     * @api public
+     */
+    gengo.use = function(fn) {
+        Gengo.use(fn);
+    };
+
+    gengo.init = function(req, res, next) {
+        Gengo.express(req, res, next);
     }
 
-    // //configuration
-    // gengo.config = function(opt) {
-    //     config(opt);
-    // };
-    // //initalize gengo
-    // gengo.init = function(req, res, next) {
-    //     if (typeof req === 'object') {
-    //         locale(req);
-    //         router().init(req);
+    /**
+     * '__mock' is a function used for mocha tests
+     * @param  {String || Object} phrase Contains a string or Object to translate
+     * @return {Object}        Gengo's 'this' object
+     * @api private
+     */
+    gengo.__mock = function(phrase) {
+        return Gengo.mock(phrase, extract(arguments), arguments.length);
+    };
 
-    //         if (typeof res === 'object') {
-    //             applyAPItoObject(req, res);
 
-    //             // register locale to res.locals so hbs helpers know this.locale
-    //             if (!res.locale) {
-    //                 res.locale = req.locale;
-    //             }
-
-    //             if (res.locals) {
-    //                 res.locals[config().global().gengo()] = gengo;
-    //                 applyAPItoObject(req, res.locals);
-
-    //                 // register locale to res.locals so hbs helpers know this.locale
-    //                 if (!res.locals.locale) {
-    //                     res.locals.locale = req.locale;
-    //                 }
-    //             }
-    //         }
-
-    //         // bind api to req also
-    //         if (typeof req === 'object') {
-    //             applyAPItoObject(req);
-    //         }
-    //     }
-
-    //     if (typeof next === 'function') {
-    //         next();
-    //     }
-    // };
-    // //expose the langauge
-    // gengo.language = function() {
-    //     return langmap[locale().bestmatch()];
-    // };
-    // //expose setLocale
-    // //this will set the locale globally
-    // gengo.setLocale = function(obj, locale) {
-    //     var target = obj,
-    //         req;
-    //     // called like setLocale(req, 'en')
-    //     if (obj && _.isString(locale)) {
-    //         req = obj;
-    //         target = locale;
-    //     }
-
-    //     // called like req.setLocale('en')
-    //     if (locale === undefined && _.isString(this.locale) && _.isString(obj)) {
-    //         req = this;
-    //         target = obj.toLowerCase();
-    //     }
-
-    //     //if the locale exists
-    //     if (load(locale)) {
-    //         // called like setLocale('en')
-    //         if (req === undefined) {
-    //             bestmatch = target;
-    //         } else {
-    //             bestmatch = target.toLowerCase();
-    //             req.locale = target.toLowerCase();
-    //         }
-    //     } else {
-    //         if ((req !== undefined)) {
-    //             req.locale = config().default();
-    //         }
-    //     }
-
-    //     return gengo.getLocale(req);
-    // };
-    // //expose getLocale
-    // //returns the locale
-    // gengo.getLocale = function(req) {
-    //     // called like getlocale(req)
-    //     if (req && req.locale) {
-    //         req.locale = regex(req.locale).Locale().toUpperCase();
-    //         return req.locale;
-    //     }
-
-    //     // called like req.getlocale()
-    //     if (req === undefined && typeof this.locale === 'string') {
-    //         this.locale = regex(this.locale).Locale().toUpperCase();
-    //         return this.locale;
-    //     }
-    //     // called like getlocale()
-    //     var _bestresult = regex(bestmatch).Locale().toUpperCase() || regex(config().default()).Locale().toUpperCase();
-    //     return _bestresult;
-    // };
-    // //expose the version
-    // gengo.version = VERSION;
-
-    // //core takes care of the nitty gritty stuff
-    // //since we have separated the inputs into three parts
-    // //we can easily organize our tasks
-    // core = function(phrase, value, args) {
-    //     cout("module:gengo, fn: core, Input").info();
-    //     cout(phrase).info();
-    //     if (!_.isEmpty(value)) {
-    //         cout(value).info();
-    //     }
-    //     if (!_.isEmpty(args)) {
-    //         cout(args).info();
-    //     }
-    //     //decides which locale to use
-    //     function negotiate(override) {
-    //             //override is used when its explicitly called
-    //             //so if is defined
-    //             if (override) {
-    //                 //check that its a string
-    //                 if (_.isString(override)) {
-    //                     //check if the string contains a locale
-    //                     if (localemap.gengo[override.toLowerCase()]) {
-    //                         if (override.indexOf('_') > -1) {
-    //                             override = override.replace('_', '-');
-    //                         }
-    //                         return {
-    //                             locale: override,
-    //                             override: true
-    //                         };
-    //                     } else {
-    //                         //then just return the bestmatch
-    //                         return locale().bestmatch();
-    //                     }
-    //                     //if override is an object
-    //                 } else if (_.isObject(override)) {
-    //                     if (override.locale) {
-    //                         if (override.locale.indexOf('_') > -1) {
-    //                             override.locale = override.locale.replace('_', '-');
-    //                         }
-    //                         return {
-    //                             locale: override.locale,
-    //                             override: true
-    //                         };
-    //                     } else {
-    //                         //then just return the bestmatch
-    //                         return locale().bestmatch();
-    //                     }
-    //                 }
-    //             } else {
-    //                 //then just return the bestmatch
-    //                 return locale().bestmatch();
-    //             }
-    //         }
-    //         //separates the phrase into 4 parts: object, brackets, dots, phrases.
-    //     function discern(phrase, value, args) {
-    //             //called like this: __({locale: 'ja', phrase: 'Hello', count: 2}, something)
-    //             if (_.isObject(phrase)) {
-    //                 //if locale exists
-    //                 if (phrase.locale) {
-    //                     //sanitize the locale
-    //                     if (phrase.locale.indexOf('_') !== -1) {
-    //                         phrase.locale = phrase.locale.toLowerCase();
-    //                         phrase.locale = phrase.locale.replace('_', '-');
-    //                     }
-    //                     if (_.isEmpty(value) && _.isEmpty(args)) {
-    //                         value = {};
-    //                         value.locale = phrase.locale;
-    //                     } else {
-    //                         //just append it to value
-    //                         if (!_.isEmpty(value)) {
-    //                             value.locale = phrase.locale;
-
-    //                         }
-    //                         //just append it to args
-    //                         if (!_.isEmpty(args)) {
-    //                             args.push({
-    //                                 locale: phrase.locale
-    //                             });
-    //                         }
-    //                     }
-    //                 }
-    //                 //count exists
-    //                 if (phrase.count) {
-    //                     if (_.isEmpty(value) && _.isEmpty(args)) {
-    //                         value = {};
-    //                         value.count = phrase.count;
-    //                     } else {
-    //                         //just append it to value
-    //                         if (!_.isEmpty(value)) {
-    //                             value.count = phrase.count;
-    //                         }
-    //                         //just append it to args
-    //                         if (!_.isEmpty(args)) {
-    //                             args.push({
-    //                                 count: phrase.count
-    //                             });
-    //                         }
-    //                     }
-    //                 }
-    //                 //if phrase exists
-    //                 if (phrase.phrase) {
-    //                     //then let expression and parser handle the rest
-    //                     return parser(expression(phrase.phrase).phrase, value, args, expression(phrase.phrase).type);
-    //                 } else {
-    //                     cout("No phrase found in object.").error();
-    //                 }
-    //                 //called like this __("something", something)
-    //             } else if (_.isString(phrase)) {
-    //                 //then let expression and parser handle the rest
-    //                 return parser(expression(phrase).phrase, value, args, expression(phrase).type);
-    //             }
-
-    //         }
-    //         //tells parser which type of parser is needed for the phrase.
-    //     function expression(phrase) {
-    //             //if the phrase contains brackets
-    //             if (regex(phrase).Bracket().match()) {
-
-    //                 cout("fn: core, Input contains brackets").debug();
-    //                 cout(phrase).data();
-    //                 //return the regex result and the type of parser
-    //                 return {
-    //                     phrase: regex(phrase).Bracket().exec(),
-    //                     type: 'bracket'
-    //                 };
-    //                 //if the phrase contains dots
-    //             } else if (regex(phrase).Dot().match()) {
-
-    //                 cout("fn: core, Input contains dots").debug();
-    //                 cout(phrase).data();
-    //                 return {
-    //                     phrase: phrase,
-    //                     type: 'dot'
-    //                 };
-    //                 //if the phrase is just something ordinary
-    //             } else {
-    //                 cout("fn: core, Input contains phrases").debug();
-    //                 cout(phrase).data();
-    //                 return {
-    //                     phrase: phrase,
-    //                     type: 'phrase'
-    //                 };
-
-    //             }
-    //         }
-    //         //parser will let parse know what to do and also return
-    //         //the string with mustache and kawari if needed.
-    //     function parser(phrase, value, args, type) {
-    //             var result;
-    //             //called like this __(something)
-    //             if (_.isEmpty(value) && _.isEmpty(args)) {
-    //                 return parse[type](phrase, negotiate(), false);
-    //             } else if (!_.isEmpty(value)) {
-    //                 //called like this __(something, {something})
-    //                 result = parse[type](phrase, negotiate(value), isPlural(value.count));
-    //                 if (regex(result).Mustache().match()) {
-    //                     result = mustache.render(result, value);
-    //                 }
-    //                 if (regex(result).Sprintf().match()) {
-    //                     result = kawari(result, value.sprintf);
-    //                 }
-    //                 return result;
-    //                 //called like this __(something, something)
-    //             } else if (!_.isEmpty(args)) {
-    //                 //if only one argument exists
-    //                 if (args.length === 1) {
-    //                     var arg = args[0];
-    //                     //called like this __(something, 'something')
-    //                     if (_.isString(arg)) {
-    //                         //called like this __(something, '2')
-    //                         if (parseInt(arg)) {
-    //                             result = parse[type](phrase, negotiate(), isPlural(arg));
-    //                             if (regex(result).Sprintf().match()) {
-    //                                 return kawari(result, arg);
-    //                             } else {
-    //                                 return result;
-    //                             }
-    //                             //called like this __(something, 'ja')
-    //                         } else if (localemap.gengo[arg]) {
-    //                             //override the locale
-    //                             return parse[type](phrase, negotiate(arg), false);
-    //                         } else {
-    //                             //then its called like this __(something, 'something')
-    //                             result = parse[type](phrase, negotiate(), false);
-    //                             if (regex(result).Sprintf().match()) {
-    //                                 return kawari(result, arg);
-    //                             } else {
-    //                                 return result;
-    //                             }
-    //                         }
-    //                         //called like this __(something, 2)
-    //                     } else if (_.isNumber(arg)) {
-    //                         result = parse[type](phrase, negotiate(), isPlural(arg));
-    //                         if (regex(result).Sprintf().match()) {
-    //                             return kawari(result, arg);
-    //                         } else {
-    //                             return result;
-    //                         }
-    //                         //called like this __(something, [something])
-    //                     } else if (_.isArray(arg)) {
-    //                         result = parse[type](phrase, negotiate(), false);
-    //                         if (regex(result).Sprintf().match()) {
-    //                             return kawari(result, arg);
-    //                         }
-    //                     }
-    //                     //called like this __(something, 'something', {something}, 'something', 2)
-    //                 } else {
-    //                     //lets separate them even further
-    //                     var objects = [],
-    //                         other = [];
-    //                     //combine the non objects into an array
-    //                     _.forEach(args, function(arg) {
-    //                         if (_.isObject(arg)) {
-    //                             objects.push(arg);
-    //                         } else {
-    //                             if (!_.isArray(arg)) {
-    //                                 other.push(arg);
-    //                             }
-    //                         }
-    //                     });
-    //                     //combine the objects
-    //                     var target = {};
-    //                     objects.forEach(function(object) {
-    //                         _.forEach(object, function(value, prop) {
-    //                             target[prop] = value;
-    //                         });
-    //                     });
-
-    //                     result = parse[type](phrase, negotiate(target), isPlural(target));
-    //                     if (regex(result).Mustache().match()) {
-    //                         result = mustache.render(result, target);
-    //                     }
-    //                     if (regex(result).Sprintf().match()) {
-    //                         result = kawari(result, other);
-    //                     }
-    //                     return result;
-    //                 }
-    //             }
-    //         }
-    //         //checks if plural is necessary. Using simple algm: count > 1
-    //     function isPlural(num) {
-    //             var count;
-    //             if (_.isString(num)) {
-    //                 count = parseInt(num);
-    //             } else {
-    //                 count = num;
-    //             }
-    //             return count > 1;
-    //         }
-    //         //let discern handle the difference and markdown
-    //         //take care of any markdown syntax
-    //     if (config().markdown()) {
-    //         return markdown(discern(phrase, value, args));
-    //     } else {
-    //         return discern(phrase, value, args);
-    //     }
-    // };
-
-    // // Credits to @mashpie
-    // //locale takes care of setting the locales, default locales, etc.
-    // locale = function(req) {
-    //     if (_.isObject(req)) {
-    //         var langheader = req.headers['accept-language'],
-    //             languages = [],
-    //             regions = [];
-    //         req.languages = [config().default()];
-    //         req.regions = [config().default()];
-    //         req.language = config().default();
-    //         req.region = config().default();
-    //         if (langheader) {
-    //             var match, fallbackMatch;
-    //             requested = acceptedlang(langheader);
-    //             for (var i = 0, len = requested.length; i < len; i++) {
-    //                 var lang = requested[i].toLowerCase(),
-    //                     lr = lang.split('-', 2),
-    //                     parentLang = lr[0],
-    //                     region = lr[1];
-    //                 languages.push(parentLang.toLowerCase());
-    //                 if (region) {
-    //                     regions.push(region.toLowerCase());
-    //                 }
-    //                 if (!match && (config().supported().indexOf(lang) > -1)) {
-    //                     match = lang;
-    //                     //console.log("match", match);
-    //                 }
-
-    //                 if (!fallbackMatch && (config().supported().indexOf(lang) === -1)) {
-    //                     fallbackMatch = config().default();
-    //                     //console.log("fallback", fallbackMatch)
-    //                 }
-    //             }
-    //             req.language = match || fallbackMatch || req.language;
-    //             req.region = regions[0] || req.region;
-    //         }
-    //         // setting the language by cookie
-    //         if (req.cookies && req.cookies[config().cookie()]) {
-    //             var cookie = req.cookies[config().cookie()].toLowerCase();
-    //             if (cookie.indexOf('_') > -1) {
-    //                 req.language = cookie.replace('_', '-');
-    //             } else {
-    //                 req.language = cookie;
-    //             }
-    //         }
-    //         //sanitize the locale
-    //         if (req.language.indexOf('_') > -1) {
-    //             req.language = req.language.replace('_', '-');
-    //         }
-    //         gengo.setLocale(req, req.language);
-    //     }
-    //     /**
-    //      * Credits to @Mashpie https://github.com/mashpie
-    //      * https://github.com/mashpie/i18n-node/blob/master/i18n.js#L332
-    //      * Get a sorted list of accepted languages from the HTTP Accept-Language header
-    //      */
-    //     function acceptedlang(header) {
-    //         var languages = header.split(','),
-    //             preferences = {};
-    //         return languages.map(function parseLanguagePreference(item) {
-    //             var preferenceParts = item.trim().split(';q=');
-    //             if (preferenceParts.length < 2) {
-    //                 preferenceParts[1] = 1.0;
-    //             } else {
-    //                 var quality = parseFloat(preferenceParts[1]);
-    //                 preferenceParts[1] = quality ? quality : 0.0;
-    //             }
-    //             preferences[preferenceParts[0]] = preferenceParts[1];
-    //             return preferenceParts[0];
-    //         }).filter(function(lang) {
-    //             return preferences[lang] > 0;
-    //         }).sort(function sortLanguages(a, b) {
-    //             return preferences[b] - preferences[a];
-    //         });
-    //     }
-    //     return {
-    //         supported: function() {
-    //             return config().supported();
-    //         },
-    //         requested: function() {
-    //             return requested;
-    //         },
-    //         default: function() {
-    //             return config().default();
-    //         },
-    //         bestmatch: function() {
-    //             var _locale = gengo.getLocale().toLowerCase(),
-    //                 _default = config().default().toLowerCase();
-    //             return (_locale === _default) ? _default : _locale;
-    //         }
-    //     };
-    // };
-
-    // //helpers to expose api by @mashpie
-    // function applyAPItoObject(request, response) {
-    //     // attach to itself if not provided
-    //     var object = response || request;
-
-    //     if (!api.indexOf(config().global().gengo())) {
-    //         api.push(config().global().gengo());
-    //         gengo[config().global().gengo()] = gengo;
-    //     }
-
-    //     api.forEach(function(method) {
-
-    //         // be kind rewind, or better not touch anything already exiting
-    //         if (!object[method]) {
-    //             object[method] = function() {
-    //                 if (gengo[method]) {
-    //                     return gengo[method].apply(request, arguments);
-    //                 }
-    //             };
-    //         }
-    //     });
-    // }
-
-    /************************************
-      Exposing Gengo
-  ************************************/
+    /**
+     * Expose Gengo
+     */
 
     // CommonJS module is defined
     if (hasModule) {

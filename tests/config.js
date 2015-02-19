@@ -18,20 +18,20 @@ describe('Begin configuration tests', function() {
             done();
         });
 
-        it('The default directory should === "' + path.normalize(path.resolve('./locales')) + '" ',
+        it('The default directory should === "' + path.normalize(path.resolve('./locales')).replace(path.normalize('/tests'), '') + '" ',
             function(done) {
-                assert.strictEqual(config().directory(), path.normalize(path.resolve('./locales')));
+                assert.strictEqual(config().directory(), path.normalize(path.resolve('./locales')).replace(path.normalize('/tests'), ''));
                 done();
             });
 
-        it('The configured directory should === "' + path.normalize(path.resolve('./xfolder')) + '" ', function(done) {
+        it('The configured directory should === "' + path.normalize(path.resolve('./xfolder')).replace(path.normalize('/tests'), '') + '" ', function(done) {
 
             assert.strictEqual(config({
                 directory: './xfolder'
-            }).directory(), path.normalize(path.resolve('./xfolder')));
+            }).directory(), path.normalize(path.resolve('./xfolder')).replace(path.normalize('/tests'), ''));
             assert.strictEqual(config({
                 directory: '/xfolder'
-            }).directory(), path.normalize(path.resolve('./xfolder')));
+            }).directory(), path.normalize(path.resolve('./xfolder')).replace(path.normalize('/tests'), ''));
             done();
         });
 
@@ -146,10 +146,30 @@ describe('Begin configuration tests', function() {
             done();
         });
 
-        it('The default prefix should === "lang"', function(done) {
+        it('The configured prefix should === "lang"', function(done) {
             assert.strictEqual(config({
                 prefix: "lang"
             }).prefix(), "lang");
+            done();
+        });
+
+        it('The default template should === "{{" && "}}"', function(done) {
+            var template = config().template();
+            assert.strictEqual(template.open, '{{');
+            assert.strictEqual(template.close, '}}');
+            done();
+        });
+
+        it('The default template should === "{{" && "}}"', function(done) {
+            var template = config({
+                template: {
+                    open: '{',
+                    close: '}'
+                }
+            }).template();
+
+            assert.strictEqual(template.open, '{');
+            assert.strictEqual(template.close, '}');
             done();
         });
 

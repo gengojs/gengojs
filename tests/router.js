@@ -19,7 +19,7 @@ describe('Begin module "router" tests', function() {
 
     var agent = request.agent(app);
 
-    it('router with request to "/" should === ["index"] && === "index', function(done) {
+    it('router with request to "/" should === ["index"] && === "index"', function(done) {
         request(app)
             .get('/')
             .expect(function(res) {

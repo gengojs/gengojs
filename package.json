@@ -8,11 +8,12 @@
   },
   "dependencies": {
     "app-root-path": "*",
-    "sprintf-js": "*",
+    "debug": "*",
     "lodash": "^3.2.0",
     "mustache": "^1.0.0",
-    "uberproto": "*",
-    "debug": "*"
+    "sprintf-js": "*",
+    "string": "^3.0.0",
+    "uberproto": "*"
   },
   "repository": {
     "type": "git",

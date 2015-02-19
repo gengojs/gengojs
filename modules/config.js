@@ -26,6 +26,11 @@ var path = require('path'),
         router: false,
         //enable markdown ?
         markdown: false,
+        //template?
+        template: {
+            open: '{{',
+            close: '}}'
+        },
         //file extension
         extension: 'json',
         //cookie
@@ -37,7 +42,7 @@ var path = require('path'),
             universe: 'gengo',
             plural: 'plural'
         },
-        prefix: ""
+        prefix: ''
     };
 
 var config = Proto.extend({
@@ -98,6 +103,14 @@ var config = Proto.extend({
     },
     prefix: function() {
         return this.settings.prefix;
+    },
+    template: function() {
+        var template = this.settings.template;
+        this.settings.template = {
+            open: template.open || '{{',
+            close: template.close || '}}'
+        };
+        return this.settings.template;
     }
 });
 
