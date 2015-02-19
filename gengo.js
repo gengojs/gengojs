@@ -5,7 +5,7 @@
  * author : Takeshi Iwana aka iwatakeshi
  * https://github.com/iwatakeshi
  * license : MIT
- * Code heavily inspired from :
+ * Code heavily inspired by:
  *        Adam Draper
  * https://github.com/adamwdraper
  *            &
