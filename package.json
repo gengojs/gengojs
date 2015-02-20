@@ -7,13 +7,13 @@
         "test": "mocha ./tests/*.js"
     },
     "dependencies": {
-        "app-root-path": "*",
-        "debug": "*",
-        "lodash": "*",
-        "mustache": "*",
-        "sprintf-js": "*",
-        "string": "*",
-        "uberproto": "*"
+        "app-root-path": "^1.0.0",
+        "debug": "^2.1.1",
+        "lodash": "^3.2.0",
+        "mustache": "^1.1.0",
+        "sprintf-js": "^1.0.2",
+        "string": "^3.0.0",
+        "uberproto": "^1.1.2"
     },
     "repository": {
         "type": "git",
