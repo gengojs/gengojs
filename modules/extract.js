@@ -1,4 +1,16 @@
 /*jslint node: true, forin: true, jslint white: true, newcap: true*/
+
+/**
+ * Takeshi Iwana aka iwatakeshi
+ * MIT 2015
+ * extract.js
+ * This module extracts the input
+ * and organizes them into two parts:
+ *  - values
+ *  - args
+ *  Credits to @mashpie for the idea
+ */
+
 'use strict';
 
 var Proto = require("uberproto");
@@ -8,9 +20,7 @@ var extract = Proto.extend({
     init: function(array) {
         var values = {},
             args = [];
-        //Credits to @mashpie for the idea
-        //store everything in args when argumnets > 1
-        //also ignore the first argument
+
         if (array.length > 1) {
             _.forEach(array, function(item) {
                 args.push(item);

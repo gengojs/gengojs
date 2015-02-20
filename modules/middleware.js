@@ -1,25 +1,17 @@
 /*jslint node: true, forin: true, jslint white: true, newcap: true*/
+
+/**
+ * Takeshi Iwana aka iwatakeshi
+ * MIT 2015
+ * filter.js
+ * This module sets the middleware
+ */
+
 'use strict';
 
 var Proto = require("uberproto");
 var _ = require('lodash');
-
-/**
-    Utils
- */
-
-function flatten(arr, ret) {
-    ret = ret || [];
-    var len = arr.length;
-    for (var i = 0; i < len; ++i) {
-        if (_.isArray(arr[i])) {
-            exports.flatten(arr[i], ret);
-        } else {
-            ret.push(arr[i]);
-        }
-    }
-    return ret;
-};
+var flatten = require('./utils').flatten;
 var slice = Array.prototype.slice;
 
 //https://github.com/strongloop/express/blob/master/lib/router/index.js#L418

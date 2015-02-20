@@ -1,4 +1,16 @@
 /*jslint node: true, forin: true, jslint white: true, newcap: true*/
+
+/**
+ * Takeshi Iwana aka iwatakeshi
+ * MIT 2015
+ * accept-language.js
+ * This module parses the routes
+ * and sets the dot notation
+ * according to the path.
+ * TODO:
+ *  - support subdomains
+ */
+
 'use strict';
 
 var Proto = require("uberproto");

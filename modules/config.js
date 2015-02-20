@@ -1,16 +1,18 @@
 /*jslint node: true, forin: true, jslint white: true, newcap: true*/
+
+/**
+ * Takeshi Iwana aka iwatakeshi
+ * MIT 2015
+ * config.js
+ * This module sets the user's preferences
+ */
+
 'use strict';
 
 var Proto = require("uberproto");
 var _ = require('lodash');
+var utils = require('./utils');
 
-function normalize(str) {
-    var str = str.toLowerCase();
-    if (str.indexOf('_') > -1) {
-        str = str.replace('_', '-');
-    }
-    return str;
-}
 var root = require('app-root-path').path;
 var path = require('path'),
     defaults = {
@@ -55,7 +57,7 @@ var config = Proto.extend({
     directory: function() {
         var dir = this.settings.directory;
         //http://nodejs.org/docs/latest/api/path.html#path_path_isabsolute_path
-        if (!path.isAbsolute(dir)) {
+        if (!utils.isAbsolute(dir)) {
             // ./x-dir ?
             if (dir.indexOf('./') > -1) {
                 dir = dir.replace('.', '');
@@ -68,19 +70,21 @@ var config = Proto.extend({
             }
         }
 
+
+
         this.settings.directory = dir;
         return this.settings.directory;
     },
     supported: function() {
         var supported = this.settings.supported;
         _.forEach(supported, function(item, index) {
-            supported[index] = normalize(item);
+            supported[index] = utils.normalize(item);
         });
         this.settings.supported = supported;
         return this.settings.supported;
     },
     default: function() {
-        return normalize(this.settings.default);
+        return utils.normalize(this.settings.default);
     },
     isRouter: function() {
         return this.settings.router;
@@ -89,7 +93,7 @@ var config = Proto.extend({
         return this.settings.markdown;
     },
     extension: function() {
-        return '.' + normalize(this.settings.extension).replace('.', '');
+        return '.' + utils.normalize(this.settings.extension).replace('.', '');
     },
     keywords: function() {
         var keywords = this.settings.keywords;

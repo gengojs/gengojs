@@ -1,3 +1,4 @@
+/*jslint node: true, forin: true, jslint white: true, newcap: true*/
 /**
  * Takeshi Iwana aka iwatakeshi
  * MIT 2015
@@ -5,11 +6,12 @@
  * This module filters the arguments
  * and organizes the input
  */
+'use strict';
 
 var Proto = require('uberproto');
 var _ = require('lodash');
 var normalize = require('./utils').normalize;
-var isInteger = require('./utils').isInteger;
+
 var filter = Proto.extend({
     init: function(phrase, values, args, length) {
         this.phrase = '';
