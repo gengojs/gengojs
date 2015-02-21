@@ -68,9 +68,6 @@
         express: function(req, res, next) {
             next();
         },
-        set: function(type, value) {
-            this.settings[type] = value;
-        },
         use: function(fn) {
             this.middlewares = middleware(fn);
         },
@@ -78,17 +75,20 @@
         mock: function(phrase, other, length) {
             this.parse(phrase, other, length);
             return this;
+        },
+        config: function(opt) {
+
         }
     }).create();
 
-
     /**
-     * gengo factory
-     * @param  {String || Object} phrase Contains a string or Object to translate
-     * @return {String}        The translated phrase
+     * main gengo function
+     * @param  {Object} opt the configuration options
+     * @return {Function}     The middleware for express.
      */
-    function gengo(phrase) {
-        return Gengo.parse(phrase, extract(arguments), arguments.length);
+    function gengo(opt) {
+        Gengo.config(opt);
+        return Gengo.express;
     };
 
     /**
@@ -105,8 +105,8 @@
         Gengo.use(fn);
     };
 
-    gengo.init = function(req, res, next) {
-        Gengo.express(req, res, next);
+    gengo.__ = function() {
+        return Gengo.parse(phrase, extract(arguments), arguments.length);
     }
 
     /**

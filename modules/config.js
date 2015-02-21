@@ -65,8 +65,8 @@ var config = Proto.extend({
             dir = path.normalize(path.join(root, dir));
         } else {
             // /x-dir?
-            if (!(dir.indexOf(root) > -1)) {
-                dir = path.normalize(path.join(root, dir))
+            if (dir.indexOf(root) <= -1) {
+                dir = path.normalize(path.join(root, dir));
             }
         }
 

@@ -1,4 +1,4 @@
-/*jslint node: true, forin: true, jslint white: true, newcap: true*/
+/*jslint node: true, forin: true, jslint white: true, newcap: true, curly:false*/
 
 /**
  * Takeshi Iwana aka iwatakeshi
@@ -30,7 +30,7 @@ var utils = Proto.extend({
         return ret;
     },
     normalize: function normalize(str) {
-        var str = str.toLowerCase();
+        str = str.toLowerCase();
         if (str.indexOf('_') > -1) {
             str = str.replace('_', '-');
         }
@@ -42,7 +42,7 @@ var utils = Proto.extend({
         if ((undefined === value) || (null === value)) {
             return false;
         }
-        return value % 1 == 0;
+        return value % 1 === 0;
     },
     //https://github.com/hapijs/hoek/blob/master/lib/index.js#L818
     isAbsolute: function isAbsolute(path, platform) {

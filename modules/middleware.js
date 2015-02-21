@@ -34,7 +34,6 @@ var middleware = Proto.extend({
             // first arg is the middleware
             if (typeof arg !== 'function') {
                 offset = 1;
-                parser = fn;
             }
         }
 
@@ -45,11 +44,8 @@ var middleware = Proto.extend({
 
         callbacks.forEach(function(fn) {
             if (typeof fn !== 'function') {
-                throw new TypeError('gengo.use() requires middleware function but got a ' + gettype(fn));
+                throw new TypeError('gengo.use() requires middleware function but got a ' + typeof fn);
             }
-
-            // add the middleware
-            //debug('use %s %s', path, fn.name || '<anonymous>');
             self.stack.push(fn);
         }, this);
 

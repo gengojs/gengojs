@@ -1,4 +1,4 @@
-/*jslint node: true, forin: true, jslint white: true, newcap: true*/
+/*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/
 /**
  * Takeshi Iwana aka iwatakeshi
  * MIT 2015
@@ -10,7 +10,6 @@
 
 var Proto = require('uberproto');
 var _ = require('lodash');
-var normalize = require('./utils').normalize;
 
 var filter = Proto.extend({
     init: function(phrase, values, args, length) {
@@ -41,13 +40,13 @@ var filter = Proto.extend({
                 //called like this: __('String', {Object})
                 if (_.isString(p) && !_.isEmpty(v)) {
                     //make sure that the object doesn't contain a phrase
-                    if (v['phrase']) delete v['phrase'];
+                    if (v.phrase) delete v.phrase;
                     result = this.filterObject(v, v, a);
                 }
                 //called like this: __({Object})
                 if (_.isPlainObject(p)) {
                     //make sure that the object doesn't contain a phrase
-                    if (v['phrase']) delete v['phrase'];
+                    if (v.phrase) delete v.phrase;
                     result = this.filterObject(p, v, a);
                 }
                 break;
@@ -99,7 +98,7 @@ var filter = Proto.extend({
             //remove anything in values that may be in templates
             _.forEach(t, function(item, key) {
                 if (v[key]) delete v[key];
-            })
+            });
         } else {
             if (_.isPlainObject(o) && _.isPlainObject(v)) {
                 //double check that values only has what it needs
@@ -137,7 +136,7 @@ var filter = Proto.extend({
             values: v,
             args: a,
             template: t
-        }
+        };
     },
     filterArray: function(a) {
         var temp;
@@ -166,7 +165,7 @@ var filter = Proto.extend({
         //called like this: __('String', something ...n)
         if (_.isString(p)) {
             ptemp = p;
-            _.forEach(a, function(aitem, index) {
+            _.forEach(a, function(aitem) {
                 if (_.isString(aitem) || _.isNumber(aitem)) atemp.push(aitem);
                 if (_.isArray(aitem)) _.forEach(aitem, function(aitem2) {
                     if (!_.isPlainObject(aitem2)) atemp.push(aitem2);
@@ -184,7 +183,7 @@ var filter = Proto.extend({
                                 atemp.push(aitem2);
                             });
                             else
-                                atemp.push(aitem2);
+                                atemp.push(vitem);
                             break;
                         case 'count':
                             vtemp[key] = vitem;
@@ -213,7 +212,7 @@ var filter = Proto.extend({
                         if (_.isArray(item)) _.forEach(item, function(aitem) {
                             if (!_.isPlainObject(aitem)) atemp.push(aitem);
                         });
-                        else atemp.push(aitem);
+                        else atemp.push(item);
                         break;
                     default:
                         ttemp[key] = item;
@@ -240,7 +239,7 @@ var filter = Proto.extend({
                                 atemp.push(aitem2);
                             });
                             else
-                                atemp.push(aitem2);
+                                atemp.push(vitem);
                             break;
                         case 'count':
                             if (!vtemp[key]) vtemp[key] = vitem;
@@ -258,7 +257,7 @@ var filter = Proto.extend({
             values: vtemp,
             args: atemp,
             template: ttemp
-        }
+        };
     }
 
 }).create();

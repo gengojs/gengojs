@@ -1,6 +1,6 @@
 var __ = require('../gengo').__mock;
 var mocha = require('mocha');
-var assert = require('assert');
+var assert = require('chai').assert;
 describe('Begin input functionality tests without translations', function() {
     describe('Begin tests with one argument', function() {
         describe('String', function() {

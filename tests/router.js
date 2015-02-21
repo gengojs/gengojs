@@ -2,7 +2,7 @@ var express = require('express')
 var app = express()
 var router = require('../modules/router');
 var request = require('supertest');
-var assert = require('assert');
+var assert = require('chai').assert;
 
 describe('Begin module "router" tests', function() {
     app.use(function(req, res, next) {
@@ -16,8 +16,6 @@ describe('Begin module "router" tests', function() {
     app.get('/hello');
     app.get('/hello/world');
     app.get('/api/v1.0');
-
-    var agent = request.agent(app);
 
     it('router with request to "/" should === ["index"] && === "index"', function(done) {
         request(app)

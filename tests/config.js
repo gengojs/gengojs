@@ -1,7 +1,6 @@
-var __ = require('../gengo');
 var config = require('../modules/config');
 var mocha = require('mocha');
-var assert = require('assert');
+var assert = require('chai').assert;
 var path = require('path');
 
 describe('Begin configuration tests', function() {
