@@ -8,6 +8,8 @@ node_js:
 
 script:
   if [ "${node_js}" != "0.10" ] ; then
-    npm test; else
+    npm test;
+    echo "node version ${node_js}";
+  else
     npm run 0.10;
   fi
