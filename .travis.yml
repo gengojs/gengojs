@@ -7,3 +7,8 @@ node_js:
 os:
  - linux
  - osx
+
+ script:
+  if [ ${node} > 0.10 ]; then
+  npm test; else
+  npm run 0.10
