@@ -6,9 +6,8 @@ node_js:
   - iojs
 os:
  - linux
- - osx
 
- script:
+script:
   if [ ${node} > 0.10 ]; then
   npm test; else
   npm run 0.10
