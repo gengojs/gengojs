@@ -47,6 +47,7 @@ describe('Begin configuration tests', function() {
                     default: 'default',
                     translated: 'translated',
                     universe: 'gengo',
+                    singular: 'singular',
                     plural: 'plural'
                 });
                 done();
@@ -136,19 +137,21 @@ describe('Begin configuration tests', function() {
 
 
 
-            it('The keywords should === "{default: "a",translated: "b",universe: "c", plural: "d"}"', function(done) {
+            it('The keywords should === "{default: "a",translated: "b",universe: "c", singular:"d", plural: "e"}"', function(done) {
                 assert.deepEqual(config({
                     keywords: {
                         default: 'a',
                         translated: 'b',
                         universe: 'c',
-                        plural: 'd'
+                        singular: 'd',
+                        plural: 'e'
                     }
                 }).keywords(), {
                     default: 'a',
                     translated: 'b',
                     universe: 'c',
-                    plural: 'd'
+                    singular: 'd',
+                    plural: 'e'
                 });
 
                 assert.deepEqual(config({
@@ -161,6 +164,7 @@ describe('Begin configuration tests', function() {
                     default: 'default',
                     translated: 'b',
                     universe: 'c',
+                    singular: 'singular',
                     plural: 'd'
                 });
                 done();
