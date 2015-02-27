@@ -2,6 +2,8 @@ var Proto = require('uberproto');
 var _ = require('lodash');
 var S = require('string');
 var vsprintf = require('sprintf-js').vsprintf;
+var utils = require('./utils');
+
 var parser = Proto.extend({
     init: function(context) {
         this.patterns = {
@@ -40,7 +42,7 @@ var parser = Proto.extend({
             result, data, global;
         try {
             data = this.data || this.dive();
-            global = this.dive() ? (_.has(this.dive(), keywords.universe) ? this.dive()[keywords.universe] : null) : null;
+            global = this.dive() ? (_.has(this.dive(), keywords.global) ? this.dive()[keywords.global] : null) : null;
             if (!_.isEmpty(this.data)) {
                 result = (_.has(data, this.key)) ? (data[this.key] || null) : (_.has(global, this.key)) ? global[this.key] : null;
                 result = this._parser(result);
@@ -63,11 +65,11 @@ var parser = Proto.extend({
         try {
             if (!_.isEmpty(this.data)) {
                 data = this.data[search] || this.dive();
-                global = this.dive() ? (_.has(this.dive(), keywords.universe) ? this.dive()[keywords.universe] : null) : null;
+                global = this.dive() ? (_.has(this.dive(), keywords.global) ? this.dive()[keywords.global] : null) : null;
                 if (dot) {
                     if (this.regex(dot).dot().match()) {
                         //then the dot is 'dot.dot.dot'
-                        result = this._parser(this.dotSearch(dot, data)) || this._parser(this.dotSearch(dot, global));
+                        result = this._parser(utils.find(data).dot(dot)) || this._parser(utils.find(global).dot(dot));
                         result = _.has(result, search) ? result[search] : (result || null);
                     }
                 } else {
@@ -91,8 +93,8 @@ var parser = Proto.extend({
         try {
             if (!_.isEmpty(this.data)) {
                 data = this.data || this.dive();
-                global = this.dive() ? (_.has(this.dive(), keywords.universe) ? this.dive()[keywords.universe] : null) : null;
-                result = this._parser(this.dotSearch(search, data)) || this._parser(this.dotSearch(search, global));
+                global = this.dive() ? (_.has(this.dive(), keywords.global) ? this.dive()[keywords.global] : null) : null;
+                result = this._parser(utils.find(data).dot(search)) || this._parser(utils.find(global).dot(search));
 
                 result = this._parser(result);
             }
@@ -228,31 +230,6 @@ var parser = Proto.extend({
             this.data = this._this.store.set(this._this.io).save();
         }
         return locale && supported[index] ? locale : this._this.accept.getLocale();
-    },
-    dotSearch: function(path, obj) {
-        if (!obj) return null;
-        else {
-            var i, keys;
-            if (path.indexOf('.') !== -1) {
-                keys = path.split('.');
-                for (i = 0; i < keys.length; i++) {
-                    if (keys[i].indexOf("*") !== -1) {
-                        keys[i] = keys[i].replace('*', '.');
-                    } else
-                    if (obj)
-                        if (_.has(obj, keys[i])) {
-                            if (i === (keys.length - 1)) return obj[keys[i]];
-                            else obj = obj[keys[i]];
-
-                        } else return null; //error or could be global
-                    else return null;
-
-                }
-                return obj;
-            } else {
-                return obj[path];
-            }
-        }
     },
     template: function(phrase) {
         var template = this._this.settings.template();

@@ -118,6 +118,35 @@ var utils = Proto.extend({
                 })(mod);
             }
         }
+    },
+    find: function(obj) {
+        return {
+            dot: function(path) {
+                if (!obj) return null;
+                else {
+                    var i, keys;
+                    if (path.indexOf('.') !== -1) {
+                        keys = path.split('.');
+                        for (i = 0; i < keys.length; i++) {
+                            if (keys[i].indexOf("*") !== -1) {
+                                keys[i] = keys[i].replace('*', '.');
+                            } else
+                            if (obj)
+                                if (_.has(obj, keys[i])) {
+                                    if (i === (keys.length - 1)) return obj[keys[i]];
+                                    else obj = obj[keys[i]];
+
+                                } else return null; //error or could be global
+                            else return null;
+
+                        }
+                        return obj;
+                    } else {
+                        return obj[path];
+                    }
+                }
+            }
+        }
     }
 }).create();
 

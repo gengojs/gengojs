@@ -42,11 +42,11 @@ describe('Begin configuration tests', function() {
                 done();
             });
 
-            it('The keywords should === "{default: "default",translated: "translated",universe: "gengo", plural: "plural"}"', function(done) {
+            it('The keywords should === "{default: "default",translated: "translated",global: "global", plural: "plural"}"', function(done) {
                 assert.deepEqual(config().keywords(), {
                     default: 'default',
                     translated: 'translated',
-                    universe: 'gengo',
+                    global: 'global',
                     singular: 'singular',
                     plural: 'plural'
                 });
@@ -137,19 +137,19 @@ describe('Begin configuration tests', function() {
 
 
 
-            it('The keywords should === "{default: "a",translated: "b",universe: "c", singular:"d", plural: "e"}"', function(done) {
+            it('The keywords should === "{default: "a",translated: "b",global: "c", singular:"d", plural: "e"}"', function(done) {
                 assert.deepEqual(config({
                     keywords: {
                         default: 'a',
                         translated: 'b',
-                        universe: 'c',
+                        global: 'c',
                         singular: 'd',
                         plural: 'e'
                     }
                 }).keywords(), {
                     default: 'a',
                     translated: 'b',
-                    universe: 'c',
+                    global: 'c',
                     singular: 'd',
                     plural: 'e'
                 });
@@ -157,13 +157,13 @@ describe('Begin configuration tests', function() {
                 assert.deepEqual(config({
                     keywords: {
                         translated: 'b',
-                        universe: 'c',
+                        global: 'c',
                         plural: 'd'
                     }
                 }).keywords(), {
                     default: 'default',
                     translated: 'b',
-                    universe: 'c',
+                    global: 'c',
                     singular: 'singular',
                     plural: 'd'
                 });

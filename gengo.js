@@ -42,8 +42,6 @@
         init: function() {
             this.result = '';
             this.length = 0;
-            this.settings = config();
-            this.accept = accept();
             this.router = router();
             this.io = io();
             this.store = store();
@@ -78,7 +76,8 @@
             this.template = f.template || {};
         },
         express: function(req, res, next) {
-            this.accept.set(req, {
+
+            this.accept = accept(req, {
                 default: this.settings.default(),
                 supported: this.settings.supported(),
                 keys: {
@@ -92,6 +91,7 @@
                     url: this.settings.detect().url()
                 }
             });
+
             this.router.set(this.accept.request);
 
             if (_.isObject(this.accept.request)) this._apply(this.accept.request, res);
@@ -99,7 +99,7 @@
             if (_.isFunction(next)) next();
         },
         config: function(opt) {
-            this.settings.set(opt);
+            this.settings = config(opt);
         },
         use: function(fn) {
             this.middlewares = middleware(fn);

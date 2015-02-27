@@ -116,7 +116,7 @@ var config = Proto.extend({
         this.settings.keywords = _.defaults(keywords || {}, {
             default: 'default',
             translated: 'translated',
-            universe: 'gengo',
+            global: 'global',
             singular: 'singular',
             plural: 'plural',
         });
