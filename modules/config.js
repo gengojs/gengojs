@@ -12,44 +12,58 @@
 var Proto = require("uberproto");
 var _ = require('lodash');
 var utils = require('./utils');
-
 var root = require('app-root-path').path;
-var path = require('path'),
-    defaults = {
-        //global variables
-        global: "__",
-        //path to locale
-        directory: path.normalize(path.join(root, '/locales')),
-        //supported locales
-        supported: ['en-US'],
-        //default locale, which would be the locale used for your template of choice
-        default: 'en-US',
-        //route aware ?
-        router: false,
-        //enable markdown ?
-        markdown: false,
-        //template?
-        template: {
-            open: '{{',
-            close: '}}'
-        },
-        //file extension
-        extension: 'json',
-        //cookie
-        cookie: 'locale',
-        //keywords
-        keywords: {
-            default: 'default',
-            translated: 'translated',
-            universe: 'gengo',
-            plural: 'plural'
-        },
-        prefix: ''
-    };
+var path = require('path');
+var S = require('string');
 
 var config = Proto.extend({
     init: function(opt) {
-        this.settings = _.assign(_.extend(defaults, opt));
+        this.set(opt);
+        return this;
+    },
+    set: function(opt) {
+        var result;
+        if (_.isString(opt)) result = this._read(opt);
+        else result = this._read('../settings.json');
+        this.settings = {};
+        this.settings = _.assign(this.settings, result);
+        if (_.isPlainObject(opt)) this.settings = _.assign(this.settings, opt);
+    },
+    //todo:mocha
+    detect: function() {
+        var self = this;
+        return {
+            query: function() {
+                return self.settings.detect.query || false;
+            },
+            subdomain: function() {
+                return self.settings.detect.subdomain || false;
+            },
+            cookie: function() {
+                return self.settings.detect.cookie || false;
+            },
+            header: function() {
+                return self.settings.detect.header || true;
+            },
+            url: function() {
+                return self.settings.detect.url || false;
+            }
+        };
+    },
+    //todo:mocha
+    keys: function() {
+        var self = this;
+        return {
+            cookie: function() {
+                return self.settings.keys.cookie || 'locale';
+            },
+            query: function() {
+                return self.settings.keys.query || 'locale';
+            }
+        };
+    },
+    configuration: function() {
+        return this.settings;
     },
     id: function() {
         return this.settings.global;
@@ -59,28 +73,30 @@ var config = Proto.extend({
         //http://nodejs.org/docs/latest/api/path.html#path_path_isabsolute_path
         if (!utils.isAbsolute(dir)) {
             // ./x-dir ?
-            if (dir.indexOf('./') > -1) {
+            if (S(dir).include('./')) {
                 dir = dir.replace('.', '');
             }
             dir = path.normalize(path.join(root, dir));
         } else {
             // /x-dir?
-            if (dir.indexOf(root) <= -1) {
+            if (!S(dir).include(root)) {
                 dir = path.normalize(path.join(root, dir));
             }
         }
-
-
 
         this.settings.directory = dir;
         return this.settings.directory;
     },
     supported: function() {
         var supported = this.settings.supported;
-        _.forEach(supported, function(item, index) {
-            supported[index] = utils.normalize(item);
+        var result = [];
+        if (_.isString(supported)) result.push(supported);
+        else result = supported;
+
+        _.forEach(result, function(item, index) {
+            result[index] = utils.normalize(item);
         });
-        this.settings.supported = supported;
+        this.settings.supported = result;
         return this.settings.supported;
     },
     default: function() {
@@ -93,16 +109,17 @@ var config = Proto.extend({
         return this.settings.markdown;
     },
     extension: function() {
-        return '.' + utils.normalize(this.settings.extension).replace('.', '');
+        return '.' + utils.normalize(this.settings.extension).replace('.', '').replace('yaml', 'yml');
     },
     keywords: function() {
         var keywords = this.settings.keywords;
-        this.settings.keywords = {
-            default: keywords.default || 'default',
-            translated: keywords.translated || 'translated',
-            universe: keywords.universe || 'gengo',
-            plural: keywords.plural || 'plural'
-        };
+        this.settings.keywords = _.defaults(keywords || {}, {
+            default: 'default',
+            translated: 'translated',
+            universe: 'gengo',
+            singular: 'singular',
+            plural: 'plural',
+        });
         return this.settings.keywords;
     },
     prefix: function() {
@@ -110,11 +127,16 @@ var config = Proto.extend({
     },
     template: function() {
         var template = this.settings.template;
-        this.settings.template = {
-            open: template.open || '{{',
-            close: template.close || '}}'
-        };
+        this.settings.template = _.defaults(template || {}, {
+            open: '{{',
+            close: '}}'
+        });
         return this.settings.template;
+    },
+    _read: function(filepath) {
+        if (S(filepath).include('.json')) {
+            return require(path.normalize(filepath));
+        } else throw new Error('The configuration must be a JSON file.')
     }
 });
 

@@ -7,8 +7,6 @@
  * This module parses the routes
  * and sets the dot notation
  * according to the path.
- * TODO:
- *  - support subdomains
  */
 
 'use strict';
@@ -20,9 +18,14 @@ var version = /\d{1,2}(\.)\d{1,2}((\.)\d{1,2})?$/;
 
 var router = Proto.extend({
     init: function(req) {
-        this.path = req.path;
-        this.originalUrl = req.originalUrl;
-        this.subdomains = req.subdomains;
+        this.set(req);
+    },
+    set: function(req) {
+        if (req) {
+            this.path = req.path;
+            this.originalUrl = req.originalUrl;
+            this.subdomains = req.subdomains;
+        }
     },
     toArray: function(path) {
         path = path ? path.split('/') : this.path.split('/');

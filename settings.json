@@ -1,0 +1,32 @@
+{
+    "global": "__",
+    "directory": "./locales",
+    "supported": ["en-US"],
+    "default": "en-US",
+    "router": false,
+    "markdown": false,
+    "template": {
+        "open": "{{",
+        "close": "}}"
+    },
+    "extension": "json",
+    "keys": {
+        "cookie": "locale",
+        "query": "locale"
+    },
+    "detect": {
+        "query": false,
+        "subdomain": false,
+        "url": false,
+        "cookie": false,
+        "header": true
+    },
+    "keywords": {
+        "default": "default",
+        "translated": "translated",
+        "universe": "gengo",
+        "singular": "singular",
+        "plural": "plural"
+    },
+    "prefix": ""
+}
