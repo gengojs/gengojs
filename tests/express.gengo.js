@@ -19,7 +19,7 @@ var path = require('path');
  * to the context, please attach it to
  * the 'parser' property like so:
  * this.parser['name of parser'] = {
- * 	'someKey':'someValue'
+ *  'someKey':'someValue'
  * }
  */
 var parser = require('../modules/parser');
@@ -28,13 +28,17 @@ gengo.use(parser());
 
 app.use(gengo({
     directory: './tests/locales',
-    supported: ['en-US', 'ja']
+    supported: ['en-US', 'ja'],
+    keywords: {
+        singular: 'one',
+        plural: 'other'
+    }
 }));
 
 app.get('/', function(req, res, next) {
-    res.send(req.__("Hello {{name}}", {
-        name: 'gengo.js'
-    }));
+    res.send(req.__('Hello {{name}}, how was your %s?', {
+        name: 'Takeshi'
+    }, 'day'));
 });
 
 app.listen(3000);

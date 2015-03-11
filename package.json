@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "app-root-path": "^1.0.0",
+    "cldr": "^2.3.3",
     "cookie": "^0.1.2",
     "debug": "^2.1.1",
     "fs-extra": "^0.16.3",

@@ -20,16 +20,14 @@
         //gengo modules
         extract = require(modules + 'extract'),
         middleware = require(modules + 'middleware'),
-        filter = require(modules + 'filter'),
         config = require(modules + 'config'),
         router = require(modules + 'router'),
-        store = require(modules + 'store'),
-        parser = require(modules + 'parser'),
+        parser = require(modules + 'parser/'),
         io = require(modules + 'io'),
-        accept = require('gengojs-accept'),
-        Proto = require('uberproto'),
         //npm modules
         _ = require('lodash'),
+        accept = require('gengojs-accept'),
+        Proto = require('uberproto'),
         hasModule = (typeof module !== 'undefined' && module.exports);
 
     /**
@@ -41,16 +39,17 @@
     var Gengo = Proto.extend({
         init: function() {
             this.result = '';
-            this.length = 0;
             this.router = router();
             this.io = io();
-            this.store = store();
+            this.settings = config();
             this.parser = {};
             this.isMock = false;
         },
         parse: function(phrase, other, length) {
+            this.phrase = phrase;
+            this.other = other;
             this.length = length;
-            this.build(phrase, other);
+            //are we testing gengo?
             if (!this.isMock) {
                 this.io.set({
                     directory: this.settings.directory(),
@@ -58,9 +57,8 @@
                     prefix: this.settings.prefix(),
                     extension: this.settings.extension()
                 });
-                if (!this.middlewares) {
-                    this.use(parser());
-                }
+
+                if (!this.middlewares) this.use(parser());
 
                 this.middlewares.stack.forEach(function(fn) {
                     fn.bind(this)();
@@ -68,28 +66,13 @@
             }
             return this.result;
         },
-        build: function(phrase, other) {
-            var f = filter(phrase, other.values(), other.args(), this.length);
-            this.phrase = f.phrase;
-            this.values = f.values;
-            this.args = f.args;
-            this.template = f.template || {};
-        },
         express: function(req, res, next) {
 
             this.accept = accept(req, {
                 default: this.settings.default(),
                 supported: this.settings.supported(),
-                keys: {
-                    cookie: this.settings.keys().cookie(),
-                    query: this.settings.keys().query()
-                },
-                detect: {
-                    header: this.settings.detect().header(),
-                    cookie: this.settings.detect().cookie(),
-                    query: this.settings.detect().query(),
-                    url: this.settings.detect().url()
-                }
+                keys: this.settings.keys(),
+                detect: this.settings.detect()
             });
 
             this.router.set(this.accept.request);
@@ -114,8 +97,7 @@
          */
         _mock: function(phrase, other, length) {
             this.isMock = true;
-            this.parse(phrase, other, length);
-            return this;
+            return this.parse(phrase, other, length);
         },
         _apply: function(req, res) {
             var object = req || res;

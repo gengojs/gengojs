@@ -105,9 +105,6 @@ var io = Proto.extend({
         }
         return this.data;
     },
-    write: function() {
-
-    },
     /** YAML handler */
     yml: function() {
         this.extension = this.extension;

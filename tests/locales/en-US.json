@@ -10,8 +10,8 @@
         "other": "%s cats"
     },
     "cat": {
-        "one": "%s cat",
-        "other": "%s cats"
+        "one": "%d cat",
+        "other": "%d cats"
     },
     "There is one monkey in the %s": {
         "one": "There is one monkey in the %s",
@@ -23,7 +23,7 @@
         "other": "There are %d monkeys in the %s"
     },
     "Hello %s": "Hello %s",
-    "Hello {{name}}": "Hello {{name}}",
+    "Hello {{name.first}}": "Hello {{name.first}}",
     "Hello {{name}}, how was your %s?": "Hello {{name}}, how was your %s?",
     "format": {
         "date": "MM/DD/YYYY",

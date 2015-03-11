@@ -11,8 +11,8 @@
     },
     "extension": "yaml",
     "keys": {
-        "cookie": "locale",
-        "query": "locale"
+        "cookie": "cookie",
+        "query": "query"
     },
     "detect": {
         "query": false,

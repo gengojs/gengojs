@@ -1,4 +1,4 @@
-var __ = require('../gengo')._mock;
+/*var __ = require('../gengo')._mock;
 var mocha = require('mocha');
 var assert = require('chai').assert;
 describe('Begin input functionality tests without translations', function() {
@@ -497,3 +497,4 @@ describe('Begin input functionality tests without translations', function() {
 
 
 });
+*/

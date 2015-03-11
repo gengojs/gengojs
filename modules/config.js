@@ -23,44 +23,22 @@ var config = Proto.extend({
     },
     set: function(opt) {
         var result;
+        this.settings = {};
+
         if (_.isString(opt)) result = this._read(opt);
         else result = this._read('../settings.json');
-        this.settings = {};
+
         this.settings = _.assign(this.settings, result);
+
         if (_.isPlainObject(opt)) this.settings = _.assign(this.settings, opt);
     },
     //todo:mocha
     detect: function() {
-        var self = this;
-        return {
-            query: function() {
-                return self.settings.detect.query || false;
-            },
-            subdomain: function() {
-                return self.settings.detect.subdomain || false;
-            },
-            cookie: function() {
-                return self.settings.detect.cookie || false;
-            },
-            header: function() {
-                return self.settings.detect.header || true;
-            },
-            url: function() {
-                return self.settings.detect.url || false;
-            }
-        };
+        return this.settings.detect;
     },
     //todo:mocha
     keys: function() {
-        var self = this;
-        return {
-            cookie: function() {
-                return self.settings.keys.cookie || 'locale';
-            },
-            query: function() {
-                return self.settings.keys.query || 'locale';
-            }
-        };
+        return this.settings.keys;
     },
     configuration: function() {
         return this.settings;

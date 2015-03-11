@@ -4,8 +4,24 @@ var assert = require('chai').assert;
 var path = require('path');
 
 describe('Begin configuration tests', function() {
+
     describe('Begin test with module "config"', function() {
 
+        describe('read external settings', function() {
+            it('load the default settings', function(done) {
+                assert.deepEqual(config().configuration(), require('../settings.json'));
+                done();
+            });
+
+            it('load configured settings', function(done) {
+                var _path = path.join(__dirname, 'configured.settings.json');
+                var settings = config(_path);
+                assert.notDeepEqual(settings.configuration(), require('../settings.json'));
+                assert.deepEqual(settings.supported(), ['en-us', 'ja']);
+                assert.deepEqual(settings.extension(), '.yml');
+                done();
+            });
+        });
         describe('with default settings', function() {
             it('The global identifier should === "__"', function(done) {
                 assert.strictEqual(config().id(), "__");
@@ -62,6 +78,27 @@ describe('Begin configuration tests', function() {
                 var template = config().template();
                 assert.strictEqual(template.open, '{{');
                 assert.strictEqual(template.close, '}}');
+                done();
+            });
+
+            it('The detect settings should === {header:true, cookie:false, subdomain:false, query:false,url:false}', function(done) {
+                var detect = config().detect();
+                assert.deepEqual(detect, {
+                    query: false,
+                    subdomain: false,
+                    url: false,
+                    cookie: false,
+                    header: true
+                });
+                done();
+            });
+
+            it('The keys settings should === {query:"locale", cookie:"locale"}', function(done) {
+                var keys = config().keys();
+                assert.deepEqual(keys, {
+                    query: 'locale',
+                    cookie: 'locale'
+                });
                 done();
             });
         });
@@ -193,24 +230,44 @@ describe('Begin configuration tests', function() {
                 assert.strictEqual(template.close, '}');
                 done();
             });
-        });
 
+            it('The detect settings should === {header:true, cookie:false, subdomain:false, query:false,url:false}', function(done) {
+                var detect = config({
+                    detect: {
+                        query: true,
+                        subdomain: false,
+                        url: true,
+                        cookie: false,
+                        header: true
+                    }
+                }).detect();
 
-        describe('read external settings', function() {
-            it('load the default settings', function(done) {
-                assert.deepEqual(config().configuration(), require('../settings.json'));
+                assert.deepEqual(detect, {
+                    query: true,
+                    subdomain: false,
+                    url: true,
+                    cookie: false,
+                    header: true
+                });
                 done();
             });
 
-            it('load configured settings', function(done) {
-                var _path = path.join(__dirname, 'configured.settings.json');
-                var settings = config(_path);
-                assert.notDeepEqual(settings.configuration(), require('../settings.json'));
-                assert.deepEqual(settings.supported(), ['en-us', 'ja']);
-                assert.deepEqual(settings.extension(), '.yml');
+            it('The keys settings should === {query:"query", cookie:"cookie"}', function(done) {
+                var keys = config({
+                    keys: {
+                        query: 'query',
+                        cookie: 'cookie'
+                    }
+                }).keys();
+                assert.deepEqual(keys, {
+                    query: 'query',
+                    cookie: 'cookie'
+                });
                 done();
             });
         });
+
+
 
     });
 });
