@@ -7,70 +7,94 @@ gengo.js
 
 ##News Flash
 
-*10/30/14*
+*3/11/14*
 
-The site for gengo.js has been improved! Of course, typos may exist and will be fixed along the way.
-This means that I will not translate it until the site seems stable enough.
+Hello friends of the same planet! I just wanted to give an update on whats happening to gengo.js. So far the growth of downloads is slowly increasing and I thank again for all who use gengo. So because of you, I'm happy to announce the next milestone for gengo.js: **1.0.0** ([Already a work in progress](https://github.com/iwatakeshi/gengojs/tree/1.0.0)).
 
-*12/11/14*
+Why the 1.0.0? Because there will be a couple of breaking changes to the API but I promise you'll agree that it's worth the change. So here are the changes that will make gengo the best i18n library for your app:
 
-Sorry folks! I've been busy with finals and will now have some time to work on gengojs's site. To me, the site seems reasonably stable enough so I will be begin translating it sometime next week. Currently, I'm working on some interesting projects so if interested check them out at [my GitHub page](https://github.com/iwatakeshi). One final note: If you are not satisfied with gengo.js (or the website) by the way it works or by its designed, do not hesitate the pull or fork this project for contribution. Since the project is free of charge, I will not be bothered if someone breaks the code. In fact, break it! then improve it! Anyways happy coding! - Takeshi
+ * The removal of `config`
+     - Configure with ease when initializing like the example.
+     - Configuring without the long inline configuration setup.
 
-Visit [gengojs.com](http://www.gengojs.com) for installation, configuration, and documentation.
-Also, please fork gengo and the site to add more languages and locale support!
+```js
+//example
+//before
+gengo.config({/*...*/})
+app.use(gengo.init)
 
-To fork gengo visit http://www.github.com/iwatakeshi/gengojs
+// after
+app.use(gengo({/*...*/}))
 
-To fork the site visit http://www.github.com/iwatakeshi/gengojs-site
+//configuration with ease
+app.use(gengo({__dirname + 'path to [name of configuration file].[json | yaml]'}))
 
-If you would like to see more examples other than the ones on gengojs.com then check out the tests there are 127+ possible ways to gengo!
+```
 
+* The removal of Numeral.js
+    - There seems to be a increase popularity of using `Intl` for number format and also the fact that numeral doesn't seem to be active makes things a bit difficult to improve. If you have any suggestions or would like to create your own number formatting library for gengo.js just fork the *1.0.0* repo and create a pull request.
+* Improved plurality.
+    - gengojs will use `cldr` as it's main source for plurarity. It automatically creates a function with rules needed for the requested locale. So all you need to do is provide the keywords for the plurarity form:
+```js
+//in your en-US.json dictionary:
+{
+    "monkey.tree":{
+        "default":"There is a monkey."
+        "plural":{
+            "one" :"There is %d monkey",
+            "other":"There are %d monkies."
+            //note that other languages may have
+            //'few','many', etc
+        }
+    }
+}
+```
+* Improved parser
+    - You'll be happy with this one: I said to myself "Oh God!", because the parser was terrible when I went back to do some maintenance. Instead of having me do all the work and not knowing whether the parser was good for you or not, I decided to change how it works:
+        + You are no longer stuck with one parser that you may not like!
+            * What this means is gengo.js acts the same way as express where you can use middlewares to "add"* parsers. This also means you can create your own and share them with others in the node community.
+            * I will later give details of how to create your own parser.
 
-*12/22/14*
+```js
+// I have built two parsers:
+// * default parser where you can use vsprintf and 'templating' (like mustache)
+// * message format parser where you can use 
+// AST techniques for a better usage of plurality: see https://www.npmjs.com/package/messageformat
+// note: while it is possible to use multiple parsers, 
+// it is best and recommended to use only one parser.
+// Also, both parser support plurality
 
-Merry Christmas! This is an early Christmas gift from me to you! Yup! It's an update! So whats new? Check out the **Recent Changes**! You'll notice there are a few changes to gengojs. Other than that the website for gengojs has been translated to Japanese. If you would
-like to add your language to the docs, please please please (with dogeza) fork the site and translate the `en-us.json` file located under `'/config/locales'` to your language. On that note, take your time. I've had visitors from around the world and that really inspires me to support this project, but
-it's been a one man show so I need all the support that I can get from the nodejs community. 
+/*Example:*/
+var gengo = require('gengojs'),
+    msgfmt = require('gengojs/parser/messageformat');
+//Static API
+//If parser is not specified, it will automatically load default
+//else it will load whatever was added initially
+gengo.use(msgfmt());
+app.use(gengo());
+```
+
+* Templating in default parser
+    - The default parser now lets you use the type of opening and closing.
+    - Support for nested data
+```js
+//before
+__('Hello {{mustache}}',{mustache:'world!'});
+//after
+__('Hello %{nested.msg}',{nested:{msg:'world!'}})
+
+```
+
+There are few other changes but those are the big ones. There are other plans to add support for koa and hopefullay other frameworks. If time allows, I will update this over time. Anyways, now is the time to give your input over at github. You can also watch the progress of the repo at https://github.com/iwatakeshi/gengojs/tree/1.0.0. Again, happy coding! -Takeshi
 
 ###Recent Changes
 
 *For previous notes on changes, see CHANGELOG.md*
 
-**0.3.55**
+**0.3.63**
 
-* Added support for file prefix
-* Changed gengo's description in package.json
-* Added support for plain object options for debugging. This will allow you to add timestamps. see [cout](https://github.com/iwatakeshi/cout)
-* Updated node modules for sails apps.
-
-**0.3.56**
-
-* Added an instance of gengo to itself. Similar to i18n's method.
-* Revamped site. Completely better...waaay better. Visit now!
-* Final change to npm's description.
-* Removed legacies. Support for v0.2 ends.
-* Removed factory support.
-
-**0.3.57**
-
-* Fixed typo in readme.
-
-**0.3.58**
-
-* Updated readme.
-
-**0.3.59**
-
-* Updated node modules (tests pass)
-
-**0.3.60**
-
-* Added a Visual Studio solution
-
-**0.3.61**
-
-* gengo.js will now give a "safe" error message when router is enabled. The message will appear when a route is missing in your dictionary. Note that the server will not crash but the page will display properly as gengo returns the original phrase instead.
 * Updated readme
+* Updated packages
 
 **0.3.62**
 
