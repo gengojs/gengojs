@@ -7,13 +7,11 @@
  */
 
 var Proto = require('uberproto');
-var _ = require('lodash');
 var yaml = require('js-yaml');
 var fs = require('fs-extra');
 var root = require('app-root-path');
 var path = require('path');
 var S = require('string');
-var util = require('util');
 var path = require('path');
 var utils = require('./utils');
 
@@ -61,7 +59,7 @@ var io = Proto.extend({
                     throws: false
                 });
                 if (!this.data) {
-                    this.setFile(true)
+                    this.setFile(true);
                     fs.readJsonSync(this.filePath, {
                         throws: false
                     });
@@ -133,4 +131,4 @@ var io = Proto.extend({
 //will eventually work like this: io(opt).yaml().read()
 module.exports = function(opt) {
     return io.create(opt);
-}
+};

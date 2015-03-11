@@ -1,27 +1,82 @@
 /*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/
-var Proto = require('uberproto'),
-    _ = require('lodash'),
-    utils = require('../utils'),
-    filter = require('./filter'),
-    regex = require('./regex'),
-    vsprintf = require('sprintf-js').vsprintf,
-    template = require('./template'),
-    cldr = require('cldr');
+var Proto = require('uberproto');
+var _ = require('lodash');
+var mf = require('messageformat');
+var utils = require('../../utils');
+var filter = require('../filter');
+var regex = require('../regex');
 
-var Parser = Proto.extend({
+var MessageFormat = Proto.extend({
     init: function(context) {
-        //set context
-        this.ctx = context;
-        _.forOwn(filter(context.phrase, context.other, context.length), function(item, key) {
-            this.ctx[key] = item;
-        }, this);
-        this.data = {};
+        this.phrase = '';
+        this.values = {};
+        this.message = {};
+        this.ctx = this.filter(context);
         if (context) return this.parse();
     },
+    filter: function(context) {
+        var phrase = context.phrase,
+            other = context.other;
+        //maybe phrase is an plain object
+        if (_.isPlainObject(phrase) || _.isObject(phrase)) {
+            _.forOwn(phrase, function(item, key) {
+                switch (key) {
+                    case 'phrase':
+                        this.phrase = phrase[key];
+                        delete phrase[key];
+                        break;
+                    case 'locale':
+                        if (!this.values[key]) this.values[key] = item;
+                        break;
+                    default:
+                        if (!this.message[key]) this.message[key] = item;
+                        break;
+                }
+            }, this);
+        } else if (_.isString(phrase)) this.phrase = phrase;
+
+        if (other) {
+            //check that values only contains keywords
+            if (!_.isEmpty(other.values()))
+                _.forOwn(other.values(), function(item, key) {
+                    switch (key) {
+                        case 'locale':
+                            if (!this.values[key]) this.values[key] = item;
+                            break;
+                        default:
+                            if (!this.message[key]) this.message[key] = item;
+                            break;
+                    }
+                }, this);
+            //check that args only contains strings or numbers
+            if (!_.isEmpty(other.args()))
+                _.forEach(other.args(), function(item) {
+                    _.forOwn(item, function(item, key) {
+                        switch (key) {
+                            case 'locale':
+                                if (!this.values[key]) this.values[key] = item;
+                                break;
+                            default:
+                                if (!this.message[key]) this.message[key] = item;
+                                break;
+                        }
+                    }, this);
+
+                }, this);
+        }
+        return context;
+    },
+    locale: function() {
+        var locale = this.values.locale,
+            supported = this.ctx.settings.supported(),
+            index = supported.indexOf(locale);
+        return locale && supported[index] ? locale : this.ctx.accept.detectLocale();
+    },
     parse: function() {
+        this.data = this.ctx.io.read(this.locale());
+        this.format = new mf(this.locale());
         var result = filter().type(this.ctx.phrase);
         this.key = result.key;
-        this.data = this.ctx.io.read(this.locale());
         switch (result.type) {
             case 'phrase':
                 this.ctx.result = this._phrase();
@@ -33,7 +88,7 @@ var Parser = Proto.extend({
                 this.ctx.result = this._dot();
                 break;
         }
-        this.ctx.result = this.template(this.sprintf(this.ctx.result));
+        this.ctx.result = this.format.compile(this.ctx.result)(this.message);
         return this.ctx.result;
     },
     _phrase: function() {
@@ -114,12 +169,6 @@ var Parser = Proto.extend({
             }
         }
     },
-    count: function() {
-        return cldr.extractPluralRuleFunction(this.locale())(this.ctx.values.count);
-    },
-    hasPlurality: function() {
-        return !isNaN(this.ctx.values.count);
-    },
     route: function() {
         var settings = this.ctx.settings,
             router = this.ctx.router,
@@ -130,28 +179,12 @@ var Parser = Proto.extend({
             return data;
         }
         return data || null;
-    },
-    locale: function() {
-        var locale = this.ctx.values.locale,
-            supported = this.ctx.settings.supported(),
-            index = supported.indexOf(locale);
-        return locale && supported[index] ? locale : this.ctx.accept.detectLocale();
-    },
-    sprintf: function(phrase) {
-        if (this.hasPlurality()) this.ctx.args.push(this.ctx.values.count);
-        return vsprintf(phrase, this.ctx.args);
-    },
-    template: function(phrase) {
-        phrase = this.hasPlurality() ? template(phrase, {
-            count: this.ctx.values.count
-        }, this.ctx.settings.template()).parse() : phrase;
-        return template(phrase, this.ctx.template, this.ctx.settings.template()).parse();
     }
+
 });
 
 module.exports = function() {
-    //hack
     return function() {
-        return Parser.create(this);
+        return MessageFormat.create(this);
     };
 };

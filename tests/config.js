@@ -63,7 +63,6 @@ describe('Begin configuration tests', function() {
                     default: 'default',
                     translated: 'translated',
                     global: 'global',
-                    singular: 'singular',
                     plural: 'plural'
                 });
                 done();
@@ -174,20 +173,18 @@ describe('Begin configuration tests', function() {
 
 
 
-            it('The keywords should === "{default: "a",translated: "b",global: "c", singular:"d", plural: "e"}"', function(done) {
+            it('The keywords should === "{default: "a",translated: "b",global: "c", plural: "e"}"', function(done) {
                 assert.deepEqual(config({
                     keywords: {
                         default: 'a',
                         translated: 'b',
                         global: 'c',
-                        singular: 'd',
                         plural: 'e'
                     }
                 }).keywords(), {
                     default: 'a',
                     translated: 'b',
                     global: 'c',
-                    singular: 'd',
                     plural: 'e'
                 });
 
@@ -201,7 +198,6 @@ describe('Begin configuration tests', function() {
                     default: 'default',
                     translated: 'b',
                     global: 'c',
-                    singular: 'singular',
                     plural: 'd'
                 });
                 done();

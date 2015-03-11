@@ -1,4 +1,4 @@
-/*jslint node: true, forin: true, jslint white: true, newcap: true*/
+/*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/
 
 /**
  * Takeshi Iwana aka iwatakeshi
@@ -95,7 +95,6 @@ var config = Proto.extend({
             default: 'default',
             translated: 'translated',
             global: 'global',
-            singular: 'singular',
             plural: 'plural',
         });
         return this.settings.keywords;
@@ -114,7 +113,7 @@ var config = Proto.extend({
     _read: function(filepath) {
         if (S(filepath).include('.json')) {
             return require(path.normalize(filepath));
-        } else throw new Error('The configuration must be a JSON file.')
+        } else throw new Error('The configuration must be a JSON file.');
     }
 });
 

@@ -1,3 +1,4 @@
+/*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/
 var Proto = require('uberproto');
 var _ = require('lodash');
 var S = require('string');
@@ -13,16 +14,16 @@ var Template = Proto.extend({
             var opening = this.open;
             var closing = this.close;
 
-            var open = opening.replace(/[-[\]()*\s]/g, "\\$&").replace(/\$/g, '\\$')
-            var close = closing.replace(/[-[\]()*\s]/g, "\\$&").replace(/\$/g, '\\$')
-            var r = new RegExp(open + '(.+?)' + close, 'g')
+            var open = opening.replace(/[-[\]()*\s]/g, "\\$&").replace(/\$/g, '\\$');
+            var close = closing.replace(/[-[\]()*\s]/g, "\\$&").replace(/\$/g, '\\$');
+            var r = new RegExp(open + '(.+?)' + close, 'g');
                 //, r = /\{\{(.+?)\}\}/g
             var matches = this.phrase.match(r) || [];
             _.forEach(matches, function(match) {
                 var keys = match.substring(opening.length, match.length - closing.length).trim().split('.'); //chop {{ and }}
                 var value = this.find(this.template, keys);
                 this.phrase = this.phrase.replace(match, value);
-            }, this)
+            }, this);
         }
         return this.phrase;
     },
@@ -42,4 +43,4 @@ var Template = Proto.extend({
 
 module.exports = function(phrase, template, settings) {
     return Template.create(phrase, template, settings);
-}
+};

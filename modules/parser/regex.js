@@ -1,3 +1,4 @@
+/*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/
 var Proto = require('uberproto');
 
 var Regex = Proto.extend({
@@ -19,7 +20,7 @@ var Regex = Proto.extend({
         var self = this;
         return {
             exec: function() {
-                if (isDot) self.str;
+                if (isDot) return self.str;
             },
             match: function() {
                 return isDot;
@@ -52,4 +53,4 @@ var Regex = Proto.extend({
 
 module.exports = function(str) {
     return Regex.create(str);
-}
+};

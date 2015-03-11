@@ -1,4 +1,4 @@
-/*jslint node: true, forin: true, jslint white: true, newcap: true*/
+/*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/
 
 /**
  * Takeshi Iwana aka iwatakeshi
@@ -32,9 +32,7 @@ var middleware = Proto.extend({
             }
 
             // first arg is the middleware
-            if (typeof arg !== 'function') {
-                offset = 1;
-            }
+            if (typeof arg !== 'function') offset = 1;
         }
 
         var callbacks = flatten(slice.call(arguments, offset));

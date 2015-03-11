@@ -1,4 +1,4 @@
-/*jslint node: true, forin: true, jslint white: true, newcap: true*/
+/*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/
 /*
  * gengojs
  * version : 1.0.0
@@ -106,10 +106,10 @@
                     return Gengo.parse(parse, extract(arguments), arguments.length);
                 };
             }
-            if (!object['getLocale']) {
+            if (!object.getLocale) {
                 object.getLocale = function() {
                     return Gengo.accept.getLocale();
-                }
+                };
             }
         }
     }).create();
@@ -122,7 +122,7 @@
     function gengo(opt) {
         Gengo.config(opt);
         return Gengo.express.bind(Gengo);
-    };
+    }
 
     /**
      * 'use' is a middleware handler that allows developers to

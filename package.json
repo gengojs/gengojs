@@ -16,7 +16,7 @@
     "gengojs-accept": "0.0.3",
     "js-yaml": "^3.2.7",
     "lodash": "^3.3.1",
-    "mustache": "^1.1.0",
+    "messageformat": "^0.2.1",
     "sprintf-js": "^1.0.2",
     "string": "^3.0.0",
     "uberproto": "^1.1.2"

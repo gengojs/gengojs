@@ -18,10 +18,10 @@ var filter = Proto.extend({
         this.values = {};
         this.args = [];
         this.template = {};
-        if (length > 0 || !_.isArray(phrase) || !_.isNumber(phrase)) this.discern(phrase, other, length);
+        if (length > 0 || !_.isArray(phrase) || !_.isNumber(phrase)) this.discern(phrase, other);
         return this;
     },
-    discern: function(phrase, other, length) {
+    discern: function(phrase, other) {
         //maybe phrase is an plain object
         if (_.isPlainObject(phrase) || _.isObject(phrase)) {
             _.forOwn(phrase, function(item, key) {
@@ -38,7 +38,7 @@ var filter = Proto.extend({
                         if (!this.template[key]) this.template[key] = item;
                         break;
                 }
-            }, this)
+            }, this);
         } else if (_.isString(phrase)) this.phrase = phrase;
 
         if (other) {
@@ -70,7 +70,7 @@ var filter = Proto.extend({
                                     if (!this.template[key]) this.template[key] = item;
                                     break;
                             }
-                        }, this)
+                        }, this);
                     }
                 }, this);
         }

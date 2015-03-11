@@ -22,23 +22,19 @@ var path = require('path');
  *  'someKey':'someValue'
  * }
  */
-var parser = require('../modules/parser');
+var parser = require('../modules/parser/messageformat');
 
 gengo.use(parser());
 
 app.use(gengo({
     directory: './tests/locales',
-    supported: ['en-US', 'ja'],
-    keywords: {
-        singular: 'one',
-        plural: 'other'
-    }
+    supported: ['en-US', 'ja']
 }));
 
 app.get('/', function(req, res, next) {
-    res.send(req.__('Hello {{name}}, how was your %s?', {
-        name: 'Takeshi'
-    }, 'day'));
+    res.send(req.__("{GENDER, select, male{He} female{She} other{They}} liked this.", {
+        "GENDER": "female"
+    }));
 });
 
 app.listen(3000);

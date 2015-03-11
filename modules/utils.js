@@ -146,7 +146,7 @@ var utils = Proto.extend({
                     }
                 }
             }
-        }
+        };
     }
 }).create();
 
