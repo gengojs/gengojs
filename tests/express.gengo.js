@@ -32,9 +32,13 @@ app.use(gengo({
 }));
 
 app.get('/', function(req, res, next) {
-    res.send(req.__("{GENDER, select, male{He} female{She} other{They}} liked this.", {
-        "GENDER": "female"
-    }));
+    res.send(req.__l('ja').datetime({
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    }).format(new Date));
+    next();
 });
 
 app.listen(3000);

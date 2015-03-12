@@ -22,6 +22,7 @@
         middleware = require(modules + 'middleware'),
         config = require(modules + 'config'),
         router = require(modules + 'router'),
+        localize = require(modules + 'localize/'),
         parser = require(modules + 'parser/'),
         io = require(modules + 'io'),
         //npm modules
@@ -67,18 +68,20 @@
             return this.result;
         },
         express: function(req, res, next) {
-
+            //detect locale
             this.accept = accept(req, {
                 default: this.settings.default(),
                 supported: this.settings.supported(),
                 keys: this.settings.keys(),
                 detect: this.settings.detect()
             });
-
+            //set localize
+            this.localize = localize;
+            this.localize.locale(this.accept.detectLocale());
+            //set the router
             this.router.set(this.accept.request);
-
+            //apply the API to req || res
             if (_.isObject(this.accept.request)) this._apply(this.accept.request, res);
-
             if (_.isFunction(next)) next();
         },
         config: function(opt) {
@@ -110,6 +113,11 @@
                 object.getLocale = function() {
                     return Gengo.accept.getLocale();
                 };
+            }
+            if (!object.__l) {
+                object.__l = function() {
+                    return Gengo.localize.apply(this, arguments);
+                }
             }
         }
     }).create();

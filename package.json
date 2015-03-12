@@ -10,13 +10,16 @@
   "dependencies": {
     "app-root-path": "^1.0.0",
     "cldr": "^2.3.3",
+    "cldr-data": "^26.0.10",
     "cookie": "^0.1.2",
     "debug": "^2.1.2",
     "fs-extra": "^0.16.5",
     "gengojs-accept": "0.0.7",
+    "intl": "^0.1.4",
     "js-yaml": "^3.2.7",
     "lodash": "^3.5.0",
     "messageformat": "^0.2.1",
+    "moment-timezone": "^0.3.0",
     "sprintf-js": "^1.0.2",
     "string": "^3.0.0",
     "uberproto": "^1.1.2"
