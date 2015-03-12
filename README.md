@@ -27,7 +27,7 @@ app.use(gengo.init)
 app.use(gengo({/*...*/}))
 
 //configuration with ease
-app.use(gengo({__dirname + 'path to [name of configuration file].[json | yaml]'}))
+app.use(gengo(__dirname + 'path to [name of configuration file].[json | yaml]'))
 
 ```
 
