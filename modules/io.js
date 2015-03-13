@@ -81,7 +81,7 @@ var io = Proto.extend({
                             utils.require.uncache(this.filePath);
                         }
                     } catch (err) {
-                        //sorry didn't find it
+                        console.error(err.stack || String(err));
                     }
 
                 }
@@ -91,13 +91,13 @@ var io = Proto.extend({
                     try {
                         this.data = yaml.safeLoad(fs.readFileSync(this.filePath, 'utf8'));
                     } catch (err) {
-
+                        console.warn(erro.stack || String(err));
                     } finally {
                         this.setFile(true);
                         this.data = yaml.safeLoad(fs.readFileSync(this.filePath, 'utf8'));
                     }
                 } catch (err) {
-                    console.log(err.stack || String(err));
+                    console.error(err.stack || String(err));
                 }
                 break;
         }

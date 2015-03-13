@@ -24,7 +24,11 @@ describe('Begin configuration tests', function() {
         });
         describe('with default settings', function() {
             it('The global identifier should === "__"', function(done) {
-                assert.strictEqual(config().id(), "__");
+                assert.strictEqual(config().globalID(), "__");
+                done();
+            });
+            it('The localize identifier should === "__l"', function(done) {
+                assert.strictEqual(config().localizeID(), "__l");
                 done();
             });
 
@@ -106,7 +110,14 @@ describe('Begin configuration tests', function() {
             it('The configured global identifier should === "_g"', function(done) {
                 assert.strictEqual(config({
                     global: '_g'
-                }).id(), "_g");
+                }).globalID(), "_g");
+                done();
+            });
+
+            it('The configured global identifier should === "_l"', function(done) {
+                assert.strictEqual(config({
+                    localize: '_l'
+                }).localizeID(), "_l");
                 done();
             });
             it('The directory should === "' + path.normalize(path.resolve('./xfolder')).replace(path.normalize('/tests'), '') + '" ', function(done) {

@@ -1,5 +1,6 @@
 {
     "global": "__",
+    "localize": "__l",
     "directory": "./locales",
     "supported": ["en-US"],
     "default": "en-US",

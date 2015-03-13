@@ -1,6 +1,6 @@
 var express = require('express'),
     app = express(),
-    gengo = require('../gengo.js');
+    gengo = require('../index.js');
 var path = require('path');
 /** 
  * Available Context API

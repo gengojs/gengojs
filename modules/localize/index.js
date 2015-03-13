@@ -16,6 +16,7 @@
         //Intl = Intl || require('intl'),
         Intl = require('intl'),
         _ = require('lodash'),
+        cldr = require('cldr'),
         moment = require('moment-timezone'),
         hasModule = (typeof module !== 'undefined' && module.exports);
 
@@ -67,6 +68,9 @@
         },
         moment: function() {
             return this._moment.apply(this, arguments);
+        },
+        cldr: function() {
+            return cldr;
         }
     });
 

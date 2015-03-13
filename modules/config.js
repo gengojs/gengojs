@@ -15,6 +15,7 @@ var utils = require('./utils');
 var root = require('app-root-path').path;
 var path = require('path');
 var S = require('string');
+var yaml = require('js-yaml');
 
 var config = Proto.extend({
     init: function(opt) {
@@ -43,8 +44,11 @@ var config = Proto.extend({
     configuration: function() {
         return this.settings;
     },
-    id: function() {
+    globalID: function() {
         return this.settings.global;
+    },
+    localizeID: function() {
+        return this.settings.localize;
     },
     directory: function() {
         var dir = this.settings.directory;
@@ -61,6 +65,7 @@ var config = Proto.extend({
                 dir = path.normalize(path.join(root, dir));
             }
         }
+
 
         this.settings.directory = dir;
         return this.settings.directory;
@@ -111,9 +116,9 @@ var config = Proto.extend({
         return this.settings.template;
     },
     _read: function(filepath) {
-        if (S(filepath).include('.json')) {
-            return require(path.normalize(filepath));
-        } else throw new Error('The configuration must be a JSON file.');
+        if (S(filepath).include('.json')) return require(path.normalize(filepath));
+        else if (S(filepath).include('.yaml') || S(filepath).include('yml')) return yaml.safeLoad(fs.readFileSync(path.normalize(filepath), 'utf8'));
+        else throw new Error('The configuration must be a JSON or a YAML file.');
     }
 });
 
