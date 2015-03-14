@@ -205,7 +205,7 @@
      * @private
      * @param  {String || Object} phrase Contains a string or Object to translate
      * @return {Object}        Gengo's 'this' object
-     * @api private
+     * @api    private
      */
     gengo._mock = function(phrase) {
         return Gengo._mock(phrase, extract(arguments), arguments.length);
