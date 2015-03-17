@@ -35,7 +35,6 @@
     /**
      * @class
      * @description gengo.js Constructor.
-     * @this {Gengo}
      * @private
      */
     var Gengo = Proto.extend({
@@ -50,6 +49,7 @@
             this.io = io();
             this.settings = config();
             this.isMock = false;
+            //set localize
             this.localize = localize;
         },
         /**
@@ -83,32 +83,26 @@
             return this.result;
         },
         /**
-         * @method koa
-         * @description 'koa' is a function that enables Gengo to be an Express middleware.
-         * @param  {Koa}   koa  The context of Koa.
+         * @method hapi
+         * @description 'hapi' is a function that enables Gengo to be an Express middleware.
+         * @param  {Object}   req  The request object.
          * @private
          * 
          */
-        koa: function(koa) {
+        hapi: function(req) {
             //detect locale
-            this.accept = accept(koa, {
+            this.accept = accept(req, {
                 default: this.settings.default(),
                 supported: this.settings.supported(),
                 keys: this.settings.keys(),
                 detect: this.settings.detect()
             });
-            
+
             this.localize.locale(this.accept.detectLocale());
             //set the router
             this.router.set(this.accept.request);
-            //apply the API to req || res
-            this._apply(koa.request, koa.response);
-            //the original req and res may exist
-            if (koa.req || koa.res) this._apply(koa.req, koa.res);
-            //for convenience
-            this._apply(koa);
-            //apply to state
-            this._apply(koa.state);
+            //apply the API to req
+            this._apply(req);
         },
         /** 
          * @method config
@@ -118,7 +112,7 @@
         config: function(opt) {
             this.settings = config(opt);
         },
-        /**
+         /**
          * @method use
          * 'use' is a function that enables Gengo to accept a middleware parser.
          * @param  {Function} fn The middleware parser for Gengo to use.
@@ -160,13 +154,13 @@
         _api: function() {
             var api = {};
             api[this.settings.globalID()] = function parser(parse) {
-                return this.parse(parse, extract(arguments), arguments.length);
+                return Gengo.parse(parse, extract(arguments), arguments.length);
             };
             api[this.settings.localizeID()] = function() {
-                return this.localize.apply(this, arguments);
+                return Gengo.localize.apply(this, arguments);
             };
             api['locale'] = function() {
-                return this.accept.getLocale();
+                return Gengo.accept.getLocale();
             };
             return api;
         }
@@ -175,16 +169,32 @@
     /**
      * @method gengo
      * @description 'gengo' is the main function for Gengo.
+     * @param {Object} plugin The hapi plugin.
      * @param  {Object} opt The configuration options.
-     * @return {Function}   The middleware for koa.
+     * @param {Function} next The next function.
      * @public
      */
-    function gengo(opt) {
+    function gengo(plugin, opt, next) {
         Gengo.config(opt);
-        return function*(next) {
-            Gengo.koa.bind(Gengo)(this);
-            yield next;
-        }
+        plugin.ext('onPreHandler', function(request, reply) {
+            Gengo.hapi.bind(Gengo)(request);
+            reply.continue();
+        });
+
+        plugin.ext('onPreResponse', function(request, reply) {
+            Gengo.hapi.bind(Gengo)(request);
+            var source = request.response.source;
+
+            // Attach interface only if we got a view
+            if (request.response.variety === 'view') {
+                Gengo.hapi.bind(Gengo)(request);
+                //bind the api to the context
+                Gengo._apply(source.context);
+            }
+            reply.continue();
+        });
+
+        next();
     }
 
     /**
@@ -221,7 +231,7 @@
     };
 
     /**
-     * version
+     * version.
      * @type {String}
      * @public
      */
@@ -229,8 +239,23 @@
 
     // CommonJS module is defined
     if (hasModule) {
-        //@private
-        module.exports = gengo;
+        /**
+         * @method hapi
+         * @description 'hapi' is a gengo plugin for Hapi.
+         * @param  {(Object | String)} opt The configuration for Gengo.
+         * @return {Object}     gengo.
+         * @public
+         */
+        module.exports = function hapi(opt) {
+            var register = gengo;
+            register.attributes = {
+                name: require('../package').name
+            };
+            return {
+                register: register,
+                options: opt || {}
+            };
+        }
     }
 
     /*global ender:false */

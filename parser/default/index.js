@@ -1,7 +1,7 @@
 /*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/
 var Proto = require('uberproto'),
     _ = require('lodash'),
-    utils = require('../utils'),
+    utils = require('../../modules/utils'),
     filter = require('./filter'),
     regex = require('./regex'),
     vsprintf = require('sprintf-js').vsprintf,
@@ -41,7 +41,7 @@ var Parser = Proto.extend({
             keywords = settings.keywords(),
             result, data, global;
         try {
-            data = this.data || this.route();
+            data = this.route() || this.data;
             global = this.route() ? (_.has(this.route(), keywords.global) ? this.route()[keywords.global] : null) : null;
             if (!_.isEmpty(this.data)) {
                 result = (_.has(data, this.key)) ? (data[this.key] || null) : (_.has(global, this.key)) ? global[this.key] : null;
@@ -60,7 +60,7 @@ var Parser = Proto.extend({
             result, data, global;
         try {
             if (!_.isEmpty(this.data)) {
-                data = this.data[search] || this.route();
+                data = this.route() || this.data[search] ;
                 global = this.route() ? (_.has(this.route(), keywords.global) ? this.route()[keywords.global] : null) : null;
                 if (dot) {
                     if (regex(dot).dot().match()) {
@@ -88,7 +88,7 @@ var Parser = Proto.extend({
             result, data, global;
         try {
             if (!_.isEmpty(this.data)) {
-                data = this.data || this.route();
+                data = this.route() || this.data;
                 global = this.route() ? (_.has(this.route(), keywords.global) ? this.route()[keywords.global] : null) : null;
                 result = this.parser(this.parser(utils.find(data).dot(search)) || this.parser(utils.find(global).dot(search)));
             }
@@ -126,7 +126,7 @@ var Parser = Proto.extend({
             data;
         if (settings.isRouter()) {
             if (router.toArray().length() === 0) data = this.data[router.toDot()];
-            else data = utils.find(this.data).dot(router.toDot());
+            else data = utils.find(this.data).dot(router.toDot()) || null;
             return data;
         }
         return data || null;

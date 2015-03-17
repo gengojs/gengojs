@@ -2,9 +2,9 @@
 var Proto = require('uberproto');
 var _ = require('lodash');
 var mf = require('messageformat');
-var utils = require('../../utils');
-var filter = require('../filter');
-var regex = require('../regex');
+var utils = require('../../modules/utils');
+var filter = require('./filter');
+var regex = require('./regex');
 
 var MessageFormat = Proto.extend({
     init: function(context) {

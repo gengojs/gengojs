@@ -1,0 +1,1601 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"parser",
+				"parsers"
+			],
+			[
+				"accept",
+				"accept-language"
+			],
+			[
+				"dette",
+				"detectLocale"
+			],
+			[
+				"locale",
+				"localizeID"
+			],
+			[
+				"const",
+				"constructor	@constructor"
+			],
+			[
+				"lcali",
+				"localizeID"
+			],
+			[
+				"global",
+				"globalID"
+			],
+			[
+				"local",
+				"localize"
+			],
+			[
+				"globa",
+				"globalize"
+			],
+			[
+				"format",
+				"formatter"
+			],
+			[
+				"moment",
+				"moment-timezone"
+			],
+			[
+				"Locale",
+				"Localize"
+			],
+			[
+				"plura",
+				"hasPlurality"
+			],
+			[
+				"Regex",
+				"Regex"
+			],
+			[
+				"_for",
+				"_forOwn	Iterates over own enumerable properties of an object, executing the callback for each property."
+			],
+			[
+				"bing",
+				"bingo"
+			],
+			[
+				"_ise",
+				"_isEmpty	Checks if value is empty."
+			],
+			[
+				"d",
+				"d"
+			],
+			[
+				"detect",
+				"detectLocale"
+			],
+			[
+				"getfrom",
+				"getFromSubdomain"
+			],
+			[
+				"subdoam",
+				"subdomain"
+			],
+			[
+				"parse",
+				"_parser"
+			],
+			[
+				"search",
+				"search"
+			],
+			[
+				"getFrom",
+				"getFromCookie"
+			],
+			[
+				"asserdeep",
+				"assert.deepEqual"
+			],
+			[
+				"getfr",
+				"getFromQuery"
+			],
+			[
+				"defau",
+				"defaults"
+			],
+			[
+				"acce",
+				"accepted"
+			],
+			[
+				"accpet",
+				"accept-language"
+			],
+			[
+				"accep",
+				"accept-language"
+			],
+			[
+				"_isob",
+				"_.isPlainObject	Checks if value is an object created by the Object constructor."
+			],
+			[
+				"strict",
+				"assert.strictEqual"
+			],
+			[
+				"asser",
+				"assert.strictEqual"
+			],
+			[
+				"_iso",
+				"_.isPlainObject	Checks if value is an object created by the Object constructor."
+			],
+			[
+				"eqal",
+				"assert.equal"
+			],
+			[
+				"assertdee",
+				"assert.deepEqual"
+			],
+			[
+				"assertnote",
+				"assert.notStrictEqual"
+			],
+			[
+				"filter",
+				"filterObject"
+			],
+			[
+				"middlw",
+				"middlwares"
+			],
+			[
+				"middle",
+				"middlwares"
+			],
+			[
+				"deep",
+				"assert.deepEqual"
+			],
+			[
+				"stric",
+				"assert.strictEqual"
+			],
+			[
+				"rq",
+				"req	Require"
+			],
+			[
+				"def",
+				"default"
+			],
+			[
+				"defa",
+				"default"
+			],
+			[
+				"set",
+				"settings"
+			],
+			[
+				"index",
+				"indexOf"
+			],
+			[
+				"ext",
+				"extension"
+			],
+			[
+				"defu",
+				"default"
+			],
+			[
+				"has",
+				"hasValues"
+			],
+			[
+				"argm",
+				"arguments"
+			],
+			[
+				"argu",
+				"arguments"
+			],
+			[
+				"pa",
+				"parsers"
+			],
+			[
+				"vi",
+				"vimeo"
+			],
+			[
+				"he",
+				"height"
+			],
+			[
+				"youtu",
+				"youtube"
+			],
+			[
+				"par",
+				"parsers"
+			],
+			[
+				"load",
+				"loadModules"
+			],
+			[
+				"DEFINE",
+				"defineParser"
+			],
+			[
+				"ob",
+				"object"
+			],
+			[
+				"wr",
+				"wrap"
+			],
+			[
+				"log",
+				"log	JS - Log to console"
+			],
+			[
+				"ar",
+				"articles"
+			],
+			[
+				"in",
+				"inline"
+			],
+			[
+				"table",
+				"table-row"
+			],
+			[
+				"inli",
+				"inline-table"
+			],
+			[
+				"b",
+				"background-color"
+			],
+			[
+				"scr",
+				"script"
+			],
+			[
+				"vide",
+				"video-js"
+			],
+			[
+				"scro",
+				"scoller"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"s",
+				"style"
+			],
+			[
+				"co",
+				"column"
+			],
+			[
+				"bower",
+				"bower_components"
+			],
+			[
+				"opt",
+				"options"
+			],
+			[
+				"for",
+				"fori	JS - For In loop"
+			],
+			[
+				"ren",
+				"render"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"sty",
+				"style	Tag"
+			],
+			[
+				"stick",
+				"sticky"
+			],
+			[
+				"bord",
+				"border-bottom-right-radius"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"dec",
+				"text-decoration"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"top",
+				"top-bar"
+			],
+			[
+				"box",
+				"box-shadow"
+			],
+			[
+				"include",
+				"include-html-top-bar-classes"
+			],
+			[
+				"topb",
+				"topbar-bg"
+			],
+			[
+				"topbar",
+				"include-html-top-bar-classes"
+			],
+			[
+				"topbar-",
+				"include-html-top-bar-classes"
+			],
+			[
+				"con",
+				"content"
+			],
+			[
+				"border-bo",
+				"border-bottom-left-radius"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"li",
+				"lin	link()"
+			],
+			[
+				"val",
+				"isValid"
+			],
+			[
+				"on",
+				"onSuccess"
+			],
+			[
+				"sing",
+				"signupForm"
+			],
+			[
+				"email",
+				"email"
+			],
+			[
+				"sin",
+				"signup"
+			],
+			[
+				"cr",
+				"crypto"
+			],
+			[
+				"valid",
+				"validSignup"
+			],
+			[
+				"vali",
+				"validateEmail"
+			],
+			[
+				"rqe",
+				"require"
+			],
+			[
+				"new",
+				"newUser"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"lo",
+				"locked"
+			],
+			[
+				"su",
+				"success"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"t",
+				"try"
+			],
+			[
+				"soc",
+				"SocialRouter"
+			],
+			[
+				"si",
+				"signup"
+			],
+			[
+				"signup",
+				"SignupView"
+			],
+			[
+				"mal",
+				"mailer"
+			],
+			[
+				"r",
+				"ractive-adaptors-backbone"
+			],
+			[
+				"rand",
+				"randomIndex"
+			],
+			[
+				"ht",
+				"https"
+			],
+			[
+				"stt",
+				"status"
+			],
+			[
+				"list",
+				"listeners"
+			],
+			[
+				"Mes",
+				"Message"
+			],
+			[
+				"re",
+				"recieve"
+			],
+			[
+				"E",
+				"EOF"
+			],
+			[
+				"Cur",
+				"currentChar"
+			],
+			[
+				"IO",
+				"IOException"
+			],
+			[
+				"cure",
+				"currentChar"
+			],
+			[
+				"note",
+				"note"
+			],
+			[
+				"MOnt",
+				"MonthNames"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.js",
+			"settings":
+			{
+				"buffer_size": 7740,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "koa/index.js",
+			"settings":
+			{
+				"buffer_size": 7815,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "hapi/index.js",
+			"settings":
+			{
+				"buffer_size": 8615,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "tests/koa/index.js",
+			"settings":
+			{
+				"buffer_size": 945,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "tests/koa/index.jade",
+			"settings":
+			{
+				"buffer_size": 232,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "parser/messageformat/index.js",
+			"settings":
+			{
+				"buffer_size": 7686,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 219.0,
+		"selected_items":
+		[
+			[
+				"preview",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"javascne",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"templa",
+				"Snippet: template"
+			],
+			[
+				"jade",
+				"Set Syntax: Jade"
+			],
+			[
+				"swig",
+				"Set Syntax: Swig"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"jsne",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"previ",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"prev",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"preiv",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"pre",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"javascript ne",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"nex",
+				"Bookmarks: Select Next"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"",
+				"Convert Case: Upper Case"
+			],
+			[
+				"code folding",
+				"Code Folding: Unfold All"
+			],
+			[
+				"reverse",
+				"Permute Lines: Reverse"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"bea",
+				"Javascript Beautify"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"mark",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"min",
+				"Minify Javascript to file"
+			],
+			[
+				"view",
+				"View In Browser"
+			],
+			[
+				"viwe",
+				"View In Browser"
+			],
+			[
+				"viw",
+				"View In Browser"
+			],
+			[
+				"html",
+				"Snippet: html"
+			],
+			[
+				"prett",
+				"HTMLPrettify"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"comme",
+				"Toggle Comment"
+			],
+			[
+				"beay",
+				"Javascript Beautify"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"beaut",
+				"Javascript Beautify"
+			],
+			[
+				"register",
+				"Snippet: grunt.registerTask"
+			],
+			[
+				"h",
+				"HTMLBeautify"
+			],
+			[
+				"vie",
+				"View In Browser"
+			],
+			[
+				"H",
+				"HTMLBeautify"
+			],
+			[
+				"ht",
+				"HTMLBeautify"
+			],
+			[
+				"hmt",
+				"HTMLBeautify"
+			],
+			[
+				"hml",
+				"HTMLBeautify"
+			],
+			[
+				"view in",
+				"View In Browser"
+			],
+			[
+				"htmlbe",
+				"HTMLBeautify"
+			],
+			[
+				"htm",
+				"HTMLBeautify"
+			],
+			[
+				"les",
+				"Set Syntax: LESS"
+			],
+			[
+				"less",
+				"Set Syntax: LESS"
+			],
+			[
+				"sasbe",
+				"SassBeautify"
+			],
+			[
+				"sass",
+				"Set Syntax: Sass"
+			],
+			[
+				"beau",
+				"Javascript Beautify"
+			],
+			[
+				"eba",
+				"Set Syntax: Batch File"
+			],
+			[
+				"be",
+				"Javascript Beautify"
+			],
+			[
+				"javascri",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"beat",
+				"Javascript Beautify"
+			],
+			[
+				"jad",
+				"Set Syntax: Jade"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"rev",
+				"Permute Selections: Reverse"
+			],
+			[
+				"rever",
+				"Permute Selections: Reverse"
+			],
+			[
+				"re",
+				"Permute Selections: Reverse"
+			],
+			[
+				"java",
+				"Set Syntax: Java"
+			],
+			[
+				"si",
+				"View: Toggle Side Bar"
+			],
+			[
+				"sid",
+				"View: Toggle Side Bar"
+			],
+			[
+				"isntl",
+				"Package Control: Install Package"
+			],
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"asty",
+				"SublimeAStyleFormatter: Format Current File"
+			],
+			[
+				"sublme",
+				"SublimeAStyleFormatter: Format Current File"
+			],
+			[
+				"revers",
+				"Permute Lines: Reverse"
+			],
+			[
+				"jsonpre",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"ebat",
+				"Set Syntax: Batch File"
+			],
+			[
+				"beea",
+				"Bookmarks: Select All"
+			],
+			[
+				"minif",
+				"Minify Javascript to file"
+			],
+			[
+				"instla",
+				"Package Control: Install Package"
+			],
+			[
+				"mini",
+				"Minify::Minify File"
+			],
+			[
+				"previe",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"jav",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"bet",
+				"Bookmarks: Select All"
+			],
+			[
+				"BEAT",
+				"Javascript Beautify"
+			],
+			[
+				"beta",
+				"Bookmarks: Select All"
+			],
+			[
+				"save",
+				"Project: Save As"
+			],
+			[
+				"toggle",
+				"View: Toggle Side Bar"
+			],
+			[
+				"inver",
+				"Permute Lines: Reverse"
+			],
+			[
+				"doc",
+				"DocBlockr: Decorate line comment"
+			],
+			[
+				"shell",
+				"Shell Command"
+			],
+			[
+				"she",
+				"Set Syntax: HTML (Erlang)"
+			],
+			[
+				"shee",
+				"Set Syntax: HTML (Erlang)"
+			],
+			[
+				"shel",
+				"Shell Command"
+			],
+			[
+				"prei",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"markdw",
+				"Set Syntax: Markdown"
+			],
+			[
+				"sty",
+				"Set Syntax: Stylus"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 856.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
+			"npm update",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Takeshi/Documents/GitHub/gengojs"
+	],
+	"file_history":
+	[
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/koa/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/parsers/default/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express/index.js",
+		"/C/Users/Takeshi/Documents/cmder/bin/config/aliases",
+		"/C/Users/Takeshi/Documents/cmder/bin/config/settings",
+		"/C/Users/Takeshi/Downloads/cmder/Readme.md",
+		"/C/Users/Takeshi/Downloads/cmder/bin/Readme.md",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express/index.jade",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser/template.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/gengojs-accept/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/hapi/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/hapi/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/hapi/index.jade",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express.gengo.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/koa.gengo.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/io.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/index.jade",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/jade.koa.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/koa-jade/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/config.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/settings.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/configured.settings.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/localize/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/gengo.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/config.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/README.md",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser/messageformat/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser/filter.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/en-US.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/utils.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/input.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/msgfmt/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/message format/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/regex.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/filter.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/store.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/feathers.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/express/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/express.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/koa/koa.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/koa/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengomd/4deddfa9860e7dc25327/gengojs.md",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/string/lib/string.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/rules/Unicode Terms of Use",
+		"/C/Users/Takeshi/Downloads/plurals.txt",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/ja.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/accept.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express.accept.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/models/schema.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/en-US.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/something.text",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/router.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/en-US.yml",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/middleware.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/.travis.yml",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/koa.accept.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa.accept.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/feathers.accept.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/router.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/static.api.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/accept-language.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/extract.js",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/locales/locales.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/.gitignore",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/test.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/Makefile",
+		"/C/Users/Takeshi/Documents/GitHub/embed-video/embed.video.min.js",
+		"/C/Users/Takeshi/Documents/GitHub/embed-video/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/embed-video/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/embed-video/index.html",
+		"/C/Users/Takeshi/Documents/GitHub/embed-video/parsers/soundcloud.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower.json",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/globals/site.overrides",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/dash.html",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/jade/index.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/jade/layout.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/package.json",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/server.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-backend/app/routes/router.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/Gruntfile.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/elements/header.overrides",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/js/colorsbg.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-backend/app/app.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/npm-debug.log",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/collections/menu.overrides",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/.gitignore",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/main.html",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/collections/message.overrides",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/theme.config",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/elements/button.overrides",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/collections/menu.variables",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/public/components/header.css",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/globals/site.variables",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/definitions/collections/menu.less",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/index.html",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/gulpfile.js",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/LESS.sublime-settings",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/View In Browser.sublime-settings",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/View In Browser/View In Browser.sublime-settings",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_panels.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/layout.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan/public/js/colorsbg.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan/views/index.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_global.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/_settings.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_top-bar.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/index.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/app.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/dash/dash.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/index/index.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/signup/signup.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/index.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/app.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/signup.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/dash.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/public/js/app.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/routes/router.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/controllers/passport.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/config.json",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/libs/mongoforce.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/.gitignore"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 96.0,
+		"where_history":
+		[
+			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs\\tests",
+			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs\\modules",
+			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs",
+			"C:\\Users\\Takeshi\\Documents\\SourceTree\\nikchan-frontend-semantic-ui\\bower_components\\semantic-ui\\src",
+			"C:\\Users\\Takeshi\\Documents\\SourceTree\\nikchan-frontend-semantic-ui\\bower_components\\semantic-ui",
+			"C:\\Users\\Takeshi\\Downloads\\Chapter2.src\\Chapter2",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"parsers",
+			"localiz",
+			"||",
+			"|",
+			"@api    private",
+			"route",
+			"host",
+			"log",
+			"req",
+			"log",
+			"this.koa",
+			"express",
+			"log",
+			"library",
+			"local",
+			"log",
+			"lo",
+			"log",
+			"test",
+			"Time",
+			"tokei",
+			"\"",
+			"log",
+			"();",
+			"utils",
+			"singular",
+			"read",
+			"log",
+			"dive",
+			"log",
+			"regex",
+			"this.phrase",
+			"this._super()",
+			"regex",
+			"this.regex",
+			"regex",
+			"this._super().ctx.",
+			"log",
+			"this.phrase",
+			"_parser",
+			"parser",
+			"save",
+			"_this",
+			"store",
+			"log",
+			"applicatio",
+			"#",
+			"pluralRule",
+			"pluralRules",
+			"-",
+			"-locales",
+			"-count",
+			"modify",
+			"log",
+			"、",
+			"：",
+			"」",
+			"「",
+			"console",
+			"log",
+			"self",
+			"ctx",
+			"search",
+			"log",
+			"}\n",
+			"};\n",
+			"console.log",
+			"log",
+			"cons",
+			"koa-locale",
+			"express",
+			"feathers",
+			"log",
+			"koa",
+			"__",
+			"isInteger",
+			"utils",
+			"+",
+			"log",
+			"mustache",
+			"Number",
+			"dir",
+			"this",
+			");\n",
+			"FB",
+			"toki",
+			"Toki",
+			"console.log(",
+			"load",
+			"defineParser",
+			"log",
+			"toki",
+			"main coredntainer",
+			"a( role",
+			"a(href=\"#\"",
+			"nice",
+			"node",
+			"'",
+			".inverted",
+			".menu",
+			".main.menu",
+			"nav",
+			"main",
+			"#example",
+			"style",
+			"dir",
+			"destination",
+			"dest",
+			"path",
+			"matt",
+			"img",
+			"example",
+			"examplme",
+			"#toc",
+			"#example",
+			"</>",
+			"				",
+			"hover",
+			"font",
+			"roboto",
+			"font",
+			"header",
+			"heading",
+			"brand",
+			"menu",
+			"border",
+			"top",
+			"title"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"koa",
+			"jade",
+			"Localize",
+			"localize",
+			"'",
+			"route",
+			"self.patterns",
+			"regex",
+			"",
+			"parser",
+			"Parser",
+			"ctx",
+			"app",
+			"",
+			"rule",
+			"rules",
+			"",
+			"locales",
+			"count",
+			",",
+			":",
+			"\"",
+			"_this",
+			"self",
+			"koa",
+			"express",
+			"",
+			"gengo",
+			"embed",
+			"Embed",
+			"embed",
+			"a(role",
+			"a(",
+			"",
+			"User",
+			"error",
+			"User",
+			"callback",
+			"sform",
+			"moment",
+			"Moment",
+			"moments",
+			"getMoment",
+			"moments",
+			"moment",
+			"Moment",
+			"signup",
+			"Zepto",
+			"t.Month()",
+			"day_format",
+			"year_format",
+			"neo4j",
+			"model",
+			"user",
+			"error",
+			"nikchanIO",
+			"socketIO",
+			"io"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7740,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								531,
+								531
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "koa/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7815,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								534,
+								534
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 541.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "hapi/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8615,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								428,
+								428
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "tests/koa/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 945,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								121,
+								121
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "tests/koa/index.jade",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 232,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "parser/messageformat/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7686,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								288,
+								288
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 912.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.markdown":
+	{
+		"height": 124.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 130.0
+	},
+	"project": "gengojs.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				".gitignore"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 206.0,
+	"status_bar_visible": false,
+	"template_settings":
+	{
+	}
+}

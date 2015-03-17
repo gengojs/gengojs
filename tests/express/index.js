@@ -1,6 +1,6 @@
 var express = require('express'),
     app = express(),
-    gengo = require('../index.js');
+    gengo = require('../../index.js');
 var path = require('path');
 /** 
  * Available Context API
@@ -22,9 +22,12 @@ var path = require('path');
  *  'someKey':'someValue'
  * }
  */
-var parser = require('../modules/parser/messageformat');
+var parser = require('../../parser/messageformat');
 
+app.set('view engine', 'jade');
+app.set('views', path.normalize(__dirname + '/'));
 gengo.use(parser());
+
 
 app.use(gengo({
     directory: './tests/locales',
@@ -32,12 +35,7 @@ app.use(gengo({
 }));
 
 app.get('/', function(req, res, next) {
-    res.send(req.__l('ja').datetime({
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    }).format(new Date));
+    res.render('index');
     next();
 });
 

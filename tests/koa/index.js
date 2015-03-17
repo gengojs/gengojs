@@ -24,7 +24,7 @@ var jade = require('koa-jade-render');
  *  'someKey':'someValue'
  * }
  */
-var parser = require('../../modules/parser/messageformat');
+var parser = require('../../parser/messageformat');
 
 //gengo.use(parser());
 
@@ -37,7 +37,7 @@ app.use(jade(path.normalize(__dirname + '/')));
 
 
 app.use(function*() {
-    yield this.render('index.jade');
+    yield this.render('index');
 });
 
 app.listen(3000);
