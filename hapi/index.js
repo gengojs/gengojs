@@ -19,12 +19,12 @@
         modules = '../modules/',
         parsers = '../parser/',
         //gengo modules
-        extract = require(modules + 'extract'),
-        middleware = require(modules + 'middleware'),
-        config = require(modules + 'config'),
-        router = require(modules + 'router'),
+        extract = require(modules + 'extract/'),
+        middleware = require(modules + 'middleware/'),
+        config = require(modules + 'config/'),
+        router = require(modules + 'router/'),
         localize = require(modules + 'localize/'),
-        io = require(modules + 'io'),
+        io = require(modules + 'io/'),
         parser = require(parsers + 'default/'),
         //npm modules
         _ = require('lodash'),
@@ -40,7 +40,7 @@
     var Gengo = Proto.extend({
         /**
          * @method init
-         * @description 'init' is a function that initializes Gengo.
+         * @description Initializes Gengo.
          * @private
          */
         init: function() {
@@ -54,7 +54,7 @@
         },
         /**
          * @method parse
-         * @description 'parse' is a function that calls all parsers for i18n.
+         * @description Calls all parsers for i18n.
          * @param  {(String | Object)} phrase The phrase or object (ex {phrase:'',locale:'en'}) to parse.
          * @param  {Object} other  The arguments and values extracted when 'arguments' > 1.
          * @param  {Number} length The number of 'arguments'.
@@ -84,7 +84,7 @@
         },
         /**
          * @method hapi
-         * @description 'hapi' is a function that enables Gengo to be an Express middleware.
+         * @description Enables Gengo to be an Express middleware.
          * @param  {Object}   req  The request object.
          * @private
          * 
@@ -97,7 +97,7 @@
                 keys: this.settings.keys(),
                 detect: this.settings.detect()
             });
-
+            //set the global locale for localize
             this.localize.locale(this.accept.detectLocale());
             //set the router
             this.router.set(this.accept.request);
@@ -106,7 +106,7 @@
         },
         /** 
          * @method config
-         * @description 'config' is a function that that sets the settings.
+         * @description Sets the settings.
          * @private
          */
         config: function(opt) {
@@ -114,7 +114,7 @@
         },
          /**
          * @method use
-         * 'use' is a function that enables Gengo to accept a middleware parser.
+         * @description Enables Gengo to accept a middleware parser.
          * @param  {Function} fn The middleware parser for Gengo to use.
          * @private
          */
@@ -123,7 +123,7 @@
         },
         /**
          * @method _mock
-         * @description '_mock' is a test function for mocha tests.
+         * @description Test function for mocha tests.
          * @param  {(String | Object)} phrase The phrase to parse.
          * @param  {*} other  Arguments.
          * @param  {Number} length The length of arguments.
@@ -136,39 +136,233 @@
         },
         /** 
          * @method _apply
-         * @description '_apply' is a function that applies the api to an object.
+         * @description Applies the API to an object.
          * @private
          */
         _apply: function() {
             var object = arguments[0] || arguments[1];
-            _.forOwn(this._api(), function(fn, key) {
-                if (!object[key]) object[key] = fn.bind(this);
-            }, this);
+            var self = this;
+            _.forEach(self._api(), function(item, key) {
+                switch (key) {
+                    case 'i18n':
+                        _.forOwn(item, function(api, subkey) {
+                            if (!object[subkey]) {
+                                if (subkey === self.settings.globalID()) object[subkey] = api.bind(self);
+                                else object[self.settings.globalID()][subkey] = api.bind(self);
+                            }
+                        })
+                        break;
+                    case 'l10n':
+                        _.forOwn(item, function(api, subkey) {
+                            if (!object[subkey]) {
+                                if (subkey === self.settings.localizeID()) object[subkey] = api.bind(self);
+                            }
+                        });
+                        break;
+                }
+
+            });
         },
         /** 
          * @method _api
-         * @description '_api' is a function that sets the api.
+         * @description Sets the API.
          * @return {Object} The api for Gengo.
          * @private
          */
         _api: function() {
-            var api = {};
-            api[this.settings.globalID()] = function parser(parse) {
-                return Gengo.parse(parse, extract(arguments), arguments.length);
+            var i18n = function() {}
+            var l10n = function() {}
+                /**
+                 * @method i18n
+                 * @description I18ns the arguments.
+                 * Note: You can change ID for i18n. See Configuration.
+                 * @param  {...*} arg The arguments to internationalize.
+                 *
+                 * @example <caption>Phrase notation with default parser.</caption>
+                 *
+                 * //assuming the locale === 'ja',
+                 * //a basic phrase returns 'こんにちは'
+                 * __('Hello');
+                 *
+                 * //a basic phrase with sprintf returns 'Bob こんにちは'
+                 * __('Hello %s', 'Bob');
+                 *
+                 * //a basic phrase with interpolation returns 'Bob こんにちは'
+                 *  __('Hello {{name}}', {name:'Bob'});
+                 *
+                 * @example <caption>Bracket notation with default parser.</caption>
+                 *
+                 * //assuming the locale === 'ja',
+                 * //a basic bracket phrase returns 'おっす'
+                 * __('[Hello].informal');
+                 *
+                 * //a basic bracket phrase with sprintf returns 'Bob おっす'
+                 * __('[Hello %].informal', 'Bob');
+                 *
+                 * //a basic bracket phrase with interpolation returns 'Bob おっす'
+                 * __('[Hello {{name}}].informal', {name:'Bob'});
+                 *
+                 * @example <caption>Dot notation with default parser.</caption>
+                 *
+                 * //assuming the locale === 'ja',
+                 * //a basic dot phrase returns 'おっす'
+                 * __('greeting.hello.informal');
+                 *
+                 * //a basic dot phrase with sprintf returns 'Bob おっす'
+                 * __('greeting.hello.person.informal', 'Bob');
+                 *
+                 * //a basic dot phrase with interpolation returns 'Bob おっす'
+                 * __('greeting.hello.person.informal', {name:'Bob'});
+                 *
+                 * @example <caption>All notations with Message Format.</caption>
+                 * //See '{@link https://github.com/thetalecrafter/message-format|message-format}' for documentation.
+                 *
+                 * //assuming the locale === 'en-us',
+                 * //a basic phrase with message formatting
+                 * //returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
+                 * __('You took {n,number} pictures since {d,date} {d,time}', { n:4000, d:new Date() });
+                 *
+                 * //a basic bracket phrase with message formatting
+                 * //returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
+                 * __('[You took {n, numbers} pictures].since.date', { n:4000, d:new Date() });
+                 *
+                 * //a basic dot phrase with message formatting
+                 * //returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
+                 * __('pictures.since.date', { n:4000, d:new Date() });
+                 *
+                 * @return {String} Then i18ned string.
+                 * @public
+                 */
+
+            i18n[this.settings.globalID()] = function(arg) {
+                return this.parse(arg, extract(arguments), arguments.length)
             };
-            api[this.settings.localizeID()] = function() {
-                return Gengo.localize.apply(this, arguments);
+            /**
+             * @method language
+             * @description Returns the name of the current locale.
+             * @param  {string} id The locale to change.
+             *
+             * @example <caption>Get the current language.</caption>
+             *
+             * //assuming locale === 'en-us'
+             * //returns 'American English'
+             * __.languages();
+             *
+             * @example <caption>Get the current language in another locale. </caption>
+             *
+             * //assuming locale === 'en-us'
+             * //returns 'English'
+             * __.language('en');
+             *
+             * //returns 'Japanese'
+             * __.language('ja');
+             *
+             * @return {String} Then i18ned string.
+             * @public
+             */
+            i18n.language = function(id) {
+                //de-normalize locale
+                var locale = this.accept.getLocale().replace('-', '_');
+                //denormalize id
+                id = id ? id.toLowerCase().replace('-', '_') : locale;
+                //store the languages
+                return cldr.extractLanguageDisplayNames(locale)[id];
+            }
+            /**
+             * @method languages
+             * @description Returns the names of the supported locale.
+             * @param  {String | Array} arg The locale to change or the supported locales.
+             * @param {Array} supported The supported locales.
+             *
+             * @example <caption>Get the supported languages.</caption>
+             *
+             * //assuming locale === 'en-us'
+             * //returns ['American English', 'Japanese']
+             * __.lanugages();
+             *
+             * @example <caption>Get the current languages in another locale. </caption>
+             *
+             * //assuming locale === 'en-us'
+             * //returns ['アメリカ英語', '日本語']
+             * __.languages('ja');
+             *
+             * @example <caption>Override the supported locales.</caption>
+             *
+             * //assuming locale === 'en-us'
+             * //returns ['English', 'Japanese']
+             * __.languages(['en', 'ja']);
+             *
+             * @example <caption>Override the supported locales and get the languages in another locale.</caption>
+             *
+             * //assuming locale === 'en-us'
+             * //returns ['英語', '日本語']
+             * __.languages('ja', ['en', 'ja']);
+             *
+             * @return {String} Then i18ned string.
+             * @public
+             */
+            i18n.languages = function(arg, supported) {
+                var _supported = [];
+                supported = _.isArray(arg) ? arg : supported;
+                arg = _.isArray(arg) ? undefined : arg;
+                _.forEach(supported || this.settings.supported(), function(locale) {
+                    //de-normalize locales
+                    var locale = locale.replace('-', '_');
+                    //denormalize arg
+                    arg = arg ? arg.toLowerCase().replace('-', '_') : locale;
+                    //store the languages
+                    _supported.push(cldr.extractLanguageDisplayNames(arg)[locale]);
+                }, this)
+                return _supported;
+            }
+
+            /**
+             * @method locale
+             * @description Sets or gets the locale.
+             * @param  {String} locale The locale to set or get.
+             *
+             * @example <caption>Get the current locale.</caption>
+             *
+             * //assuming locale === 'en-us'
+             * //returns 'en-us'
+             * __.locale()
+             *
+             * @example <caption>Set the locale.</caption>
+             *
+             * //asumming locale === 'en-us'
+             * //sets and returns 'ja'
+             * __.locale('ja')
+             *
+             * @return {String} The locale.
+             * @public
+             */
+            i18n.locale = function() {
+                return locale ? this.accept.setLocale(locale) : this.accept.getLocale();
+            }
+
+            /**
+             * @method l10n
+             * @description Localizes date, time and numbers.
+             * See {@link https://github.com/iwatakeshi/tokei|Tokei} for documentation.
+             * Note: You can change ID for l10n. See Configuration.
+             * @param  {String}  locale The locale to override.
+             * @return {Tokei} The instance of Tokei.
+             * @public
+             */
+            l10n[this.settings.localizeID()] = function() {
+                return this.localize.apply(this, arguments);
             };
-            api['locale'] = function() {
-                return Gengo.accept.getLocale();
+
+            return {
+                i18n: i18n,
+                l10n: l10n
             };
-            return api;
         }
     }).create();
 
     /**
      * @method gengo
-     * @description 'gengo' is the main function for Gengo.
+     * @description Main function for Gengo.
      * @param {Object} plugin The hapi plugin.
      * @param  {Object} opt The configuration options.
      * @param {Function} next The next function.
@@ -199,7 +393,7 @@
 
     /**
      * @method use
-     * @description 'use' is a function that enables Gengo to accept a middleware parser.
+     * @description Adds parsers to Gengo.
      * @param  {Function} fn The middleware parser for Gengo to use.
      * @public
      */
@@ -209,7 +403,7 @@
 
     /**
      * @method clone
-     * @description 'clone' creates a copy of the main parse function.
+     * @description Returns the i18n function.
      * @return {Function} The parser.
      * @public
      */
@@ -221,7 +415,7 @@
 
     /**
      * @method _mock
-     * @description '__mock' is a function used for mocha tests.
+     * @description Returns the i18n function.
      * @param  {(String | Object)} phrase Contains a string or Object to translate.
      * @return {Object}        The parser.
      * @private
@@ -243,7 +437,7 @@
          * @method hapi
          * @description 'hapi' is a gengo plugin for Hapi.
          * @param  {(Object | String)} opt The configuration for Gengo.
-         * @return {Object}     gengo.
+         * @return {Gengo}     gengo.
          * @public
          */
         module.exports = function hapi(opt) {
@@ -260,7 +454,10 @@
 
     /*global ender:false */
     if (typeof ender === 'undefined') {
-        //@private
+         /**
+         * @type {Gengo}
+         * @private
+         */
         this.gengo = gengo;
     }
 

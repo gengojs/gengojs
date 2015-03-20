@@ -1,12 +1,13 @@
 var express = require('express')
 var app = express()
-var router = require('../modules/router');
+var root = require('app-root-path');
+var router = require(root + '/modules/router/');
 var request = require('supertest');
 var assert = require('chai').assert;
 
-describe('Begin module "router" tests', function() {
+describe('router', function() {
     app.use(function(req, res, next) {
-        var result = router(req);
+        var result = router(req, ['en-us']);
         res.send({
             array: result.toArray(),
             dot: result.toDot()
@@ -16,6 +17,7 @@ describe('Begin module "router" tests', function() {
     app.get('/hello');
     app.get('/hello/world');
     app.get('/api/v1.0');
+    app.get('/api/v1.0/en-us');
 
     it('router with request to "/" should === ["index"] && === "index"', function(done) {
         request(app)
@@ -53,6 +55,16 @@ describe('Begin module "router" tests', function() {
     it('router with request to "/api/v1.0" should === ["index", "api", "v1*0"] && === "index.hello.v1*0"', function(done) {
         request(app)
             .get('/api/v1.0')
+            .expect(function(res) {
+                var result = res.body;
+                assert.deepEqual(result.array, ['api', 'v1*0']);
+                assert.strictEqual(result.dot, 'api.v1*0');
+            })
+            .end(done);
+    });
+    it('router with request to "/api/v1.0/en" should === ["index", "api", "v1*0"] && === "index.hello.v1*0"', function(done) {
+        request(app)
+            .get('/api/v1.0/en-us')
             .expect(function(res) {
                 var result = res.body;
                 assert.deepEqual(result.array, ['api', 'v1*0']);

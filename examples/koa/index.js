@@ -1,7 +1,9 @@
-var express = require('express'),
-    app = express(),
-    gengo = require('../../index.js');
+var koa = require('koa'),
+    app = koa(),
+    gengo = require('../../koa/');
 var path = require('path');
+var jade = require('koa-jade-render');
+
 /** 
  * Available Context API
  * =====================
@@ -24,19 +26,20 @@ var path = require('path');
  */
 var parser = require('../../parser/messageformat');
 
-app.set('view engine', 'jade');
-app.set('views', path.normalize(__dirname + '/'));
-gengo.use(parser());
-
+//gengo.use(parser());
 
 app.use(gengo({
     directory: './tests/locales',
     supported: ['en-US', 'ja']
 }));
 
-app.get('/', function(req, res, next) {
-    res.render('index');
-    next();
+app.use(jade(path.normalize(__dirname + '/')));
+
+
+app.use(function*() {
+    yield this.render('index',{
+            title: 'My home page'
+        });
 });
 
 app.listen(3000);

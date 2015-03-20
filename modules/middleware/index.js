@@ -11,7 +11,7 @@
 
 var Proto = require("uberproto");
 var _ = require('lodash');
-var flatten = require('./utils').flatten;
+var flatten = require('../utils/').flatten;
 var slice = Array.prototype.slice;
 
 //https://github.com/strongloop/express/blob/master/lib/router/index.js#L418

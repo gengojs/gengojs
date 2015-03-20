@@ -13,7 +13,7 @@ var root = require('app-root-path');
 var path = require('path');
 var S = require('string');
 var path = require('path');
-var utils = require('./utils');
+var utils = require('../utils/');
 
 var io = Proto.extend({
     init: function(opt) {

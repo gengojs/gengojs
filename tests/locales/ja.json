@@ -5,6 +5,15 @@
     "Hello %s, how are you today? How was your %s.": "%s、こんにちはお元気ですか？どのようにあなたの %s をだった。",
     "Hi": "こんにちは",
     "Howdy": "ハウディ",
+    "bracket.dot.test": {
+        "translated":"こんにちは",
+        "some":{
+            "random":{
+                "data":"%s、こんにちはお元気ですか？どのようにあなたの %s をだった。"
+            }
+        },
+        "plural": "We"
+    },
     "%s cat": {
         "one": "%s cat",
         "other": "%s cats"

@@ -13,18 +13,22 @@
 
 var Proto = require("uberproto");
 var _ = require('lodash');
+var cldr = require('cldr');
 
-var version = /\d{1,2}(\.)\d{1,2}((\.)\d{1,2})?$/;
-
-var router = Proto.extend({
+var Router = Proto.extend({
     init: function(req) {
+        this.regex = {
+            //versioning
+            version: /\d{1,2}(\.)\d{1,2}((\.)\d{1,2})?$/,
+        }
         this.set(req);
+        return this;
     },
     set: function(req) {
         if (req) {
             this.path = req.path;
-            this.originalUrl = req.originalUrl;
-            this.subdomains = req.subdomains;
+            //TODO: Find a way enable subdomain routing
+            //this.subdomains = req.subdomains ? req.subdomains : this.headers.host;
         }
     },
     toArray: function(path) {
@@ -38,8 +42,10 @@ var router = Proto.extend({
             if (path[1] === '') {
                 result.push('index');
             } else {
+                //make sure the path does not contain a locale
+                if (!this.isLocale(path[1]))
                 //maybe something does exist besides ''? (precaution)
-                result.push(path[1]);
+                    result.push(path[1]);
             }
         } else {
             //for every item in the path
@@ -47,30 +53,34 @@ var router = Proto.extend({
             //if its a regular name. then add it to the 
             //filtered array
             _.forEach(path, function(item) {
-                if (item.match(version)) {
-                    //prevent the version dots from being
-                    //interpreted as a dot notation
-                    filtered.push(item.replace('.', '*'));
-                } else {
-                    filtered.push(item);
-                }
-            });
+                //make sure the path does not contain a locale
+                if (!this.isLocale(item))
+                    if (item.match(this.regex.version)) {
+                        //prevent the version dots from being
+                        //interpreted as a dot notation
+                        filtered.push(item.replace('.', '*'));
+                    } else {
+                        filtered.push(item);
+                    }
+            }, this);
 
             path = filtered;
             //once we have filtered 
             for (var count = 1; count < path.length; count++) {
-                if (count === 1) {
-                    if (path[count] === '') {
-                        result.push('index');
+                //make sure the path does not contain a locale
+                if (!this.isLocale(path[count]))
+                    if (count === 1) {
+                        if (path[count] === '') {
+                            result.push('index');
+                        } else {
+                            result.push(path[count]);
+                        }
                     } else {
-                        result.push(path[count]);
+                        //make sure nothing else is empty
+                        if (path[count] !== '') {
+                            result.push(path[count]);
+                        }
                     }
-                } else {
-                    //make sure nothing else is empty
-                    if (path[count] !== '') {
-                        result.push(path[count]);
-                    }
-                }
             }
         }
         return result;
@@ -83,11 +93,15 @@ var router = Proto.extend({
         } else {
             return array[0];
         }
+    },
+    isLocale: function(str) {
+        str = str.toLowerCase().replace('-', '_');
+        return _.contains(cldr.localeIds, str);
     }
 
 });
 
 module.exports = function(req) {
     //convert input to array
-    return router.create(req);
+    return Router.create(req);
 };

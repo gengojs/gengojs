@@ -12,7 +12,7 @@ var MessageFormat = Proto.extend({
         this.values = {};
         this.message = {};
         this.ctx = this.filter(context);
-        if (context) return this.parse();
+        if (context && !_.isEmpty(context.phrase)) return this.parse();
     },
     filter: function(context) {
         var phrase = context.phrase,

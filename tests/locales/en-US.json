@@ -5,6 +5,10 @@
     "Hello %s, how are you today? How was your %s.": "Hello %s, how are you today? How was your %s.",
     "Hi": "Hi",
     "Howdy": "Howdy",
+    "bracket.dot.test": {
+        "default":"Hello World!",
+        "plural": "We"
+    },
     "%s cat": {
         "one": "%s cat",
         "other": "%s cats"
