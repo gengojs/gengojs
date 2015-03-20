@@ -4,8 +4,8 @@
   "description": "the best i18n middleware for Express",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --harmony ./tests/koa/*.js && mocha ./tests/*.js",
-    "0.10": "mocha ./tests/*.js"
+    "test": "mocha ./tests/modules/*.js",
+    "0.10": "mocha ./tests/modules/*.js"
   },
   "dependencies": {
     "app-root-path": "^1.0.0",

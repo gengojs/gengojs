@@ -25,11 +25,10 @@ var Router = Proto.extend({
         return this;
     },
     set: function(req) {
-        if (req) {
-            this.path = req.path;
+        if (req) this.path = req.path;
             //TODO: Find a way enable subdomain routing
             //this.subdomains = req.subdomains ? req.subdomains : this.headers.host;
-        }
+        
     },
     toArray: function(path) {
         path = path ? path.split('/') : this.path.split('/');
@@ -43,9 +42,8 @@ var Router = Proto.extend({
                 result.push('index');
             } else {
                 //make sure the path does not contain a locale
-                if (!this.isLocale(path[1]))
-                //maybe something does exist besides ''? (precaution)
-                    result.push(path[1]);
+                //and maybe something does exist besides ''? (precaution)
+                if (!this.isLocale(path[1])) result.push(path[1]);
             }
         } else {
             //for every item in the path
@@ -77,9 +75,8 @@ var Router = Proto.extend({
                         }
                     } else {
                         //make sure nothing else is empty
-                        if (path[count] !== '') {
-                            result.push(path[count]);
-                        }
+                        if (path[count] !== '') result.push(path[count]);
+                        
                     }
             }
         }
@@ -88,11 +85,8 @@ var Router = Proto.extend({
     },
     toDot: function(array) {
         array = array ? array : this.toArray();
-        if (array.length > 1) {
-            return array.join().replace(/,/g, ".");
-        } else {
-            return array[0];
-        }
+        if (array.length > 1) return array.join().replace(/,/g, ".");
+        else return array[0];
     },
     isLocale: function(str) {
         str = str.toLowerCase().replace('-', '_');
