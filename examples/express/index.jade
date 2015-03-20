@@ -7,9 +7,11 @@ html
   body
     header
       h1 #{__("Hello")}
-      h2 #{__.language('en')}
     .container
-      for item, i in __.languages('ja')
+      h3 Current Locale:
+      | #{__.locale()}
+      h3 Supported:
+      for item, i in __.languages()
         li= item
             | 
 

@@ -15,7 +15,7 @@ var Path = require('path');
 var S = require('string');
 var root = require('app-root-path');
 
-var utils = Proto.extend({
+var Utils = Proto.extend({
     init: function() {
 
     },
@@ -46,7 +46,7 @@ var utils = Proto.extend({
         }
         return value % 1 === 0;
     },
-    //https://github.com/hapijs/hoek/blob/master/lib/index.js#L818
+    // https://github.com/hapijs/hoek/blob/master/lib/index.js#L818
     isAbsolute: function isAbsolute(path, platform) {
 
         if (!path) {
@@ -60,13 +60,11 @@ var utils = Proto.extend({
         platform = platform || process.platform;
 
         // Unix
-
         if (platform !== 'win32') {
             return path[0] === '/';
         }
 
         // Windows
-
         return !!/^(?:[a-zA-Z]:[\\\/])|(?:[\\\/]{2}[^\\\/]+[\\\/]+[^\\\/])/.test(path);
     },
     isPartOfDirectory: function(path) {
@@ -74,7 +72,7 @@ var utils = Proto.extend({
         else return false;
     },
     require: {
-        //http://stackoverflow.com/a/14801711/1251031
+        // http://stackoverflow.com/a/14801711/1251031
         /**
          * Removes a module from the cache
          */
@@ -101,18 +99,18 @@ var utils = Proto.extend({
             // Resolve the module identified by the specified name
             var mod = require.resolve(moduleName);
 
-            // Check if the module has been resolved and found within
+            // check if the module has been resolved and found within
             // the cache
             if (mod && ((mod = require.cache[mod]) !== undefined)) {
                 // Recursively go over the results
                 (function run(mod) {
-                    // Go over each of the module's children and
+                    // go over each of the module's children and
                     // run over it
                     mod.children.forEach(function(child) {
                         run(child);
                     });
 
-                    // Call the specified callback providing the
+                    // call the specified callback providing the
                     // found module
                     callback(mod);
                 })(mod);
@@ -135,8 +133,8 @@ var utils = Proto.extend({
                                 if (_.has(obj, keys[i])) {
                                     if (i === (keys.length - 1)) return obj[keys[i]];
                                     else obj = obj[keys[i]];
-
-                                } else return null; //error or could be global
+                                    //error or could be global
+                                } else return null;
                             else return null;
 
                         }
@@ -151,4 +149,4 @@ var utils = Proto.extend({
 }).create();
 
 
-module.exports = utils;
+module.exports = Utils;

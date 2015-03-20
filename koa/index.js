@@ -15,21 +15,22 @@
 (function() {
     "use strict";
     var version = require('../package').version,
-        //path to modules
+        // path to modules
         modules = '../modules/',
         parsers = '../parser/',
-        //gengo modules
+        // gengo modules
         extract = require(modules + 'extract/'),
         middleware = require(modules + 'middleware/'),
         config = require(modules + 'config/'),
         router = require(modules + 'router/'),
-        localize = require(modules + 'localize/'),
         io = require(modules + 'io/'),
         parser = require(parsers + 'default/'),
-        //npm modules
+        // npm modules
         _ = require('lodash'),
         accept = require('gengojs-accept'),
         Proto = require('uberproto'),
+        cldr = require('cldr'),
+        localize = require('tokei'),
         hasModule = (typeof module !== 'undefined' && module.exports);
 
     /**
@@ -65,7 +66,7 @@
             this.phrase = phrase;
             this.other = other;
             this.length = length;
-            //are we testing Gengo?
+            // are we testing Gengo?
             if (!this.isMock) {
                 this.io.set({
                     directory: this.settings.directory(),
@@ -90,24 +91,24 @@
          *
          */
         koa: function(koa) {
-            //detect locale
+            // detect locale
             this.accept = accept(koa, {
                 default: this.settings.default(),
                 supported: this.settings.supported(),
                 keys: this.settings.keys(),
                 detect: this.settings.detect()
             });
-            //set the global locale for localize
+            // set the global locale for localize
             this.localize.locale(this.accept.detectLocale());
-            //set the router
+            // set the router
             this.router.set(this.accept.request);
-            //apply the API to req || res
+            // apply the API to req || res
             this._apply(koa.request, koa.response);
-            //the original req and res may exist
+            // the original req and res may exist
             if (koa.req || koa.res) this._apply(koa.req, koa.res);
-            //for convenience
+            // for convenience
             this._apply(koa);
-            //apply to state
+            // apply to state
             this._apply(koa.state);
         },
         /** 
@@ -186,54 +187,54 @@
                  *
                  * @example <caption>Phrase notation with default parser.</caption>
                  *
-                 * //assuming the locale === 'ja',
-                 * //a basic phrase returns 'こんにちは'
+                 * // assuming the locale === 'ja',
+                 * // a basic phrase returns 'こんにちは'
                  * __('Hello');
                  *
-                 * //a basic phrase with sprintf returns 'Bob こんにちは'
+                 * // a basic phrase with sprintf returns 'Bob こんにちは'
                  * __('Hello %s', 'Bob');
                  *
-                 * //a basic phrase with interpolation returns 'Bob こんにちは'
+                 * // a basic phrase with interpolation returns 'Bob こんにちは'
                  *  __('Hello {{name}}', {name:'Bob'});
                  *
                  * @example <caption>Bracket notation with default parser.</caption>
                  *
-                 * //assuming the locale === 'ja',
-                 * //a basic bracket phrase returns 'おっす'
+                 * // assuming the locale === 'ja',
+                 * // a basic bracket phrase returns 'おっす'
                  * __('[Hello].informal');
                  *
-                 * //a basic bracket phrase with sprintf returns 'Bob おっす'
+                 * // a basic bracket phrase with sprintf returns 'Bob おっす'
                  * __('[Hello %].informal', 'Bob');
                  *
-                 * //a basic bracket phrase with interpolation returns 'Bob おっす'
+                 * // a basic bracket phrase with interpolation returns 'Bob おっす'
                  * __('[Hello {{name}}].informal', {name:'Bob'});
                  *
                  * @example <caption>Dot notation with default parser.</caption>
                  *
-                 * //assuming the locale === 'ja',
-                 * //a basic dot phrase returns 'おっす'
+                 * // assuming the locale === 'ja',
+                 * // a basic dot phrase returns 'おっす'
                  * __('greeting.hello.informal');
                  *
-                 * //a basic dot phrase with sprintf returns 'Bob おっす'
+                 * // a basic dot phrase with sprintf returns 'Bob おっす'
                  * __('greeting.hello.person.informal', 'Bob');
                  *
-                 * //a basic dot phrase with interpolation returns 'Bob おっす'
+                 * // a basic dot phrase with interpolation returns 'Bob おっす'
                  * __('greeting.hello.person.informal', {name:'Bob'});
                  *
                  * @example <caption>All notations with Message Format.</caption>
-                 * //See '{@link https://github.com/thetalecrafter/message-format|message-format}' for documentation.
+                 * // See '{@link https://github.com/thetalecrafter/message-format|message-format}' for documentation.
                  *
-                 * //assuming the locale === 'en-us',
-                 * //a basic phrase with message formatting
-                 * //returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
+                 * // assuming the locale === 'en-us',
+                 * // a basic phrase with message formatting
+                 * // returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
                  * __('You took {n,number} pictures since {d,date} {d,time}', { n:4000, d:new Date() });
                  *
-                 * //a basic bracket phrase with message formatting
-                 * //returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
+                 * // a basic bracket phrase with message formatting
+                 * // returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
                  * __('[You took {n, numbers} pictures].since.date', { n:4000, d:new Date() });
                  *
-                 * //a basic dot phrase with message formatting
-                 * //returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
+                 * // a basic dot phrase with message formatting
+                 * // returns "You took 4,000 pictures since Jan 1, 2015 9:33:04 AM"
                  * __('pictures.since.date', { n:4000, d:new Date() });
                  *
                  * @return {String} Then i18ned string.
@@ -250,28 +251,28 @@
              *
              * @example <caption>Get the current language.</caption>
              *
-             * //assuming locale === 'en-us'
-             * //returns 'American English'
+             * // assuming locale === 'en-us'
+             * // returns 'American English'
              * __.languages();
              *
              * @example <caption>Get the current language in another locale. </caption>
              *
-             * //assuming locale === 'en-us'
-             * //returns 'English'
+             * // assuming locale === 'en-us'
+             * // returns 'English'
              * __.language('en');
              *
-             * //returns 'Japanese'
+             * // returns 'Japanese'
              * __.language('ja');
              *
              * @return {String} Then i18ned string.
              * @public
              */
             i18n.language = function(id) {
-                //de-normalize locale
+                // de-normalize locale
                 var locale = this.accept.getLocale().replace('-', '_');
-                //denormalize id
+                // denormalize id
                 id = id ? id.toLowerCase().replace('-', '_') : locale;
-                //store the languages
+                // store the languages
                 return cldr.extractLanguageDisplayNames(locale)[id];
             }
             /**
@@ -282,26 +283,26 @@
              *
              * @example <caption>Get the supported languages.</caption>
              *
-             * //assuming locale === 'en-us'
-             * //returns ['American English', 'Japanese']
+             * // assuming locale === 'en-us'
+             * // returns ['American English', 'Japanese']
              * __.lanugages();
              *
              * @example <caption>Get the current languages in another locale. </caption>
              *
-             * //assuming locale === 'en-us'
-             * //returns ['アメリカ英語', '日本語']
+             * // assuming locale === 'en-us'
+             * // returns ['アメリカ英語', '日本語']
              * __.languages('ja');
              *
              * @example <caption>Override the supported locales.</caption>
              *
-             * //assuming locale === 'en-us'
-             * //returns ['English', 'Japanese']
+             * // assuming locale === 'en-us'
+             * // returns ['English', 'Japanese']
              * __.languages(['en', 'ja']);
              *
              * @example <caption>Override the supported locales and get the languages in another locale.</caption>
              *
-             * //assuming locale === 'en-us'
-             * //returns ['英語', '日本語']
+             * // assuming locale === 'en-us'
+             * // returns ['英語', '日本語']
              * __.languages('ja', ['en', 'ja']);
              *
              * @return {String} Then i18ned string.
@@ -309,16 +310,16 @@
              */
             i18n.languages = function(arg, supported) {
                 var _supported = [];
-                supported = _.isArray(arg) ? arg : supported;
+                supported = (_.isArray(arg) ? arg : supported) || this.settings.supported();
                 arg = _.isArray(arg) ? undefined : arg;
-                _.forEach(supported || this.settings.supported(), function(locale) {
-                    //de-normalize locales
-                    var locale = locale.replace('-', '_');
-                    //denormalize arg
-                    arg = arg ? arg.toLowerCase().replace('-', '_') : locale;
-                    //store the languages
+                _.forEach(supported, function(locale) {
+                    // de-normalize locales
+                    locale = locale.replace('-', '_');
+                    // denormalize arg
+                    arg = arg ? arg.toLowerCase().replace('-', '_') : this.accept.getLocale().replace('-', '_');
+                    // store the languages
                     _supported.push(cldr.extractLanguageDisplayNames(arg)[locale]);
-                }, this)
+                }, this);
                 return _supported;
             }
 
@@ -329,20 +330,20 @@
              *
              * @example <caption>Get the current locale.</caption>
              *
-             * //assuming locale === 'en-us'
-             * //returns 'en-us'
+             * // assuming locale === 'en-us'
+             * // returns 'en-us'
              * __.locale()
              *
              * @example <caption>Set the locale.</caption>
              *
-             * //asumming locale === 'en-us'
-             * //sets and returns 'ja'
+             * // asumming locale === 'en-us'
+             * // sets and returns 'ja'
              * __.locale('ja')
              *
              * @return {String} The locale.
              * @public
              */
-            i18n.locale = function() {
+            i18n.locale = function(locale) {
                 return locale ? this.accept.setLocale(locale) : this.accept.getLocale();
             }
 
@@ -423,13 +424,19 @@
 
     // CommonJS module is defined
     if (hasModule) {
-        //@private
+        /**
+         * @type {Gengo}
+         * @private
+         */
         module.exports = gengo;
     }
 
     /*global ender:false */
     if (typeof ender === 'undefined') {
-        //@private
+        /**
+         * @type {Gengo}
+         * @private
+         */
         this.gengo = gengo;
     }
 

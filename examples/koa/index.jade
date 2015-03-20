@@ -8,5 +8,11 @@ html
     header
       h1 #{__("Hello")}
     .container
+      h3 Current Locale:
+      | #{__.locale()}
+      h3 Supported:
+      for item, i in __.languages()
+        li= item
+            | 
 
     footer

@@ -104,7 +104,7 @@ var Config = Proto.extend({
      */
     directory: function() {
         var dir = this.settings.directory;
-        //http://nodejs.org/docs/latest/api/path.html#path_path_isabsolute_path
+        // http://nodejs.org/docs/latest/api/path.html#path_path_isabsolute_path
         if (!utils.isAbsolute(dir)) {
             // ./x-dir ?
             if (S(dir).include('./')) dir = dir.replace('.', '');
@@ -126,11 +126,11 @@ var Config = Proto.extend({
     supported: function() {
         var supported = this.settings.supported;
         var result = [];
-        //if supporting a single locale
+        // if supporting a single locale
         if (_.isString(supported)) result.push(supported);
-        //then it must be an array
+        // then it must be an array
         else result = supported;
-        //normalize each locale
+        // normalize each locale
         _.forEach(result, function(item, index) {
             result[index] = utils.normalize(item);
         });

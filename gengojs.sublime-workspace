@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"Local",
+				"Localizes"
+			],
+			[
+				"Localiz",
+				"localize"
+			],
+			[
+				"extract",
+				"extractLanguageDisplayNames"
+			],
+			[
+				"extrac",
+				"extractLanguageDisplayNames"
+			],
+			[
+				"global",
+				"globalID"
+			],
+			[
+				"globa",
+				"global"
+			],
+			[
+				"locale",
+				"localeIds"
+			],
+			[
+				"_is",
+				"_isUndefined	Checks if value is undefined."
+			],
+			[
+				"cldr",
+				"Cldr"
+			],
+			[
 				"configured",
 				"configuredPath"
 			],
@@ -20,10 +56,6 @@
 				"detectLocale"
 			],
 			[
-				"locale",
-				"localizeID"
-			],
-			[
 				"const",
 				"constructor	@constructor"
 			],
@@ -32,16 +64,8 @@
 				"localizeID"
 			],
 			[
-				"global",
-				"globalID"
-			],
-			[
 				"local",
 				"localize"
-			],
-			[
-				"globa",
-				"globalize"
 			],
 			[
 				"format",
@@ -490,58 +514,54 @@
 			[
 				"Mes",
 				"Message"
-			],
-			[
-				"re",
-				"recieve"
-			],
-			[
-				"E",
-				"EOF"
-			],
-			[
-				"Cur",
-				"currentChar"
-			],
-			[
-				"IO",
-				"IOException"
-			],
-			[
-				"cure",
-				"currentChar"
-			],
-			[
-				"note",
-				"note"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "modules/config/index.js",
+			"file": "tests/modules/router.js",
 			"settings":
 			{
-				"buffer_size": 6997,
+				"buffer_size": 2632,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "tests/modules/router.js",
+			"file": "index.js",
 			"settings":
 			{
-				"buffer_size": 2158,
+				"buffer_size": 13862,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 1430,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "examples/koa/index.jade",
+			"settings":
+			{
+				"buffer_size": 234,
 				"line_ending": "Windows"
 			}
 		}
 	],
-	"build_system": "",
+	"build_system": "Packages/User/HTML.sublime-build",
 	"command_palette":
 	{
-		"height": 219.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"preview",
 				"Markdown Preview: Preview in Browser"
@@ -561,10 +581,6 @@
 			[
 				"swig",
 				"Set Syntax: Swig"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"jsne",
@@ -911,7 +927,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 856.0
+		"width": 920.0
 	},
 	"console":
 	{
@@ -935,46 +951,49 @@
 	"expanded_folders":
 	[
 		"/C/Users/Takeshi/Documents/GitHub/gengojs",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/express",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/hapi",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/koa",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/hapi",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/config",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/extract",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/io",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/utils",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/default",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/koa",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/gengojs-accept/hapi",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/messageformat",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules"
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/settings"
 	],
 	"file_history":
 	[
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript.sublime-settings",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/express/index.jade",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/koa/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/hapi/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/router/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/messageformat/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/hapi/index.jade",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/middleware/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/io/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/default/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/out/index.html",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/HTML.sublime-build",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/config/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/config.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/settings/index.yml",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/extract/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/koa/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/config/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/io/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/middleware/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/koa/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/express/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/router.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/config.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/hapi/index.jade",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/express/index.jade",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/koa/index.jade",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/input.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/config.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/en-US.json",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/ja.json",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/default/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/messageformat/filter.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/index.jade",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/.gitignore",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/messageformat/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/package.json",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/parsers/default/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express/index.js",
@@ -1071,12 +1090,7 @@
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/View In Browser.sublime-settings",
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/View In Browser/View In Browser.sublime-settings",
 		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_panels.scss",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/layout.jade",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan/public/js/colorsbg.js",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan/views/index.jade",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_global.scss",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/_settings.scss",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_top-bar.scss"
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/layout.jade"
 	],
 	"find":
 	{
@@ -1101,6 +1115,10 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"//",
+			"log",
+			"version",
+			"supported",
 			"fs",
 			"parsers",
 			"localiz",
@@ -1224,11 +1242,7 @@
 			"roboto",
 			"font",
 			"header",
-			"heading",
-			"brand",
-			"menu",
-			"border",
-			"top"
+			"heading"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1236,6 +1250,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"// ",
+			"",
+			"// ",
 			"",
 			"koa",
 			"jade",
@@ -1305,24 +1322,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "modules/config/index.js",
+					"file": "tests/modules/router.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6997,
+						"buffer_size": 2632,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6546,
-								6546
+								2379,
+								2379
 							]
 						],
 						"settings":
@@ -1332,7 +1349,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4104.0,
+						"translation.y": 456.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1340,32 +1357,90 @@
 				},
 				{
 					"buffer": 1,
-					"file": "tests/modules/router.js",
+					"file": "index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2158,
+						"buffer_size": 13862,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								212,
-								212
+								630,
+								630
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 2,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1430,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								221,
+								221
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "examples/koa/index.jade",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								234,
+								234
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1461,7 +1536,7 @@
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 206.0,
-	"status_bar_visible": false,
+	"status_bar_visible": true,
 	"template_settings":
 	{
 	}

@@ -68,15 +68,11 @@ var Router = Proto.extend({
                 //make sure the path does not contain a locale
                 if (!this.isLocale(path[count]))
                     if (count === 1) {
-                        if (path[count] === '') {
-                            result.push('index');
-                        } else {
-                            result.push(path[count]);
-                        }
+                        if (path[count] === '') result.push('index');
+                        else result.push(path[count]);
                     } else {
                         //make sure nothing else is empty
                         if (path[count] !== '') result.push(path[count]);
-                        
                     }
             }
         }

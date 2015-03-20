@@ -3,7 +3,7 @@
  * Takeshi Iwana aka iwatakeshi
  * MIT 2015
  * io.js
- * This module handles the reading and writing of files.
+ * This module handles the reading.
  */
 
 var Proto = require('uberproto');
@@ -15,7 +15,7 @@ var S = require('string');
 var path = require('path');
 var utils = require('../utils/');
 
-var io = Proto.extend({
+var IO = Proto.extend({
     init: function(opt) {
         this.set(opt);
         return this;
@@ -130,5 +130,5 @@ var io = Proto.extend({
 
 //will eventually work like this: io(opt).yaml().read()
 module.exports = function(opt) {
-    return io.create(opt);
+    return IO.create(opt);
 };
