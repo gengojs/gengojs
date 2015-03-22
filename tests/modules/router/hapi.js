@@ -42,7 +42,6 @@ describe('router - hapi', function() {
     it('router with request to "/" should === ["index"] && === "index"', function(done) {
 
         server.inject('/', function(res) {
-            console.log(res.result);
             var result = res.result;
             assert.deepEqual(result.array, ['index']);
             assert.strictEqual(result.dot, 'index');
