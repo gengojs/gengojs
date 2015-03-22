@@ -4,8 +4,9 @@
   "description": "the best i18n middleware for Express",
   "main": "index.js",
   "scripts": {
-    "test": "grunt  && mocha ./tests/modules/config/*.js && mocha ./tests/modules/router/*.js && mocha  --harmony ./tests/modules/router/harmony/*.js",
-    "0.10": "grunt  && mocha ./tests/modules/config/*.js && mocha ./tests/modules/router/*.js"
+    "build": "grunt",
+    "test": "mocha ./tests/modules/config/*.js && mocha ./tests/modules/router/*.js && mocha --harmony ./tests/modules/router/harmony/*.js",
+    "0.10": "mocha ./tests/modules/config/*.js && mocha ./tests/modules/router/*.js"
   },
   "dependencies": {
     "app-root-path": "^1.0.0",
