@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         },
         'json-pretty': {
             options: {
-                files: ['tests/locales/routed/dest/', 'tests/locales/unrouted/dest'],
+                src: ['tests/locales/routed/dest/', 'tests/locales/unrouted/dest'],
                 indent: 4
             },
         }
