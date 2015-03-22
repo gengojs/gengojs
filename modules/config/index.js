@@ -43,7 +43,7 @@ var Config = Proto.extend({
     set: function(opt) {
         var result;
         this.settings = {};
-
+        //todo: simplify this to /settings/ (have it guess whether its json or yml)
         if (_.isString(opt)) result = this._read(opt);
         else result = this._read(settings);
 
