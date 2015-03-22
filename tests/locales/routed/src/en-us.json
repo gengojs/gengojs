@@ -1,0 +1,15 @@
+{
+
+    /** Route test **/
+    
+    "index": {
+        "Hello":"Hello"
+    },
+    "about":{
+        "Hello":"Hello"
+    },
+    "global":{
+        "Hello":"Hello"
+    }
+
+}

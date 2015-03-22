@@ -156,14 +156,14 @@
                             if (!object[subkey]) {
                                 if (subkey === self.settings.globalID()) object[subkey] = api.bind(self);
                                 else object[self.settings.globalID()][subkey] = api.bind(self);
-                            } else console.warn('Global key already exists')
-                        })
+                            } else console.warn('Global key already exists');
+                        });
                         break;
                     case 'l10n':
                         _.forOwn(item, function(api, subkey) {
                             if (!object[subkey]) {
                                 if (subkey === self.settings.localizeID()) object[subkey] = api.bind(self);
-                            } else console.warn('Localize key already exists')
+                            } else console.warn('Localize key already exists');
                         });
                         break;
                 }
@@ -177,8 +177,8 @@
          * @private
          */
         _api: function() {
-            var i18n = function() {}
-            var l10n = function() {}
+            var i18n = function() {};
+            var l10n = function() {};
                 /**
                  * @method i18n
                  * @description I18ns the arguments.
@@ -242,7 +242,7 @@
                  */
 
             i18n[this.settings.globalID()] = function(arg) {
-                return this.parse(arg, extract(arguments), arguments.length)
+                return this.parse(arg, extract(arguments), arguments.length);
             };
             /**
              * @method language
@@ -274,7 +274,7 @@
                 id = id ? id.toLowerCase().replace('-', '_') : locale;
                 // store the languages
                 return cldr.extractLanguageDisplayNames(locale)[id];
-            }
+            };
             /**
              * @method languages
              * @description Returns the names of the supported locale.
@@ -321,7 +321,7 @@
                     _supported.push(cldr.extractLanguageDisplayNames(arg)[locale]);
                 }, this);
                 return _supported;
-            }
+            };
 
             /**
              * @method locale
@@ -345,7 +345,7 @@
              */
             i18n.locale = function(locale) {
                 return locale ? this.accept.setLocale(locale) : this.accept.getLocale();
-            }
+            };
 
             /**
              * @method l10n
@@ -379,7 +379,7 @@
         return function * (next) {
             Gengo.koa.bind(Gengo)(this);
             yield next;
-        }
+        };
     }
 
     /**

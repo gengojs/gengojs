@@ -35,10 +35,10 @@ var Extract = Proto.extend({
             value;
         //if the arguments is greater than 1
         if (array.length > 1)
-            //just append them to the array
+        //just append them to the array
             _.forEach(array, function(item) {
-                args.push(item);
-            });
+            args.push(item);
+        });
         //if they are exactly 1 argument
         else if (array.length === 1) {
             //get the first value

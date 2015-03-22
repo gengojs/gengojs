@@ -20,13 +20,13 @@ var Router = Proto.extend({
         this.regex = {
             //versioning
             version: /\d{1,2}(\.)\d{1,2}((\.)\d{1,2})?$/,
-        }
+        };
         this.set(req);
         return this;
     },
     set: function(req) {
         if (req) this.path = req.path;
-            //TODO: Find a way enable subdomain routing
+            //TODO: Find a way to enable subdomain routing
             //this.subdomains = req.subdomains ? req.subdomains : this.headers.host;
         
     },

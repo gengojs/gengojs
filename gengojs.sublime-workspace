@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"__",
+				"__(	gengo-i18n"
+			],
+			[
 				"Local",
 				"Localizes"
 			],
@@ -510,28 +514,16 @@
 			[
 				"list",
 				"listeners"
-			],
-			[
-				"Mes",
-				"Message"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "tests/modules/router.js",
+			"file": "koa/index.js",
 			"settings":
 			{
-				"buffer_size": 2632,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.js",
-			"settings":
-			{
-				"buffer_size": 13862,
+				"buffer_size": 16321,
 				"line_ending": "Windows"
 			}
 		},
@@ -539,15 +531,23 @@
 			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 1430,
+				"buffer_size": 1453,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "examples/koa/index.jade",
+			"file": "hapi/index.js",
 			"settings":
 			{
-				"buffer_size": 234,
+				"buffer_size": 16978,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "index.js",
+			"settings":
+			{
+				"buffer_size": 16264,
 				"line_ending": "Windows"
 			}
 		}
@@ -555,12 +555,20 @@
 	"build_system": "Packages/User/HTML.sublime-build",
 	"command_palette":
 	{
-		"height": 392.0,
+		"height": 380.0,
 		"selected_items":
 		[
 			[
 				"install",
 				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"Snippet: html"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
 			],
 			[
 				"preview",
@@ -661,10 +669,6 @@
 			[
 				"viw",
 				"View In Browser"
-			],
-			[
-				"html",
-				"Snippet: html"
 			],
 			[
 				"prett",
@@ -927,7 +931,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 920.0
+		"width": 932.0
 	},
 	"console":
 	{
@@ -950,42 +954,46 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Takeshi/Documents/GitHub/gengojs",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/express",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/hapi",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/koa",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/koa",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/gengojs-accept/hapi",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/messageformat",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/settings"
+		"/C/Users/Takeshi/Documents/GitHub/gengojs"
 	],
 	"file_history":
 	[
-		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript.sublime-settings",
-		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/express/index.jade",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-l10n-number.sublime-snippet",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-l10n-date.sublime-snippet",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-l10n-time.sublime-snippet",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-l10n-moment.sublime-snippet",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-l10n.sublime-snippet",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-i18n.sublime-snippet",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/koa/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/hapi/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/index.js",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript.sublime-settings",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/hapi/index.jade",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/extract/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/hapi/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/koa/index.jade",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/bundle.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/index.html",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/bundle.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/router.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/config/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/io/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/utils/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/config.js",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/router/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/messageformat/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/hapi/index.jade",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/middleware/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/io/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/default/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/out/index.html",
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/HTML.sublime-build",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/config/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/config.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/settings/index.yml",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/extract/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/koa/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/express/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/router.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/config.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/koa/index.jade",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/input.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/config.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/en-US.json",
@@ -994,7 +1002,6 @@
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/index.jade",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/.gitignore",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/package.json",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/parsers/default/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express/index.js",
 		"/C/Users/Takeshi/Documents/cmder/bin/config/aliases",
@@ -1078,19 +1085,7 @@
 		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/.gitignore",
 		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/main.html",
 		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/collections/message.overrides",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/theme.config",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/elements/button.overrides",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/collections/menu.variables",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/public/components/header.css",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/globals/site.variables",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/definitions/collections/menu.less",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/index.html",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/gulpfile.js",
-		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/LESS.sublime-settings",
-		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/View In Browser.sublime-settings",
-		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/View In Browser/View In Browser.sublime-settings",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_panels.scss",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/layout.jade"
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/theme.config"
 	],
 	"find":
 	{
@@ -1115,6 +1110,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"347",
 			"//",
 			"log",
 			"version",
@@ -1241,8 +1237,7 @@
 			"font",
 			"roboto",
 			"font",
-			"header",
-			"heading"
+			"header"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1322,24 +1317,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "tests/modules/router.js",
+					"file": "koa/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2632,
+						"buffer_size": 16321,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2379,
-								2379
+								13329,
+								13329
 							]
 						],
 						"settings":
@@ -1349,7 +1344,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 456.0,
+						"translation.y": 4266.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1357,26 +1352,56 @@
 				},
 				{
 					"buffer": 1,
-					"file": "index.js",
-					"semi_transient": false,
+					"file": "package.json",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 13862,
+						"buffer_size": 1453,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								630,
-								630
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "hapi/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 16978,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								506,
+								506
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": false
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1386,55 +1411,27 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "package.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1430,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								221,
-								221
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
 					"buffer": 3,
-					"file": "examples/koa/index.jade",
+					"file": "index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 234,
+						"buffer_size": 16264,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								234,
-								234
+								1348,
+								1348
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1535,7 +1532,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 206.0,
+	"side_bar_width": 191.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

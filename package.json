@@ -4,8 +4,8 @@
   "description": "the best i18n middleware for Express",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./tests/modules/*.js",
-    "0.10": "mocha ./tests/modules/*.js"
+    "test": "grunt  && mocha ./tests/modules/config/*.js && mocha ./tests/modules/router/*.js && mocha  --harmony ./tests/modules/router/harmony/*.js",
+    "0.10": "grunt  && mocha ./tests/modules/config/*.js && mocha ./tests/modules/router/*.js"
   },
   "dependencies": {
     "app-root-path": "^1.0.0",
@@ -22,7 +22,7 @@
     "moment-timezone": "^0.3.1",
     "sprintf-js": "^1.0.2",
     "string": "^3.0.1",
-    "tokei": "^0.1.1",
+    "tokei": "^0.2.0",
     "uberproto": "^1.1.2"
   },
   "repository": {
@@ -50,12 +50,18 @@
     "express": "*",
     "express-subdomain": "^1.0.3",
     "feathers": "*",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.1",
+    "grunt-json-pretty": "^0.1.9",
+    "grunt-strip-json-comments": "^1.0.1",
     "hapi": "^8.4.0",
     "jade": "^1.9.2",
     "koa": "^0.18.1",
     "koa-jade-render": "0.1.0",
     "koa-route": "^2.4.0",
+    "koa-router": "^4.2.0",
     "koa-session": "^3.1.0",
+    "load-grunt-tasks": "^3.1.0",
     "mocha": "^2.2.1",
     "subdomain": "^1.2.0",
     "supertest": "^0.15.0"
