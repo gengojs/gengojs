@@ -1,21 +1,22 @@
 {
-    "Hello": {
-        "default": "こんにちは"
-    },
-    "Hello %d": "こんにちは%d",
-    "Hello {{name}}": "こんにちは{{name}}さん",
-    "Hello %d, my name is %d": "こんにちは%dさん, 私の名前は%dです",
-    "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}": "こんにちは{{name}}さん, 私の名前は{{my.firstname}}{{my.lastname}}です",
-    "greeting.informal": {
-        "hey": {
-            "default": "おっす"
-        }
-    },
-    "greeting": {
-        "informal": "おっす"
-    },
-    "There is one monkey in the %%s": {
-        "tree": "木",
-        "other": "一匹のサルが%%sにいます。"
+  "Hello": "こんにちは",
+  "Hello %s": "こんにちは%sさん",
+  "Hello {{name}}": "こんにちは{{name}}さん",
+  "Hello %s, my name is %s": "こんにちは%sさん、 私の名前は%sです",
+  "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}": "こんにちは{{name}}さん、 私の名前は{{my.firstname}} {{my.lastname}}です",
+  "greeting.informal.basic": {
+    "translated": "おっす"
+  },
+  "greeting.informal.advanced": {
+    "hey": {
+      "translated": "おっす"
     }
+  },
+  "greeting": {
+    "informal": "おっす"
+  },
+  "There is one monkey in the {{tree}}": {
+    "tree": "木",
+    "other": "{{count}}匹のサルが{{tree}}にいます。"
+  }
 }

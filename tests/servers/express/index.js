@@ -13,7 +13,7 @@ describe('gengo - express', function() {
         }));
         app.get('/');
         
-        var server = app.listen(3000);
+        app.listen(3000);
 
         it('should be attached to the request', function(done) {
         	app.use(function (req, res, next) {
@@ -32,7 +32,5 @@ describe('gengo - express', function() {
         	});
         	request(app).get('/').end(done);
         });
-        
-
     });
 });

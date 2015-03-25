@@ -9,9 +9,9 @@ node_js:
 before_install: npm install -g grunt-cli
 before_script: grunt
 script:
-  nv=$(node -v);
-  if [[ $nv != v0.10.37 ]] ; then
-    npm test;
-  else
-    npm run 0.10;
-  fi
+  #nv=$(node -v);
+  #if [[ $nv != v0.10.37 ]] ; then
+  #  npm test;
+  #else
+  #  npm run 0.10;
+  #fi

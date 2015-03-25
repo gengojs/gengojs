@@ -1,0 +1,15 @@
+{
+  "name": "gengojs-default-localize",
+  "type":"localize",
+  "version": "0.0.1",
+  "description": "The default localization plugin for gengojs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "iwatakeshi",
+  "license": "MIT",
+  "dependencies": {
+    "tokei": "^0.2.1"
+  }
+}

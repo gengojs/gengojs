@@ -4,6 +4,74 @@
 		"selected_items":
 		[
 			[
+				"dec",
+				"describe	Describe"
+			],
+			[
+				"jshint",
+				"jshintrc"
+			],
+			[
+				"_if",
+				"_isFunction	Checks if value is a function."
+			],
+			[
+				"plugin",
+				"plugin"
+			],
+			[
+				"parsre",
+				"parsers"
+			],
+			[
+				"midd",
+				"middleware"
+			],
+			[
+				"_isobj",
+				"_isPlainObject	Checks if value is an object created by the Object constructor."
+			],
+			[
+				"asssert",
+				"assert.strictEqual"
+			],
+			[
+				"middl",
+				"middlewares"
+			],
+			[
+				"ass",
+				"assert.isFunction"
+			],
+			[
+				"assert",
+				"assert.strictEqual"
+			],
+			[
+				"mini",
+				"minify"
+			],
+			[
+				"min",
+				"minified"
+			],
+			[
+				"dire",
+				"directory"
+			],
+			[
+				"direc",
+				"directory"
+			],
+			[
+				"file",
+				"filesexpand	Files Dynamic Format"
+			],
+			[
+				"json",
+				"json-pretty2"
+			],
+			[
 				"__",
 				"__(	gengo-i18n"
 			],
@@ -372,10 +440,6 @@
 				"margin-top"
 			],
 			[
-				"dec",
-				"text-decoration"
-			],
-			[
 				"ma",
 				"margin-top"
 			],
@@ -450,104 +514,56 @@
 			[
 				"vali",
 				"validateEmail"
-			],
-			[
-				"rqe",
-				"require"
-			],
-			[
-				"new",
-				"newUser"
-			],
-			[
-				"pad",
-				"padding"
-			],
-			[
-				"lo",
-				"locked"
-			],
-			[
-				"su",
-				"success"
-			],
-			[
-				"min",
-				"min-width"
-			],
-			[
-				"t",
-				"try"
-			],
-			[
-				"soc",
-				"SocialRouter"
-			],
-			[
-				"si",
-				"signup"
-			],
-			[
-				"signup",
-				"SignupView"
-			],
-			[
-				"mal",
-				"mailer"
-			],
-			[
-				"r",
-				"ractive-adaptors-backbone"
-			],
-			[
-				"rand",
-				"randomIndex"
-			],
-			[
-				"ht",
-				"https"
-			],
-			[
-				"stt",
-				"status"
-			],
-			[
-				"list",
-				"listeners"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "koa/index.js",
+			"file": "tests/i18n/express/index.js",
 			"settings":
 			{
-				"buffer_size": 16321,
+				"buffer_size": 14862,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "package.json",
+			"file": "plugins/router/index.js",
 			"settings":
 			{
-				"buffer_size": 1453,
+				"buffer_size": 2631,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Takeshi/Documents/GitHub/gengojs-default-accept/index.js",
+			"settings":
+			{
+				"buffer_size": 386,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "plugins/memory/node_modules/read-json/index.js",
+			"settings":
+			{
+				"buffer_size": 442,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "hapi/index.js",
+			"file": "plugins/parser/default/index.js",
 			"settings":
 			{
-				"buffer_size": 16978,
-				"line_ending": "Windows"
+				"buffer_size": 8912,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "index.js",
+			"file": "lib/gengo/index.js",
 			"settings":
 			{
-				"buffer_size": 16264,
+				"buffer_size": 5981,
 				"line_ending": "Windows"
 			}
 		}
@@ -555,12 +571,48 @@
 	"build_system": "Packages/User/HTML.sublime-build",
 	"command_palette":
 	{
-		"height": 380.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
+				"next",
+				"Bookmarks: Select Next"
+			],
+			[
+				"esne",
+				"Set Syntax: JavaScript Next"
+			],
+			[
 				"install",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"theme",
+				"Colorsublime: Browse Themes"
+			],
+			[
+				"them",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"isntall",
 				"Package Control: Install Package"
+			],
+			[
+				"insatll",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"colorsu",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"Snippet: ",
+				"Snippet: gengo-bracket-js"
+			],
+			[
+				"rever",
+				"Permute Lines: Reverse"
 			],
 			[
 				"html",
@@ -645,10 +697,6 @@
 			[
 				"bea",
 				"Javascript Beautify"
-			],
-			[
-				"isntall",
-				"Package Control: Install Package"
 			],
 			[
 				"mark",
@@ -795,10 +843,6 @@
 				"Permute Selections: Reverse"
 			],
 			[
-				"rever",
-				"Permute Selections: Reverse"
-			],
-			[
 				"re",
 				"Permute Selections: Reverse"
 			],
@@ -931,7 +975,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 932.0
+		"width": 873.0
 	},
 	"console":
 	{
@@ -954,10 +998,126 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Takeshi/Documents/GitHub/gengojs"
+		"/C/Users/Takeshi/Documents/GitHub/gengojs",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/lib/gengo",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/config/node_modules",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/memory/node_modules",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/memory/node_modules/read-json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/parser/default",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/router",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/gengo/koa",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/l10n",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/routed",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/routed/dest",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/unrouted",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/unrouted/dest",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/unrouted/src",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/plugins/config"
 	],
 	"file_history":
 	[
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/express/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/memory/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/memory/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/api/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/accept/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/parser/default/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/accept/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/gengojs-accept/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/routed/src/ja.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/routed/dest/en-us.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/localize/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/parser/default/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/parser/default/filter/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/gruntfile.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/plugins/router/express/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/servers/express/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/plugins/router/koa/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/lib/gengo/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/unrouted/src/en.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/plugins/config/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/config/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/config/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/router/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/plugins/router/hapi/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/.travis.yml",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/koa/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/hapi/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/.jshintrc",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/gengo/hapi/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/i18n/express/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/gengo/express/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/gengo/koa/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/settings/index.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/settings/index.yml",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/lib/plugify/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/localize/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/api/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/apply/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/router/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/apply/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/inject/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/inject/utils/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/default/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/default/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/default/utils/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/memory/utils/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/lib/plugins/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/plugins/config/utils/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/settings/index.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/config/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/router/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/express.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/io/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/lib/gengo.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/routed/src/en-us.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/utils/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/messageformat/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/router/koa/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/router/express/index.js",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/Javascript Beautify/JavascriptBeautify.sublime-settings",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/JavascriptBeautify.sublime-settings",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/grunt-jssemicoloned/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/grunt-jssemicoloned/tasks/jssemicoloned.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/grunt-jssemicoloned/tasks/lib/jssemicoloned.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/router/express.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/unrouted/src/ja.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/unrouted/src/en-us.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/default/template.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/default/filter.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/extract/index.js",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript.sublime-settings",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/unrouted/dest/en-us.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/grunt-json-pretty/tasks/jsonpretty.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/unrouted/dest/ja.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/router/hapi.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/config/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/i18n/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/gengo/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/router/harmony/koa.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/servers/hapi/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/servers/koa/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/router/koa.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/router.js",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-phrase-js.sublime-snippet",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-translated-js.sublime-snippet",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-bracket-js.sublime-snippet",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-default-js.sublime-snippet",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-dot-js.sublime-snippet",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-global-js.sublime-snippet",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-index-js.sublime-snippet",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/test.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/routed/dest/en-us.min.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/routed/src/fr.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/unrouted/src/fr.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/routed/dest/ja.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/grunt/grunt-pretty-json.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/routed/ja.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/routed/en-us.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/settings/grunt.json",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/express/index.jade",
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-l10n-number.sublime-snippet",
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-l10n-date.sublime-snippet",
@@ -965,31 +1125,17 @@
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-l10n-moment.sublime-snippet",
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-l10n.sublime-snippet",
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/gengo-i18n.sublime-snippet",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/koa/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/hapi/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/index.js",
-		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/JavaScript.sublime-settings",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/hapi/index.jade",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/extract/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/hapi/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/koa/index.jade",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/bundle.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/index.html",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/bundle.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/router.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/config/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/io/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/package.json",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/utils/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/modules/config.js",
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/router/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/messageformat/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/middleware/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/default/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/out/index.html",
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/HTML.sublime-build",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/settings/index.yml",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/koa/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/examples/express/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/router.js",
@@ -998,104 +1144,21 @@
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/config.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/en-US.json",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/ja.json",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/messageformat/filter.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/index.jade",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/.gitignore",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/parsers/default/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express/index.js",
-		"/C/Users/Takeshi/Documents/cmder/bin/config/aliases",
-		"/C/Users/Takeshi/Documents/cmder/bin/config/settings",
-		"/C/Users/Takeshi/Downloads/cmder/Readme.md",
-		"/C/Users/Takeshi/Downloads/cmder/bin/Readme.md",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express/index.jade",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser/template.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/gengojs-accept/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/hapi/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/hapi/index.jade",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express.gengo.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/koa.gengo.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/io.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/jade.koa.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/koa-jade/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/settings.json",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/configured.settings.json",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/localize/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/gengo.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/README.md",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser/messageformat/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser/filter.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/utils.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/msgfmt/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/message format/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/regex.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/filter.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/store.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/feathers.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/express/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/express.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/koa/koa.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/koa/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengomd/4deddfa9860e7dc25327/gengojs.md",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/string/lib/string.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/rules/Unicode Terms of Use",
-		"/C/Users/Takeshi/Downloads/plurals.txt",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/accept.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express.accept.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/models/schema.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/en-US.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/something.text",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/router.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/en-US.yml",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/middleware.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/.travis.yml",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/koa.accept.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa.accept.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/feathers.accept.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/static.api.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/accept-language.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/extract.js",
-		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/locales/locales.json",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/test.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs/Makefile",
-		"/C/Users/Takeshi/Documents/GitHub/embed-video/embed.video.min.js",
-		"/C/Users/Takeshi/Documents/GitHub/embed-video/package.json",
-		"/C/Users/Takeshi/Documents/GitHub/embed-video/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/embed-video/index.html",
-		"/C/Users/Takeshi/Documents/GitHub/embed-video/parsers/soundcloud.js",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower.json",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/globals/site.overrides",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/dash.html",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/jade/index.jade",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/jade/layout.jade",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/package.json",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/server.js",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-backend/app/routes/router.js",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/Gruntfile.js",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/elements/header.overrides",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/js/colorsbg.js",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-backend/app/app.js",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/npm-debug.log",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/collections/menu.overrides",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/.gitignore",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/main.html",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/collections/message.overrides",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/theme.config"
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/parser/messageformat/filter.js"
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
 		"height": 96.0,
 		"where_history":
 		[
+			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs\\koa",
+			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs\\hapi",
+			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs\\express",
+			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs",
 			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs\\tests",
 			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs\\modules",
 			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs",
@@ -1110,6 +1173,43 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"log",
+			"'),\n",
+			"key",
+			"config",
+			"log",
+			"clone",
+			"detect",
+			"log",
+			"log(this)",
+			"read",
+			"log",
+			"'./regex'",
+			"opt",
+			"IO",
+			"opt",
+			"log",
+			"req",
+			"log",
+			"length",
+			"number",
+			"log",
+			"s",
+			"gengoExpress",
+			"});",
+			"global",
+			"{\n",
+			"express",
+			"Hey",
+			"Hello",
+			"：",
+			"、",
+			"」",
+			"「",
+			"**",
+			"/",
+			"176",
+			"155",
 			"347",
 			"//",
 			"log",
@@ -1200,44 +1300,7 @@
 			"dir",
 			"this",
 			");\n",
-			"FB",
-			"toki",
-			"Toki",
-			"console.log(",
-			"load",
-			"defineParser",
-			"log",
-			"toki",
-			"main coredntainer",
-			"a( role",
-			"a(href=\"#\"",
-			"nice",
-			"node",
-			"'",
-			".inverted",
-			".menu",
-			".main.menu",
-			"nav",
-			"main",
-			"#example",
-			"style",
-			"dir",
-			"destination",
-			"dest",
-			"path",
-			"matt",
-			"img",
-			"example",
-			"examplme",
-			"#toc",
-			"#example",
-			"</>",
-			"				",
-			"hover",
-			"font",
-			"roboto",
-			"font",
-			"header"
+			"FB"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1245,6 +1308,19 @@
 		"regex": false,
 		"replace_history":
 		[
+			"new config",
+			"options",
+			"Memory",
+			"options",
+			"gengo",
+			"koa",
+			"おっす",
+			"こんにちは",
+			":",
+			",",
+			"\"",
+			"**",
+			"/",
 			"// ",
 			"",
 			"// ",
@@ -1322,29 +1398,29 @@
 			[
 				{
 					"buffer": 0,
-					"file": "koa/index.js",
+					"file": "tests/i18n/express/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 16321,
+						"buffer_size": 14862,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								13329,
-								13329
+								36,
+								36
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 4266.0,
+						"translation.x": -0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1352,11 +1428,41 @@
 				},
 				{
 					"buffer": 1,
-					"file": "package.json",
+					"file": "plugins/router/index.js",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 1453,
+						"buffer_size": 2631,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2605,
+								2605
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1188.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/Takeshi/Documents/GitHub/gengojs-default-accept/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 386,
 						"regions":
 						{
 						},
@@ -1369,41 +1475,11 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": -0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "hapi/index.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 16978,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								506,
-								506
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
@@ -1412,29 +1488,89 @@
 				},
 				{
 					"buffer": 3,
-					"file": "index.js",
+					"file": "plugins/memory/node_modules/read-json/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 16264,
+						"buffer_size": 442,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1348,
-								1348
+								100,
+								100
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "plugins/parser/default/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8912,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15,
+								15
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "lib/gengo/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5981,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								100,
+								100
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1026.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -1474,6 +1610,10 @@
 		]
 	},
 	"menu_visible": false,
+	"output.exec":
+	{
+		"height": 118.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -1489,7 +1629,7 @@
 	"project": "gengojs.sublime-project",
 	"replace":
 	{
-		"height": 64.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":

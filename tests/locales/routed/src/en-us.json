@@ -1,15 +1,20 @@
 {
 
     /** Route test **/
-    
+
     "index": {
-        "Hello":"Hello"
+        "Hello": "Hello"
     },
-    "about":{
-        "Hello":"Hello"
+    "about": {
+        "Hello": "Hello"
     },
-    "global":{
-        "Hello":"Hello"
+    "api": {
+        "v1.0":{
+            "Hello":"Hello"
+        }
+    },
+    "global": {
+        "Hello world!": "Hello world!"
     }
 
 }

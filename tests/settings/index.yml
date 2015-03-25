@@ -12,6 +12,7 @@
     open: "{{"
     close: "}}"
   extension: "yaml"
+  cache: false
   keys: 
     cookie: "cookie"
     query: "query"

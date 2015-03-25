@@ -1,22 +1,23 @@
 {
-    "Hello": {
-        "default": "Hello"
-    },
-    "Hello %d": "Hello %d",
-    "Hello {{name}}": "Hello {{name}}",
-    "Hello %d, my name is %d": "Hello %d, my name is %d",
-    "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}": "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}",
-    "greeting.informal": {
-        "hey": {
-            "default": "Hey"
-        }
-    },
-    "greeting": {
-        "informal": "Hey"
-    },
-    "There is one monkey in the %%s": {
-        "tree": "tree",
-        "one": "There is one monkey in the %%s",
-        "other": "There are %d monkeys in the %%s"
+  "Hello": "Hello",
+  "Hello %s": "Hello %s",
+  "Hello {{name}}": "Hello {{name}}",
+  "Hello %s, my name is %s": "Hello %s, my name is %s",
+  "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}": "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}",
+  "greeting.informal.basic": {
+    "default": "Hey"
+  },
+  "greeting.informal.advanced": {
+    "hey": {
+      "default": "Hey"
     }
+  },
+  "greeting": {
+    "informal": "Hey"
+  },
+  "There is one monkey in the {{tree}}": {
+    "tree": "tree",
+    "one": "There is one monkey in the {{tree}}",
+    "other": "There are {{count}} monkeys in the {{tree}}"
+  }
 }

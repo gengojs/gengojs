@@ -1,0 +1,19 @@
+{
+  "name": "gengojs-default-config",
+  "version": "0.0.1",
+  "type":"config",
+  "description": "The default configuration plugin for gengojs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "iwatakeshi",
+  "license": "MIT",
+  "dependencies": {
+    "app-root-path": "^1.0.0",
+    "fs-extra": "^0.16.5",
+    "js-yaml": "^3.2.7",
+    "lodash": "^3.5.0",
+    "string": "^3.1.0"
+  }
+}

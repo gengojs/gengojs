@@ -1,0 +1,23 @@
+{
+  "Hello": "Hello!",
+  "Hello %s": "Hello %s",
+  "Hello {{name}}": "Hello {{name}}",
+  "Hello %s, my name is %s": "Hello %s, my name is %s",
+  "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}": "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}",
+  "greeting.informal.basic": {
+    "default": "Hey"
+  },
+  "greeting.informal.advanced": {
+    "hey": {
+      "default": "Hey"
+    }
+  },
+  "greeting": {
+    "informal": "Hey"
+  },
+  "There is one monkey in the {{tree}}": {
+    "tree": "tree",
+    "one": "There is one monkey in the {{tree}}",
+    "other": "There are {{count}} monkeys in the {{tree}}"
+  }
+}

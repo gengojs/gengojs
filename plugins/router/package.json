@@ -1,0 +1,16 @@
+{
+  "name": "gengojs-default-router",
+  "type":"router",
+  "version": "0.0.1",
+  "description": "The default router plugin for gengojs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "iwatakeshi",
+  "license": "MIT",
+  "dependencies": {
+    "cldr": "^2.3.3",
+    "lodash": "^3.5.0"
+  }
+}

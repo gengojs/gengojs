@@ -6,33 +6,32 @@
      * Phrase Notation
      */
 
-    //Basic phrase
+    // Basic phrase
     "Hello": "こんにちは",
-    //Basic phrase with sprintf
-    "Hello %d": "こんにちは%d",
-    //Basic phrase with interpolation
+    // Basic phrase with sprintf
+    "Hello %s": "こんにちは%sさん",
+    // Basic phrase with interpolation
     "Hello {{name}}": "こんにちは{{name}}さん",
-    //Advanced phrase with sprintf
-    "Hello %d, my name is %d": "こんにちは%dさん, 私の名前は%dです",
-    //Advanced phrase with interpolation
-    "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}": "こんにちは{{name}}さん, 私の名前は{{my.firstname}}{{my.lastname}}です",
+    // Advanced phrase with sprintf
+    "Hello %s, my name is %s": "こんにちは%sさん、 私の名前は%sです",
+    // Advanced phrase with interpolation
+    "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}": "こんにちは{{name}}さん、 私の名前は{{my.firstname}} {{my.lastname}}です",
 
     /**
      * Bracket Notation
      */
 
-    //Basic bracket
-    "Hello": {
-    	"default":"こんにちは"
+    // Basic bracket
+    // Use [Hello]
+ 
+    // Basic bracket with dot key
+    "greeting.informal.basic":{
+    	"translated": "おっす"
     },
-    //Basic bracket with dot key
-    "greeting.informal":{
-    	"default": "おっす"
-    },
-    //Advanced bracket with dot key
-    "greeting.informal":{
+    // Advanced bracket with dot key
+    "greeting.informal.advanced":{
     	"hey":{
-    		"default":"おっす"
+    		"translated":"おっす"
     	}
     },
 
@@ -40,18 +39,18 @@
      * Dot Notation
      */
     
-    //Normal (nothing basic or advanced) dot
+    // Normal (nothing basic or advanced) dot
     "greeting":{
     	"informal":"おっす"
     },
 
     /** Plural Test */
 
-    "There is one monkey in the %%s": {
+    "There is one monkey in the {{tree}}": {
     	// You can use this like so: __("There is one monky in the %%s", __("[There is one monkey in the %%s].tree"))
     	// Of course it's best to use dot notation to reduce the length
     	"tree":"木", // <-- Notice this awesome hack?
-        "other": "一匹のサルが%%sにいます。"
+        "other": "{{count}}匹のサルが{{tree}}にいます。"
     }
 
 }
