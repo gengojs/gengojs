@@ -42,19 +42,15 @@ So that's about it node friends! Have a good one and happy coding! - Takeshi
 
 *For previous notes on changes, see CHANGELOG.md*
 
-**0.3.63**
+**0.3.64**
 
 * Updated readme
 * Updated packages
 
-**0.3.62**
+**0.3.63**
 
-* Fixed markdown bug and disabled markdown by default
-* Added markdown to option
-* Added markdown tests (more to come)
 * Updated readme
-* Updated site to reflect changes and also the site has been translated
-* Updated error message in parse
+* Updated packages
 
 ###Tests
 

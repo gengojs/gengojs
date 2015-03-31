@@ -487,3 +487,13 @@ module.exports.http = {
 * Updated readme
 * Updated site to reflect changes and also the site has been translated
 * Updated error message in parse
+
+**0.3.63**
+
+* Updated readme
+* Updated package
+
+**0.3.64**
+
+* Updated readme
+* Updated package
