@@ -1,53 +1,53 @@
 {
-    "name": "gengojs",
-    "version": "0.3.63",
-    "description": "the best i18n middleware for Express",
-    "main": "gengo.js",
-    "scripts": {
-        "test": "mocha ./tests/api && mocha ./tests/cookies && mocha ./tests/cookies && mocha ./tests/functions && mocha ./tests/json && mocha ./tests/libs && mocha ./tests/markdown && mocha ./tests/routes",
-        "cookies": "mocha ./tests/cookies.js",
-        "functions": "mocha ./tests/functions.js",
-        "routes": "mocha ./tests/routes.js",
-        "libs": "mocha ./tests/libs.js",
-        "json": "mocha ./tests/json.js",
-        "api": "mocha ./tests/api.js",
-        "markdown": "mocha ./tests/markdown.js"
-    },
-    "dependencies": {
-        "app-root-path": "^1.0.0",
-        "colors": "^1.0.3",
-        "cout": "0.0.6",
-        "kawari": "0.0.1",
-        "lodash": "^3.5.0",
-        "moment": "^2.9.0",
-        "mustache": "^1.1.0",
-        "numeral": "^1.5.3"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/iwatakeshi/gengojs.git"
-    },
-    "keywords": [
-        "i18n",
-        "i10n",
-        "translate",
-        "gengo",
-        "international",
-        "express"
-    ],
-    "author": "iwatakeshi",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/iwatakeshi/gengojs/issues"
-    },
-    "homepage": "http://gengojs.com",
-    "devDependencies": {
-        "assert": "^1.3.0",
-        "cookie-parser": "^1.3.4",
-        "express": "^4.12.2",
-        "mocha": "^2.2.1",
-        "prompt": "^0.2.14",
-        "shelljs": "^0.3.0",
-        "supertest": "^0.15.0"
-    }
+  "name": "gengojs",
+  "version": "0.3.64",
+  "description": "the best i18n middleware for Express",
+  "main": "gengo.js",
+  "scripts": {
+    "test": "mocha ./tests/api && mocha ./tests/cookies && mocha ./tests/cookies && mocha ./tests/functions && mocha ./tests/json && mocha ./tests/libs && mocha ./tests/markdown && mocha ./tests/routes",
+    "cookies": "mocha ./tests/cookies.js",
+    "functions": "mocha ./tests/functions.js",
+    "routes": "mocha ./tests/routes.js",
+    "libs": "mocha ./tests/libs.js",
+    "json": "mocha ./tests/json.js",
+    "api": "mocha ./tests/api.js",
+    "markdown": "mocha ./tests/markdown.js"
+  },
+  "dependencies": {
+    "app-root-path": "^1.0.0",
+    "colors": "^1.0.3",
+    "cout": "0.0.6",
+    "kawari": "0.0.1",
+    "lodash": "^3.6.0",
+    "moment": "^2.9.0",
+    "mustache": "^2.0.0",
+    "numeral": "^1.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iwatakeshi/gengojs.git"
+  },
+  "keywords": [
+    "i18n",
+    "i10n",
+    "translate",
+    "gengo",
+    "international",
+    "express"
+  ],
+  "author": "iwatakeshi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iwatakeshi/gengojs/issues"
+  },
+  "homepage": "http://gengojs.com",
+  "devDependencies": {
+    "assert": "^1.3.0",
+    "cookie-parser": "^1.3.4",
+    "express": "^4.12.3",
+    "mocha": "^2.2.1",
+    "prompt": "^0.2.14",
+    "shelljs": "^0.4.0",
+    "supertest": "^0.15.0"
+  }
 }
