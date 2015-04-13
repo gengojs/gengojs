@@ -1,11 +1,11 @@
-/*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/
 (function() {
-  "use strict";
-  var root = require('app-root-path'),
-    version = require(root + '/package').version,
-    Gengo = require(root + '/lib/gengo/');
+  'use strict';
+  var
+    version = require('../package').version,
+    Core = require('gengojs-core');
+
   /**
-   * @description global
+   * Global scope
    * @private
    */
   var global;
@@ -17,9 +17,9 @@
    * @public
    */
   var gengo = function(options, plugins) {
-    global = Gengo.create(options, plugins);
+    global = new Core(options, plugins);
     return global.ship.bind(global);
-  }
+  };
   /**
    * @method clone
    * @description Returns the API.
@@ -27,8 +27,8 @@
    * @public
    */
   gengo.clone = function() {
-    return global.apply() || null;
-  }
+    return global.assign.apply(global, arguments);
+  };
   /**
    * version.
    * @type {String}

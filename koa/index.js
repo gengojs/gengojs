@@ -1,12 +1,11 @@
-/*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/
 (function() {
-  "use strict";
-  var root = require('app-root-path'),
-    version = require(root + '/package').version,
-    Gengo = require(root + '/lib/gengo/');
+  'use strict';
+  var
+    version = require('../package').version,
+    Core = require('gengojs-core');
 
   /**
-   * @description global gengo
+   * Global scope
    * @private
    */
   var global;
@@ -17,10 +16,10 @@
    * @return {Function}   The middleware for express.
    * @public
    */
-  var gengo = function(options, plugins) {
-    global = Gengo.create(options, plugins);
-    return function*(next) {
-      scope.ship.bind(global)(this);
+  var gengo = function gengo(options, plugins) {
+    global = new Core(options, plugins);
+    return function * (next) {
+      global.ship.bind(global)(this);
       yield next;
     };
   };
@@ -31,7 +30,7 @@
    * @public
    */
   gengo.clone = function() {
-    return global.apply() || null;
+    return global.assign.apply(global, arguments);
   };
 
   /**

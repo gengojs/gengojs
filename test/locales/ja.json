@@ -5,7 +5,7 @@
   "Hello %s, my name is %s": "こんにちは%sさん、 私の名前は%sです",
   "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}": "こんにちは{{name}}さん、 私の名前は{{my.firstname}} {{my.lastname}}です",
   "msgformat": {
-    "photos": "あなたは{numPhotos,plural,=0{other 写真。}=1{other 写真が。}他{# 写真を。}}がありません。"
+    "photos": "あなたは{numPhotos,plural,=0{写真を持っていません。}=1{写真を持っています。}other{# 枚の写真をもっています。}}"
   },
   "greeting.informal.basic": {
     "translated": "おっす"

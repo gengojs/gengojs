@@ -1,32 +1,33 @@
-/*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/
 (function() {
-  "use strict";
-  var root = require('app-root-path'),
-    version = require(root + '/package').version,
-    Gengo = require(root + '/lib/gengo/');
+  'use strict';
+  var
+    version = require('../package').version,
+    Core = require('gengojs-core');
 
-  function hapi(plugin, options, next) {
-      plugin.ext('onPreHandler', function(request, reply) {
-        scope.ship.bind(local || global)(request);
-        reply.continue();
-      });
-      plugin.ext('onPreResponse', function(request, reply) {
-        scope.ship.bind(local || global)(request);
-        reply.continue();
-      });
-      next();
-    }
-    /**
-     * @description Scope
-     * @private
-     */
+  /**
+   * Global scope
+   * @private
+   */
   var global;
 
+  function hapi(plugin, options, next) {
+    plugin.ext('onPreHandler', function(request, reply) {
+      global.ship.bind(global)(request);
+      reply.continue();
+    });
+    plugin.ext('onPreResponse', function(request, reply) {
+      global.ship.bind(global)(request);
+      reply.continue();
+    });
+    next();
+  }
+
+
   var gengo = function(options, plugins) {
-    global = Gengo.create(options, plugins);
+    global = new Core(options, plugins);
     var register = hapi;
     register.attributes = {
-      name: require(root + '/package').name
+      name: require('../package').name
     };
     return {
       register: register,
@@ -40,7 +41,7 @@
    * @public
    */
   gengo.clone = function() {
-    return global.apply() || null;
+    return global.assign.apply(globa, arguments);
   };
   /**
    * version.
