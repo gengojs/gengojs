@@ -1,44 +1,27 @@
 var express = require('express'),
-    app = express(),
-    gengo = require('../../index.js');
+  app = express(),
+  gengo = require('../../express/');
 var path = require('path');
-/** 
- * Available Context API
- * =====================
- * 'this' is the context available to all parsers since
- * it was bound by the Gengo class to every parser.
- *
- * The context contains the following:
- * @class accept
- * @class config (with an alias as 'settings')
- * @class router
- * @class io
- * @property parser
- *
- * If you would like to attach something
- * to the context, please attach it to
- * the 'parser' property like so:
- * this.parser['name of parser'] = {
- *  'someKey':'someValue'
- * }
- */
-var parser = require('../../parser/messageformat');
 
 app.set('view engine', 'jade');
 app.set('views', path.normalize(__dirname + '/'));
-gengo.use(parser());
 
 
 app.use(gengo({
+  backend: {
     directory: './tests/locales',
+  },
+  header: {
     supported: ['en-US', 'ja']
+  }
 }));
 
 app.get('/', function(req, res, next) {
-    res.render('index',{
-            title: 'My home page'
-        });
-    next();
+  'use strict';
+  res.render('index', {
+    title: 'My home page'
+  });
+  next();
 });
 
 app.listen(3000);

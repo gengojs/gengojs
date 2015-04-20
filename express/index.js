@@ -2,7 +2,7 @@
   'use strict';
   var
     version = require('../package').version,
-    Core = require('gengojs-core');
+    core = require('gengojs-core');
 
   /**
    * Global scope
@@ -17,7 +17,7 @@
    * @public
    */
   var gengo = function(options, plugins) {
-    global = new Core(options, plugins);
+    global = core(options, plugins);
     return global.ship.bind(global);
   };
   /**

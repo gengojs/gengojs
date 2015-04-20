@@ -1,44 +1,49 @@
 var Hapi = require('hapi');
 var server = new Hapi.Server();
 var gengo = require('../../hapi/');
-var path = require('path');
 server.connection({
-    port: 3000
+  port: 3000
 });
 
 var options = {
-    engines: {
-        jade: require('jade')
-    },
-    path: __dirname + '/',
-    compileOptions: {
-        pretty: true
-    }
-
+  engines: {
+    jade: require('jade')
+  },
+  path: __dirname + '/',
+  compileOptions: {
+    pretty: true
+  }
 };
 
 server.views(options);
 
 server.register(gengo({
+  backend: {
     directory: './tests/locales',
-    supported: ['ja', 'en-US']
+  },
+  header: {
+    supported: ['en-US', 'ja']
+  }
 }), function(err) {
-    if (err) console.log('an error occurred');
+  'use strict';
+  if (err) console.log('an error occurred');
 });
 
 
 server.route({
-    method: 'GET',
-    path: '/',
-    handler: function(request, reply) {
-        reply.view('index', {
-            title: 'My home page'
-        });
-    }
+  method: 'GET',
+  path: '/',
+  handler: function(request, reply) {
+    'use strict';
+    reply.view('index', {
+      title: 'My home page'
+    });
+  }
 });
 
 
 
 server.start(function() {
-    console.log('Server running at:', server.info.uri);
+  'use strict';
+  console.log('Server running at:', server.info.uri);
 });
