@@ -1,6 +1,9 @@
 var Hapi = require('hapi');
 var server = new Hapi.Server();
 var gengo = require('../../hapi/');
+var root = require('app-root-path');
+var path = require('path');
+
 server.connection({
   port: 3000
 });
@@ -18,8 +21,11 @@ var options = {
 server.views(options);
 
 server.register(gengo({
+  parser: {
+    type: '*'
+  },
   backend: {
-    directory: './tests/locales',
+    directory: path.join(root.path, '/tests/locales/unrouted/dest/')
   },
   header: {
     supported: ['en-US', 'ja']

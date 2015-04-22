@@ -8,6 +8,8 @@ html
     header
       h1 #{__("Hello")}
     .container
+      p #{__("msgformat.photos",{numPhotos: 1})}
+      p #{__("msgformat.photos",{numPhotos: 1000})}
       h3 Current Locale:
       | #{__.locale()}
       h3 Supported:

@@ -18,7 +18,7 @@
    */
   var gengo = function gengo(options, plugins) {
     global = core(options, plugins);
-    return function * (next) {
+    return function*(next) {
       global.ship.bind(global)(this);
       yield next;
     };

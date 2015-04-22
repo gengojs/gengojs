@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "app-root-path": "^1.0.0",
-    "gengojs-core": "0.0.1-beta.24"
+    "gengojs-core": "0.0.1-beta.27"
   },
   "repository": {
     "type": "git",

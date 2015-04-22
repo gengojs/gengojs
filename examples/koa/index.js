@@ -3,10 +3,13 @@ var koa = require('koa'),
   gengo = require('../../koa/');
 var path = require('path');
 var jade = require('koa-jade-render');
-
+var root = require('app-root-path');
 app.use(gengo({
+  parser: {
+    type: '*'
+  },
   backend: {
-    directory: './tests/locales',
+    directory: path.join(root.path, '/tests/locales/unrouted/dest/')
   },
   header: {
     supported: ['en-US', 'ja']
@@ -15,7 +18,7 @@ app.use(gengo({
 
 app.use(jade(path.normalize(__dirname + '/')));
 
-app.use(function * () {
+app.use(function*() {
   'use strict';
   yield this.render('index', {
     title: 'My home page'

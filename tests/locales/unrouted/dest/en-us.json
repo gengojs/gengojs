@@ -15,9 +15,7 @@
   "greeting": {
     "informal": "Hey"
   },
-  "There is one monkey in the {{tree}}": {
-    "tree": "tree",
-    "one": "There is one monkey in the {{tree}}",
-    "other": "There are {{count}} monkeys in the {{tree}}"
+  "msgformat": {
+    "photos": "You have {numPhotos, plural, =0 {no photos.}=1 {one photo.}other {# photos.}}"
   }
 }

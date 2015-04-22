@@ -1,49 +1,46 @@
 {
-    /** Notation Test */
+  /** Notation Test */
 
-    // Basic phrase
-    
-    "Hello": "Hello!",
-    
-    // Basic phrase with sprintf
-    "Hello %s": "Hello %s",
-    
-    // Basic phrase with interpolation
-    "Hello {{name}}": "Hello {{name}}",
-    
-    // Advanced phrase with sprintf
-    "Hello %s, my name is %s": "Hello %s, my name is %s",
-    
-    // Advanced phrase with interpolation
-    "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}": "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}",
+  // Basic phrase
 
-    // Basic bracket
-    // Use [Hello]
+  "Hello": "Hello!",
 
-    // Basic bracket with dot key
-    "greeting.informal.basic":{
-    	"default": "Hey"
-    },
-    
-    // Advanced bracket with dot key
-    "greeting.informal.advanced":{
-    	"hey":{
-    		"default":"Hey"
-    	}
-    },
-    
-    // Normal (nothing basic or advanced) dot
-    "greeting":{
-    	"informal":"Hey"
-    },
+  // Basic phrase with sprintf
+  "Hello %s": "Hello %s",
 
-    /** Plural Test */
+  // Basic phrase with interpolation
+  "Hello {{name}}": "Hello {{name}}",
 
-    "There is one monkey in the {{tree}}": {
-    	// You can use this like so: __("There is one monky in the %%s", __("[There is one monkey in the %%s].tree"))
-    	// Of course it's best to use dot notation to reduce the length
-    	"tree":"tree", // <-- Notice this awesome hack?
-        "one": "There is one monkey in the {{tree}}",
-        "other": "There are {{count}} monkeys in the {{tree}}"
+  // Advanced phrase with sprintf
+  "Hello %s, my name is %s": "Hello %s, my name is %s",
+
+  // Advanced phrase with interpolation
+  "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}": "Hello {{name}}, my name is {{my.firstname}} {{my.lastname}}",
+
+  // Basic bracket
+  // Use [Hello]
+
+  // Basic bracket with dot key
+  "greeting.informal.basic": {
+    "default": "Hey"
+  },
+
+  // Advanced bracket with dot key
+  "greeting.informal.advanced": {
+    "hey": {
+      "default": "Hey"
     }
+  },
+
+  // Normal (nothing basic or advanced) dot
+  "greeting": {
+    "informal": "Hey"
+  },
+
+  /* MessageFormat Test*/
+
+  "msgformat": {
+    "photos": "You have {numPhotos, plural, =0 {no photos.}=1 {one photo.}other {# photos.}}"
+  }
+
 }
