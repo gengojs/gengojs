@@ -7,7 +7,9 @@ gengo.js
 
 ##News Flash
 
+*5/11/2015*
 
+Slowly but surely gengo.js will be arriving to the state of completion. Here's what happened:
 
 * The core has been [reduced to 55 loc](https://github.com/iwatakeshi/gengojs-core/blob/master/lib/core/index.js).
   * This means you can rest assure that the core doesn't have bugs.
@@ -15,7 +17,9 @@ gengo.js
 * All plugins have been completed.
   * TODO: Create a pack and test all the features
 
+Here is what is going to happen in the near future:
 
+  * Release gengojs 1.0.0-alpha.1
   * Rewrite the docs
 
 Here is what you need to know about the changes:
