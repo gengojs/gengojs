@@ -7,6 +7,37 @@ gengo.js
 
 ##News Flash
 
+
+
+* The core has been [reduced to 55 loc](https://github.com/iwatakeshi/gengojs-core/blob/master/lib/core/index.js).
+  * This means you can rest assure that the core doesn't have bugs.
+  * This means you can focus on the plugins
+* All plugins have been completed.
+  * TODO: Create a pack and test all the features
+
+
+  * Rewrite the docs
+
+Here is what you need to know about the changes:
+
+   * [Core](https://github.com/iwatakeshi/gengojs-core)
+      * As mentioned before, gengo.js will completely be pluggable.
+   * [Parser](https://github.com/iwatakeshi/gengojs-default-parser)
+      * It was a difficult decision but I decided not to support plurality for sprintf and interpolation. This does not mean you can't change that. I have given you three options to overcome this problem:
+        * Use message formatting along with sprintf and interpolation
+        * Create your own parser plugin
+        * The default parser gives multiple options to override some internal functions. I will include this in the docs.
+   * [API](https://github.com/iwatakeshi/gengojs-default-api)
+      * globalize
+        * Added `language()` and is now powered by cldr.
+        * Added `langauges()`
+        * Removed `setLocale()` and `getLocale()` and replaced with `locale()` for setter and getter
+        * Added `catalog()`
+      * localize
+        * Localization is now powered by [Tokei](https://github.com/iwatakeshi/tokei).
+          * This will allow you to use date, time, and number formatting.
+
+
 *3/30/2015*
 
 The progress of gengo.js (gengojs or gengo for short) is **amazing**. Unfortunately, I will be doing less work on it until May or so but before doing so, I thought to give you an update on what exactly happened and here's the list:

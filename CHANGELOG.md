@@ -497,3 +497,8 @@ module.exports.http = {
 
 * Updated readme
 * Updated package
+
+**0.3.65**
+
+* Updated readme
+* Updated package
