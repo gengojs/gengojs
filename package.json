@@ -4,13 +4,15 @@
   "description": "the best i18n middleware for Express",
   "main": "./express/",
   "scripts": {
+    "start": "node test/index.js",
     "build": "grunt",
-    "test": "echo Whoops no tests yet!",
+    "test": "grunt && mocha --harmony ./test/",
     "0.10": ""
   },
   "dependencies": {
     "app-root-path": "^1.0.0",
-    "gengojs-core": "0.0.2"
+    "gengojs-core": "0.0.3",
+    "gengojs-default-pack": "^1.0.1"
   },
   "repository": {
     "type": "git",
@@ -41,17 +43,18 @@
     "grunt-json-pretty": "^0.2.1",
     "grunt-jssemicoloned": "0.0.6",
     "grunt-strip-json-comments": "^1.0.1",
-    "hapi": "^8.8.1",
+    "hapi": "^9.0.3",
+    "intl": "*",
     "jade": "^1.11.0",
-    "koa": "^0.21.0",
+    "koa": "^1.0.0",
     "koa-jade-render": "0.1.0",
     "koa-route": "^2.4.2",
     "koa-router": "^5.1.2",
     "koa-session": "^3.3.1",
     "load-grunt-tasks": "^3.2.0",
+    "lodash": "^3.10.1",
     "mocha": "^2.2.5",
     "subdomain": "^1.2.0",
-    "supertest": "^1.0.1",
-    "intl": "*"
+    "supertest": "^1.0.1"
   }
 }
