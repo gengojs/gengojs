@@ -1,15 +1,16 @@
 module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
+  var sources = ['express/*.js', 'hapi/index.js', 'koa/index.js', 'modules/**/*.js', 'test/**/*.js'];
   grunt.initConfig({
     jshint: {
-      src: ['lib/**/*.js', 'parser/**/*.js', 'hapi/index.js', 'koa/index.js', 'modules/**/*.js', 'tests/**/*.js'],
+      src: sources,
       options: {
         jshintrc:'.jshintrc'
       }
     },
     "jsbeautifier": {
       "default": {
-        src: ['index.js', 'parser/**/*.js', 'hapi/index.js', 'koa/index.js', 'modules/**/*.js']
+        src: sources
       },
       options: {
         js: {
@@ -36,12 +37,31 @@ module.exports = function(grunt) {
     },
     jssemicoloned: {
 
-      files: ['lib/**/*.js', 'parser/**/*.js', 'hapi/index.js', 'koa/index.js', 'modules/**/*.js', 'test/**/*.js']
+      files: sources
+    },
+    node_version:{
+        options: {
+        alwaysInstall: false,
+        errorLevel: 'fatal',
+        globals: [],
+        maxBuffer: 200*1024,
+        nvm: true,
+        override: ''
+      }
+    },
+    exec:{
+      mocha: {
+        cmd:'mocha test/'
+      },
+      mocha_harmony:{
+        cmd:'mocha --harmony test/harmony/'
+      }
     }
   });
   grunt.registerTask('default', [
     'jsbeautifier',
-    'jshint'
+    'jshint',
+    'exec'
   ]);
 
   grunt.registerTask('semicolon', ['jssemicoloned']);
