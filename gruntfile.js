@@ -36,7 +36,6 @@ module.exports = function(grunt) {
       }
     },
     jssemicoloned: {
-
       files: sources
     },
     node_version:{
@@ -61,7 +60,8 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'jsbeautifier',
     'jshint',
-    'exec'
+    'exec:mocha',
+    'exec:mocha_harmony'
   ]);
 
   grunt.registerTask('semicolon', ['jssemicoloned']);
