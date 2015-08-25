@@ -2,7 +2,8 @@
   'use strict';
   var
     version = require('../package').version,
-    core = require('gengojs-core');
+    core = require('gengojs-core'),
+    pack = require('gengojs-default-pack');
 
   /**
    * Global scope
@@ -24,7 +25,7 @@
 
 
   var gengo = function(options, plugins) {
-    global = core(options, plugins);
+    global = core(options, plugins || pack());
     var register = hapi;
     register.attributes = {
       name: require('../package').name

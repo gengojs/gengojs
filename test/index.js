@@ -3,7 +3,6 @@
 
 // Dependencies
 var assert = require('chai').assert;
-var pack = require('gengojs-default-pack');
 var request = require('supertest');
 var _ = require('lodash');
 var path = require('path');
@@ -45,7 +44,7 @@ describe('gengo', function() {
     describe('wrapper test', function() {
       // Koa
       describe('koa', function() {
-        app.koa.use(gengo.koa(options, pack()));
+        app.koa.use(gengo.koa(options));
         app.koa.use(function*(next) {
           this.body = {
             __: !_.isUndefined(this.__) &&
@@ -68,7 +67,7 @@ describe('gengo', function() {
       });
       // Express
       describe('express', function() {
-        app.express.use(gengo.express(options, pack()));
+        app.express.use(gengo.express(options));
         app.express.use(function(req, res) {
           res.send({
             __: !_.isUndefined(req.__) || false,
@@ -90,7 +89,7 @@ describe('gengo', function() {
         app.hapi.connection({
           port: 3000
         });
-        app.hapi.register(gengo.hapi(options, pack()), function() {});
+        app.hapi.register(gengo.hapi(options), function() {});
         describe('api', function() {
           it('should exist', function(done) {
             app.hapi.inject('/', function(res) {
