@@ -4,9 +4,7 @@
   "description": "the best i18n middleware for Express",
   "main": "./express/",
   "scripts": {
-    "start": "node test/index.js",
-    "build": "grunt",
-    "test": "grunt && mocha --harmony ./test/",
+    "start": "grunt",
     "0.10": ""
   },
   "dependencies": {

@@ -50,10 +50,10 @@ module.exports = function(grunt) {
     },
     exec:{
       mocha: {
-        cmd:'mocha test/'
+        cmd:'nvm use 0.10 && mocha test/'
       },
       mocha_harmony:{
-        cmd:'mocha --harmony test/harmony/'
+        cmd:'nvm use iojs && mocha --harmony test/harmony/'
       }
     }
   });
