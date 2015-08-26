@@ -1,3 +1,5 @@
+var semver = require('semver');
+
 module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
   var sources = ['express/*.js', 'hapi/index.js', 'koa/index.js', 'modules/**/*.js', 'test/**/*.js'];
@@ -38,30 +40,20 @@ module.exports = function(grunt) {
     jssemicoloned: {
       files: sources
     },
-    node_version:{
-        options: {
-        alwaysInstall: false,
-        errorLevel: 'fatal',
-        globals: [],
-        maxBuffer: 200*1024,
-        nvm: true,
-        override: ''
-      }
-    },
     exec:{
       mocha: {
-        cmd:'nvm use 0.10 && mocha test/'
-      },
-      mocha_harmony:{
-        cmd:'nvm use iojs && mocha --harmony test/harmony/'
+        cmd:function(version){
+          if(semver.gt(version, '0.10')){
+            return 'mocha test/index.js';
+          } else return 'mocha --harmony test/harmony/index.js';
+        }
       }
     }
   });
   grunt.registerTask('default', [
     'jsbeautifier',
     'jshint',
-    'exec:mocha',
-    'exec:mocha_harmony'
+    'exec:mocha:$(node version)'
   ]);
 
   grunt.registerTask('semicolon', ['jssemicoloned']);

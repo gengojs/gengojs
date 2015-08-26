@@ -41,7 +41,6 @@
     "grunt-jsbeautifier": "^0.2.10",
     "grunt-json-pretty": "^0.2.1",
     "grunt-jssemicoloned": "0.0.6",
-    "grunt-node-version": "^1.0.1",
     "grunt-strip-json-comments": "^1.0.1",
     "hapi": "^9.0.3",
     "intl": "*",
@@ -54,6 +53,7 @@
     "load-grunt-tasks": "^3.2.0",
     "lodash": "^3.10.1",
     "mocha": "^2.2.5",
+    "semver": "^5.0.1",
     "subdomain": "^1.2.0",
     "supertest": "^1.0.1"
   }
