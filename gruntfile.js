@@ -45,7 +45,6 @@ module.exports = function(grunt) {
     exec:{
       mocha: {
         cmd:function(version){
-          console.log(version);
           if(semver.lt(version.toString(), '0.11.0')){
             return 'mocha test/index.js';
           } else return 'mocha --harmony test/harmony/index.js';
