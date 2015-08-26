@@ -4,7 +4,8 @@
   "description": "the best i18n middleware for Express",
   "main": "./express/",
   "scripts": {
-    "start": "grunt"
+    "start": "grunt",
+    "test": "grunt"
   },
   "dependencies": {
     "app-root-path": "^1.0.0",
