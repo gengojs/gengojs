@@ -1,4 +1,6 @@
 var semver = require('semver');
+var version = new (require('node-version').version);
+    version = version.getVersion();
 
 module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
@@ -43,7 +45,8 @@ module.exports = function(grunt) {
     exec:{
       mocha: {
         cmd:function(version){
-          if(semver.gt(version, '0.10')){
+          console.log(version);
+          if(semver.gt(version.toString(), '0.10.37')){
             return 'mocha test/index.js';
           } else return 'mocha --harmony test/harmony/index.js';
         }
@@ -53,7 +56,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'jsbeautifier',
     'jshint',
-    'exec:mocha:$(node version)'
+    'exec:mocha:' + version.long
   ]);
 
   grunt.registerTask('semicolon', ['jssemicoloned']);
