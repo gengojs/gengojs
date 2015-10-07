@@ -61,5 +61,5 @@ server.register(gengo(options), function(error) {
 npm install
 
 # run test
-grunt
+gulp test
 ```
