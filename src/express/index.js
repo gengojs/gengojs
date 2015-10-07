@@ -6,7 +6,7 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _package = require('../package');
+var _package = require('../../package');
 
 var _gengojsCore = require('gengojs-core');
 
@@ -51,7 +51,7 @@ exports['default'] = (function () {
   gengo.version = _package.version;
   // Export
   return gengo;
-}).call(undefined);
+})();
 
 module.exports = exports['default'];
 //# sourceMappingURL=../source maps/express/index.js.map

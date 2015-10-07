@@ -1,10 +1,10 @@
 import {
   version, name
 }
-from '../package';
+from '../../package';
 import core from 'gengojs-core';
 import pack from 'gengojs-default-pack';
-export default (() => {
+export default (function() {
   'use strict';
   /**
    * Global scope
@@ -52,4 +52,4 @@ export default (() => {
   gengo.version = version;
   // Export
   return gengo;
-}).call(this);
+})();

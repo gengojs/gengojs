@@ -1,11 +1,11 @@
 import {
   version
 }
-from '../package';
+from '../../package';
 import core from 'gengojs-core';
 import pack from 'gengojs-default-pack';
 import 'babel/polyfill';
-export default (() => {
+export default (function() {
   'use strict';
   /**
    * Global scope
@@ -44,4 +44,4 @@ export default (() => {
   gengo.version = version;
   // Export
   return gengo;
-}).call(this);
+})();
