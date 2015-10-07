@@ -16,8 +16,6 @@ var _gengojsDefaultPack = require('gengojs-default-pack');
 
 var _gengojsDefaultPack2 = _interopRequireDefault(_gengojsDefaultPack);
 
-require('babel/polyfill');
-
 exports['default'] = (function () {
   'use strict';
   /**
@@ -34,20 +32,7 @@ exports['default'] = (function () {
    */
   var gengo = function gengo(options, plugins) {
     global = (0, _gengojsCore2['default'])(options, plugins || (0, _gengojsDefaultPack2['default'])());
-    return regeneratorRuntime.mark(function callee$2$0(next) {
-      return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
-        while (1) switch (context$3$0.prev = context$3$0.next) {
-          case 0:
-            global.ship.bind(global)(this);
-            context$3$0.next = 3;
-            return next;
-
-          case 3:
-          case 'end':
-            return context$3$0.stop();
-        }
-      }, callee$2$0, this);
-    });
+    return global.ship.bind(global);
   };
   /**
    * @method clone
@@ -58,9 +43,8 @@ exports['default'] = (function () {
   gengo.clone = function () {
     return global.assign.apply(global, arguments);
   };
-
   /**
-   * version
+   * version.
    * @type {String}
    * @public
    */
@@ -70,4 +54,4 @@ exports['default'] = (function () {
 }).call(undefined);
 
 module.exports = exports['default'];
-//# sourceMappingURL=../source maps/koa/index.js.map
+//# sourceMappingURL=../source maps/express/index.js.map

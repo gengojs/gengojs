@@ -16,8 +16,6 @@ var _gengojsDefaultPack = require('gengojs-default-pack');
 
 var _gengojsDefaultPack2 = _interopRequireDefault(_gengojsDefaultPack);
 
-require('babel/polyfill');
-
 exports['default'] = (function () {
   'use strict';
   /**
@@ -25,29 +23,29 @@ exports['default'] = (function () {
    * @private
    */
   var global;
-  /**
-   * @method gengo
-   * @description Main function for Gengo.
-   * @param  {Object} options The configuration options.
-   * @return {Function}   The middleware for express.
-   * @public
-   */
+
+  function hapi(plugin, options, next) {
+    plugin.ext('onPreHandler', function (request, reply) {
+      global.ship.bind(global)(request);
+      reply['continue']();
+    });
+    plugin.ext('onPreResponse', function (request, reply) {
+      global.ship.bind(global)(request);
+      reply['continue']();
+    });
+    next();
+  }
+
   var gengo = function gengo(options, plugins) {
     global = (0, _gengojsCore2['default'])(options, plugins || (0, _gengojsDefaultPack2['default'])());
-    return regeneratorRuntime.mark(function callee$2$0(next) {
-      return regeneratorRuntime.wrap(function callee$2$0$(context$3$0) {
-        while (1) switch (context$3$0.prev = context$3$0.next) {
-          case 0:
-            global.ship.bind(global)(this);
-            context$3$0.next = 3;
-            return next;
-
-          case 3:
-          case 'end':
-            return context$3$0.stop();
-        }
-      }, callee$2$0, this);
-    });
+    var register = hapi;
+    register.attributes = {
+      name: _package.name
+    };
+    return {
+      register: register,
+      options: options || {}
+    };
   };
   /**
    * @method clone
@@ -58,9 +56,8 @@ exports['default'] = (function () {
   gengo.clone = function () {
     return global.assign.apply(global, arguments);
   };
-
   /**
-   * version
+   * version.
    * @type {String}
    * @public
    */
@@ -70,4 +67,4 @@ exports['default'] = (function () {
 }).call(undefined);
 
 module.exports = exports['default'];
-//# sourceMappingURL=../source maps/koa/index.js.map
+//# sourceMappingURL=../source maps/hapi/index.js.map

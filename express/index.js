@@ -1,10 +1,23 @@
-(function() {
-  'use strict';
-  var
-    version = require('../package').version,
-    core = require('gengojs-core'),
-    pack = require('gengojs-default-pack');
+'use strict';
 
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _package = require('../package');
+
+var _gengojsCore = require('gengojs-core');
+
+var _gengojsCore2 = _interopRequireDefault(_gengojsCore);
+
+var _gengojsDefaultPack = require('gengojs-default-pack');
+
+var _gengojsDefaultPack2 = _interopRequireDefault(_gengojsDefaultPack);
+
+exports['default'] = (function () {
+  'use strict';
   /**
    * Global scope
    * @private
@@ -17,8 +30,8 @@
    * @return {Function}   The middleware for express.
    * @public
    */
-  var gengo = function(options, plugins) {
-    global = core(options, plugins || pack());
+  var gengo = function gengo(options, plugins) {
+    global = (0, _gengojsCore2['default'])(options, plugins || (0, _gengojsDefaultPack2['default'])());
     return global.ship.bind(global);
   };
   /**
@@ -27,7 +40,7 @@
    * @return {Function} The API.
    * @public
    */
-  gengo.clone = function() {
+  gengo.clone = function () {
     return global.assign.apply(global, arguments);
   };
   /**
@@ -35,21 +48,10 @@
    * @type {String}
    * @public
    */
-  gengo.version = version;
-  /**
-   * @type {Function}
-   * @private
-   */
-  module.exports = gengo;
+  gengo.version = _package.version;
+  // Export
+  return gengo;
+}).call(undefined);
 
-  /*global ender:false */
-  if (typeof ender === 'undefined') {
-    this.gengo = gengo;
-  }
-  /*global define:false */
-  if (typeof define === 'function' && define.amd) {
-    define([], function() {
-      return gengo;
-    });
-  }
-}).call(this);
+module.exports = exports['default'];
+//# sourceMappingURL=../source maps/express/index.js.map

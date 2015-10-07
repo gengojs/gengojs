@@ -1,4 +1,4 @@
 node_modules/
-*.sublime-workspace
-*.sublime-project
 test/npm-debug.log
+*jsconfig.json
+lib/
