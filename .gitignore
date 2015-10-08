@@ -1,6 +1,5 @@
 node_modules/
 test/npm-debug.log
 jsconfig.json
-lib/
 .backup/
 .publish/
