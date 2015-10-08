@@ -67,7 +67,7 @@ server.register(gengo(options), function(error) {
 
 ## Options
 
-These are the complete option for the official plugins. Loading options is quite simple in gengo.js.
+These are the complete options for the official plugins. Loading options is quite simple in gengo.js.
 
 ```json
 {
