@@ -18,7 +18,11 @@ var options = {
   }
 };
 
-server.views(options);
+server.register(require('vision'), function (error) {
+  if(error) console.log('An error occurred');
+  else
+  server.views(options);
+});
 
 server.register(gengo({
   parser: {
@@ -30,9 +34,9 @@ server.register(gengo({
   header: {
     supported: ['en-US', 'ja']
   }
-}), function(err) {
+}), function(error) {
   'use strict';
-  if (err) console.log('an error occurred');
+  if (error) console.log('An error occurred');
 });
 
 

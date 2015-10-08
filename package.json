@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/iwatakeshi/gengojs.git"
+    "url": "https://github.com/gengojs/gengojs.git"
   },
   "keywords": [
     "i18n",
@@ -27,7 +27,7 @@
   "author": "iwatakeshi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iwatakeshi/gengojs/issues"
+    "url": "https://github.com/gengojs/gengojs/issues"
   },
   "homepage": "http://gengojs.com",
   "devDependencies": {
@@ -61,6 +61,7 @@
     "rimraf": "^2.4.3",
     "semver": "^5.0.3",
     "subdomain": "^1.2.0",
-    "supertest": "^1.0.1"
+    "supertest": "^1.0.1",
+    "vision": "^3.0.0"
   }
 }
