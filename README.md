@@ -120,7 +120,7 @@ These are the complete option for the official plugins. Loading options is quite
       "global": "global"
     }
   },
-  "router": { "enabled": true } 
+  "router": { "enabled": false } 
 }
 ```
 
