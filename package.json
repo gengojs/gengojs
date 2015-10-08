@@ -4,7 +4,7 @@
   "description": "the best i18n middleware for Node.js",
   "main": "./express/",
   "scripts": {
-    "start": "gulp test"
+    "test": "gulp test"
   },
   "dependencies": {
     "app-root-path": "^1.0.0",
