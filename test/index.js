@@ -1,6 +1,3 @@
-/*jshint strict:false*/
-/*global describe, it*/
-
 // Dependencies
 var assert = require('chai').assert;
 var request = require('supertest');
