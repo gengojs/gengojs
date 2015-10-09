@@ -6,8 +6,8 @@ gengo.js
 [![Build Status](https://travis-ci.org/gengojs/gengojs.svg?branch=master)](https://travis-ci.org/gengojs/gengojs)
 [![Dependency Status](https://david-dm.org/gengojs/gengojs.svg)](https://github.com/gengojs/gengojs/blob/master/package.json)
 [![License Status](http://img.shields.io/npm/l/gengojs.svg)](https://github.com/gengojs/gengojs/blob/master/LICENSE) 
-[![Downloads](http://img.shields.io/npm/dm/gengojs.svg)]() 
-[![Version](http://img.shields.io/npm/v/gengojs.svg)]()
+[![Downloads](http://img.shields.io/npm/dm/gengojs.svg)](https://www.npmjs.com/package/gengojs) 
+[![Version](http://img.shields.io/npm/v/gengojs.svg)](https://www.npmjs.com/package/gengojs)
 
 
 ## News
