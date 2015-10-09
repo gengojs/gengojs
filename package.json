@@ -10,7 +10,7 @@
     "app-root-path": "^1.0.0",
     "babel": "^5.8.23",
     "gengojs-core": "^0.3.18",
-    "gengojs-default-pack": "^1.1.1"
+    "gengojs-default-pack": "^1.1.2"
   },
   "repository": {
     "type": "git",

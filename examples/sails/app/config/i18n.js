@@ -50,7 +50,7 @@ module.exports.i18n = {
    * Backend Options                                                          *
    * See https://github.com/gengojs/plugin-backend for documentation.         *
    ***************************************************************************/
-  // backend: {
+  backend: {
   //  /**
   //   * 'directory' refers to the path to your dictionary respect to the
   //   * root of your sails app.
@@ -68,8 +68,8 @@ module.exports.i18n = {
   //   * 'cache' refers to caching and enables gengo to store the dictionary
   //   * without changes until the server has been restarted.
   //   */
-  //   "cache": true
-  // },
+    "cache": false
+  },
 
   /****************************************************************************
    *                                                                          *
