@@ -1,6 +1,6 @@
 {
   "name": "gengojs",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "the best i18n middleware for Node.js",
   "main": "./express/",
   "scripts": {
