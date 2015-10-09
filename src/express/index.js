@@ -30,8 +30,10 @@ exports['default'] = (function () {
    * @return {Function}   The middleware for express.
    * @public
    */
-  var gengo = function gengo(options, plugins) {
-    global = (0, _gengojsCore2['default'])(options, plugins || (0, _gengojsDefaultPack2['default'])());
+  var gengo = function gengo(options) {
+    var plugins = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+    global = (0, _gengojsCore2['default'])(options, plugins, (0, _gengojsDefaultPack2['default'])());
     return global.ship.bind(global);
   };
   /**
