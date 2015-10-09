@@ -12,7 +12,7 @@ gengo.js
 
 ## News
 
-Hey! Sorry for any delays! gengo.js has been through some transitions and hopefully it lead it to a better library but here's what happened:
+Hey! Sorry for any delays! gengo.js has been through some transitions and hopefully it will lead it to becoming a better library but here's what happened:
 * gengo.js has moved into [a dedicated GitHub account](https://github.com/gengojs)
 * All official plugins have been updated and can be found at the dedicated account.
 * All plugins and the core have been documented.
