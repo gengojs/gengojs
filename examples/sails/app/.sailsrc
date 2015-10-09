@@ -1,0 +1,8 @@
+{
+  "generators": {
+    "modules": {}
+  },
+  "hooks":{
+  	"i18n":false
+  }
+}
