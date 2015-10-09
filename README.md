@@ -26,7 +26,9 @@ please don't hesitate to create issues and/or contribute to this awesome open so
 
 ## Sails.js
 
-gengo.js supports Sails **through the use of hooks**. Check out the repo of [sails-hook-gengojs](https://github.com/gengojs/sails-hook-gengojs) for documentation.
+gengo.js supports Sails **through the use of hooks**. Check out the repo of [sails-hook-gengojs](https://github.com/gengojs/sails-hook-gengojs) for documentation. 
+
+For an example use of the hook, run `npm i && sails lift` under `examples/sails/app/`.
 
 ## Usage
 
