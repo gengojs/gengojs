@@ -24,7 +24,7 @@ please don't hesitate to create issues and/or contribute to this awesome open so
 
 ## Introduction
 
-**gengo.js** is an i18n/l10n library that is powered by it's very small [core](https://github.com/gengojs/core). Along with the core, it is also managed by six [plugins](https://github.com/gengojs?utf8=%E2%9C%93&query=plugin). The combinations of the these create a powerful and a unique library that enables developers to take over the core and extend its capabilities. The core is essentialy an empty shell that provides the basics such as a way of accessing a plugin's options or the plugin itself. As a starter, begin hacking the core and the plugins to find out how you can develop your own plugins and create the ultimate combination to create the best i18n library for Node.js.
+**gengo.js** is a server agnostic i18n/l10n library that is powered by it's very small [core](https://github.com/gengojs/core). Along with the core, it is also managed by six [plugins](https://github.com/gengojs?utf8=%E2%9C%93&query=plugin). The combinations of the these create a powerful and a unique library that enables developers to take over the core and extend its capabilities. The core is essentialy an empty shell that provides the basics such as a way of accessing a plugin's options or the plugin itself. As a starter, begin hacking the core and the plugins to find out how you can develop your own plugins and create the ultimate combination to create the best i18n library for Node.js.
 
 ## Sails.js
 
