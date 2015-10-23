@@ -12,15 +12,22 @@ gengo.js
 
 ## News
 
+Greetings! Just wanted to say thanks for those who have tried gengo.js. The official Docs is still a work in progress
+but this update (**v1.0.0-alpha.4**) introduces support for [TOML](https://github.com/toml-lang/toml). This means that the 
+locales/dictionaries can be written in toml-lang instead of JSON.
+
+Also, if you haven't noticed yet, the examples directory is the best place to view the examples. It also includes a sails
+app that you can try as well. :)
+
 Hey! Sorry for any delays! gengo.js has been through some transitions and hopefully it will lead it to becoming a better library but here's what happened:
 * gengo.js has moved into [a dedicated GitHub account](https://github.com/gengojs)
 * All official plugins have been updated and can be found at the dedicated account.
 * All plugins and the core have been documented.
 
-In the coming weeks I will be working on a revamped version of the website/documentation with the updated gengo.js. In the meantime,
-please don't hesitate to create issues and/or contribute to this awesome open source project. And to let everyone know, **I am looking for maintainers**. This project isn't very big and shouldn't be difficult to understand on how it works, so if you are interested, feel free to DM me through Gitter or Twitter ([@iwatakeshi](https://twitter.com/iwatakeshi)). :)
 
-~~It's here! It's finally here! Welcome to version 1.0.0-alpha. As the version implies, this version of gengo is not production ready. It's published so that I can get some feedback and of course test it myself. In fact, I already have a couple of thoughts about bringing the core and the plugins into the same repo because individually maintaining them myself is a difficult task. In the meantime, feel free to try it out and report any bugs or suggestions. As far as docs are concerned, it may take a while for me to write as I try to organize everything up and make gengo.js simple enough to extend and make it the best i18n module for Node.~~
+### *Help wanted*:
+
+ **I am looking for maintainers**! This project isn't very big and shouldn't be difficult to understand on how it works, so if you are interested, feel free to DM me through Gitter or Twitter ([@iwatakeshi](https://twitter.com/iwatakeshi)). :)
 
 ## Introduction
 
