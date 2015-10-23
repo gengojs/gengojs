@@ -75,7 +75,7 @@ server.register(gengo(options), function(error) {
 
 ## Options
 
-These are the complete options for the official plugins. Loading options is quite simple in gengo.js.
+These are the complete and default options for the official plugins. Assigning options is quite simple in gengo.js.
 
 ```toml
 # Options For Default Plugins
