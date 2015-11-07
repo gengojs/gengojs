@@ -13,6 +13,8 @@ gengo.js
 ## Progress:
 
 - [x] Updated to Koa v2.0.0-alpha.3
+- [x] Dropped support for Node.js < 4.0 
+  (Sorry, but most servers are moving beyond 4. In theory, gengojs should still work below 4.0)
 - [ ] Writing docs.
 
 
