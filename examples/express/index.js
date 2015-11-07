@@ -1,8 +1,7 @@
 var express = require('express'),
   app = express(),
-  gengo = require('../../express/');
+  gengo = require('../../express/').default;
 var path = require('path');
-var root = require('app-root-path');
 
 app.set('view engine', 'jade');
 app.set('views', path.normalize(__dirname + '/'));
@@ -12,7 +11,7 @@ app.use(gengo({
     type: '*'
   },
   backend: {
-    directory: path.join(root.path, '/tests/locales/unrouted/dest/')
+    directory: path.join(path.resolve(), 'examples/locales')
   },
   header: {
     supported: ['en-US', 'ja']

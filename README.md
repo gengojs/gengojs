@@ -10,19 +10,12 @@ gengo.js
 [![Version](http://img.shields.io/npm/v/gengojs.svg)](https://www.npmjs.com/package/gengojs)
 
 
-## News
+## Progress:
 
-Greetings! Just wanted to say thanks for those who have tried gengo.js. The official Docs is still a work in progress
-but this update (**v1.0.0-alpha.4**) introduces support for [TOML](https://github.com/toml-lang/toml). This means that the 
-locales/dictionaries can be written in toml-lang instead of JSON.
-
-Also, if you haven't noticed yet, the examples directory is the best place to view the examples. It also includes a sails
-app that you can try as well. :)
-
-Hey! Sorry for any delays! gengo.js has been through some transitions and hopefully it will lead it to becoming a better library but here's what happened:
-* gengo.js has moved into [a dedicated GitHub account](https://github.com/gengojs)
-* All official plugins have been updated and can be found at the dedicated account.
-* All plugins and the core have been documented.
+- [x] Updated to Koa v2.0.0-alpha.3
+- [x] Dropped support for Node.js < 4.0 
+  (Sorry, but most servers are moving beyond 4. In theory, gengojs should still work below 4.0)
+- [ ] Writing docs.
 
 
 ### *Help wanted*:
@@ -66,7 +59,7 @@ app.use(gengo(options));
 
 // Koa
 var gengo = require('gengojs/koa');
-var app = require('koa')();
+var app = new require('koa')();
 // Use gengo
 app.use(gengo(options));
 

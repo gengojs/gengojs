@@ -6,21 +6,22 @@ var assert = require('chai').assert;
 var request = require('supertest');
 var _ = require('lodash');
 // Servers
-var koa = require('koa');
+var Koa = require('koa');
 var hapi = require('hapi');
 var express = require('express');
 // App
 var app = {
-  koa: koa(),
+  koa: new Koa(),
   hapi: new hapi.Server(),
   express: express()
 };
 // Wrapper
 var gengo = {
-  express: require('../../express'),
-  hapi: require('../../hapi'),
-  koa: require('../../koa')
+  express: require('../../express').default,
+  hapi: require('../../hapi').default,
+  koa: require('../../koa').default
 };
+
 // Options
 var options = {
   header: {
@@ -41,16 +42,16 @@ describe('gengo', function() {
     // Koa
     describe('koa', function() {
       app.koa.use(gengo.koa(options));
-      app.koa.use(function*(next) {
-        this.body = {
-          __: !_.isUndefined(this.__) &&
-            !_.isUndefined(this.request.__) &&
-            !_.isUndefined(this.req.__),
-          __l: !_.isUndefined(this.__l) &&
-            !_.isUndefined(this.request.__l) &&
-            !_.isUndefined(this.req.__l)
+      app.koa.use(function(self, next) {
+        self.body = {
+          __: !_.isUndefined(self.__) &&
+            !_.isUndefined(self.request.__) &&
+            !_.isUndefined(self.req.__),
+          __l: !_.isUndefined(self.__l) &&
+            !_.isUndefined(self.request.__l) &&
+            !_.isUndefined(self.req.__l)
         };
-        yield next;
+        return next();
       });
       describe('api', function() {
         it('should exist', function(done) {
