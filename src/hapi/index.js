@@ -1,22 +1,7 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _package = require('../../package');
-
-var _gengojsCore = require('gengojs-core');
-
-var _gengojsCore2 = _interopRequireDefault(_gengojsCore);
-
-var _gengojsDefaultPack = require('gengojs-default-pack');
-
-var _gengojsDefaultPack2 = _interopRequireDefault(_gengojsDefaultPack);
-
-exports['default'] = (function () {
+const pkg = require('../../package'),
+  core = require('gengojs-core'),
+  pack = require('gengojs-default-pack');
+export default (function() {
   'use strict';
   /**
    * Global scope
@@ -25,24 +10,22 @@ exports['default'] = (function () {
   var global;
 
   function hapi(plugin, options, next) {
-    plugin.ext('onPreHandler', function (request, reply) {
+    plugin.ext('onPreHandler', function(request, reply) {
       global.ship.bind(global)(request);
-      reply['continue']();
+      reply.continue();
     });
-    plugin.ext('onPreResponse', function (request, reply) {
+    plugin.ext('onPreResponse', function(request, reply) {
       global.ship.bind(global)(request);
-      reply['continue']();
+      reply.continue();
     });
     next();
   }
 
-  var gengo = function gengo(options) {
-    var plugins = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-    global = (0, _gengojsCore2['default'])(options, plugins, (0, _gengojsDefaultPack2['default'])());
+  var gengo = function(options, plugins = {}) {
+    global = core(options, plugins, pack());
     var register = hapi;
     register.attributes = {
-      name: _package.name
+      name: pkg.name
     };
     return {
       register: register,
@@ -55,7 +38,7 @@ exports['default'] = (function () {
    * @return {Function} The API.
    * @public
    */
-  gengo.clone = function () {
+  gengo.clone = function() {
     return global.assign.apply(global, arguments);
   };
   /**
@@ -63,10 +46,7 @@ exports['default'] = (function () {
    * @type {String}
    * @public
    */
-  gengo.version = _package.version;
+  gengo.version = pkg.version;
   // Export
   return gengo;
 })();
-
-module.exports = exports['default'];
-//# sourceMappingURL=../source maps/hapi/index.js.map

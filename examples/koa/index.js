@@ -1,15 +1,14 @@
-var koa = require('koa'),
-  app = koa(),
-  gengo = require('../../koa/');
+var Koa = require('koa'),
+  app = new Koa(),
+  gengo = require('../../koa/').default;
 var path = require('path');
 var jade = require('koa-jade-render');
-var root = require('app-root-path');
 app.use(gengo({
   parser: {
     type: '*'
   },
   backend: {
-    directory: path.join(root.path, '/tests/locales/unrouted/dest/')
+    directory: path.join(path.resolve(), 'examples/locales')
   },
   header: {
     supported: ['en-US', 'ja']
@@ -18,11 +17,12 @@ app.use(gengo({
 
 app.use(jade(path.normalize(__dirname + '/')));
 
-app.use(function*() {
+app.use(function(self, next) {
   'use strict';
-  yield this.render('index', {
+   self.render('index', {
     title: 'My home page'
   });
+   return next();
 });
 
 app.listen(3000);

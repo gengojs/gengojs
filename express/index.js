@@ -1,1 +1,1 @@
-module.exports = require('../src/express/');
+module.exports = require('../lib/express/');

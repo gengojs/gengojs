@@ -18,21 +18,21 @@ var
 /** Backs up the files in case of emergency! */
 gulp.task('backup', function () {
   return gulp
-    .src('lib/**/**/**.js')
+    .src('src/**/**/**.js')
     .pipe(gulp.dest('./.backup'));
 });
 
 gulp.task('recover', function () {
   return gulp
     .src('./.backup/**/**/*.js')
-    .pipe(gulp.dest('lib/'));
+    .pipe(gulp.dest('src/'));
 });
 
 /* Formats the files */
 gulp.task('beautify', ['backup'], function () {
-  return gulp.src('./lib/**/**/*.js')
+  return gulp.src('./src/**/**/*.js')
     .pipe(beautify(config.beautify))
-    .pipe(gulp.dest('./lib'));
+    .pipe(gulp.dest('./src'));
 });
 
 /*
@@ -52,25 +52,27 @@ gulp.task('gh-pages', ['doc'], function () {
 
 
 /* Checks the coding style and builds from ES6 to ES5*/
-gulp.task('lib', ['beautify'], function () {
-  return gulp.src('./lib/**/**/*.js')
+gulp.task('src', ['beautify'], function () {
+  return gulp.src('./src/**/**/*.js')
     .pipe(jshint(config.jshint))
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(jshint.reporter('fail'))
     .pipe(sourcemaps.init())
-    .pipe(babel())
+    .pipe(babel({
+      presets: ['es2015']
+    }))
     .pipe(sourcemaps.write('./source maps/'))
-    .pipe(gulp.dest('./src/'));
+    .pipe(gulp.dest('./lib/'));
 });
 
 /* Watches for changes and applies the build task*/
 gulp.task('watch', function () {
-  return gulp.watch('./lib/**/**/*.js', ['build']);
+  return gulp.watch('./src/**/**/*.js', ['build']);
 });
 
 /* Runs tests */
 
-gulp.task('test', ['lib'], function (cb) {
+gulp.task('test', ['src'], function (cb) {
   if (isHarmony)
     return gulp.src('./test/harmony/index.js')
     .pipe(shell(['mocha --harmony <%= file.path %>']));
@@ -93,7 +95,7 @@ gulp.task('doc', ['build'], shell.task([
   (function(){
     var doc = 'node_modules/mr-doc/bin/mr-doc',
         cmd = {
-          source: ' -s lib/',
+          source: ' -s src/',
           output: ' -o docs/',
           name:' -n "gengo.js/plugin/header"',
           theme:' -t cayman'
@@ -102,8 +104,8 @@ gulp.task('doc', ['build'], shell.task([
   })()
 ]));
 
-gulp.task('default', ['backup', 'beautify', 'lib', 'watch']);
+gulp.task('default', ['backup', 'beautify', 'src', 'watch']);
 
-gulp.task('build', ['backup', 'beautify', 'lib', 'test']);
+gulp.task('build', ['backup', 'beautify', 'src', 'test']);
 
 gulp.task('docs', ['build', 'doc', 'gh-pages', 'clean-docs']);

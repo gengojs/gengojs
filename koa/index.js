@@ -1,1 +1,1 @@
-module.exports = require('../src/koa/');
+module.exports = require('../lib/koa/');
